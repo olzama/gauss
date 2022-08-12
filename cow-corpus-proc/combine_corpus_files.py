@@ -47,6 +47,8 @@ if __name__ == "__main__":
     print('Working with corpus {}'.format(path_to_corpus))
     folders_to_find = sys.argv[2]
     relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
+    for fol in relevant_folders:
+        print(fol)
     print('Found {} folders named {} in the corpus.'.format(len(relevant_folders), folders_to_find))
     sent_lst = get_sent_list(relevant_folders)
     print('Total {} sentences in {} in the corpus.'.format(len(sent_lst),folders_to_find))
