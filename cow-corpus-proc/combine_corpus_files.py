@@ -7,9 +7,9 @@ The purpose of the script:
 Combine COW-SL corpus files in to a single file, one sentence per line.
 '''
 
-import sys
-from pathlib import Path
-
+import sys, os
+import glob
+import nltk
 
 def collect_all_raw(d):
     pass
@@ -22,12 +22,31 @@ def collect_per_course_level(d):
 
 '''
 Traverse d recursively, looking for folders named k.
-Return a single string containing all texts from all k-named folders.   
+Return the list of folders named k.
 '''
-def find_relevant_folder(d, k):
-    pass
+def find_relevant_folders(d, k):
+    return glob.glob(d + "**/**/" + k, recursive=True)
+
+
+'''
+Return a single string containing all texts from a list of folders.   
+'''
+def get_sent_list(relevant_folders):
+    sentences = []
+    for fol in relevant_folders:
+        for textfile in glob.glob(fol + '/*.txt'):
+            with open(textfile, 'r') as f:
+                text = f.read()
+            sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
+            sentences.extend(sent_tokenized_text)
+    return sentences
+
 
 if __name__ == "__main__":
-    path_to_corpus = Path(sys.argv[1])
-    for p in path_to_corpus.rglob("*"):
-        print(p)
+    path_to_corpus = sys.argv[1]
+    print('Working with corpus {}'.format(path_to_corpus))
+    folders_to_find = sys.argv[2]
+    relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
+    print('Found {} folders named {} in the corpus.'.format(len(relevant_folders), folders_to_find))
+    sent_lst = get_sent_list(relevant_folders)
+    print('Total {} sentences in {} in the corpus.'.format(len(sent_lst),folders_to_find))
