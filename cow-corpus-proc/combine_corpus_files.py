@@ -9,7 +9,7 @@ Combine COW-SL corpus files in to a single file, one sentence per line.
 
 import sys, os
 import glob
-import nltk
+import nltk # NLP package; used here to split text into sentences
 
 def collect_all_raw(d):
     pass
@@ -32,20 +32,20 @@ def find_relevant_folders(d, k):
 Return a single string containing all texts from a list of folders.   
 '''
 def get_sent_list(relevant_folders):
-    sentences = []
+    sentences = [] # Empty list
     for fol in relevant_folders:
-        for textfile in glob.glob(fol + '/*.txt'):
+        for textfile in glob.glob(fol + '/*.txt'): # Iterate over all files with extention .txt in the directory named fol
             with open(textfile, 'r') as f:
                 text = f.read()
-            sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
-            sentences.extend(sent_tokenized_text)
+            sent_tokenized_text = nltk.sent_tokenize(text, language='spanish') # Split text into sentences using the NLTK tokenizer
+            sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
     return sentences
 
 
 if __name__ == "__main__":
-    path_to_corpus = sys.argv[1]
+    path_to_corpus = sys.argv[1] # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     print('Working with corpus {}'.format(path_to_corpus))
-    folders_to_find = sys.argv[2]
+    folders_to_find = sys.argv[2] # Second argument passed to the program
     relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
     for fol in relevant_folders:
         print(fol)
