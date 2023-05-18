@@ -5,6 +5,11 @@ developed at UC Davis: https://github.com/ucdaviscl/cowsl2h
 
 The purpose of the script:
 Combine COW-SL corpus files in to a single file, one sentence per line.
+
+The program can be run as follows:
+python3 script_name
+parameter1_path_to_cowsl2h-master
+parameter2_essays
 '''
 
 import sys, os
