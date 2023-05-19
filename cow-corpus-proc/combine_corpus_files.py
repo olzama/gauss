@@ -30,7 +30,8 @@ Traverse d recursively, looking for folders named k.
 Return the list of folders named k.
 '''
 def find_relevant_folders(d, k):
-    return glob.glob(d + "**/**/" + k, recursive=True)
+    folders = glob.glob(d + "**/**/" + k, recursive=True)
+    return folders
 
 
 '''
@@ -39,11 +40,14 @@ Return a single string containing all texts from a list of folders.
 def get_sent_list(relevant_folders):
     sentences = [] # Empty list
     for fol in relevant_folders:
-        for textfile in glob.glob(fol + '/*.txt'): # Iterate over all files with extention .txt in the directory named fol
-            with open(textfile, 'r') as f:
-                text = f.read()
-            sent_tokenized_text = nltk.sent_tokenize(text, language='spanish') # Split text into sentences using the NLTK tokenizer
-            sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
+        issues = glob.glob(fol + '/**')
+        for issue in issues:
+            if issue.endswith("gender_number"):
+                for textfile in glob.glob(issue + '/**/*.txt'): # Iterate over all files with extention .txt in the directory named fol
+                    with open(textfile, 'r') as f:
+                        text = f.read()
+                        sent_tokenized_text = nltk.sent_tokenize(text, language='spanish') # Split text into sentences using the NLTK tokenizer
+                        sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
     return sentences
 
 
@@ -60,3 +64,5 @@ if __name__ == "__main__":
     with open('COWSL2H_'+ folders_to_find.replace('/','-') + '.txt', 'w') as f:
         for s in sent_lst:
             f.write(s + '\n')
+
+
