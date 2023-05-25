@@ -75,8 +75,6 @@ if __name__ == "__main__":
     path_to_corpus = sys.argv[1] # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     target_folders = "essays"
     folders_to_find = "annotated"  # Second argument passed to the program
-    folders_with_essays = find_relevant_folders(path_to_corpus, target_folders)
-    relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
 
     '''
     Use the function find_relevant_folders to find folders named "essays" in the corpus.
@@ -84,6 +82,7 @@ if __name__ == "__main__":
     Print number of folders found.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
+    folders_with_essays = find_relevant_folders(path_to_corpus, target_folders)
     print('Found {} folders named {} in the corpus.'.format(len(folders_with_essays), target_folders))
     for fol in folders_with_essays:
         print(fol)
@@ -107,6 +106,7 @@ if __name__ == "__main__":
     Print number of relevant folders found.  
     '''
     print('Looking for folders in {} folders.'.format(len(folders_to_find)))
+    relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
     print('Found {} folders named {} in the corpus.'.format(len(relevant_folders), folders_to_find))
     for fol in relevant_folders:
         print(fol)
