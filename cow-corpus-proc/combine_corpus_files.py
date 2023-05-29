@@ -20,7 +20,7 @@ def collect_all_raw(d):
     pass
 
 '''
-Return a single string containing annotated texts from a text file.
+Return a list containing annotated texts from a text file.
 '''
 def collect_all_annotated(d):
     annotated_sentences = []
@@ -43,7 +43,7 @@ def find_relevant_folders(d, k):
     return folders
 
 '''
-Return a single string containing all texts from a list of folders.   
+Return a list containing all texts from a list of folders.   
 '''
 def get_raw_list(relevant_folders):
     sentences = []
@@ -56,7 +56,7 @@ def get_raw_list(relevant_folders):
     return sentences
 
 '''
-Return a single string containing all texts from a list of folders within a specific directory.
+Return a list containing all texts from a list of folders within a specific directory.
 '''
 def get_sent_list(relevant_folders):
     sentences = [] # Empty list
@@ -71,65 +71,54 @@ def get_sent_list(relevant_folders):
                         sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
     return sentences
 
-if __name__ == "__main__":
-    path_to_corpus = sys.argv[1] # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
-    target_folders = "essays"
-    folders_to_find = "annotated"  # Second argument passed to the program
+'''
+Find desired folders in the corpus.
+'''
+def relevant_folders (f):
+    path_to_corpus = sys.argv[1]# sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
+    folders = find_relevant_folders(path_to_corpus, f)
+    return folders
 
+if __name__ == "__main__":
     '''
     Use the function find_relevant_folders to find folders named "essays" in the corpus.
-    Print the path to each folder.
-    Print number of folders found.
+    Sanity check report of relevant folders.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
-    folders_with_essays = find_relevant_folders(path_to_corpus, target_folders)
-    print('Found {} folders named {} in the corpus.'.format(len(folders_with_essays), target_folders))
-    for fol in folders_with_essays:
-        print(fol)
+    essays = relevant_folders("essays")
+    print('Found {} folders named essays in the corpus.'.format(len(essays)))
 
     '''
-    Use the function get_raw_list with the files named "essays".
-    Read into .txt files under "essays", use nltk to split text into a single list of sentences.
-    Write each sentence from the list in a .txt file named "COWSL2h_essays".
-    Print number of sentences in the list.
+    Save all sentences from all selected files in a single file.
     '''
-    print('Looking for sentences in {} folders.'.format(len(folders_with_essays)))
-    raw_lst = get_raw_list(folders_with_essays)
-    print('Total {} sentences in {} in the corpus.'.format(len(raw_lst), target_folders))
-    with open('COWSL2H_' + target_folders.replace('/', '-') + '.txt','w') as f:
+    print('Looking for sentences in essays.')
+    raw_lst = get_raw_list(essays)
+    print('Total {} sentences.'.format(len(raw_lst)))
+    with open('COWSL2H_essays.txt','w') as f:
         for s in raw_lst:
             f.write(s + '\n')
 
     '''
     Use the function find_relevant_folders to find folders containing essays in the corpus.
-    Print the path to each relevant folder.
-    Print number of relevant folders found.  
+    Sanity check report of relevant folders.  
     '''
-    print('Looking for folders in {} folders.'.format(len(folders_to_find)))
-    relevant_folders = find_relevant_folders(path_to_corpus, folders_to_find)
-    print('Found {} folders named {} in the corpus.'.format(len(relevant_folders), folders_to_find))
-    for fol in relevant_folders:
-        print(fol)
+    annotated = relevant_folders("annotated")
+    print('Found {} folders named annotated in the corpus.'.format(len(annotated)))
 
     '''
-    Use the function get_sent_list with folders named "annotated".
-    For each folder, find .txt files stored under "gender_number/**/".
-    Read into each .txt file, use nltk to split text into a single list of sentences.
-    Write each sentence from the list in a .txt file named "COWSL2H_annotated.txt".
-    Print number of sentences written in the file.
+    Combine all annotated files into one.
+    Sanity check report.
     '''
-    print('Compiling sentences from {} folders.'.format(len(relevant_folders)))
-    sent_lst = get_sent_list(relevant_folders)
-    print('Total {} sentences in {} in the corpus.'.format(len(sent_lst),folders_to_find))
-    with open('COWSL2H_'+ folders_to_find.replace('/','-') + '.txt', 'w') as f:
+    print('Compiling sentences from annotated folders.'.format(len(annotated)))
+    sent_lst = get_sent_list(annotated)
+    print('Total {} sentences in the corpus.'.format(len(sent_lst)))
+    with open('COWSL2H_annotated.txt', 'w') as f:
         for s in sent_lst:
             f.write(s + '\n')
 
     '''
-    Open a .txt file named "COWSL2H_gender_number.txt".
-    Use the function collect_all_annotated to retrieve annotated sentences from COWSL2H_annotated.txt.
-    Write retrieved sentences in the new .txt file.
-    Print number of retrieved sentences written in the file.
+    Select only annotated sentences and save them in a file.
+    Sanity check report.
     '''
     annotations = 'COWSL2H_annotated.txt'
     print('Looking for annotated sentences in {}'.format(annotations))
