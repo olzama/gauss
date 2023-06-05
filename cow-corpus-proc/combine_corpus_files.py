@@ -15,9 +15,15 @@ import sys, os
 import glob
 import nltk # NLP package; used here to split text into sentences
 import re
+import json
 
 def collect_all_raw(d):
     pass
+
+def find_annotations(sentence):
+    annotations = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    annotated_sentence = re.search(annotations, sentence)
+    return annotated_sentence
 
 '''
 Return a list containing annotated texts from a text file.
@@ -27,7 +33,8 @@ def collect_all_annotated(d):
     with open(d, 'r') as f:
         sentences = f.readlines()
         for sentence in sentences:
-            if re.search("[\[\]{}<>]", sentence):
+            annotations = find_annotations(sentence)
+            if annotations != None:
                 annotated_sentences.append(sentence)
     return annotated_sentences
 
@@ -72,20 +79,42 @@ def get_sent_list(relevant_folders):
     return sentences
 
 '''
-Find desired folders in the corpus.
+Save anotated sentences from a list into a dictionary.
 '''
-def relevant_folders (f):
-    path_to_corpus = sys.argv[1]# sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
-    folders = find_relevant_folders(path_to_corpus, f)
-    return folders
+def create_dictionary(sentence_list):
+    dictionary = {}
+    for i, sentence in enumerate(sentence_list):
+        annotations = find_annotations(sentence)
+        if annotations != None:
+            dictionary[i] = sentence
+            print("Sentence {}".format(i))
+            print(sentence)
+    return dictionary
+
+'''
+Break annotated sentences into parts.
+'''
+def break_sentence(sentence):
+    annotations = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    sentence_parts = annotations.split(sentence)
+    return sentence_parts
+
+'''
+Returns two parallel sentences, one with the original word from the annotation and the other with the target word.
+'''
+def reconstruct_sentence(sentence, replacement):
+    annotation = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    reconstructed = annotation.sub(replacement, sentence)
+    return reconstructed
 
 if __name__ == "__main__":
+    path_to_corpus = sys.argv[1]# sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     '''
     Use the function find_relevant_folders to find folders named "essays" in the corpus.
     Sanity check report of relevant folders.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
-    essays = relevant_folders("essays")
+    essays = find_relevant_folders(path_to_corpus, "essays")
     print('Found {} folders named essays in the corpus.'.format(len(essays)))
 
     '''
@@ -99,10 +128,10 @@ if __name__ == "__main__":
             f.write(s + '\n')
 
     '''
-    Use the function find_relevant_folders to find folders containing essays in the corpus.
+    Find folders containing essays in the corpus.
     Sanity check report of relevant folders.  
     '''
-    annotated = relevant_folders("annotated")
+    annotated = find_relevant_folders(path_to_corpus, "annotated")
     print('Found {} folders named annotated in the corpus.'.format(len(annotated)))
 
     '''
@@ -123,8 +152,23 @@ if __name__ == "__main__":
     annotations = 'COWSL2H_annotated.txt'
     print('Looking for annotated sentences in {}'.format(annotations))
     relevant_sentences = collect_all_annotated(annotations)
-    print('Total {} annotated sentences in {}.'.format(len(relevant_sentences),annotations))
+    print('Total {} annotated sentences in {}.'.format(len(relevant_sentences), annotations))
     with open('COWSL2H_gender_number.txt', 'w') as f:
         for sentence in relevant_sentences:
             f.write(sentence)
+
+    '''
+    Create a dictionary of sentences annotated for gender_numer issues.
+    '''
+    gen_num_dictionary = create_dictionary(sent_lst)
+
+    '''
+    Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
+    '''
+    gen_num_original = {}
+    gen_num_target = {}
+
+    for key, value in gen_num_dictionary.items():
+        gen_num_original[key] = reconstruct_sentence(value, '\g<original_word>')
+        gen_num_target[key] = reconstruct_sentence(value, '\g<target_word>')
 

@@ -109,7 +109,6 @@ A mí no me gustan las [playa]{playas}<na:ps:noun:inan> y por esa razón no las 
 Aunque a visitar las [gran]{grandes}<na:ps:adj:inan> ciudades sería divertido, también visitará las ciudades más pequeñas para poder disfrutar del ambiente rural español.
 La [vacación]{vacaciones}<in:s:noun:inan> de mis sueños, mi viaje de mis fantasías es la última [vacación]{vacaciones}<in:s:noun:inan>.
 En mi última [vacación]{vacaciones}<in:s:noun:inan> todos los lugares que quiero ir son [suguro]{seguros}<na:ps:adj:inan>.
-Entonces quiero ir [al]{a los}<na:ps:det:inan> múltiples países en Suramérica y Central America.
 Mi viaje va a ser tres meses [mínima]{mínimo}<ig:f:adv>.
 También quiero aprender la historia de [las]{los}<ga:mf:det:inan> países y las personas allí.
 En [todas]{todos}<ga:mf:det:inan> [las]{los}<ga:mf:det:inan> países<gat:noun:inan> quiero hacer la misma cosa aprender la historia y experiencia la cultura.
@@ -130,7 +129,6 @@ La última cosa que hará mi [vacación]{vacaciones}<in:s:noun:inan> perfecta se
 No estoy diciendo que quiero quedar en un hotel de cinco estrellas y gastar miles de dólares en comida, pero no quiero estar en un limite estricto y preocupar me si voy a poder pagar por mi [vacación]{vacaciones}<in:s:noun:inan> o otras responsabilidades.
 No quiero que mi [vacación]{vacaciones}<in:s:noun:inan> es algo que solamente puedo hacer una o dos veces en mi vida.
 "Cuando pienso de los planes de vacaciones perfectas, pienso de embarcar en un crucero alrededor de Europa, específicamente en [la]{el}<ga:mf:det:aty:inan> área de España y Portugal.
-He visto fotos de los paisajes de las playas y los [cliffsides] que bordean la costa de Portugal, y me gustaría tener la oportunidad de visitarlas en persona.
 "[El]{la}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:gat:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> es un viaje a Honolulu, [un]{una}<ga:fm:det:inan> ciudad en Hawái.
 Voy a Honolulu con mis amigos de colegio por [una]{unas}<na:ps:det:inan> semanas.
 El el mundo perfecto, Honolulu es un lugar muy [bonita]{bonito}<ga:mf:adj:inan> y limpio, con no tráfico y no basura.
@@ -237,14 +235,12 @@ Me encantaría un trabajo que me permite viajar a todos estos lugares y experime
 Me quedare con los en [sus]{su}<na:sp:det:inan> casa.
 El zoológico tiene [muchas]{muchos}<ga:mf:det:inan> animales intrigantes y plantas verdes"
 Mi [vacación]{vacaciones}<in:s:noun:inan> perfecto seria [un]{una}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:gat:noun:inan> [planeado]{planeada}<ga:fm:adj:inan> meses antes.
-Tendría ya planeado cuando voy a llegar [al]{a la}<ga:fm:det:inan> destinación y el hotel ya listo.
 Seria [un]{una}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:noun:inan> que dura por lo menos un mes.
 En el mes de [vacación]{vacaciones}<in:s:noun:inan>, visitare [diferente]{diferentes}<na:ps:det:inan> regiones del país o continente.
 En este caso para mi, [el]{la}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:gat:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> seria en el continente de Asia.
 Estaría en cada país por dos a tres semanas y visitaría [diferente]{diferentes}<na:ps:det:inan> ciudades.
 Visitaría primero [el]{la}<ga:fm:det:inan> capital que es Bangkok por una semana.
 También probaría diferentes comidas de [varias]{varios}<ga:mf:det:inan> restaurantes y comería platos tradicionales.
-Cuando termino mi tiempo en China, tomaría un vuelo [al]{a la}<ga:fm:det:inan> Corea del Sur.
 Pasaría las dos semanas explorando [los]{las}<ga:fm:det:inan> [diferente]{diferentes}<na:ps:det:inan> regiones del país.
 Después vería [las]{los}<ga:mf:det:inan> jardines de Kyoto y disfrutar de [los]{las}<ga:fm:det:inan> flores de cerezo.
 Esto sería mi plan de [un]{una}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:gat:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>.
@@ -359,7 +355,6 @@ Mi [vacación]{vacaciones}<in:s:noun:inan> solo seria de tres semanas.
 Para la [vacación]{vacaciones}<in:s:noun:inan> ser [perfecto]{perfecta}<ga:fm:adj:inan>, quiero hacer mucho.
 Quiero comer [muchos]{mucha}<ga:na:fm:sp:det:inan> [comidas]{comida}<na:sp:noun:inan>!
 Entonces, quiero [nuevo]{nuevas}<ga:na:fm:ps:adj:inan> recetas para hacer cuando estoy en mi casa.
-Voy a ir [al]{a los}<na:ps:det:inan> museos.
 En Portugal, hay muchos art en [los]{las}<ga:fm:det:inan> calles; es muy [bonita]{bonito}<ga:mf:adj:inan>.
 Viajar con una persona es mejor, por que viajar con [muchos]{muchas}<ga:fm:det:an> personas es complicado.
 Una vez que lleguemos a Francia, algunos hitos que me gustaría ver son la Torre Eiffel, el Louvre, Notre-Dame de París, el Palacio de Versalles, [el]{la}<ga:fm:det:inan> Rivera<gat:noun:inan> [francés]{francesa}<ga:fm:adj:inan> y el Jardín de Luxemburgo.
@@ -381,7 +376,6 @@ El uno de enero, la ciudad es [blanco]{blanca}<ga:fm:adj:inan> porque nevo.
 Si yo tuviera que escoger, escribiría sobre mi [vacación]{vacaciones}<in:s:noun:inan> para Carmel, California.
 Tendríamos [un]{una}<ga:fm:det:inan> habitación muy grande y cada de nosotras tendríamos propia cama.
 También habría una piscina y [muchas]{muchos}<ga:mf:det:inan> restaurantes<gat:noun:inan> [deliciosas]{deliciosos}<ga:mf:adj:inan>.
-Por las mañanas iríamos al cafe se llama <<La bicyclette>>.
 Es [una]{un}<ga:mf:det:inan> restaurante francés y sirve el mejor desayuno en la cuidad.
 [Ellos]{ellas}<ga:fm:pron:inan> son [únicos]{únicas}<ga:fm:adj:inan> y puedes encontrar cosas interesantes.
 Me gusta ir a la tienda Lush porque vende productos para el baño que huelen [increíbles]{increíble}<in:p:adv>.
@@ -499,7 +493,6 @@ A mí me encanta la belleza de sus arquitecturas y artes y escenas [natural]{nat
 Antoni Gaudí diseñé [este]{esta}<ga:fm:det:inan> iglesia excelente y bonita 135 años atrás.
 En mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>, yo iré a Islandia.
 Por ejemplo, la Laguna Azul Esto sería mi [primera]{primer}<ga:mf:det:inan> lugar en mi viaje por que es muy [bonito]{bonita}<ga:fm:adj:inan>.
-Después [del]{de la}<ga:fm:det:inan> Laguna Azul, yo iré a unas de las playas famosas de Islandia.
 En estas granjas hay cientos de ovejas y también muchos perros para ayudar a [los]{las}<ga:fm:det:an> ovejas.
 Los perros están enseñados a ir por las pastras y recoger a las ovejas y [traerlos]{traerlas}<ga:fm:pron:an> a la granja.
 Islandia también esta muy [famoso]{famosa}<ga:fm:adj:inan> por su comida muy [distintas]{distinta}<na:sp:adj:inan>.
@@ -523,7 +516,6 @@ Una [vacación]{vacaciones}<in:s:noun:inan> en donde puedo conocer mi familia.
 Si quisiera para conocer los hoteles y todas [la]{las}<na:ps:det:inan> areas históricas.
 Sinaloa es un lugar muy bonito entonces ir sería mi [vacación]{vacaciones}<in:s:noun:inan> perfecta.
 Sentado frente a mi computadora portátil para ver algunos videos [divertido]{divertidos}<na:ps:adj:inan> de youtube.
-si tuvuera la oportunidad de planaer ;las vacaciones de mis surnos el lugar seria Austrilia>
 "Mi perfecto plan de vacaciones consiste de [estos]{esto}<na:sp:pron:inan>:
 Finalmente, conduciría por las montañas, disfrutando los giros y vueltas en el camino y viendo los astros, y terminaría mi [vacación]{vacaciones}<in:s:noun:inan>, volviendo a *CITY* y *CITY* por el tren."
 Mi [vacación]{vacaciones}<in:s:noun:inan> ideal es un viaje a London.
@@ -568,13 +560,11 @@ Quiero ver todos los lugares diferentes como [los]{las}<ga:fm:det:inan> montaña
 Prefiero un excursionismo de mochila porque es [el]{la}<ga:fm:det:inan> mejor manera para conocer otras personas trabajando a través Sudamérica.
 Mi perfecta [vacación]{vacaciones}<in:s:noun:inan> es no tener ningún problema de estrés y puede ser por siempre.
 Hay muchas partes donde la [vacación]{vacaciones}<in:s:noun:inan> esta, es yendo a muchas partes del mucho para aprender [nueva]{nuevas}<na:ps:det:inan> culturas, costumbres y comidas.
-Cada parte donde me voy tengo un traductor para ayudarme comunicar con la gente [del]{de los}<na:ps:det:inan> países y ciudades.
 La [vacación]{vacaciones}<in:s:noun:inan> va necesita un masajeo en todo mi cuerpo para que puedo sacar todo mi estrés que tengo dentro de mí.
 Toda la [vacación]{vacaciones}<in:s:noun:inan> es gratis y puedo comer todo que yo quiero.
 Cada cosa que es algo nuevo para me, yo quisiera [tenerla]{tenerlo}<ga:mf:pron:inan> todo grabado/fotos para que puedo mirar atrás los momentos y tener la opción de ensenar los mementos.
 La perfecta [vacación]{vacaciones}<in:s:noun:inan> es ir [un]{una}<ga:fm:det:inan> parte para jugar un juego en el casino para ganar billones de dinero para compartir con mi familia.
 Todas mis hermanas tienen niñxs, y para que ellos tienen tiempo a relajar es teniendo [un]{una}<ga:fm:det:inan> especial guardaría que tienen cámaras a ver sus ninxs y se quieren tener los ninxs alados de ellos durante cualquier cosa.
-Las personas cuidando los ninxs van a necesitar tener toda su atención [al]{a los}<na:ps:det:an> ninxs durante el tiempo.
 Una [vacación]{vacaciones}<in:s:noun:inan> perfecta para mí es en Italia... o todos los países en Europa.
 Pienso que Europa es un continente muy [bonita]{bonito}<ga:mf:adj:inan>, y la arquitectura es increíble.
 Mi visité *FIRST_NAME* en [la]{el}<ga:mf:det:inan> verano.
@@ -641,8 +631,6 @@ Esta muy [bonita]{bonito}<ga:mf:adj:inan> en the primavera.
 [Mi]{mis}<na:ps:det:an> padres fueron a Italia para [sus]{su}<na:sp:det:inan> luna de miel.
 Quiero ver [la]{el}<ga:mf:det:inan> colliseum en la Roma.
 El colliseum esta [bonita]{bonito}<ga:mf:adj:inan>.
-Yo puedo viajar a los paises en [la]{el}<ga:mf:det:inan
-"Mi vacación{vacaciones}<in:s:noun:inan> perfecta es ir a España.
 Siempre tengo viajar a la España porque es un país muy [bonita]{bonito}<ga:mf:adj:inan> y divertido.
 Yo quiero visitar [este]{esta}<ga:fm:det:inan> cuidad para veo [la]{los}<ga:na:mf:ps:det:inan> edificios y sitios con arquitectura árabe.
 También, Granada está cerca de Marruecos, Si fui a Granada por mi vacacione, pondría visitar Marruecos por [una]{un}<ga:mf:det:inan> día.
@@ -651,7 +639,6 @@ En Barcelona quiero ver el barrio gótico porque es muy [famosa]{famoso}<ga:mf:a
 Una vacación{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> sería algo tan simple como ir a México donde yo nací.
 Hay muchas cosas por descubrir en un lugar tan hermoso y por esa razón mi plan de vacaciones comenzaría en Morelia, [el]{la}<ga:fm:det:inan> capital de Michoacán en México.
 En cada [uno]{una}<ga:fm:det:inan> de mi visitas a estos pueblos me gustaría probar comida diferente y admirar el paisaje.
-Yo realmente no tengo planes concretos de cómo mi vacación{vacaciones}<in:s:noun:inan> ideal debe ser.
 Un ambiente donde hasta el aire se siente libre y [pura]{puro}<ga:mf:adj:inan>.
 [Mi]{mis}<na:ps:det:inan> vacaciones [idealista]{idealistas}<na:ps:adj:inan> esta en Europa y Asia.
 [Nosotros]{nosotras}<ga:fm:pron:an> hablamos con las personas de Francia.
@@ -697,15 +684,12 @@ Me gusta ir a museos [militar]{militares}<na:ps:adj:inan> y arte.
 La historia está muy [rico]{rica}<ga:fm:adj:inan> y [bonito]{bonita}<ga:fm:adj:inan> porque los países son muy viejos.
 ¡He ido [mucho]{muchos}<na:ps:det:inan> [país]{países}<na:ps:noun:inan> en Europa, pero hay [muchas]{muchos}<ga:mf:det:inan> [otras]{otros}<ga:mf:det:inan> para explorar!
 He ido [mucho]{muchos}<na:ps:det:inan> [país]{países}<na:ps:noun:inan>, pero no he ido a país en América del Sur.
-En mi vacación{vacaciones}<in:s:noun:inan> perfecta el tiempo hace fresco porque yo tengo calor mucho.
-Soy muy extrovertida y me gustaría hablar con extraños en cafés durante mi vacación{vacaciones}<in:s:noun:inan>.
 A veces amigos conmigo en mi vacación{vacaciones}<in:s:noun:inan> y otra vez estoy [solo]{sola}<ga:fm:adj:an>.
 Yo no sé qué unas perfectas son porque como estoy explorando un nuevo lugar es perfecto y todos días son muy [divertido]{divertidos}<na:ps:adj:inan> por me.
 Mis amigas y yo iríamos uno de palacias y nos vestiríamos en la ropa real y tradicional y [nosotros]{nosotras}<ga:fm:pron:an> sacaríamos fotos.
 [Muchas]{muchos}<ga:mf:det:an> niños, familias y parejas vienen aquí.
 También mis amigas y yo iríamos clubs de baile en [el]{la}<ga:fm:det:inan> noche y probablemente berberíamos cerveza y alcohol porque en Corea, nosotras teneríamos veintiuno años.
 Esto es lo que mi [vacacion]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> es.
-A mi vacacion{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan> , yo voy a ir a Ireland con mi familia.
 La isla es muy pequeña, puedes mandar en un coche por dos horas a la anchura, o [cuatros]{cuatro}<na:sp:adj:inan> horas por la longitud.
 Los hoteles están muy [pequeña]{pequeños}<ga:na:mf:ps:adj:inan> también, se les llama 'inns', y no usan estrellas por calificar la hospitalidad, usan los tréboles.
 Mi familia y top van a visitar [ese]{esa}<ga:fm:det:inan> fabrica, todos de mis tíos, primos, y abuela.
@@ -713,7 +697,6 @@ Nosotros también van a ir a los pubs por beber cerveza y hablar a [el]{la}<ga:f
 Ese pueblo es mucho pequeño TAMBIEN, todas los cosas a Ireland estan [pequeña]{pequeñas}<na:ps:adj:inan>.
 Nuestra familia esta muy loca, si vamos, nosotros necesito alquilar muchos coches porque mi abuela tiene siete hijos, y sus hijos tuvieron [muchas]{muchos}<ga:mf:det:inan> hijos también.
 Vamos a montar la colina muy [feliz]{felices}<na:ps:adj:an> y en el amor.
-Nos quedaremos por dos semanas, y luego volveremos a casa, esperanzadamente [embarazadas]<ig:f:adj:an> con nuestro primer bebe.
 "Mi [vacación]{vacaciones}<in:s:noun:inan> perfecta es muy simple.
 Pasaría mi tiempo en una casa de vacaciones linda en un barrio tranquilo, donde me siento [seguro]{segura}<ga:fm:adj:an>, con mi novio.
 Durante nuestra [vacación]{vacaciones}<in:s:noun:inan>, visitaríamos lugares de interés y caminaríamos por el centro en la ciudad.
@@ -737,7 +720,6 @@ Me siento como yo podría querer tomar unas vacaciones a Hawai también que ser�
 [Todo]{todas}<ga:na:fm:ps:det:an> personas puede comer together, mirar la playa, y descasar después.
 Puede come [esos]{eso}<na:sp:det:inan> todos los días.
 Puede vestirse en amarillo floaties.Mi favorito color es amarillo y hoy mucho amarillo flotares para [este]{estas}<ga:na:fm:ps:det:inan> vacaciones.
-Mi vacación{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan>  es un viaje a Europa.
 Yo voy a viajar en [la]{el}<ga:mf:det:inan> avión en la clase primera porque tiene mucho espacio.
 El veulvo e muy [larga]{largo}<ga:mf:adj:inan> y yo esparanzo dormer por mas.
 En Ingleterra yo quiero comer pescado freído y papas fritas con una cerveza en [un]{una}<ga:fm:det:inan> taberna.
@@ -763,7 +745,6 @@ Yo dudo que nosotros tengamos los [dineros]{dinero}<in:s:noun:inan> ir pero en m
 Yo quiere que  nosotros  vayamos a la playas y el mar aquí  y nademos en [la]{el}<ga:mf:det:inan> aqua.
 Nosotros jugaremos con un voleibol a la playa y yo ganeré el juego [todos]{todo}<na:sp:det:inan> el tiempo porque en mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> yo estaré muy bien a el juego de voleibol .
 Aquí es mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>.
-Me perfecto{perfecta}<ga:fm:adj:inan>  vacacion{vacaciones}<in:s:noun:inan> plan es visita con mis amigos y mi novio.
 Aparte de muchas nuevas atracciones, cada vez que voy a Disneylandia me encanta probar casi toda la comida que veo aunque no [todo]{toda}<ga:fm:det:inan> la comida que pruebo sea [bueno]{buena}<ga:fm:adj:inan> para mi.
 Disneylandia me hace sentir como [un]{una}<ga:fm:det:an> [niño]{niña}<ga:fm:det:an> de nuevo, [un]{una}<ga:fm:det:an> [niño]{niña}<ga:fm:noun:an> en que quiere subirse a cada paseo y comprar cada cosa que guste.
 Otra cosa que tuviera que incluir en mi [vacación]{vacaciones}<in:s:noun:inan> a Disneylandia es ir a cenar en Downtown Disney a The Rainforest Café.
@@ -837,7 +818,6 @@ El océano no está muy frío, y es muy [divertida]{divertido}<ga:fm:adj:inan> a
 También nosotros iría al bosque en el camino a Hana, es [una]{un}<ga:mf:det:inan> camino muy largo y tiene vistas fantásticas.
 Yo he querido ir a Hawaii con mis amigos sin escuela [secundario]{secundaria}<ga:fm:adj:inan>.
 Mi amiga mejor y yo queremos ir [juntos]{juntas}<ga:fm:adj:an> después de la graduación con todos de nuestros amigos en el verano. "
-Mi vacación{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan> , sería ir a Brasil, porque me encanta nadar al mar, y jugar a la playa.
 Entonces, yo gustaria mirar mis amigas, y caminaríamos a la playa, y entonces nosotros andaríamos [nuestros]{nuestras}<ga:fm:adj:inan> bicis al ciudad.
 Mi tia, mi tio, y mis primos vivas en una ciudad pequeña, en [el]{la}<ga:fm:det:inan> playa a Brasil, llamando Cabedelo.
 Yo gustaría ver a la venta, y miraría a el rio, las montanas, [la]{el}<ga:mf:det:inan> agua con los animales, y especialemente los arboles y [los]{las}<ga:fm:det:inan> flores.
@@ -863,7 +843,6 @@ Me encantan los viajes por carreteras porque es un tiempo a pasar el tiempo con 
 Montaremos nuestras tiendas de [campañas]{campaña}<na:sp:noun:inan>, cual tomará un tiempo, y poner nuestra comida en un locker así que los osos no la comerá.
 Nosotros acabaremos la noche con cocinando los perros calientes, los perros tofu, y s’mores encima de la hoguera mientras contando cuentos cómicos y [embarazoso]{embarazosos}<na:ps:adj:inan>.
 Nosotros llevaremos camisetas, pantalones cortos, sombreros, gafas de sol, y [bueno]{buenos}<na:ps:adj:inan> zapatos de excursionismo y traeremos mucha agua.
-También, traeremos nuestros trajes de [baños]{baño}na:sp:noun:inan> porque habrá probablemente ser lugares para nadar.
 Nosotros sacaremos muchas fotos de las cascadas, los árboles y [otro]{otros}<na:ps:det:inan>[paisaje]{paisajes}<na:ps:noun:inan> [bonito]{bonitos}<na:ps:adj:inan>.
 Nosotros empacaremos [todos]{todo}<na:sp:det:inan> y nos iremos Yosemite en [uno]{una}<ga:fm:det:inan> o dos de la tarde y conducir de regreso a San Diego.
 El mar es trasparente que hace el mar [unas]{una}<na:sp:det:inan> de las mejores playas de Mexico.
@@ -871,7 +850,6 @@ Voy allí en junio después [la]{el}<ga:mf:det:inan> fin de la escuela.
 Yo prefiero [al]{el}<ga:mf:det:inan> aire libre.
 En la reef de coral, yo veo [mucha]{mucho}<ga:mf:det:inan> coral y muchos pescados y muchas tortugas.
 Yo quiero ir en [mi]{mis}<na:ps:det:inan> vacciones perfectas.
-"Por mi vacación{vacaciones}<in:s:noun:inan> perfecta, voy a ir a Panama.
 Alli, ellos tienen electricidad, la Internet, y [la]{el}<ga:mf:det:inan> agua corriente, pero la logia es solo en una montaña pequeña.
 No hay vecinos, no hay calles, y no hay [ruidas]{ruidos}<ig:f:noun:inan> (menos los [ruidas]{ruidos}<ig:f:noun:inan> de la selva).
 Entonces, si quiero, voy a hacer una caminata en la selva, montar sus caballos, sacar fotos de los insectos de la selva, y mirar a [los]{las}<ga:fm:det:inan> plantas y animales de eso lugar.
@@ -903,7 +881,6 @@ En la [vacación]{vacaciones}<in:s:noun:inan>, mi novio va también.
 Hay [muchos]{muchas}<ga:fm:det:an> vacas y pollos.
 A mi sobrino le gusta jugar [arenas]{arena}<in:p:noun:inan>.
 Hay [una]{un}<ga:mf:det:inan> disneyland.
-"Mi vacación{vacaciones}<in:s:noun:inan> perfecta incluye a mis amigos y amigas, o a mi familia.
 Si tuviera mucho dinero, compraría muchos [boletas]{boletos}<ig:f:noun:inan> para viajar por el mundo.
 En la casa de mi novia hay varios animales, incluyendo: los perros, los pavos reales, [un]{una}<ga:fm:det:inan> avestruz, las cabras, etc. Comeríamos mucha comida buena.
 Yo sacaría [muchos]{muchas}<ga:fm:det:inan> fotos porque me gusta fotografía.
@@ -972,7 +949,6 @@ Yo quiero  visito todos los museos y miro arte de [artistos]{artistas}<ig:m:noun
 Quiero sacar [muchos]{muchas}<ga:fm:det:inan> fotos con mis amigas.
 Quiero ver fashion shows de diseñadoras [famosos]{famosas}<ga:fm:adj:an> y miro las ropas bonitas.
 Yo juego fútbol en el parque y corro [todos]{todas}<ga:fm:det:inan> las mañanas.
-Mi idea de una vacacion{vacaciones}<in:s:noun:inan> perfecta seria en una isla bellisima como en Grecia o en Hawaii.
 Tambien me gustaria ir a las ruinas atiguas con una guia [turistico]{turística}<ga:fm:adj:an> y tomar muchas fotos.
 En my [vacacion]{vacaciones}<in:s:noun:inan> de suenos, nada malo pasaria.
 Después, nosotros todos comemos a [la]{el}<ga:mf:det:inan> restaurante.
@@ -990,10 +966,8 @@ Hay muchos animales viven en México, incluyendo los monos, las marsopas, los co
 Yo estoy estudiar la ciencia animal y yo quiero ver animales [nativo]{nativos}<na:ps:adj:an> cuando yo viajo.
 También, yo quiero aprender sobre los [maya]{mayas}<na:ps:adj:an> cuando solían vivir para la región.
 Total, esta es [mi]{mis}<na:ps:det:inan> vacaciones perfectas."
-Mi vacación{vacaciones}<in:s:noun:inan> perfecta sería un viaje a visitar a de todo sud américa.
 En Guatemala, visitare los templos de [las]{los}<ga:mf:det:an> Mayas para imaginarme cómo era la vida en ese siglo.
 Aunque describo mi idea de mi perfecto [viaja]{viaje}<ig:f:noun:inan>, a la misma vez, mi vacación{vacaciones}<in:s:noun:inan> perfecta sería un viaje donde no me preocupo de nada y estoy con amistades viajando por donde sea, pero todos juntos disfrutando del momento.
-El plan perfecto para una vacación{vacaciones}<in:s:noun:inan> perfecta sería con mis amigas.
 Es muy [bonita]{bonito}<ga:mf:adj:inan>.
 Yo quiero ir a España y a Francia por la perfecta [vacacion]{vacaciones}<in:s:noun:inan>.
 En Francia voy a pueder praticar [la]{el}<ga:mf:det:inan> idioma en restaurantes y otras partes del país.
@@ -1009,7 +983,6 @@ Mi [favorita]{favorito}<ga:mf:adj:aty:inan> programa de televisión es ESPN, per
 Tengo siempre [mi]{mis}<na:ps:det:inan> vacaciones perfectas a incluir mi novio y mi familia.
 Al lado de restaurantes, puede conseguir las bebidas, que incluye agua de [varios]{varias}<ga:fm:det:inan> frutas (por ejemplo, las piñas, los kiwis, los melons, etc.), vine, té, café, y más.
 [Este]{estas}<ga:fm:det:inan> sería [mi]{mis}<na:ps:det:inan> vacaciones.
-Para mi vacación{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan> , quiero ir al España.
 "Una [vacación]{vacaciones}<in:s:noun:inan> perfecta consiste en visitar un país extranjero con un genero diverso, moderno, y cultural.
 Quisiera visitar las ruinas de Tailandia y aprender más de [la]{el}<ga:mf:det:inan> origen de budismo.
 [Los]{las}<ga:fm:det:inan> mejores vacaciones tienen flexibilidad y no son tan [concretos]{concretas}<ga:fm:adj:inan>.
@@ -1025,13 +998,11 @@ Los Angeles tiene [los]{las}<ga:fm:det:inan> comidas muy variadades u [delicioso
 Tambien, vamos a Disneyland y montar en montanas rusas y comprar recuerdoes con [nuestros]{nuestras}<ga:fm:adj:an> familias.
 Es [el]{la}<ga:fm:det:inan> vacacion{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan> .
 Pero mi familia también es muy [perezoso]{perezosa}<ga:fm:adj:an>, así que tendríamos que tener algún tiempo para relajarse.
-Mi vacación{vacaciones}<in:s:noun:inan> perfecto{perfecta}<ga:fm:adj:inan>  sería visita a Italy, Greece, y France con mi familia.
 La [solo]{sola}<ga:fm:det:inan> vez que he estado fuera de United States fue cuando fui a South Africa.
 Mi hermana y yo hemos hablado visitar los países de Europa este verano [juntos]{juntas}<ga:fm:adj:an>.
 Algunos de mis amigos han visitado Rome y amaban la comida especialmente el helado y [el]{la}<ga:fm:det:inan> pasta.
 Tengo [muchas]{muchos}<ga:mf:det:inan> amigos que han visitado la isla durante el fin de semana cuando estudiaron en un otro país durante un trimestre.
 La historia y la cultura de Greece es muy interesante y quiero ver todos los museos y [las]{la}<na:sp:det:inan> arquitectura.
-El tres país quiero viajar durante mi vacación{vacaciones}<in:s:noun:inan> es France.
 Mis padres visitaron a París durante unas semanas el invierno pasado y mi madre me dijo que la comida es muy [delicioso]{deliciosa}<ga:fm:adj:inan> y el vino es mas mejor que de la comida.
 El solo problema es que no hablo French o Italian tan yo no comprendo qué la gente de [las]{los}<ga:mf:det:inan> países son hablando.
 Después una semana, Mi [amigo]{amiga}<ga:fm:noun:inan> y yo visitamos Nubia Pirámides.
@@ -1108,7 +1079,6 @@ Mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> 
 Nunca [los]{la}<ga:na:fm:sp:det:inan> he visto antes.
 La [vacación]{vacaciones}<in:s:noun:inan> perfecta para mi seria en Europa.
 Mi último país que visitaría en mi [vacación]{vacaciones}<in:s:noun:inan> en Europa seria Grecia.
-No me gusta [la]{el}<ga:mf:det: avión por que paso mucho tiempo en aeropuerto si viajo en avión.
 No me gusta vivir en el hotel por que vivir en casa es como viajar pero vivir en el hotel es como el [negocios]{negocio}<na:sp:noun:inan>.
 Éste es mi plan sobre la [vacación]{vacaciones}<in:s:noun:inan>.
 Yo salir de mi casa en tren por que vivir en Davis, [un]{una}<ga:fm:det:inan> ciudad muy pequeña.
@@ -1118,7 +1088,6 @@ Mi [vacación]{vacaciones}<in:s:noun:inan> ideal es llegar en jet privado a un l
 Gustaría ir a Mexico en un avión caro con [todo]{toda}<ga:fm:det:inan> mi familia.
 Nunca he ido a [otros]{otras}<ga:fm:det:inan> partes de Mexico excepto Oaxaca.
 Yo adoptaría un perro de un refugio para animales [local]{locales}<na:ps:adj:an> y lo nombraría 'Patches.'
-También, yo compraria cosas de [mi]{mis} animes favoritos.
 Yo también querría visitar el castillo de Neuschwanstein, un castillo de famoso el Germany y uno de mas [famoso]{famosos}<na:ps:adj:inan> [castillo]{castillos}<na:ps:noun:inan> en Europa.
 También, yo comería comidas tradicionales para [el]{la}<ga:fm:det:inan> [primero]{primera}<ga:fm:det:inan> vez<gat:noun:inan>.
 Yo tomaria fotos de el [ambientes]{ambiente}<na:sp:noun:inan> y iria a los parques por el país.
@@ -1231,21 +1200,16 @@ Me volvería a traer un montón de souveneirs para todo el mundo, como los choco
 Es por eso nosotros tenemos [muchas]{mucha}<na:sp:det:inan> [diferenes]{diferente}<na:sp:adj:inan> comida?
 Ir en [la]{el}<ga:mf:det:inan> Verano porque eso es el mejor momento ir.
 Tengo [mucho]{muchos}<na:ps:det:inan> de amigos que viven en Florida.
-Me gusta ir a Florida para vacacion{vacaciones}<in:s:noun:inan> por todas las cosas que he escrito.
 Yo voy a ir en [los]{las}<ga:fm:det:inan> excursiones.
 Pero, habrá [mucho]{muchas}<ga:fm:det:an> des chinches.
 Así que espero que puedo ir a dos continentes en [una]{unas}<na:ps:det:inan> vacaciones!"
 En mi [vacación]{vacaciones}<in:s:noun:inan> perfecta, yo voy a una isla tropical con mis amigos y mi familia.
 Yo duermo en [una]{un}<ga:mf:det:inan> hotel cerca de la mar.
 En la vacación{vacaciones}<in:s:noun:inan> perfecta, yo no tengo [una]{un}<ga:mf:det:inan> [limita]{límite}<ig:f:noun:inan> para la comida.
-Yo quiero margaritas cerca de la mar en [el]{la}<ga: arena.
 Yo no tengo una isla con [muchas]{muchos}<ga:mf:det:an> turísticas porque no me gustan las multitudes.
 En [una]{un}<ga:mf:det:inan> día de mi vacación{vacaciones}<in:s:noun:inan>, yo quiero nadar debajo del mar y ver los peces y los animales tropicales.
 En un otro día, yo quiero montar un barco y ir a [los]{las}<ga:fm:det:inan> otras islas.
 Yo traigo sandwiches y [vinos]{vino}<na:sp:noun:inan> y frutas para tener un picnic.
-En mi vacación{vacaciones}<in:s:noun:inan> perfecta, yo quiero una playa con arena blanca.
-En mi vacación{vacaciones}<in:s:noun:inan>, yo quiero hacer mis actividades favoritas.
-Yo no tengo preocupaciones en mi vacación{vacaciones}<in:s:noun:inan>.
 Mi lugar favorito es [Puerta]{puerto}<ig:f:noun:inan> Vallarta en Jalisco Mexico.
 Entonces, mi [vacacion]{vacaciones}<in:s:noun:inan> perfecta seria ir a [Puerta]{puerto}<ig:f:noun:inan> Vallarta.
 En [Puerta]{puerto}<ig:f:noun:inan> Vallarta, son muchas cosas que hacer.
@@ -1295,7 +1259,6 @@ En mi [vacación]{vacaciones}<in:s:noun:inan> de ensueño, yo iría a Florencia,
 Cuando yo soy [terminado]{terminada}<ga:fm:adj:an> con mis clases de verano yo quiero viajar por México.
 Estoy muy contenta terminar mis clases porque [ellos]{ellas}<ga:fm:pron:inan> son muy [difícil]{difíciles}<na:ps:adj:inan>.
 Mis vacaciones perfectas incluye [mucho]{muchas}<ga:na:fm:ps:det:inan> actividades.
-El primer día, nosotros vamos ir [al]{a la}<ga:fm:det:inan> playa enseguida nosotros llegamos.
 Yo quiero beber una margarita mientras tomo [la]{el}<ga:mf:det:inan> sol y leo un libro.
 Si [mi]{mis}<na:ps:det:an> compañeros queremos hacer [otros]{otras}<ga:fm:det:inan> actividades, yo estoy contenta junto.
 Hay muchos animales viven en México, incluyendo los monos, las marsopas, los coatís, los ocelotes, los lobos y [muchos]{muchas}<ga:fm:det:inan> aves tropicales.
@@ -1432,7 +1395,6 @@ En [este]{esta}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:noun:inan>, quiero 
 Quiero ver las cosas bonitas de [la]{el}<ga:mf:det:aty:inan> local area.
 Los especificos no necesitan ser el mismo, pero [el]{la}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:gat:noun:inan> debe ser [divertido]{divertida}<ga:fm:adj:inan>, relaxido, y [bueno]{buena}<ga:fm:adj:inan>.
 La India tiene dinero [diferentes]{diferente}<na:sp:adj:inan>.
-Chengdu es la capital [del]{de la}<ga:fm:det:inan> provincia de Sichuan, China.
 Tiene [muchos]{muchas}<ga:fm:det:inan> áreas de aire libre para los pandas adultos, así como espacios interiores para pandas bebés.
 Nos lleva [unos]{unas}<ga:fm:det:inan> 9 horas en coche de Davis a LA.
 El mar es trasparente que hace el mar [unas]{una}<na:sp:pron:inan> de las mejores playas de Mexico.
@@ -1454,7 +1416,6 @@ Después de [disfrutarlo]{disfrutarla}<ga:fm:pron:inan>, iría a sus montañas f
 Mi [vacación]{vacaciones}<in:s:noun:inan> perfecta serían en Corea del Sur.
 Yo no quiero ir a la [vacación]{vacaciones}<in:s:noun:inan> solamente así que, para la primera semana, quiero viajar con mis mejores amigas y en la segunda semana con mi familia.
 Para [la]{el}<ga:mf:det:aty:inan> [primera]{primer}<ga:mf:det:aty:inan> día<gat:noun:inan>, espero que comer más comida local.
-Pero, a veces yo no quiero ir [al]{a la}<ga:fm:det:inan> ciudad y quiero quedar en casa.
 También, a veces yo quiero estar sola y caminar en [la]{el}<ga:mf:det:inan> parque.
 En mi [vacación]{vacaciones}<in:s:noun:inan> perfecta, yo puedo ir de casa cuando yo quiero regresar a los estados unidos.
 Pero, finalmente, yo creo que la [vacación]{vacaciones}<in:s:noun:inan> perfecta es cuando yo no tengo estrés y me siento feliz.
@@ -1520,7 +1481,6 @@ A veces amigos conmigo en mi [vacación]{vacaciones}<in:s:noun:inan> y otra vez 
 Yo no sé qué unas perfectas son porque como estoy explorando un nuevo lugar es perfecto y todos días son muy [divertido]{divertidos}<na:ps:adj:inan> por me.
 "Si yo tuviera un millon dolares, me gustaría [un]{una}<ga:fm:det:inan> [vacacion]{vacaciones}<in:s:noun:inan>  en Alaska y Gran Bretaña.
 Es bueno que yo tenga [un]{una}<ga:fm:det:inan> [vacacion]{vacaciones}<in:s:noun:inan>  después de exámenes [final]{finales}<na:ps:adj:inan>.
-para decirle de vacacion{vacaciones}<in:s:noun:inan>.
 Segundo, voy a crear un plan para [la]{el}<ga:mf:det:aty:inan> día de viaje.
 Me alegro de que mi familia y yo estemos disfrutando [el]{la}<ga:fm:det:inan> [vacacion]{vacaciones}<in:s:noun:inan>  en Alaska.
 Es [un]{una}<ga:fm:det:inan> [vacacion]{vacaciones}<in:s:gat:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>."
@@ -1710,7 +1670,6 @@ Luego, el próximo destino sería París, Francia, en cual visitará [el]{la}<ga
 Luego nos iríamos a Roma, Italia, en cual visitaríamos el coliseo, y la estructura de [todo]{toda}<ga:fm:det:inan> la ciudad.
 No me gusta [la]{el}<ga:mf:det:inan> avión por que paso mucho tiempo en aeropuerto si viajo en avión.
 No me gusta vivir en el hotel por que vivir en casa es como viajar pero vivir en el hotel es como el [negocios]{negocio}<na:sp:noun:inan>.
-Éste es mi plan sobre la [vacación].
 Yo salir de mi casa en tren por que vivir en Davis, [un]{una}<ga:fm:det:inan> ciudad muy pequeña.
 Después de llegar, yo [le]{les}<na:ps:pron:an> llamo a mis amigos en Bay Area.
 Por la noche, cuando no hace el sol, nosotros vamos a ver la película, cenamos en [una]{un}<ga:mf:det:inan> café ye volvemos la casa de un amigo.
@@ -1824,7 +1783,6 @@ Nosotros tambien viajamos a [la]{los}<ga:na:mf:ps:det:inan> museos y vemos pinta
 Nosotros comemos muchos [cangrejo]{cangrejos}<na:ps:noun:inan>.
 Nosotros vemos [muchos]{muchas}<ga:fm:det:inan> torres.
 Nosotros compramos [muchos]{muchas}<ga:fm:det:inan> ropas y juguetes.
-Nosotros jugamos muchos [video jueges]{videojuegos}<ig:e:noun:inan>.
 [Video jueges]{videojuegos}<ig:e:noun:inan> de Japon es mucho [famoso]{famosos}<na:ps:adj:inan>.
 Hokkaido tiene [muchos]{muchas}<ga:fm:det:inan> actividades.
 Hokkaido tiene muchos animales y tiene [muchos]{muchas}<ga:fm:det:inan> [delicioso]{deliciosas}<ga:na:fm:ps:adj:inan> comidas<gat:noun:inan>.
@@ -1878,8 +1836,6 @@ Mi familia también [les]{le}<na:sp:pron:an> gusta mirar películas en el cine.
 Las películas de Bollywood son muy [largo]{largas}<ga:na:fm:ps:adj:inan> y toman tres horas o más!
 [Todo]{toda}<ga:fm:det:an> la familia disfruta visitar India porque podemos muchas cosas allí.
 Y este párrafo es una descripción de mi [vacación]{vacaciones}<in:s:noun:inan> muy perfecta.
-De todos modos, siempre hay motivos de querer irse  por lo menos unas [distancias] de su lugar.
-Cuando yo me imagino en mi [vacación] perfecta, yo estoy en el mar, el sol hacia el oeste, cayéndose como el humo de mi cigarrillo de mota, y yo en mi oro barco del año, perdido han de decir algunos.
 Tengo [un]{una}<ga:fm:det:aty:inan> [viejo]{vieja}<ga:fm:adj:aty:inan> radio<gat:noun:inan> que habla de noticias en mi barrio, cuando de repente  se va a estático la voz de la reportara  y empieza lo que en EEUU le llaman “slow jazz.” Allí estoy.
 En ese tiempo no existe nada más que yo, un kilo, [un]{una}<ga:fm:det:aty:inan> radio, el sol, y el mar.
 En mi [vacación] perfecta no existe nada más que yo, un kilo, [un]{una}<ga:fm:det:aty:inan> radio, el sol, y el mar.
@@ -2142,7 +2098,6 @@ Sin embargo, las ciudades en la costa oeste son más [silenciosos]{silenciosas}<
 Yo siempre recuerdo esta [vacación]{vacaciones}<in:s:noun:inan>, y siempre miro [los]{las}<ga:fm:det:inan> fotos sobre de esta [vacación]{vacaciones}<in:s:noun:inan>.
 Hay muchos recuerdos, y yo nunca puedo olvidar esta [vacación]{vacaciones}<in:s:noun:inan>  perfecta."
 Tengo [mucho]{mucha}<ga:fm:det:inan> sed y necesito mucha agua.
-Para tener una vacación{vacaciones}<in:s:noun:inan> perfecta tienes que tener un plan bueno.
 Cuando tienes las fechas, puedes a mirar cuales hoteles están [disponible]{disponibles}<na:ps:adj:inan> y comparar los precios para que consigues el mejor hotel para el precio.
 Cuando ya tienes todo planeado y haces las reservaciones puedes ver cómo va estar [la]{el}<ga:mf:det:aty:inan> clima para que puedes decidir si necesitas comprar nueva ropa.
 Las fiestas se llama Luaus y se ven muy [divertidos]{divertidas}<ga:fm:adj:inan> de picturas.
@@ -2317,7 +2272,6 @@ Mis hermanos compartieron [un]{una}<ga:fm:det:inan> habitación durante de la [v
 Después de dormirme, vería a más parientes, incluyendo mi tía Linda, y [mi]{mis}<na:ps:det:an> tíos abuelos, y recordaríamos más.
 En la noche, haría más [meditaciones]{meditación}<in:p:noun:inan>.
 En la noche, diríamos nuestras despedidas, y iría [al]{la}<ga:fm:det:inan> terminal de autobús solo.
-Y diríamos nuestros [despedidos]{despedidas}ig:m:noun:inan> finales.
 "Una [vacación]{vacaciones}<in:s:noun:inan> perfecta sería un viaje a Barcelona, España.
 "Las vacaciones [perfecto]{perfectas}<ga:na:fm:ps:adj:inan> para mí es [uno]{una}<ga:fm:det:inan> con muchas playas como Maldives.
 Así que, voy a [muchos]{muchas}<ga:fm:det:inan> partes differentes dentro de Maldives y hago muchos ativadades.
@@ -2436,7 +2390,6 @@ Al poder planear la [vacación]{vacaciones}<in:s:noun:inan> perfecta, tendría q
 Primeramente, tendría que saber la ocasión de mis vacaciones y cuánto tiempo estaría en la destinación de mi [vacación]{vacaciones}<in:s:noun:inan>.
 También tendría que considerar quienes de mis conocidos vendrían conmigo, y el propósito de mi [vacación]{vacaciones}<in:s:noun:inan>.
 Aunque hay varios lugares que me gustaría visitar de [vacación]{vacaciones}<in:s:noun:inan> uno de los lugares que primero visitaría sería Australia por varias razones.
-Por ejemplo, solo en Australia puedes encontrar los koalas, [wallabies, kangaroos] y otros animales que solo se queden encontrar ahí.
 También trajera a mi hermana menor porque no puedo imaginar una [vacación]{vacaciones}<in:s:noun:inan> perfecta sin ella.
 Finalmente, mi [vacación]{vacaciones}<in:s:noun:inan> no sería perfecta sin poder traer a mi perro, Skippy, para poder tenerlo a mi lado explorando los nuevos alrededores."
 La [vacación]{vacaciones}<in:s:noun:inan> perfecta para mi es estar con mi familia en un lugar lindo.
@@ -2457,12 +2410,8 @@ Para mí, [una]{unas}<na:ps:det:inan> vacaciones que lograr todos de estos facto
 Allá caminaré a Machu Picchu y el bosque [lluviosa]{lluvioso}<na:sp:adj:inan>.
 Quiero viajar entre Brasil para visitar [varios]{varias}<ga:fm:det:inan> ciudades con Río de Janeiro y Sao Paulo para probar toda la comida y bailar en las discotecas.
 Si tuve bastante y fue más seguro dinero viajaría a todos los países en [los]{las}<ga:fm:det:inan> dos América del Sur y Centroamérica.
-"Mi vacación{vacaciones}<in:s:noun:inan> favorita estuve en Hawái y Oregón.
 Nosotras bailamos [mucha]{mucho}<ga:mf:adv:inan>.
-Esta una perfecta vacación{vacaciones}<in:s:noun:inan>.
 Nosotros caminamos [muchas]{mucho}<ga:na:mf:sp:pron:inan> en la ciudad.
-Esta una perfecta vacación{vacaciones}<in:s:noun:inan>, también.
-Para mi, una vacación perfecta{vacaciones}<in:s:noun:inan>  será ir en un viaje por carretera en la costa del oeste con mi novio.
 El centro de entrenamiento olímpico está en Chula Vista, que es [unas]{unos}<ga:mf:det:inan> 20 minutos fuera de San Diego.
 Allí, visitaremos [el]{la}<ga:fm:det:inan> capital y atenderemos unos conciertos en Ace of Spades.
 Allí hay muchas caminatas y caminos que se pueden ser [usadas]{usados}<ga:fm:adj:inan> para andar en bicicleta, y mucho más.
@@ -2579,7 +2528,6 @@ Pienso que las [gentes]{gente}<in:p:noun:an> del caribe sean muy simpáticas.
 Me gusta ir a la playa, por esta razón pienso que el Cribe sea un lugar perfecto para mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>.
 Para mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan>, necesito que viva en un gran hotel con muchas facilidades.
 La [vacación]{vacaciones}<in:s:noun:inan> es más [divertido]{divertida}<ga:fm:adj:inan> con mucha gente.
-Hace sol y prefiero mi [vacación{vacaciones}<in:s:noun:inan>  en lugares donde el clima es lo mismo que California.
 Para mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> me encontró Rihanna y pasar tiempo con ella.
 Si tuviera mucho dinero, viajaría al Cribe durante mis vacaciones de verano porque no tengo estudiar durante la [vacación]{vacaciones}<in:s:noun:inan> de verano.
 Para mi, si puedo tener [un]{una}<ga:fm:det:inan> [perfecto]{perfecta}<ga:fm:adj:inan> [vacación]{vacaciones}<in:s:gat:noun:inan>  idealmente preferio para [un]{una}<ga:fm:det:inan> [vacación]{vacaciones}<in:s:noun:inan> quiero ir a una isla tropical.
@@ -2669,7 +2617,6 @@ Por lo tanto, en los [próximo]{próximos}<na:ps:det:inan> tres días empezamos 
 Además, en nuestros últimos dos días fuimos a explorar [unos]{unas}<ga:fm:pron:inan> de las pirámides de Cancún.
 Aunque, toda mi familia quería ir a Chichen Itzá porque es [el]{la}<ga:fm:det:inan> más grande e [histórico]{histórica}<ga:fm:adj:inan> pirámide<gat:noun:inan> de Cancún yo sabía que ya no dejaban subir esa pirámide.
 realmente espero tener más vacaciones como [esta]{estas}<na:ps:pron:inan>."
-Puedes ir [al]{a los}<na:ps:det:inan> parques.
 La ciudad de San Francisco tenía [muchos]{muchas}<ga:fm:det:inan> atracciones.
 Tambien en [el]{la}<ga:fm:det:inan> ciudad de San Francisco fuí al parque do golden gate.
 Era muy [rico]{rica}<ga:fm:adj:inan>.
@@ -2952,7 +2899,6 @@ Este árbol grande tiene [muchos]{muchas}<ga:fm:det:inan> luces y ornamentos.
 İEste vacaciones es muy [perfecta]{perfectas}<na:ps:adj:inan> para mí!
 Mi idea de una [vaccacíon]{vacaciones}<in:s:noun:inan> perfecta será en la República Dominicana.
 Es mí idea de una [vacacíon]{vacaciones}<in:s:noun:inan> perfecta.
-Las olas del mar se relajan como un escape temporal [del]{de la}<ga:fm:det:inan> ciudad.
 "[El]{las}<ga:na:fm:ps:det:inan> [perfecto]{perfectas}<ga:na:fm:ps:adj:inan> vacaciones<gat:noun:inan> es [un]{una}<ga:fm:det:inan> [vacacion]{vacaciones}<in:s:gat:noun:inan> muy reljante y [bonito]{bonita}<ga:fm:adj:inan>.
 Hawaii es [una]{un}<ga:mf:det:inan> pais<gat:noun:inan> muy [bonita]{bonito}<ga:mf:adj:inan>.
 Hawaii tiene [muchos]{muchas}<ga:fm:det:inan> floras, selva tropicals, playas, montañas, y valcons.
@@ -3015,7 +2961,6 @@ Mi amiga y su hermano hicieron café y asado [las]{los}<ga:mf:det:inan> frijoles
 Me pregunto si [la]{el}<ga:mf:det:aty:inan> clima está muy húmedo o frío.
 También, quiero usar [un]{una}<ga:fm:det:inan> tirolina en la selva y veo los monos.
 En mi vacacione perfecta viajaría por tres semanas o mas porque yo necesito tiempo viajar [todos]{todas}<ga:fm:det:inan> partes.
-Por la mañana podría ir [al]{a los}<na:ps:det:inan> museos, los resturantes, edificios viejos, ir a comprando, o visitar las playas.
 Mi [vacación]{vacaciones}<in:s:noun:inan> ideal sería ir a Tailandia.
 [Mi]{mis}<na:ps:det:inan> [favorita]{favoritas}<na:ps:adj:inan> vacaciones es cuando yo vaya a Ixtapa, Mexico.
 [La]{el}<ga:mf:det:inan> aeropuerto es muy largo y [muchos]{muchas}<ga:fm:det:an> personas.
@@ -3063,7 +3008,6 @@ Kit Kat es una de mis comidas favoritas, entonces, [una]{un}<ga:mf:det:inan> sue
 Durante mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> no hay nada para hacer o nada para mi a preocupada a, especialmente tarea o estudiado, solamente necesito relajarme.
 Voy a queda en un hotel muy bonito y cara que tiene servicio de cuarto y todos para gratis porque va a ser un regalo de [mi]{mis}<na:ps:det:an> padres porque soy un buen estudiante.
 Voy a tomar sol en la playa y nadar en el océano y después tomar [un]{una}<ga:fm:det:inan> siesta en mi el cuarto de mi hotel durante el día.
-Voy a estar con mi mejor  amiga y por la tarde vamos a beber cervezas juntos en la playa y entonces por la noche vamos a bailar [al]{a la}<ga:fm:det:inan> discoteca.
 Tambien mi amiga y yo vamos a explorar y tomar [un]{una}<ga:fm:det:inan> caminata en la naturaleza.
 En mi [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> mi [solo]{sola}<ga:fm:det:inan> prioridad es que tener divertido y no estrés.
 La [vacación]{vacaciones}<in:s:noun:inan> perfecta para mi seria en Bora Bora o Hawái.
@@ -3307,7 +3251,6 @@ Una [vacación]{vacaciones}<in:s:noun:inan> en un lugar tropical es divertida po
 Llevaria mi familia al Museo Nacional para mirar [todos]{todas}<ga:fm:det:inan> [los]{las}<ga:fm:det:inan> secciones<gat:noun:inan> diferentes, museo de Arte, de Biologia, etc. y el mas importante, el Museo Nacional de Smithsonian para mirar [todo]{todas}<ga:na:fm:ps:det:inan> [los]{las}<ga:fm:det:inan> colecciones de culturas, Africano, Latino, etc.
 Nos subemos en un barco [privada]{privado}<ga:fm:adj:inan> y cruzamos el rio Hudson a Nueva York.
 En el barco, nos paramos a la isla de Libertad para tomar [unos]{unas}<ga:fm:det:aty:inan> fotos con la estatua de la Libertad.
-Despues de eso, nos paramos en Manhattan y iremos [al]{a la}<ga:fm:det:inan> calle de Wall y nos vamos al New York Stock Exchange para que mis perros dejan unas cagadotas en las escaleras del edifico.
 "Mis vacaciones [perfectos]{perfectas}<ga:fm:adj:inan> serían en Europa con mi novio por tres semanas.
 En nuestra última noche, iríamos a una cita romántica y comeriamos a [una]{un}<ga:mf:det:inan> restaurante lujoso.
 Después de [nuestros]{nuestras}<ga:fm:det:inan> vacaciones, dormiríamos mucho."
@@ -3354,7 +3297,6 @@ Yo creo que España es [una]{un}<ga:mf:det:inan> país<gat:noun:inan> [hermosa]{
 Había [muchas]{muchos}<ga:mf:det:aty:inan> días cuando no dormí porque tenia un examen en [la]{el}<ga:mf:det:aty:inan> [próxima]{próximo}<ga:mf:det:aty:inan> día<gat:noun:inan>.
 A veces, soy una persona [perezoso]{perezosa}<ga:fm:adj:inan>.
 Quiero ser [un]{una}<ga:fm:det:an> medica en el futuro.
-Siempre quise ir a Grecia Después de ver, la película de hermanas [del]{de los}<na:ps:det:inan> pantalones de viaje.
 "A [vacación]{vacaciones}<in:s:noun:inan> [perfecto]{perfecta}<ga:fm:adj:inan> es cuando todo es gratis.
 Cuando en mi [vacación]{vacaciones}<in:s:noun:inan>, a mí me gusta relajarme, probar comida auténtica, beber vino dulce, y flotar está encima del mar.
 Para la cena, me gustaría comer [todos]{todas}<ga:fm:det:inan> las carnes: la chuleta de puerco, el pollo con papas fritas, el bistec y los mariscos.
@@ -3552,7 +3494,6 @@ Me amigos son estudiar a [el]{la}<ga:fm:det:inan> Universidad California Irvine.
 Mi juego videojuegos con amigos y juego baloncesto con [mi]{mis}<na:ps:det:an>
 El viaje es con familia es [mi]{mis}<na:ps:det:inan> vacaciones.Me gusta voya la playa con mi familia y relajarme.
 Porque es [delicioso]{deliciosos}<na:ps:adj:inan>.Mi familia gustan la pesca porque es [divertido]{divertida}<ga:fm:adj:inan> y [trabajador]{trabajadora}<ga:fm:adj:inan>.Fortalecer mi relación con mi familia.
-Nosotros charlar todo en [la]{el]<ga:mf:det:inan> mundo.
 Mi [vacación]{vacaciones}<in:s:noun:inan> perfecta sería en una isla en donde el clima es caliente pero no tan caluroso.
 Las personas que imagino vendrán conmigo a mi [vacación]{vacaciones}<in:s:noun:inan> perfecta serían mi familia, incluido mis tres perros y personas que creo van a contribuir y traerán buena energía.
 La cabaña consistirá de dormitorios conjuntos y otros [separadas]{separados}<ga:mf:adj:inan> por el [pasillos]{pasillo}<na:sp:noun:inan>.
@@ -3604,7 +3545,6 @@ Kobe Bryant da mucho dinero ayundar pobre [gentes]{gente}<na:sp:noun:an>.
 Es una persona muy [contento]{contenta}<ga:fm:adj:an>.
 Ahora, tenemos un tonto narajano en [nuestro]{nuestra}<ga:fm:det:inan> oficina que tiene [una]{un}<ga:mf:det:inan> vocabulario limitado.
 Obama tiene más swag que presidentes anteriores y [presente]{presentes}<na:ps:adj:an>.
-Obama no se ríe [al]{a la}<ga:fm:det:an> gente con disibilidades y no habla de sexo con su hija como Presidente Trump.
 Él arregló [nuestro]{nuestra}<ga:fm:det:inan> económica.
 McAdams tiene el cabello de amarillo, pero ella tuvo el cabello de rojo en [la]{el}<ga:mf:det:inan> pasado.
 McAdams es muy simpática a [su]{sus}<na:ps:det:an> amigos.
@@ -3712,13 +3652,11 @@ Ahora, sus seguidores y aficionados forman [un]{una}<ga:fm:det:an> comunidad se 
 Empezó con el grupo se llama Destiny's Child antes de realizar [solo]{sola}<ga:fm:adj:an>.
 Mis álbumes [favoritas]{favoritos}<ga:mf:adj:inan> son Lemonade, Beyoncé, Dangerously in Love, B'day, y 4.
 Pienso que [mucho]{mucha}<ga:fm:det:an> gente conecta con los mensajes de dolor, amor, felicidad.
-El álbum más reciente <<Lemonade>> es sobre las mentiras de su esposo.
 El video tiene [muchos]{muchas}<ga:fm:det:inan> imágenes<gat:noun:inan> [hermosos]{hermosas}<ga:fm:adj:inan> y [poderosos]{poderosas}<ga:fm:adj:inan>.
 De verdad no se mucho de gente que son [famosos]{famosa}<ga:na:fm:sp:adj:an>.
 Selena’s [primera]{primer}<ga:mf:det:aty:inan> programa que salió fue “Barney & Friends” y después de dos años estaba quitada.
 Se fue a adicionar por [muchos]{muchas}<ga:fm:det:inan> partes<gat:noun:inan> y garro [unos]{unas}<ga:fm:pron:inan> que eran [cortos]{cortas}<ga:fm:adj:inan> en películas.
 Tubo un novio que los dos estaban jóvenes y paliaron mucho que su relación terminaba muchas veces y regresaron [juntas]{juntos}<ga:mf:adj:an>.
-Ya después [del]{de la}<ga:fm:det:inan> ultimar vez, los dos separaron y cambiaron.
 Había un tiempo que Selena paro de cantar porque tenía una enfermedad [llamado]{llamada}<ga:fm:adj:inan> “Lupas,” que hace que la cara de hinchar, y los huesos lo duele.
 Hay complicaciones sobre la cirugía y necesita [otra]{otro}<ga:mf:pron:inan>.
 Nimoy estaba principalmente en la primera generación de Star Trek pero también en algunos otros episodios [del]{de la}<ga:fm:det:inan> [próximo]{próxima}<ga:fm:det:inan> generación<gat:noun:inan>.
@@ -3754,7 +3692,6 @@ Es decir, no ha alcanzado gran cantidad de aficionados como los típicos - pero 
 Cuando el grupo se dieron cuenta que uno de ellos pudiera estar [invitados]{invitado}<na:sp:adj:an> al participar a trabajar con un record label, escogieron a Álvaro, y empezó su carrera como artista musical [sola]{solo}<ga:mf:adj:an> en Alemania.
 Tenía éxito con sus primeras canciones españolas, incluso [uno]{una}<ga:fm:pron:inan>, "El mismo sol," que inspiró a "JLo" hacerla de nuevo en una colaboración con él, que hacía que su canción se volvía cada vez más popular.
 Para regresar al presente, sigue cantando y sus canciones alegres, [llena]{llenas}<na:ps:adj:inan> de energía con sus coros [pegajosas]{pegajosos}<ga:mf:adj:inan> y el ritmo en que toca la guitarra, siguen ganando atención.
-Por ejemplo, ganó un premio unos años atrás y han hecho una colaboración con un grupo colombiano Morát, para una película [del]{de la}<ga:fm:det:inan> serie Despicable Me.
 A pesar de ganar recientemente mucha atención, y aunque tiene mucho talento al hablar Alemán, [Japonesa]{japonés}<ga:mf:noun:inan>, Español, e Inglés, (por lo menos) y cantar y tocar varios instrumentos, lo que me inspira es su manera de comportarse como siempre relajado y quizás apacible que hace que se parece muy humilde y no enfocado en la fama y el orgullo.
 No hay [un]{una}<ga:fm:det:inan> pelicula de malo.
 El se venga porque [la]{el}<ga:mf:det:an> pueblo destruir a su familia.
@@ -3796,7 +3733,6 @@ Kris Bryant es [una]{un}<ga:mf:det:an> [jugadora]{jugador}<ga:mf:noun:an> de bé
 Antes de jugando para los Cubs fue [al]{a la}<ga:fm:det:inan> universidad de San Diego donde jugaste béisbol y recibió [un]{una}<ga:fm:det:inan> educación, tenía una especialidad en finanzas .
 En [la]{el}<ga:mf:det:inan> equipo del universidad y en la liga de las universidades ganó muchos premios.
 Tambien jugaste para [la]{el}<ga:mf:det:inan> equipo de Estados Unidos de nivel universidad.
-Durante seleccionado [del]{de la}<ga:fm:det:inan> majoria beisbol liga en 2013 fue el segundo selecciona, los Cubs se elegían.
 En su segun año 2016 su equipo fue la Serie Mundial y ganó ([la]{el}<ga:mf:det:inan> [misma]{mismo}<ga:mf:det:inan> ano<gat:noun:inan> que la película Back to the Future se predicción).
 En la Serie Mundial Kris Bryant fue [la]{el}<ga:mf:det:an> [jugadora]{jugador}<ga:mf:noun:an> más [valiosa]{valioso}<ga:mf:adj:an>.
 En sus tres años jugando fue al Estelar Juego para jugar con [las]{los}<ga:mf:det:an> [jugadoras]{jugadores}<ga:mf:noun:an> de equipos entre la liga nacionalidad.
@@ -4044,7 +3980,6 @@ Beyonce es [un]{una}<ga:fm:det:an> [buen]{buena}<ga:fm:adj:an> artista<gat:noun:
 Muchas niñas, especialmente las niñas que son homosexuales, creen que ella es un héroe y algo más que [un]{una}<ga:fm:det:an> simple [orador]{oradora}<ga:fm:gat:noun:an> [ordinario]{ordinaria}<ga:fm:adj:an>.
 Ella [le]{les}<na:ps:pron:an> da mucho crédito a sus padres por su intenso amor a la música porque siempre la animaron a seguir sus sueños y usar su voz para encontrar su propia felicidad.
 Los Avengers son un grupo de [individúes]{individuos}<ig:e:noun:an> con habilidades excepcionales que defienden el planeta.
-Ha ayudado promover donaciones para diferentes [charities] que ayudan a niños con enfermedades y deseabilidades.
 [La]{los}<ga:na:fm:ps:det:inan> ojos de ella es como un cafe y negro color.
 Ella esta [cubano]{cubana}<ga:fm:adj:an> y [puertorriqueño]{puertorriqueña}<ga:fm:adj:an>.Y vivo a Miami pero vino a Los Angeles para una carrera de música.
 Como tres meses ella escribo [un]{una}<ga:fm:det:inan> cancion de ella abuelo.
@@ -4156,7 +4091,6 @@ Ella ganó [muchas]{muchos}<ga:mf:det:inan> premios.
 En [la]{el}<ga:mf:det:inan> [trabaja]{trabajo}<ig:f:noun:inan> de Green Lantern Blake Lively y Ryan Reynolds reunió.
 Cuando ella viaje ella va a [muchas]{muchos}<ga:mf:det:inan> restaurantes y le gusta intentar mucha comida.
 Ella dijo, "[Todo]{toda}<ga:fm:det:an> mi familia esta loca."
-Ella también dijo "Yo solamente besado tres persones<ig:e:noun:an> en mi vida, aparte de películas.
 Por [la]{el}<ga:mf:det:aty:inan> programa de television a Gossip Girl ella hace cincuenta mil dólares por un episodio en 2009-2010.
 Blake Lively quería ser [un]{una}<ga:fm:det:an> actora no famosa.
 Pero a veces, cuando tu estas [un]{una}<ga:fm:det:an> actora te vuelves famosa.
@@ -4164,7 +4098,6 @@ Las canciones muestran las frustraciones de la manera que fueron [tratados]{trat
 Eazy-E era especial porque él usaba su voz para cambiar la forma de que su gente fueron [vistos]{vista}<ga:na:fm:sp:adj:inan> por el mundo.
 Yo y mi ama lloramos porque nos gustaba mucho su personalidad, ella era [honesto]{honesta}<ga:fm:adj:an> con sus aficionados y su familia todo el tiempo.
 "Buster Posey es [un]{una}<ga:fm:det:an> persona muy famosa en San Francisco y [los] 
-{las}<ga:fm:det:inan> ciudades estan cerca de San Francisco.
 El es [la]{el}<ga:mf:det:an> colector por Los Gigantes y es el mejor bateador para Los Gigantes.
 En su ano primero con el equipo, Los gigantes gano [el]{las}<ga:na:fm:ps:det:inan> series Mundiales y Buster Posey gano el novato del ano premio.
 Entonces, en su ano tercero, Buster Posey y los gigantes gano [el]{las}<ga:na:fm:ps:det:inan> series Mundiales otra vez.
@@ -4174,7 +4107,6 @@ Pero pronto, Buster Posey y los gigantes ganara muchos juegos y ganara [el]{las}
 A mí me gustan sus películas porque él interpreta [muchas]{muchos}<ga:mf:det:inan> papeles diferentes y interesantes.
 Pero, en la película que se llama El Marciano, él interpreta el papel de un astronauta muy inteligente que está [atascada]{atascado}<ga:mf:adj:an> en Mars.
 Es una trilogía muy emocionante y bien [hecho]{hecha}<ga:fm:adj:inan>.
-Él interpreta los papeles de personas reales y muy [famosos] {famosas}<ga:fm:adj:an>.
 Matt Damon es actor muy bien quien tiene [mucho]{mucha}<ga:fm:det:inan> influencia en Hollywood, y todo del mundo.
 Respeto [muchas]{muchos}<ga:mf:det:an> [jugador]{jugadores}<na:ps:adj:an> de deportes profesionales.
 Ellos pone en el [muchos]{mucho}<na:sp:det:inan> esfuerzo y cree en ellos mismos.
@@ -4293,7 +4225,6 @@ No muchas mujeres mexicanas se retratan en [la]{las}<na:ps:det:inan> películas.
 [Él]{la}<ga:fm:det:inan> fecha los modelos.Es muy religioso y cree en Dios.
 Él realiza en [muchos]{muchas}<ga:fm:det:inan> de demostraciones y de conciertos.
 Él ganó un Grammy para [un]{una}<ga:fm:det:inan> canción Cry me a River.
-Escribió un{una}<ga:fm:det:inan> canción por que Britney Spears, su primer amor.
 [Su]{sus}<na:ps:det:inan> [canción]{canciones}<na:ps:noun:inan>, Sexy Back, Suit and Tie, y Mirror era muy [popular]{populares}<na:ps:adj:inan>.
 No tiene [ningún]{ningunos}<na:ps:det:an> nietos.
 Su hermana tiene [una]{un}<ga:mf:det:an> hijo.
@@ -4380,8 +4311,6 @@ Físicamente, Barack Obama es una persona [alto]{alta}<ga:fm:adj:an> con pelo co
 Barack Obama parece como una persona [simpático]{simpática}<ga:fm:adj:an> y [divertido]{divertida}<ga:fm:adj:an>.
 Sería genial si ella podría ser [presidente]{presidenta}<ga:fm:adj:an> como él.
 Cuando tenía cinco años, mi hermana mayor me introdució a Shakira, y me acuerdo que me encantaba la música y [el]{la}<ga:fm:det:inan> imagen de ella.
-La escribió cuando tenía 17 años, y dice que esto fue porque “ya [se] había enamorado” a esa edad.
-La canción habla sobre las cosas que un amante le enseñó -- como a “[desarrollar] [su] sentido del olfato” y cómo es amar a otra persona.
 Mucha gente sigue Messi por [todas]{todo}<ga:na:mf:sp:det:inan> el mundo.
 Carli Lloyd es [un]{una}<ga:fm:det:an> [jugador]{jugadora}<ga:fm:adj:an> de fútbol femenino para el equipo nacional de los Estados Unidos.
 Ella juega defensa y ofensiva y es [un]{una}<ga:fm:det:an> [jugador]{jugadora}<ga:fm:adj:an> muy [talentoso]{talentosa}<ga:fm:adj:an>.
@@ -4488,7 +4417,6 @@ Cuando él le gustó los participantes él quiso ser [sus]{su}<na:sp:det:an> el 
 One Direction y Leona Lewis son cantantes de pop y Susan Boyle es cantante de [clásica]{clásico}<ga:mf:adj:inan>.
 Muchas personas Simon entrena son [inglés]{ingleses}<na:ps:adj:an> porque ellos competen en X Factor UK.
 Leona Lewis, Little Mix, One Direction, y Susan Boyel son [inglés]{ingleses}<na:ps:adj:an> pero, Fifth Harmony es Americana.
-Simon ayudó personas con otros talentos llegan a ser [famoso]{famosas}<ga:na fm:ps:adj:an>, per ejemplo músicos.
 Después de American Idol Simon continuaba [él]{la}<ga:fm:det:inan> profesión y hoy él es conocedor en el show X Factor."
 Ella es famosa por [el]{la}<ga:fm:det:inan> serie televisiva Modern Family.
 Ella fue descubrió por [un]{unos}<na:ps:det:inan> fotógrafos en una playa de Colombia y entonces empezó modelaje y televisioón.
@@ -4538,7 +4466,6 @@ La ropa de Beyonce es bonita porque [muchas]{mucho}<ga:na:mf:sp:det:inan> dinero
 Beyonce tiene muchas bolsas para ella no es [pasado]{pasada}<ga:fm:adj:inan> de moda!
 Beyonce gusta va al compras, y compras [muchas]{muchos}<ga:mf:det:inan> regalos para ella familia y amigos.
 Beyonce encantan oro, y tiene [muchas]{muchos}<ga:mf:det:inan> accesorios en oro.
-La casa de Beyonce tiene [un] 
 {una}<ga:fm:det:inan> estufa, [muchas]{muchos}<ga:mf:det:inan> banos, un grande closet, la chimnea, el lavaplatos, y [un]{una}<ga:fm:det:inan> licuadora.
 Beyonce grabas [nuevo]{nueva}<ga:fm:adj:inan> musica para tus emocionados.
 Beyonce tenga los shows [todos]{todas}<ga:fm:det:inan> [los]{las}<ga:fm:det:inan> estaciones<gat:noun:inan>.
@@ -4577,7 +4504,6 @@ Lo [única]{único}<ga:mf:det:aty:inan> tema Harry fue bien fue Defensa encontra
 Él además juegó “Quidditch” un [deportes]{deporte}<na:sp:noun:inan> jugado sobre escobas y es muy peligroso.
 Harry Potter tuvo una búha{buho}<ig:f:noun:an> [llamado]{llamada}<ga:fm:adj:an> Hedwig.
 En su [ultima]{último}<ga:mf:det:inan> año de escuela, Harry Potter mató Señor Voldemort y terminó la guerra.
-Él es un ”auror” y se defende la genta{gente}<ig:f:noun:an> de artes oscuras.
 Trump necesita [mucho]{muchas}<ga:na:fm:ps:det:inan> tareas de UC Davis.
 Los ninos y las ninas de Trump es muy [inteligente]{inteligentes}<na:ps:adj:an> tambien.
 Ellos tienen los negocios pero con [sus]{su}<na:sp:det:an> padre.
@@ -4648,7 +4574,6 @@ Ella tiene los ojos [azul]{azules}<na:ps:adj:inan>.
 Amy Poehler es más famosa por estar en [la]{el}<ga:mf:det:aty:inan> programa de televisión se llama ""Parks and Recreation.""
 En [la]{el}<ga:mf:det:aty:inan> programa de televisión, Amy Poehler está una politica muy buena.
 En [la]{el}<ga:mf:det:aty:inan> programa de televisión, Leslie Knope se casa con Ben Wyatt y tiene tres hijos.
-La película es con [otro] {otra}<ga:fm:det:an> actriz se llama Tina Fey.
 Su amiga, Tina Fey, es [otro]{otra}<ga:fm:det:an> comediante en SNL. "
 Soy capaz de expresarme musicalmente en [muchas]{muchos}<ga:mf:det:inan> idiomas ahora.
 Por [ejemplos]{ejemplo}<na:sp:noun:inan>, el ganó cinco campeonatos, el hizo ochenta y uno puntos en un juego y lo conocían para hacer tiros ganadores juego.
@@ -4718,7 +4643,6 @@ De todos modos, en los domingos, Obama y su familia les gusta ir a la iglesia, e
 Señor Obama trabaja mucho para [todos]{toda}<ga:fm:det:an> [los]{la}<ga:fm:det:an> gente<gat:noun:an> de los Estados Unidos.
 También su esposa, Michele Obama es muy amable y [divertido]{divertida}<ga:fm:adj:an>.
 Pienso que the presidente nuevo no gusta que la familía Obama vive in [el]{la}<ga:fm:det:inan> [mismo]{misma}<ga:fm:det:inan> ciudad<gat:noun:inan>.
-El presidente nuevo quiere construir [un]{una}zga:fm:det:inan> pared entre Mexico y los Estados Unidos.
 Creo [un]{una}<ga:fm:det:inan> pared es muy malo.
 Creo Presidente Obama no gusta [un]{una}<ga:fm:det:inan> pared.
 En 2015 ella debutó su [primer]{primera}<ga:fm:det:inan> canción se llama “Here”.
@@ -4774,7 +4698,6 @@ A el le gusta leer [el]{los}<na:ps:det:inan> libros y hacer ejercicio.
 Becky seguía subiendo covers de las canciones de otros artistas en youtube hasta que empezó a recibir [bastante]{bastantes}<na:ps:adj:an> views del público.
 Shakira es una cantenta y [bailarín]{bailarina}<ga:fm:adj:an> famosa.
 Mezcló la musica de [latino]{latina}<ga:fm:adj:inan>, rock, y árabe.
-Shakira convirtió mas popular en La{los}<ga:mf:det:inan> Estados Unidos.
 En dos mil doce ella convirtió en [juez]{jueza}<ga:fm:adj:an> por el espectáculo, “The Voice”.
 Shakira es muy [ocupado]{ocupada}<ga:fm:adj:an>, cuando no está trabajando en música, ella es trabajando con UNICEF Buena voluntad.
 Ella fundó [el]{la}<ga:fm:det:inan> Fundación de Pies Decalzos en diecinueve noventa y siete.
@@ -4815,7 +4738,6 @@ Son [abogados]{abogada}<ga:na:fm:sp:adj:an>.
 Durante su niñez, Peter agarro el apodo “Bruno” porque siempre tenía [mucho]{mucha}<ga:fm:det:inan> confianza y bruto.
 Después de graduarse de la primaria, Bruno Mars se mudó a los ángeles en donde tuvo [una]{un}<ga:mf:det:inan> [comienza]{comienzo}<ga:mf:noun:inan> lento en su carrera.
 Aprendió que para ser alguien en este mundo tienes que hacer sus propias canciones que pueden dar alguien la alegría de escucharlos en [el]{la}<ga:fm:det:inan> radio.
-Desde entonces, Bruno Mars hay salido con [varias] {varios}<ga:mf:det:inan> de álbumes como Doo-Wops & Hooligans, Unorthadox Jukebox, y recientemente XXIVK Magic.
 Bruno Mars también he tenido la oportunidad de hacer muchos “world tours” y está en medio de [una]{uno}<ga:mf:det:inan> ahora promoviendo su nuevo álbum XXIVK Magic.
 Ronaldo es patrocinado por muchas compañías por ejemplo como Nike, grandes compañías de bebidas, [electrónicos]{electrónicas}<ga:fm:adj:inan>, ropa, video juegos, y mucho más.
 Se dio cuenta que [muchos]{muchas}<ga:fm:det:an> personas trataban a los trabajadores sin respeto.
@@ -4851,7 +4773,6 @@ El nombre de su [esposa]{esposo}<ga:mf:noun:an> es Gerard Piqué.
 Beyonce es [un]{una}<ga:fm:det:an> cantante y tiene tres ninos.
 Ella tiene [un]{una}<ga:fm:det:an> hermana, dos padres, un novio Jay-Z, y [un]{una}<ga:fm:det:an> nina Blue Ivy.
 Espero que Beyonce es simpatica y graciosa, y es [un]{una}<ga:fm:det:an> bien madre, porque no se.
-Jay-Z gusta [otros]{otras} chicas de Beyonce, no es bien.
 Beyonce tiene [dudos]{dudas}<ig:m:noun:inan> Jay-Z es un bien Novio, se dice “Donde esta anoche Jay-Z!” Beyonce es [un]{una}<ga:fm:det:an> mejor bailandora que Jay-Z. Creo que Jay-Z es muy serio y no tiene mucho talento.
 Beyonce trabajar mucha y es [un]{una}<ga:fm:det:an> bien madre de Blue Ivy.
 La ropa de Beyonce es bonita porque [muchas]{mucho}<ga:na:fm:sp:det:inan> dinero.
@@ -4960,7 +4881,6 @@ Pero, César sintìo que no hacer mucho cambìo sin el apoyo del administración
 Pero, cambio es difícil porque [todos]{todas}<ga:fm:det:an> [los]{las}<ga:fm:det:an> personas<gat:noun:an> quieran lo mejor para ellos, y tienen una idea diferente de lo que es justicia.
 Pero, César Chávez trabajò [todo]{toda}<ga:fm:det:inan> su vida para los derechos y las vidas de los trabajadores agrícolas.
 Y tenìa éxito porque después [su]{sus}<na:ps:det:inan> esfuerzos, trabajadores en Texas, California, Florida, y Arizona tenìan condicionales mejores, ganaron más dinero, y tenían más derechas<ig:f:noun:inan>.
-En 1984, la industria de uvas no quería controlar el usa<ig:f:noun:inan> de la sustancia química en las plantas.
 "Mi cantante [favorita]{favorito}<ga:mf:adj:an> es Jay Chou.
 No es alto ni guapo, pero es muy popular en muchos países porque sus canciones son muy [buenos]{buenas}<ga:fm:adj:inan>.
 Daniel tiene características físicas que están similar que Harry, pero los ojos están [un]{una}<ga:fm:det:inan> diferencia importante.
@@ -5020,8 +4940,6 @@ Yo no espero hasta los [niño]{niños}<na:ps:noun:an> llegan en el mundo!
 Fue nominando en el premio de [las]{la}<na:sp:det:inan> Academia para el mejor actor de reparto porque su desempeño es bueno en Qué está comiendo Gilbert Grape en 1993.
 Leonardo ganó nombramiento como Secretario General de la ONU, Ban Ki-moon, "Naciones Unidas Mensajero de la Paz" [preocupados]{preocupado}<na:sp:adj:an> por el cambio climático en 17 de septiembre de 2014 en Nueva York.
 Cuando tenía cinco años, mi hermana mayor me introdució a Shakira, y me acuerdo que me encantaba la música y [el]{la}<ga:fm:det:inan> imagen de ella.
-La escribió cuando tenía 17 años, y dice que esto fue porque “ya [se] había enamorado” a esa edad.
-La canción habla sobre las cosas que un amante le enseñó -- como a “[desarrollar] [su] sentido del olfato” y cómo es amar a otra persona.
 Cuando ella tenia viente anos, ella hizo [una]{un}<ga:mf:det:inan> album muy popular.
 Ella le gustan perros y no le gustan gatos porque ella es [alergico]{alérgica}<ga:fm:adj:an> de gatos.
 Tambien, ella es [alergico]{alérgica}<ga:fm:adj:an> a platanos.
@@ -5642,7 +5560,6 @@ Ellos tienen dos hijas, Riley y Ryan, recientemente anunciaron el embarazo de Ay
 Él es el hijo de Dell Curry, quien fue un jugador de baloncesto también, y Sonya Curry, una [jugador]{jugadora}<ga:fm:adj:an> de voleibol en la universidad.
 Por último, Stephen Curry tiene un patrimonio neto de cuarenta y siete [millón]{millones}<na:ps:noun:inan>.
 En 2017, él firmó un contrato por un salario de doscientos uno [millón]{millones}<na:ps:noun:inan> durante cinco años.
-El nombre de grupo era <<The Jackson Five>> y ellos lograron mucha fama antes del grupo rompió.
 Durante los años de ochenta, Jackson empezó su carrera [sola]{solo}<ga:mf:adj:an>.
 De manera similar, Jackson presentó a [nuevos]{nuevas}<ga:fm:adj:an> formas de coreografía.
 Mientras Jackson tuvo mucho éxito en su carrera, él tenía [muchas]{muchos}<ga:mf:det:inan> problemas en su vida personal.
@@ -5786,16 +5703,13 @@ En [el]{la}<ga:fm:det:inan> semana<gat:noun:inan> [pasado]{pasada}<ga:fm:adj:ina
 Esto es [un]{una}<ga:fm:det:inan> gran controversia porque nadie sabe que ella estaba embarazada y su familia se conoce por compartir [todas]{todo}<ga:na:mf:sp:adj:inan> de sus vidas.
 Se llama el bebe, Stormi y ahora, puede compartir su vida con [su]{sus}<na:ps:det:an> primos.
 La controversia sobre Kylie Jenner y su embarazo podría ser [considerado]{considerada}<ga:fm:adj:inan> una de las discusiones más interesantes de los últimos meses.
-Poco después de que su hermana Kim Kardashian anunció que había logrado un [surrogate] embarazo con su esposo Kanye West, salieron rumores de que Kylie también estaba embarazada después de estar con su novio Travis Scott por un corto tiempo.
 Las [prensas]{prensa}<in:p:noun:inan>  y el público tenían sus dudas sobre las aparentes noticias, especialmente porque [ningunas]{ninguna}<na:sp:det:inan>  [fotos]{foto}<na:sp:noun:inan> de la embarazara Kylie habían aparecido en la media.
-Dejo saber la gente cuando subió una imagen en Instagram con un [link] a un video que había subido en Youtube.
 Yo mire este video solo cincuenta minutos después de que había sido publicado y aun tenia mas de medio [millones]{millón}<na:sp:noun:inan>  de [views].
 Es muy bajo y tiene piel [perfecto]{perfecta}<ga:fm:adj:inan>.
 Llevaba un traje oro con una corbata [negro]{negra}<ga:fm:adj:inan>.
 Eran muy [entretenido]{entretenidos}<na:ps:adj:an>.
 Es mi espectáculo de Super Bowl [favorita]{favorito}<ga:mf:adj:inan>.
 [Su]{sus}<na:ps:det:an> padres se llama Gabriel García y Luisa Santiaga Márquez.
-Gabriel decidió ser [una}{un}<ga:mf:det:an> periodista mientras él estudio la ley por el Heraldo.
 La novela fue [publicado]{publicada}<ga:fm:adj:inan> en 1967 y vendió más que 30 millones copias.
 Hay [un]{una}<ga:fm:det:inan> razón porque esta novela es mi [favorito]{favorita}<ga:fm:adj:inan>.
 Kim es también [famoso]{famosa}<ga:fm:adj:an>.
@@ -6020,8 +5934,6 @@ También, a veces Justin Bieber esta no simpatico, asi que [muchos]{muchas}<ga:f
 Cuando yo este en [el]{la}<ga:fm:det:inan> escuela intermedia, me encanté Justin Bieber porque pensé el fue muy lindo y guapo y talentoso.
 Yo me gusté [su]{sus}<na:ps:det:inan> canciones y yo siempre eschuché [su]{sus}<na:ps:det:inan> canciones.
 Mi amiga en [el]{la}<ga:fm:det:inan> escuel intermedia se mucho gusté Justin Bieber también y [nosotros]{nosotras}<ga:fm:pron:an> hablamos acerca de el.
-Yo este [obsesionado] 
-{obsesionada}<ga:fm:adj:an> con el.
 Ahora, yo gusta [su]{sus}<na:ps:det:inan> canciones pero yo no me gusta el tanto como yo me gusté el en [el]{la}<ga:fm:det:inan> escuela intermedia."
 En el mundo de videojuegos y deportes electrónicos, hay [muchas]{muchos}<ga:mf:det:an> jugadores famosos, pero ellos no son tan [popular]{populares}<na:ps:adj:an> como actores de Hollywood.
 Los videojuegos más [popular]{populares}<na:ps:adj:inan> son League of Legends, Overwatch y Counter Strike.
@@ -6488,10 +6400,8 @@ Ella escrita [los]{las}<ga:fm:det:inan> canciones por [otro]{otros}<na:ps:det:an
 Ella va [la]{el}<ga:mf:det:inan> gimnasio una vez la semana porque ella no tiene tiempo.
 Aunque obtuvo su licenciatura en psicología en la Universidad de Wisconsin, Madison, nunca [lo]{la}<ga:fm:pron:inan> uso.
 Sin ser completamente [satisfecho]{satisfecha}<ga:fm:adj:an> con su vida, regrese a colegio comunitario para obtener el título de enfermera.
-Durante el verano, se tome casi 2 semanas de su tiempo pintando un mural gigante en el cuarto infantil [del]{de la}<ga:fm:det:inan> iglesia.
 Ella es muy [cariñoso]{cariñosa}<ga:fm:adj:an>.
 Stalin fue cerca de Lenin y fueron qualidad amigos pero [el]{la}<ga:fm:det:inan> relacion fue sur.
-Stalin fue nacido diciembre 18th, 1878 en el Ruso imperio antes [del]{de la}<ga:fm:det:inan> rerevolucion de Lenin despues mundo guerra uno.
 Stalin fue muy bueno dictador durante [el]{la}<ga:fm:det:inan> mayoria del mundo  guerra dos.
 Stalin fue muy mal a [el]{la}<ga:fm:det:an> gente de Ruso.
 [El]{la}<ga:fm:det:an> gente de ruso Stalin
@@ -6527,7 +6437,6 @@ Tiene uno en su oreja, uno en su pierda izquierda, tres en su brazo, y tres pequ
 Los meyores amigos de Hayley son [su]{sus}<na:ps:det:an> otros miembros de banda, Taylor y Zac.
 Hayley tambien es la [fundador]{fundadora}<ga:fm:noun:an> de una empresa de colorante de pelo.
 Desde hace casi un medio decenio, Bob Dylan ha permanecido [un]{una}<ga:fm:det:inan> base de influencia por [muchas]{muchos}<ga:mf:det:an> artistas y una quintaesencia presencia en las vidas de millones de gente alrededor del mundo.
-[Ningún]{ninguna}<ga:fm:det:an> persona ha sorprendido/cambiando la industria musical o animado la discusión como Dylan.
 Sin embargo, Dylan no le gustó que su identidad era tan unidimensional entonces en 1964 Dylan sacó Another Side of Bob Dylan que contenía canciones mucho más [personal]{personales}<na:ps:adj:inan> y menos [político]{políticas}<ga:fm:adj:inan>.
 Los [siguiente]{siguientes}<na:ps:det:inan> años se reinventó a sí mismo muchas veces publicando álbumes de cada estilo de rock’n roll country e evangélico.
 Es interesante saber que Banderas es [una]{un}<ga:mf:det:an> perfeccionista en su trabajo que no puede relajarse.
@@ -6613,7 +6522,6 @@ Por ejemplo, su película [favorito]{favorita}<ga:fm:adj:inan> es Ferris Bueller
 Es una muy buena película y yo [lo]{la}<ga:fm:pron:inan> recomiendo.
 Jim Carrey tiene una cara [expresivo]{expresiva}<ga:fm:adj:inan> y me hace reír.
 Jim Carrey vive cerca de Los Angeles, donde [muchos]{muchas}<ga:fm:det:an> estrellas del cine viven.
-Me encanta este actor y sus películas fueron parte [del]{de la}<ga:fm:det:inan> niñez de mi y mi hermano.
 Escribió canciones [demasiadas]{demasiado}<ig:in:f:p:adv> populares, y mucha gente todavía escucha a la música de Queen.
 Creo que una cuenta un poco [gracioso]{graciosa}<ga:fm:adj:inan> y un poco triste de él es cuando Queen estaba grabando su último CD.
 Muchas [gentes]{gente}<in:p:noun:an> están empezando a conocerlo a través de Iron man.
@@ -6631,7 +6539,6 @@ Beyonce le gusta comer los vegetales, [el]{la}<ga:fm:det:inan> carne, el pan y l
 Me molesta que los conciertos es muy [caro]{caros}<na:ps:adj:inan>. "
 Anthony Bourdain es muy [famosa]{famoso}<ga:mf:adj:an> en la América y en el mundo.
 Él es muy [famosa]{famoso}<ga:mf:adj:an> un chef, autor, y personalidad de televisión.
-Primero fue [al]{a la}<ga:fm:det:inan> Universidad de Vassar en Nueva York, después fue El Instituto Culinario de América además en Nueva York.
 Anthony trabajado en [muchas]{muchos}<ga:mf:det:inan> restaurantes y aprendió a cocinar.
 Más tarde, él escribió cuatro libros que fueron muy populares y [llamado]{llamados}<na:ps:adj:inan> Cocina Confidencial y Un tour de cocinero.También escribió muchos artículos sobre alimentos en los periódicos.
 Él personalidad es [extrovertido]{extrovertida}<ga:fm:adj:inan> y fuerte pero también es tranquilo.
@@ -6686,7 +6593,6 @@ Todos de sus tatuajes tienen sentidos de su vida con Brad o [su]{sus}<na:ps:det:
 Uno de sus tatuajes famosos tiene los [coordenadas]{coordinados}<ga:mf:noun:inan> donde sus hijos fueron nacidos en el mundo.
 Angelina también usó muchos métodos para encontrar dinero para personas pobres durante [todo]{toda}<ga:fm:det:inan> de su vida.
 Pienso que los son personas fantásticas a pesar de que su relación es [roto]{rota}<ga:fm:adj:inan>.
-Loretta Lynn es una [cantanta]{cantante}<ig:f:noun;an> de "country", y me gusta su musica mucho.
 Ella canta sobre su padre, su vida, [la]{el}<ga:mf:det:inan> amor, su barrio, su esposa,y mucho más.
 Es [un]{una}<ga:mf:det:inan> película muy bien y ganó un oscar para la acrtiz muy bien.
 Walt Disney jugaba [un]{una}<ga:fm:det:inan> gran parte en la vida de mi y muchos otros niños alrededor el mundo.
@@ -6771,7 +6677,6 @@ Luego en su carrera ella es una compositora, actriz y [diseñador]{diseñadora}<
 Espero que tenga [las]{los}<ga:mf:det:inan> [últimas]{últimos}<ga:mf:det:inan> dos años<gat:noun:inan> es increíbles de Grey's Anatomy y estoy muy emocionada de [verlas]{verlos}<ga:mf:pron:inan>.
 El actuó en [muchos]{muchas}<ga:fm:det:inan> películas de accion y tambien de la comedia.
 Me interesa mucho [los]{las}<ga:fm:det:inan> películas de Pual Walker.
-La etnia de J. Cole se origina en raíces<gat:noun:inan> [europeo-americano]{europeas-americanas}<ga:na:fm:ps:adj:inan> y [africano-americano]{africanas-americanas}<ga:na:fm:ps:adj:inan>.
 De allí él practicó y mejoro [su]{sus}<na:ps:det:inan> habilidades de producción.
 Igualmente, da su opinion sobre polémicas [estadounidense]{estadounidenses}<na:ps:adj:inan> como el racismo, el poder del gobierno, y la glorificación de las drogas.
 A inspirado muchos individuos y sigue haciendo [un]{una}<ga:fm:det:inan> gran influenza en la industria musical igual en la sociedad.
@@ -6830,7 +6735,6 @@ Las personas famosas son [influyente]{influyentes}<na:ps:adj:an> y me gustan [es
 En mucho de [la]{el}<ga:mf:det:inan> tiempo, era en el océano Pacífico.
 El casi murió mas de una vez durante [esta]{este}<ga:mf:det:inan> tiempo.
 [Mucho]{muchos}<na:ps:pron:an> de sus amigos se murieron.
-Luego, fue [al]{a la}<ga:fm:det:inan> universidad en la universidad de Yale.
 George HW Bush es en el hospital con [el]{la}<ga:fm:det:inan> sepsis ahora.
 No le gustaban las ardillas porque arruinaron su campo de golf en [las]{la}<na:sp:det:inan> casa blanca.
 Al describir a una [personas]{persona}<na:sp:noun:an> famosa o alguien a quien admiras es importante tomar encuentra que la cantidad de dinero no es importante.
@@ -6876,7 +6780,6 @@ Me gusta mucho su música por es un poco diferente de lo que es popular al momen
 Donald Glover tiene su [propia]{propio}<ga:mf:det:aty:inan> programa que se llama “Atlanta”.
 [La]{el}<ga:mf:det:aty:inan> programa ha ganado muchos premios por ser tan buen.
 Donald Glover es muy chistoso y también tiene [una]{un}<ga:mf:det:aty:inan> programa en netflix.
-La película es parte [del]{de la}<ga:fm:det:inan> “Star Wars” franquicia y es sobre la vida y los viajes de Han Solo.
 Por mucho tiempo, Amrezy fue maquilladora en [unas]{una}<na:sp:pron:inan> de las tiendas más conocidas, Mac Cosmetics.
 Ahora viven en [unos]{una}<ga:na:fm:sp:pron:inan> de las ciudades más costosas, Los Ángeles donde viven la vida que siempre han soñado.
 Tiene también una mamá, una hermana mayor, y [una]{un}<ga:mf:det:an> padrastro.
@@ -6945,7 +6848,6 @@ Ella actuaba en [muchos]{muchas}<ga:fm:det:inan> películas y [serie]{series}<na
 Yo sabia Li Qin cuando [ellas]{ella}<na:ps:pron:an> actuó en [uno]{una}<ga:fm:det:inan> serie de televisión, ‘The Dream of Red Mansions”.
 Siempre que yo veo Li Qin actúa en cualquiera película o en serie de televisión, yo me gusta ella ojos por que son [hermoso]{hermosos}<na:ps:adj:inan> y parecerse a pueden hablar.
 Existen una controversia sobre su identidad, muchos discuten que ella no es [un]{una}<ga:fm:det:an> latina verdadera.
-Este fin de mes el va a jugar en otro final [del]{de la}<ga:fm:det:inan> liga campeones.
 Ronaldo tiene mas goles en el compoticion que [mucho]{muchos}<na:ps:det:inan> equipos.
 El tiene casi [todo]{todos}<na:ps:det:inan> los premios en cada liga que el juega en.
 [Los]{las}<ga:fm:det:inan> tres ligas son la liga Santander (España), Liga de Campeones (Europa), y con el equipo portugués.
@@ -7023,7 +6925,6 @@ Sin embargo, Simone trabajó con muchas compañías por [todo]{toda}<ga:fm:det:i
 Es muy importante mencionar que ella era muy [preocupado]{preocupada}<ga:fm:adj:an> con el movimiento por los derechos civiles.
 Yo elegí escribir sobre Simone porque ella era [un]{una}<ga:fm:det:an> mujer fuerte, una persona [trabajador]{trabajadora}<ga:fm:adj:an> y [dedicado]{dedicada}<ga:fm:adj:an> y me encanta su música.
 Mis canciones [favoritos]{favoritas}<ga:fm:adj:inan> de ella son Te Puse un Hechizo y especialmente Sentirse Bien.
-Soy una músico también y espero que un día pueda ser un cuarto [del]{de la}<ga:fm:det:an> músico que era."
 Ella es [unas]{una}<na:sp:pron:an> de las populares que son de [latino americano]{latinoamericana}<ga:fm:adj:inan> musica.
 Kanye West es un ejemplo de esto, durante [todo]{toda}<ga:fm:det:inan> su carrera como rapero ha sido famoso por tener argumentos y peleas con el paparazzi.
 Cuando se caso con Kim Kardashian su vida fue mas [expuesto]{expuesta}<ga:fm:adj:inan> a la media.
