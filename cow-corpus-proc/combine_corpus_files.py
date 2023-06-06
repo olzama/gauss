@@ -20,7 +20,7 @@ def collect_all_raw(d):
     pass
 
 def find_annotations(sentence):
-    annotations = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     annotated_sentence = re.search(annotations, sentence)
     return annotated_sentence
 
@@ -94,7 +94,7 @@ def create_dictionary(sentence_list):
 Break annotated sentences into parts.
 '''
 def break_sentence(sentence):
-    annotations = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     sentence_parts = annotations.split(sentence)
     return sentence_parts
 
@@ -102,7 +102,7 @@ def break_sentence(sentence):
 Returns two parallel sentences, one with the original word from the annotation and the other with the target word.
 '''
 def reconstruct_sentence(sentence, replacement):
-    annotation = re.compile(r'(?P<annotation>\[(?P<original_word>\w+)]{(?P<target_word>\w+)}<(?P<issues>[\w+:]+)>)')
+    annotation = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     reconstructed = annotation.sub(replacement, sentence)
     return reconstructed
 
