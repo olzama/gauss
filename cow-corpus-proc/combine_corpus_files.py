@@ -15,7 +15,6 @@ import sys, os
 import glob
 import nltk # NLP package; used here to split text into sentences
 import re
-import json
 
 def collect_all_raw(d):
     pass
@@ -146,21 +145,15 @@ if __name__ == "__main__":
             f.write(s + '\n')
 
     '''
-    Select only annotated sentences and save them in a file.
+    Select only annotated sentences and save them in a dictionary.
     Sanity check report.
     '''
     annotations = 'COWSL2H_annotated.txt'
     print('Looking for annotated sentences in {}'.format(annotations))
     relevant_sentences = collect_all_annotated(annotations)
     print('Total {} annotated sentences in {}.'.format(len(relevant_sentences), annotations))
-    with open('COWSL2H_gender_number.txt', 'w') as f:
-        for sentence in relevant_sentences:
-            f.write(sentence)
-
-    '''
-    Create a dictionary of sentences annotated for gender_numer issues.
-    '''
     gen_num_dictionary = create_dictionary(sent_lst)
+
 
     '''
     Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
@@ -168,7 +161,24 @@ if __name__ == "__main__":
     gen_num_original = {}
     gen_num_target = {}
 
-    for key, value in gen_num_dictionary.items():
-        gen_num_original[key] = reconstruct_sentence(value, '\g<original_word>')
-        gen_num_target[key] = reconstruct_sentence(value, '\g<target_word>')
+    original = '\g<original_word>'
+    target = '\g<target_word>'
 
+    for key, value in gen_num_dictionary.items():
+        gen_num_original[key] = reconstruct_sentence(value, original)
+        gen_num_target[key] = reconstruct_sentence(value, target)
+
+    '''
+    Save dictionaries into .txt files.
+    '''
+    with open('COWSL2H_gender_number.txt', 'w') as f:
+        for k, v in gen_num_dictionary.items():
+            f.write("{} {}\n".format(k, v))
+
+    with open('COWSL2H_original_gen_num.txt', 'w') as f:
+        for k, v in gen_num_original.items():
+            f.write("{} {}\n".format(k, v))
+
+    with open('COWSL2H_target_gen_num.txt', 'w') as f:
+        for k, v in gen_num_target.items():
+            f.write("{} {}\n".format(k, v))
