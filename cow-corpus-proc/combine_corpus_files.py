@@ -80,12 +80,13 @@ def relevant_folders (f):
     return folders
 
 if __name__ == "__main__":
+    path_to_corpus = sys.argv[1]
     '''
     Use the function find_relevant_folders to find folders named "essays" in the corpus.
     Sanity check report of relevant folders.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
-    essays = relevant_folders("essays")
+    essays = relevant_folders(sys.argv[2])
     print('Found {} folders named essays in the corpus.'.format(len(essays)))
 
     '''
@@ -94,12 +95,12 @@ if __name__ == "__main__":
     print('Looking for sentences in essays.')
     raw_lst = get_raw_list(essays)
     print('Total {} sentences.'.format(len(raw_lst)))
-    with open('COWSL2H_essays.txt','w') as f:
+    with open('output/COWSL2H_essays.txt','w') as f:
         for s in raw_lst:
             f.write(s + '\n')
 
     '''
-    Use the function find_relevant_folders to find folders containing essays in the corpus.
+    Find folders containing annotated essays in the corpus.
     Sanity check report of relevant folders.  
     '''
     annotated = relevant_folders("annotated")
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     print('Compiling sentences from annotated folders.'.format(len(annotated)))
     sent_lst = get_sent_list(annotated)
     print('Total {} sentences in the corpus.'.format(len(sent_lst)))
-    with open('COWSL2H_annotated.txt', 'w') as f:
+    with open('output/COWSL2H_annotated.txt', 'w') as f:
         for s in sent_lst:
             f.write(s + '\n')
 
@@ -124,7 +125,7 @@ if __name__ == "__main__":
     print('Looking for annotated sentences in {}'.format(annotations))
     relevant_sentences = collect_all_annotated(annotations)
     print('Total {} annotated sentences in {}.'.format(len(relevant_sentences),annotations))
-    with open('COWSL2H_gender_number.txt', 'w') as f:
+    with open('output/COWSL2H_gender_number.txt', 'w') as f:
         for sentence in relevant_sentences:
             f.write(sentence)
 
