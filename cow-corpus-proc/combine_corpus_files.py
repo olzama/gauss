@@ -145,6 +145,7 @@ if __name__ == "__main__":
     print('Looking for sentences in essays.')
     raw_lst = get_raw_list(essays)
     print('Total {} sentences.'.format(len(raw_lst)))
+
     with open('COWSL2H_essays.txt','w') as f:
         for s in raw_lst:
             f.write(s + '\n')
