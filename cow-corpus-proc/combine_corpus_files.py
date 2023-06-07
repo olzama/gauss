@@ -14,28 +14,11 @@ parameter1_path_to_cowsl2h-master
 import sys
 import glob
 import nltk # NLP package; used here to split text into sentences
-import re
 
 def collect_all_raw(d):
     pass
 
-def find_annotations(sentence):
-    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
-    annotated_sentence = re.search(annotations, sentence)
-    return annotated_sentence
 
-'''
-Return a list containing annotated texts from a text file.
-'''
-def collect_all_annotated(d):
-    annotated_sentences = []
-    with open(d, 'r') as f:
-        sentences = f.readlines()
-        for sentence in sentences:
-            annotations = find_annotations(sentence)
-            if annotations != None:
-                annotated_sentences.append(sentence)
-    return annotated_sentences
 
 def collect_per_course_level(d):
     pass
@@ -77,62 +60,11 @@ def get_sent_list(relevant_folders):
                         sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
     return sentences
 
-'''
-Save annotated sentences from a list into a dictionary.
-'''
-def create_dictionary(sentence_list, metadata=None):
-    dictionary = {}
-    for i, sentence in enumerate(sentence_list):
-        annotations = find_annotations(sentence)
-        sentence_length = len(sentence.split(" "))
-        if annotations != None:
-            dictionary[i] = {"origin":"", "register":"", "format":"none", "difficulty":1, "category":"S",
-                             "annotated":sentence, "learner":"", "corrected":"", "wf":1, "length":sentence_length,
-                             "author":"", "date":""}  # annotated is the original sentence from the corpus
-            print("Sentence {}".format(i))
-            print(sentence)
-    return dictionary
-
-'''
-Break annotated sentences into parts.
-'''
-def break_sentence(sentence):
-    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
-    sentence_parts = annotations.split(sentence)
-    return sentence_parts
-
-'''
-Returns two parallel sentences, one with the original word from the annotation and the other with the target word.
-'''
-def reconstruct_sentence(sentence, replacement):
-    annotation = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
-    reconstructed = annotation.sub(replacement, sentence)
-    return reconstructed
-
-
-def reconstruct_sentences(gen_num_dictionary):
-    '''
-    Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
-    '''
-    #gen_num_original = {}
-    #gen_num_target = {}
-    learner = '\g<original_word>'
-    corrected = '\g<target_word>'
-    for key, sentence_info in gen_num_dictionary.items():
-        gen_num_dictionary[key]['learner'] = reconstruct_sentence(sentence_info['annotated'], learner)
-        gen_num_dictionary[key]['corrected'] = reconstruct_sentence(sentence_info['annotated'], corrected)
-    #return gen_num_original, gen_num_target
-
-def output_string(id, sentence_info, sentence_type):
-    wf = 0 if sentence_type == 'learner' else 1
-    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type] + '@' + str(wf) + '@'\
-             + str(sentence_info['length']) + '@' + '@' + 'author-to-be-filled-out' + '@' + 'date-to-be-filled-out' + '\n'
-    return output
 
 if __name__ == "__main__":
     path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     '''
-    Use the function find_relevant_folders to find folders named "essays" in the corpus.
+    Find folders named "essays" in the corpus.
     Sanity check report of relevant folders.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
@@ -167,31 +99,3 @@ if __name__ == "__main__":
         for s in sent_lst:
             f.write(s + '\n')
 
-    '''
-    Select only annotated sentences and save them in a dictionary.
-    Sanity check report.
-    '''
-    annotations = 'COWSL2H_annotated.txt'
-    print('Looking for annotated sentences in {}'.format(annotations))
-    relevant_sentences = collect_all_annotated(annotations)
-    print('Total {} annotated sentences in {}.'.format(len(relevant_sentences), annotations))
-    gen_num_dictionary = create_dictionary(sent_lst)
-
-    reconstruct_sentences(gen_num_dictionary)
-
-    '''
-    Save dictionaries into .txt files.
-    '''
-    with open('COWSL2H_gender_number.txt', 'w') as f:
-        for k, v in gen_num_dictionary.items():
-            #f.write('@'.join([str(vv) for vv in v.values()])+'\n')
-            f.write(output_string(k, v, 'annotated'))
-
-    with open('COWSL2H_original_gen_num.txt', 'w') as f:
-        for k, v in gen_num_dictionary.items():
-            #f.write('@'.join([str(vv) for vv in v.values()])+'\n')
-            f.write(output_string(k, v, 'learner'))
-    with open('COWSL2H_target_gen_num.txt', 'w') as f:
-        for k, v in gen_num_dictionary.items():
-            #f.write('@'.join([str(vv) for vv in v.values()])+ '\n')
-            f.write(output_string(k, v, 'corrected'))
