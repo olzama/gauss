@@ -1,5 +1,6 @@
 import re
 import sys
+from datetime import datetime
 
 '''
 This script assumes the file format and annotation conventions
@@ -28,13 +29,14 @@ Save annotated sentences from a list into a dictionary.
 '''
 def create_dictionary(sentence_list, metadata=None):
     dictionary = {}
+    today = datetime.today().strftime('%Y-%m-%d')
     for i, sentence in enumerate(sentence_list):
         annotations = find_annotations(sentence)
         sentence_length = len(sentence.split(" "))
         if annotations != None:
             dictionary[i] = {"origin":"", "register":"", "format":"none", "difficulty":1, "category":"S",
-                             "annotated":sentence, "learner":"", "corrected":"", "wf":1, "length":sentence_length,
-                             "author":"", "date":""}  # annotated is the original sentence from the corpus
+                             "annotated":sentence, "learner":"", "corrected":"", "wf":-1, "length":sentence_length,
+                             "author":"", "date":today}  # annotated is the original sentence from the corpus
             print("Sentence {}".format(i))
             print(sentence)
     return dictionary
@@ -97,7 +99,7 @@ Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
 def output_string(id, sentence_info, sentence_type):
     wf = 0 if sentence_type == 'learner' else 1
     output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type].strip('\n') + '@' + str(wf) + '@'\
-             + str(sentence_info['length']) + '@' + '@' + 'author-to-be-filled-out' + '@' + 'date-to-be-filled-out' + '\n'
+             + str(sentence_info['length']) + '@' + '@' + sentence_info['author'] + '@' + sentence_info['date'] + '\n'
     return output
 
 def find_annotations(sentence):
