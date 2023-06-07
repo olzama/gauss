@@ -96,7 +96,7 @@ Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
 '''
 def output_string(id, sentence_info, sentence_type):
     wf = 0 if sentence_type == 'learner' else 1
-    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type] + '@' + str(wf) + '@'\
+    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type].strip('\n') + '@' + str(wf) + '@'\
              + str(sentence_info['length']) + '@' + '@' + 'author-to-be-filled-out' + '@' + 'date-to-be-filled-out' + '\n'
     return output
 
