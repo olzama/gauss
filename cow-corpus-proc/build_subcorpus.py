@@ -98,9 +98,10 @@ Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
 '''
 def output_string(id, sentence_info, sentence_type):
     wf = 0 if sentence_type == 'learner' else 1
-    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type].strip('\n') + '@' + str(wf) + '@'\
+    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type].strip('\n') + '@@@@' + str(wf) + '@'\
              + str(sentence_info['length']) + '@' + '@' + sentence_info['author'] + '@' + sentence_info['date'] + '\n'
-    return output
+    simple_output = sentence_info[sentence_type]
+    return output, simple_output
 
 def find_annotations(sentence):
     annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
@@ -129,13 +130,21 @@ if __name__ == '__main__':
     with open('output/COWSL2H_gender_number.txt', 'w') as f:
         for k, v in gen_num_dictionary.items():
             # f.write('@'.join([str(vv) for vv in v.values()])+'\n')
-            f.write(output_string(k, v, 'annotated'))
+            f.write(output_string(k, v, 'annotated')[1])
 
     with open('output/COWSL2H_original_gen_num.txt', 'w') as f:
         for k, v in gen_num_dictionary.items():
             # f.write('@'.join([str(vv) for vv in v.values()])+'\n')
-            f.write(output_string(k, v, 'learner'))
+            f.write(output_string(k, v, 'learner')[1])
     with open('output/COWSL2H_target_gen_num.txt', 'w') as f:
         for k, v in gen_num_dictionary.items():
             # f.write('@'.join([str(vv) for vv in v.values()])+ '\n')
-            f.write(output_string(k, v, 'corrected'))
+            f.write(output_string(k, v, 'corrected')[1])
+    with open('output/COWSL2H_original_gen_num_meta.txt', 'w') as f:
+        for k, v in gen_num_dictionary.items():
+            # f.write('@'.join([str(vv) for vv in v.values()])+'\n')
+            f.write(output_string(k, v, 'learner')[0])
+    with open('output/COWSL2H_target_gen_num_meta.txt', 'w') as f:
+        for k, v in gen_num_dictionary.items():
+            # f.write('@'.join([str(vv) for vv in v.values()])+ '\n')
+            f.write(output_string(k, v, 'corrected')[0])
