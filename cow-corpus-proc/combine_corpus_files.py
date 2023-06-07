@@ -11,7 +11,7 @@ python3 script_name
 parameter1_path_to_cowsl2h-master
 '''
 
-import sys, os
+import sys
 import glob
 import nltk # NLP package; used here to split text into sentences
 import re
@@ -70,7 +70,7 @@ def get_sent_list(relevant_folders):
         issues = glob.glob(fol + '/**')
         for issue in issues:
             if issue.endswith("gender_number"):
-                for textfile in glob.glob(issue + '/**/*.txt'): # Iterate over all files with extention .txt in the directory named fol
+                for textfile in glob.glob(issue + '/**/*.txt'): # Iterate over all files with extension .txt in the directory named fol
                     with open(textfile, 'r') as f:
                         text = f.read()
                         sent_tokenized_text = nltk.sent_tokenize(text, language='spanish') # Split text into sentences using the NLTK tokenizer
@@ -78,14 +78,17 @@ def get_sent_list(relevant_folders):
     return sentences
 
 '''
-Save anotated sentences from a list into a dictionary.
+Save annotated sentences from a list into a dictionary.
 '''
-def create_dictionary(sentence_list):
+def create_dictionary(sentence_list, metadata=None):
     dictionary = {}
     for i, sentence in enumerate(sentence_list):
         annotations = find_annotations(sentence)
+        sentence_length = len(sentence.split(" "))
         if annotations != None:
-            dictionary[i] = sentence
+            dictionary[i] = {"origin":"", "register":"", "format":"none", "difficulty":1, "category":"S",
+                             "annotated":sentence, "learner":"", "corrected":"", "wf":1, "length":sentence_length,
+                             "author":"", "date":""}  # annotated is the original sentence from the corpus
             print("Sentence {}".format(i))
             print(sentence)
     return dictionary
@@ -106,8 +109,28 @@ def reconstruct_sentence(sentence, replacement):
     reconstructed = annotation.sub(replacement, sentence)
     return reconstructed
 
+
+def reconstruct_sentences(gen_num_dictionary):
+    '''
+    Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
+    '''
+    #gen_num_original = {}
+    #gen_num_target = {}
+    learner = '\g<original_word>'
+    corrected = '\g<target_word>'
+    for key, sentence_info in gen_num_dictionary.items():
+        gen_num_dictionary[key]['learner'] = reconstruct_sentence(sentence_info['annotated'], learner)
+        gen_num_dictionary[key]['corrected'] = reconstruct_sentence(sentence_info['annotated'], corrected)
+    #return gen_num_original, gen_num_target
+
+def output_string(id, sentence_info, sentence_type):
+    wf = 0 if sentence_type == 'learner' else 1
+    output = str(id) + '@fullcorpus@essay@none@1@S@' + sentence_info[sentence_type] + '@' + str(wf) + '@'\
+             + str(sentence_info['length']) + '@' + '@' + 'author-to-be-filled-out' + '@' + 'date-to-be-filled-out' + '\n'
+    return output
+
 if __name__ == "__main__":
-    path_to_corpus = sys.argv[1]# sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
+    path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     '''
     Use the function find_relevant_folders to find folders named "essays" in the corpus.
     Sanity check report of relevant folders.
@@ -154,31 +177,21 @@ if __name__ == "__main__":
     print('Total {} annotated sentences in {}.'.format(len(relevant_sentences), annotations))
     gen_num_dictionary = create_dictionary(sent_lst)
 
-
-    '''
-    Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
-    '''
-    gen_num_original = {}
-    gen_num_target = {}
-
-    original = '\g<original_word>'
-    target = '\g<target_word>'
-
-    for key, value in gen_num_dictionary.items():
-        gen_num_original[key] = reconstruct_sentence(value, original)
-        gen_num_target[key] = reconstruct_sentence(value, target)
+    reconstruct_sentences(gen_num_dictionary)
 
     '''
     Save dictionaries into .txt files.
     '''
     with open('COWSL2H_gender_number.txt', 'w') as f:
         for k, v in gen_num_dictionary.items():
-            f.write("{} {}\n".format(k, v))
+            #f.write('@'.join([str(vv) for vv in v.values()])+'\n')
+            f.write(output_string(k, v, 'annotated'))
 
     with open('COWSL2H_original_gen_num.txt', 'w') as f:
-        for k, v in gen_num_original.items():
-            f.write("{} {}\n".format(k, v))
-
+        for k, v in gen_num_dictionary.items():
+            #f.write('@'.join([str(vv) for vv in v.values()])+'\n')
+            f.write(output_string(k, v, 'learner'))
     with open('COWSL2H_target_gen_num.txt', 'w') as f:
-        for k, v in gen_num_target.items():
-            f.write("{} {}\n".format(k, v))
+        for k, v in gen_num_dictionary.items():
+            #f.write('@'.join([str(vv) for vv in v.values()])+ '\n')
+            f.write(output_string(k, v, 'corrected'))
