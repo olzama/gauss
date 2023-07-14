@@ -88,6 +88,8 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
             include = False
             sent = sent.strip('-"')
             unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
+            if unique_id == '1_1_10':
+                print('here')
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']
             if annotated:
@@ -126,7 +128,7 @@ def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, a
 
 #TODO: bug: inspect sentence 1_1_10
 def reconstruct_sentence(sentence, replacement):
-    annotation = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
+    annotation = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
     reconstructed = annotation.sub(replacement, sentence)
     return reconstructed
 
@@ -196,7 +198,7 @@ def metadata_str(metadata):
     return md
 
 def find_annotations(sentence):
-    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
+    annotations = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
     return re.search(annotations, sentence)
 
 
