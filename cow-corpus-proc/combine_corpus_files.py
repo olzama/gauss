@@ -48,8 +48,6 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
         folder_id += 1
         topic = fol.split('/')[-3]
         semester = fol.split('/')[-2]
-        # capitalize the first letter of the topic because this is how it appears in the metadata subdirectories:
-        camel_topic = topic[0].upper() + topic[1:]
         # The annotated folders have additional structure:
         # There will be a subfolder called "gender_number", and below that there will be one or more
         # folders named "annotator1", "annotator2", etc.
@@ -60,6 +58,7 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
             path = fol + '/gender_number/**/*.txt'
         else:
             path = fol + '/*.txt'
+            annotator = None
         essay_id = 0
         for textfile in glob.glob(path):
             essay_id += 1
@@ -71,41 +70,53 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
                 subcorpus['error'] = 'gender_and_number'
                 annotator = textfile.split('/')[-2]
             # Find a folder in the metadata list of folders that has the same semester and topic:
-            metafol = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata'
-            if metafol in metadata:
-                # The file ID is the part of the textfile name before the semester and the topic:
-                file_id = textfile.split('/')[-1].split('.')[0]
-                corresponding_file = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata/' + file_id + '.' + semester + '.metadata.txt'
-                alt_corr_file = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata/' + file_id + '.' + semester + '_' + camel_topic + '.metadata.txt'
-                if (corresponding_file in glob.glob(metafol + '/*.txt')) \
-                        or (alt_corr_file in glob.glob(metafol + '/*.txt')):
-                    metafile = corresponding_file if corresponding_file in glob.glob(metafol + '/*.txt') else alt_corr_file
-                    with open(metafile, 'r') as f:
-                        meta = f.read()
-                        meta_data = extract_metadata(meta, semester)
-                        if annotated:
-                            meta_data['annotator'] = annotator
-                        subcorpus['metadata_file'] = meta_data
-                else:
-                    print("No metadata file found for {}".format(textfile))
-            with open(textfile, 'r') as f:
-                text = f.read()
-                sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
-                sent_id = 0
-                for sent in sent_tokenized_text:
-                    sent_id += 1
-                    include = False
-                    sent = sent.strip('-"')
-                    unique_id = str(folder_id) +'_' + str(essay_id) +'_' + str(sent_id)
-                    assert unique_id not in subcorpus['sentences']
-                    if annotated:
-                        annotations = find_annotations(sent)
-                        if annotations:
-                            include = True
-                    if not annotated or include:
-                        subcorpus['sentences'][unique_id] = sent
+            find_metadata(corpus_path, metadata, semester, subcorpus, textfile,
+                          topic,annotated, annotator)
+            process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile)
             essays_with_metadata.append(subcorpus)
     return essays_with_metadata
+
+
+def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
+    with open(textfile, 'r') as f:
+        text = f.read()
+        sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
+        sent_id = 0
+        for sent in sent_tokenized_text:
+            sent_id += 1
+            include = False
+            sent = sent.strip('-"')
+            unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
+            assert unique_id not in subcorpus['sentences']
+            if annotated:
+                annotations = find_annotations(sent)
+                if annotations:
+                    include = True
+            if not annotated or include:
+                subcorpus['sentences'][unique_id] = sent
+
+
+def find_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
+    # capitalize the first letter of the topic because this is how it appears in the metadata subdirectories:
+    camel_topic = topic[0].upper() + topic[1:]
+    metafol = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata'
+    if metafol in metadata:
+        # The file ID is the part of the textfile name before the semester and the topic:
+        file_id = textfile.split('/')[-1].split('.')[0]
+        corresponding_file = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata/' + file_id + '.' + semester + '.metadata.txt'
+        alt_corr_file = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata/' + file_id + '.' + semester + '_' + camel_topic + '.metadata.txt'
+        if (corresponding_file in glob.glob(metafol + '/*.txt')) \
+                or (alt_corr_file in glob.glob(metafol + '/*.txt')):
+            metafile = corresponding_file if corresponding_file in glob.glob(metafol + '/*.txt') else alt_corr_file
+            with open(metafile, 'r') as f:
+                meta = f.read()
+                meta_data = extract_metadata(meta, semester)
+                if annotated:
+                    meta_data['annotator'] = annotator
+                subcorpus['metadata_file'] = meta_data
+        else:
+            print("No metadata file found for {}".format(textfile))
+
 
 '''
 Break annotated sentences into parts.
