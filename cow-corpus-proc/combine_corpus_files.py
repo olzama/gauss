@@ -124,7 +124,7 @@ def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, a
         else:
             print("No metadata file found for {}".format(textfile))
 
-
+#TODO: bug: inspect sentence 1_1_10
 def reconstruct_sentence(sentence, replacement):
     annotation = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     reconstructed = annotation.sub(replacement, sentence)
