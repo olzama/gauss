@@ -62,7 +62,8 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
         essay_id = 0
         for textfile in glob.glob(path):
             essay_id += 1
-            subcorpus = {'filename': '', 'sentences': {}, 'topic': '', 'semester': '', 'metadata_file': ''}
+            subcorpus = {'filename': '', 'sentences': {}, 'reconstructed_learner':{},'reconstructed_target':{},
+                         'topic': '', 'semester': '', 'metadata_file': ''}
             subcorpus['filename'] = textfile.split('/')[-1]
             subcorpus['topic'] = topic
             subcorpus['semester'] = semester
@@ -70,7 +71,7 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
                 subcorpus['error'] = 'gender_and_number'
                 annotator = textfile.split('/')[-2]
             # Find a folder in the metadata list of folders that has the same semester and topic:
-            find_metadata(corpus_path, metadata, semester, subcorpus, textfile,
+            fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
                           topic,annotated, annotator)
             process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile)
             essays_with_metadata.append(subcorpus)
@@ -87,16 +88,22 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
             include = False
             sent = sent.strip('-"')
             unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
-            assert unique_id not in subcorpus['sentences']
+            assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
+                   and unique_id not in subcorpus['reconstructed_target']
             if annotated:
                 annotations = find_annotations(sent)
                 if annotations:
                     include = True
             if not annotated or include:
                 subcorpus['sentences'][unique_id] = sent
+                if annotated and include:
+                    reconstructed_learner = reconstruct_sentence(sent, '\g<original_word>')
+                    reconstructed_target = reconstruct_sentence(sent, '\g<target_word>')
+                    subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner
+                    subcorpus['reconstructed_target'][unique_id] = reconstructed_target
 
 
-def find_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
+def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
     # capitalize the first letter of the topic because this is how it appears in the metadata subdirectories:
     camel_topic = topic[0].upper() + topic[1:]
     metafol = corpus_path + '/' + topic + '/' + semester + '/' + 'metadata'
@@ -118,35 +125,10 @@ def find_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, a
             print("No metadata file found for {}".format(textfile))
 
 
-'''
-Break annotated sentences into parts.
-'''
-def break_sentence(sentence):
-    annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
-    sentence_parts = annotations.split(sentence)
-    return sentence_parts
-
 def reconstruct_sentence(sentence, replacement):
     annotation = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     reconstructed = annotation.sub(replacement, sentence)
     return reconstructed
-
-'''
-Returns two parallel sentences, one with the original word from the annotation and the other with the target word.
-'''
-def reconstruct_sentences(gen_num_dictionary):
-    '''
-    Reconstruct original and target sentences from the dictionary of annotated sentences and save each version in parallel dictionaries.
-    '''
-    #gen_num_original = {}
-    #gen_num_target = {}
-    learner = '\g<original_word>'
-    corrected = '\g<target_word>'
-    for key, sentence_info in gen_num_dictionary.items():
-        gen_num_dictionary[key]['learner'] = reconstruct_sentence(sentence_info['annotated'], learner)
-        gen_num_dictionary[key]['corrected'] = reconstruct_sentence(sentence_info['annotated'], corrected)
-    #return gen_num_original, gen_num_target
-
 
 def extract_metadata(meta, semester):
     '''
@@ -217,6 +199,15 @@ def find_annotations(sentence):
     annotations = re.compile('(\[(?P<original_word>\w+)]{(?P<target_word>\w+)})*<(?P<issues>[\w+:]+)>')
     return re.search(annotations, sentence)
 
+
+def write_output(output_file, sentences_with_metadata, k):
+    with open(output_file, 'w') as f:
+        for essay in sentences_with_metadata:
+            for id in essay[k]:
+                sent = essay[k][id]
+                f.write(str(id) + '\t' + sent + '\n')
+
+
 if __name__ == "__main__":
     path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     relevant_essays = sys.argv[2]
@@ -231,10 +222,8 @@ if __name__ == "__main__":
     total_sentences = len([sent for essay in sentences_with_metadata for sent in essay['sentences']])
     print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
     # Write the corpus into a single file:
-    with open(output_file,'w') as f:
-        for essay in sentences_with_metadata:
-            for id in essay['sentences']:
-                sent = essay['sentences'][id]
-                f.write(str(id) + '\t' + sent + '\n')
+    write_output(output_file, sentences_with_metadata, 'sentences')
+    write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
+    write_output(output_file + '.target', sentences_with_metadata, 'reconstructed_target')
 
 
