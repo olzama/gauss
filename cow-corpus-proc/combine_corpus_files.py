@@ -60,16 +60,40 @@ def get_sent_list(relevant_folders):
                         sentences.extend(sent_tokenized_text) # Add the sentences to the list such that it is a flat list (not a list of list; compare to using "append" instead of "extend")
     return sentences
 
+'''
+Essays and metadata are lists of paths to folders.
+Each path looks like this:
+'/Users/olzama/Research/GAUSS/cowsl2h-master/terrible/F18/essays'
+or: 
+'/Users/olzama/Research/GAUSS/cowsl2h-master/terrible/F18/metadata'
+
+This function, for each file under each essays path:
+tokenizes the input using NLTK Spanish sentence tokenizer;
+strips each sentence of initial and final hyphens and quotation marks;
+puts sentences in a list;
+creates the following metadata for each file:
+1. the topic of the essay, which corresponds to the word "terrible" in the example above, so, the third parent folder name;
+2. the semester name, e.g. F18, so, the second parent folder name;
+3. IF a file with the exact  same name is found under the "metadata" folder path, include the entire text of the metadata file in a field called "metadata file".
+Return a dictionary which contains the list of sentences from all files under all "essays" folders as well as all the additional data described above.
+'''
+def build_single_corpus(essays, metadata):
+    pass
 
 if __name__ == "__main__":
     path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
+    exclude_folders = 'csv'
+
     '''
     Find folders named "essays" in the corpus.
     Sanity check report of relevant folders.
     '''
     print('Working with corpus {}'.format(path_to_corpus))
     essays = find_relevant_folders(path_to_corpus, "essays")
+    metadata = find_relevant_folders(path_to_corpus, "metadata")
     print('Found {} folders named essays in the corpus.'.format(len(essays)))
+
+    sentences_with_metadata = bulid_single_corpus(essays, metadata)
 
     '''
     Save all sentences from all selected files in a single file.

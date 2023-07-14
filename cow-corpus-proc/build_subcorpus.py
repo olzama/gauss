@@ -14,14 +14,12 @@ Output the subcorpus in the format of DELPH-IN corpus database [incr tsdb()] aka
 '''
 Return a list containing annotated texts from a text file.
 '''
-def collect_all_annotated(d):
+def collect_all_annotated(sentences):
     annotated_sentences = []
-    with open(d, 'r') as f:
-        sentences = f.readlines()
-        for sentence in sentences:
-            annotations = find_annotations(sentence)
-            if annotations != None:
-                annotated_sentences.append(sentence)
+    for sentence in sentences:
+        annotations = find_annotations(sentence)
+        if annotations != None:
+            annotated_sentences.append(sentence)
     return annotated_sentences
 
 '''
@@ -118,7 +116,7 @@ if __name__ == '__main__':
     with open(sentence_file, 'r') as f:
         sent_lst = f.readlines()
     print('Looking for annotated sentences in {}'.format(sentence_file))
-    relevant_sentences = collect_all_annotated(sentence_file)
+    relevant_sentences = collect_all_annotated(sent_lst)
     print('Total {} annotated sentences in {}.'.format(len(relevant_sentences), sentence_file))
     gen_num_dictionary = create_dictionary(sent_lst)
 
