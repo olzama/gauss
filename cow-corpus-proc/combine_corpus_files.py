@@ -15,6 +15,7 @@ import sys
 import glob
 import nltk # NLP package; used here to split text into sentences
 import re
+from datetime import datetime
 
 '''
 Traverse d recursively, looking for folders named k.
@@ -86,10 +87,9 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
         for sent in sent_tokenized_text:
             sent_id += 1
             include = False
-            sent = sent.strip('-"')
             unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
-            if unique_id == '1_1_10':
-                print('here')
+            #if unique_id == '1_1_10':
+            #    print('here')
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']
             if annotated:
@@ -101,8 +101,8 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
                 if annotated and include:
                     reconstructed_learner = reconstruct_sentence(sent, '\g<original_word>')
                     reconstructed_target = reconstruct_sentence(sent, '\g<target_word>')
-                    subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner
-                    subcorpus['reconstructed_target'][unique_id] = reconstructed_target
+                    subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner.strip('-"“—’[]{}*&^')
+                    subcorpus['reconstructed_target'][unique_id] = reconstructed_target.strip('-"“—’[]{}*&^')
 
 
 def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
@@ -126,7 +126,6 @@ def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, a
         else:
             print("No metadata file found for {}".format(textfile))
 
-#TODO: bug: inspect sentence 1_1_10
 def reconstruct_sentence(sentence, replacement):
     annotation = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
     reconstructed = annotation.sub(replacement, sentence)
@@ -194,7 +193,7 @@ def extract_metadata(meta, semester):
 def metadata_str(metadata):
     md = ''
     for k in metadata:
-        md += '|||'.join([k, ': ', metadata[k]])
+        md += ''.join([k, ': ', metadata[k] + '; '])
     return md
 
 def find_annotations(sentence):
@@ -202,12 +201,52 @@ def find_annotations(sentence):
     return re.search(annotations, sentence)
 
 
+'''
+The [incr tsdb()] item format (from the relations file in any tsdb database):
+item:
+  i-id :integer :key
+  i-origin :string
+  i-register :string
+  i-format :string
+  i-difficulty :integer
+  i-category :string
+  i-input :string
+  i-wf :integer
+  i-length :integer
+  i-comment :string
+  i-author :string
+  i-date :date
+
+Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
+
+679@unknown@formal@none@1@S@Bien.@1@1@@montse@25-04-2010
+1148@unknown@formal@none@1@S@-Comprenden?@1@1@@montse@25-04-2010
+'''
+def tsdb_item_string(simple_id, id, essay, sentence_type, today):
+    wf = 0 if sentence_type == 'reconstructed_learner' else 1
+    sentence = re.sub('\n', ' ', essay[sentence_type][id])
+    author = essay['filename'] # The author info is encoded in the essay file name
+    comment = re.sub('\n', ' ', metadata_str(essay['metadata_file']))
+    output = str(simple_id) + '@fullcorpus@essay@none@1@S@' + sentence + '@@@@' + str(wf) + '@' \
+             + str(len(sentence.split())) + '@' + comment + '@' + author + '@' + today
+    return output
+
+def write_tsdb_item_output(output_file, sentences_with_metadata, k):
+    today = datetime.today().strftime('%Y-%m-%d')
+    with open(output_file, 'w') as f:
+        simple_id = 0
+        for essay in sentences_with_metadata:
+            for id in essay[k]:
+                simple_id += 1
+                sent = tsdb_item_string(simple_id, id, essay, k, today)
+                f.write(sent + '\n')
+
 def write_output(output_file, sentences_with_metadata, k):
     with open(output_file, 'w') as f:
         for essay in sentences_with_metadata:
             for id in essay[k]:
                 sent = essay[k][id]
-                f.write(str(id) + '\t' + sent + '\n')
+                f.write(re.sub('\n', ' ', sent) + '\n')
 
 
 if __name__ == "__main__":
@@ -227,5 +266,6 @@ if __name__ == "__main__":
     write_output(output_file, sentences_with_metadata, 'sentences')
     write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
     write_output(output_file + '.target', sentences_with_metadata, 'reconstructed_target')
+    write_tsdb_item_output(output_file + '.tsdb.target', sentences_with_metadata, 'reconstructed_target')
 
 
