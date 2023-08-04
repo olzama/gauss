@@ -214,7 +214,7 @@ def find_annotations(sentence):
 
 def write_output_by_length(output_file, data, k):
     for len in data:
-        with open(output_file + '_' + str(len) + '_' + k + '.txt', 'w') as f:
+        with open(output_file + '/txt/' + k + '/' + str(len) + '.txt', 'w') as f:
             for item in data[len]:
                 f.write(item[k]+ '\n')
 
@@ -239,14 +239,26 @@ Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
 679@unknown@formal@none@1@S@Bien.@1@1@@montse@25-04-2010
 1148@unknown@formal@none@1@S@-Comprenden?@1@1@@montse@25-04-2010
 '''
-def tsdb_item_string(simple_id, id, essay, sentence_type, today):
+def tsdb_item_string(simple_id, sentence, essay, sentence_type, today):
     wf = 0 if sentence_type == 'reconstructed_learner' else 1
-    sentence = re.sub('\n', ' ', essay[sentence_type][id])
     author = essay['filename'] # The author info is encoded in the essay file name
     comment = re.sub('\n', ' ', metadata_str(essay['metadata_file']))
     output = str(simple_id) + '@fullcorpus@essay@none@1@S@' + sentence + '@@@@' + str(wf) + '@' \
              + str(len(sentence.split())) + '@' + comment + '@' + author + '@' + today
     return output
+
+
+def write_tsdb_item_output_by_length(output_file, sentences_by_length, k):
+    today = datetime.today().strftime('%Y-%m-%d')
+    for len in sentences_by_length:
+        with open(output_file + '/meta/' + k + '/' + str(len) + '.txt', 'w') as f:
+            simple_id = 0
+            for item in sentences_by_length[len]:
+                simple_id += 1
+                sentence = item[k]
+                sent = tsdb_item_string(simple_id, sentence, item, k, today)
+                f.write(sent + '\n')
+
 
 def write_tsdb_item_output(output_file, sentences_with_metadata, k):
     today = datetime.today().strftime('%Y-%m-%d')
@@ -255,7 +267,8 @@ def write_tsdb_item_output(output_file, sentences_with_metadata, k):
         for essay in sentences_with_metadata:
             for id in essay[k]:
                 simple_id += 1
-                sent = tsdb_item_string(simple_id, id, essay, k, today)
+                sentence = re.sub('\n', ' ', essay[k][id])
+                sent = tsdb_item_string(simple_id, sentence, essay, k, today)
                 f.write(sent + '\n')
 
 def write_output(output_file, sentences_with_metadata, k):
@@ -280,10 +293,11 @@ if __name__ == "__main__":
     total_sentences = len([sent for essay in sentences_with_metadata for sent in essay['sentences']])
     print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
     write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
+    write_tsdb_item_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     # Write the corpus into a single file:
     #write_output(output_file, sentences_with_metadata, 'sentences')
     #write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
-    #write_output(output_file + '.target', sentences_with_metadata, 'reconstructed_target')
-    #write_tsdb_item_output(output_file + '.tsdb.target', sentences_with_metadata, 'reconstructed_target')
+    #write_output(output_file + '.reconstructed_target', sentences_with_metadata, 'reconstructed_target')
+    #write_tsdb_item_output(output_file + '.tsdb.reconstructed_target', sentences_with_metadata, 'reconstructed_target')
 
 
