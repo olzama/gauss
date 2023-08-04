@@ -16,6 +16,7 @@ import glob
 import nltk # NLP package; used here to split text into sentences
 import re
 from datetime import datetime
+from collections import OrderedDict
 
 '''
 Traverse d recursively, looking for folders named k.
@@ -44,6 +45,7 @@ Return a dictionary which contains the list of sentences from all files under al
 '''
 def build_single_corpus(corpus_path, essays, metadata, annotated):
     essays_with_metadata = []
+    sentences_by_length = {}
     folder_id = 0
     for fol in essays:
         folder_id += 1
@@ -74,12 +76,16 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
             # Find a folder in the metadata list of folders that has the same semester and topic:
             fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
                           topic,annotated, annotator)
-            process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile)
+            process_essay_text(annotated, essay_id, folder_id, subcorpus, sentences_by_length, textfile)
             essays_with_metadata.append(subcorpus)
-    return essays_with_metadata
+    # Created a dict where keys are sorted in increasing order:
+    sorted_by_length = OrderedDict()
+    for key in sorted(sentences_by_length.keys()):
+        sorted_by_length[key] = sentences_by_length[key]
+    return essays_with_metadata, sorted_by_length
 
 
-def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
+def process_essay_text(annotated, essay_id, folder_id, subcorpus, corpus_by_length, textfile):
     with open(textfile, 'r') as f:
         text = f.read()
         sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
@@ -88,8 +94,7 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
             sent_id += 1
             include = False
             unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
-            #if unique_id == '1_1_10':
-            #    print('here')
+            sent = sent.strip('-"“”*&–')
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']
             if annotated:
@@ -101,8 +106,15 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, textfile):
                 if annotated and include:
                     reconstructed_learner = reconstruct_sentence(sent, '\g<original_word>')
                     reconstructed_target = reconstruct_sentence(sent, '\g<target_word>')
-                    subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner.strip('-"“—’[]{}*&^')
-                    subcorpus['reconstructed_target'][unique_id] = reconstructed_target.strip('-"“—’[]{}*&^')
+                    sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
+                    if sen_len not in corpus_by_length:
+                        corpus_by_length[sen_len] = []
+                    corpus_by_length[sen_len].append({'target':reconstructed_target, 'learner':reconstructed_learner,
+                                                      'original':sent, 'filename': subcorpus['filename'], 'unique_id': unique_id,
+                                                        'topic': subcorpus['topic'], 'semester': subcorpus['semester'],
+                                                      'metadata_file': subcorpus['metadata_file'], 'error': subcorpus['error']})
+                    subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner
+                    subcorpus['reconstructed_target'][unique_id] = reconstructed_target
 
 
 def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
@@ -258,7 +270,7 @@ if __name__ == "__main__":
     essays = find_relevant_folders(path_to_corpus, relevant_essays)
     metadata = find_relevant_folders(path_to_corpus, "metadata")
     print('Found {} essay folders in the corpus.'.format(len(essays)))
-    sentences_with_metadata = build_single_corpus(path_to_corpus, essays, metadata, annotated)
+    sentences_with_metadata, sentences_by_length = build_single_corpus(path_to_corpus, essays, metadata, annotated)
     #sum of all sentences in all essay files:
     total_sentences = len([sent for essay in sentences_with_metadata for sent in essay['sentences']])
     print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
