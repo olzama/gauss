@@ -108,7 +108,7 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, corpus_by_leng
                     sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
                     if sen_len not in corpus_by_length:
                         corpus_by_length[sen_len] = []
-                    corpus_by_length[sen_len].append({'target':reconstructed_target, 'learner':reconstructed_learner,
+                    corpus_by_length[sen_len].append({'reconstructed_target':reconstructed_target, 'reconstructed_learner':reconstructed_learner,
                                                       'original':sent, 'filename': subcorpus['filename'], 'unique_id': unique_id,
                                                         'topic': subcorpus['topic'], 'semester': subcorpus['semester'],
                                                       'metadata_file': subcorpus['metadata_file'], 'error': subcorpus['error']})
@@ -212,6 +212,11 @@ def find_annotations(sentence):
     annotations = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
     return re.search(annotations, sentence)
 
+def write_output_by_length(output_file, data, k):
+    for len in data:
+        with open(output_file + '_' + str(len) + '_' + k + '.txt', 'w') as f:
+            for item in data[len]:
+                f.write(item[k]+ '\n')
 
 def write_output(output_file, sentences_with_metadata, k):
     with open(output_file, 'w') as f:
@@ -234,9 +239,10 @@ if __name__ == "__main__":
     #sum of all sentences in all essay files:
     total_sentences = len([sent for essay in sentences_with_metadata for sent in essay['sentences']])
     print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
+    write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     # Write the corpus into a single file:
-    write_output(output_file, sentences_with_metadata, 'sentences')
-    write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
-    write_output(output_file + '.target', sentences_with_metadata, 'reconstructed_target')
+    #write_output(output_file, sentences_with_metadata, 'sentences')
+    #write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
+    #write_output(output_file + '.target', sentences_with_metadata, 'reconstructed_target')
 
 
