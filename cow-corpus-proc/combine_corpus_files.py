@@ -43,12 +43,12 @@ creates the following metadata for each file:
 3. IF a file with the exact  same name is found under the "metadata" folder path, include the entire text of the metadata file in a field called "metadata file".
 Return a dictionary which contains the list of sentences from all files under all "essays" folders as well as all the additional data described above.
 '''
-def build_single_corpus(corpus_path, essays, metadata, annotated):
-    essays_with_metadata = []
+def build_single_corpus_from_annotated(corpus_path, essays, metadata):
+    filename_codes = {}
+    max_filecode = 0
+    essays_with_metadata = {}
     sentences_by_length = {}
-    folder_id = 0
     for fol in essays:
-        folder_id += 1
         topic = fol.split('/')[-3]
         semester = fol.split('/')[-2]
         # The annotated folders have additional structure:
@@ -57,11 +57,54 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
         # We need to descend into each "annotator" folder and collect the sentences from there.
         # We will keep the annotator name in the metadata under an "annotator" field.
         # "gender_number" will be the "error" field.
-        if annotated:
-            path = fol + '/gender_number/**/*.txt'
-        else:
-            path = fol + '/*.txt'
-            annotator = None
+        path = fol + '/gender_number/**/*.txt'
+        essay_count = {}
+        for textfile in sorted(list(glob.glob(path))):
+            annotator = textfile.split('/')[-2]
+            if not annotator in essays_with_metadata:
+                essays_with_metadata[annotator] = []
+            if not annotator in sentences_by_length:
+                sentences_by_length[annotator] = {'by id': {}, 'by length': {}}
+            if not annotator in essay_count:
+                essay_count[annotator] = 0
+            essay_count[annotator] += 1
+            subcorpus = {'filename': '', 'sentences': {}, 'reconstructed_learner':{},'reconstructed_target':{},
+                         'topic': '', 'semester': '', 'metadata_file': ''}
+            subcorpus['filename'] = textfile.split('/')[-1]
+            author = subcorpus['filename'].split('.')[0]
+            if not subcorpus['filename'][:-6] in filename_codes:
+                filename_codes[subcorpus['filename'][:-6]] = max_filecode + 1
+                max_filecode += 1
+            subcorpus['topic'] = topic
+            subcorpus['semester'] = semester
+            subcorpus['error'] = 'gender_and_number'
+            # Find a folder in the metadata list of folders that has the same semester and topic:
+            fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
+                          topic, True, annotator)
+            process_essay_text(True, filename_codes[subcorpus['filename'][:-6]], subcorpus,
+                               sentences_by_length[annotator], textfile)
+            essays_with_metadata[annotator].append(subcorpus)
+    # Created a dict where keys are sorted in increasing order:
+    for annotator in sentences_by_length:
+        sorted_by_length = OrderedDict()
+        sorted_by_id = OrderedDict()
+        for len in sorted(sentences_by_length[annotator]['by length'].keys()):
+            sorted_by_length[len] = sentences_by_length[annotator]['by length'][len]
+        sentences_by_length[annotator]['by length'] = sorted_by_length
+        for id in sorted(sentences_by_length[annotator]['by id'].keys()):
+            sorted_by_id[id] = sentences_by_length[annotator]['by id'][id]
+        sentences_by_length[annotator]['by id'] = sorted_by_id
+    return essays_with_metadata, sentences_by_length
+
+def build_single_corpus_from_unannotated(corpus_path, essays, metadata):
+    essays_with_metadata = []
+    sentences_by_length = {}
+    folder_id = 0
+    for fol in essays:
+        folder_id += 1
+        topic = fol.split('/')[-3]
+        semester = fol.split('/')[-2]
+        path = fol + '/*.txt'
         essay_id = 0
         for textfile in glob.glob(path):
             essay_id += 1
@@ -70,22 +113,20 @@ def build_single_corpus(corpus_path, essays, metadata, annotated):
             subcorpus['filename'] = textfile.split('/')[-1]
             subcorpus['topic'] = topic
             subcorpus['semester'] = semester
-            if annotated:
-                subcorpus['error'] = 'gender_and_number'
-                annotator = textfile.split('/')[-2]
             # Find a folder in the metadata list of folders that has the same semester and topic:
             fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
-                          topic,annotated, annotator)
-            process_essay_text(annotated, essay_id, folder_id, subcorpus, sentences_by_length, textfile)
+                          topic,False, None)
+            process_essay_text(False, essay_id, folder_id, subcorpus, sentences_by_length, textfile)
             essays_with_metadata.append(subcorpus)
     # Created a dict where keys are sorted in increasing order:
     sorted_by_length = OrderedDict()
-    for key in sorted(sentences_by_length.keys()):
-        sorted_by_length[key] = sentences_by_length[key]
+    for len in sorted(sentences_by_length.keys()):
+        sorted_by_length[len] = sentences_by_length[len]
     return essays_with_metadata, sorted_by_length
 
 
-def process_essay_text(annotated, essay_id, folder_id, subcorpus, corpus_by_length, textfile):
+
+def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfile):
     with open(textfile, 'r') as f:
         text = f.read()
         sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
@@ -93,8 +134,11 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, corpus_by_leng
         for sent in sent_tokenized_text:
             sent_id += 1
             include = False
-            unique_id = str(folder_id) + '_' + str(essay_id) + '_' + str(sent_id)
-            sent = sent.strip('-"“”*&–')
+            unique_id = str(folder_id) + '_' + str(sent_id)
+            clean_sent = sent.strip('-"“”*&–')
+            # Replace unsupported punctuation:
+            clean_sent = re.sub('[“”]', '"', clean_sent)
+            clean_sent = re.sub('–', "-", clean_sent)
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']
             if annotated:
@@ -102,17 +146,19 @@ def process_essay_text(annotated, essay_id, folder_id, subcorpus, corpus_by_leng
                 if annotations:
                     include = True
             if not annotated or include:
-                subcorpus['sentences'][unique_id] = sent
+                subcorpus['sentences'][unique_id] = clean_sent
                 if annotated and include:
-                    reconstructed_learner = reconstruct_sentence(sent, '\g<original_word>')
-                    reconstructed_target = reconstruct_sentence(sent, '\g<target_word>')
+                    reconstructed_learner = reconstruct_sentence(clean_sent, '\g<original_word>')
+                    reconstructed_target = reconstruct_sentence(clean_sent, '\g<target_word>')
                     sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
-                    if sen_len not in corpus_by_length:
-                        corpus_by_length[sen_len] = []
-                    corpus_by_length[sen_len].append({'reconstructed_target':reconstructed_target, 'reconstructed_learner':reconstructed_learner,
+                    if sen_len not in corpus_by_length['by length']:
+                        corpus_by_length['by length'][sen_len] = []
+                    item = {'reconstructed_target':reconstructed_target, 'reconstructed_learner':reconstructed_learner,
                                                       'original':sent, 'filename': subcorpus['filename'], 'unique_id': unique_id,
                                                         'topic': subcorpus['topic'], 'semester': subcorpus['semester'],
-                                                      'metadata_file': subcorpus['metadata_file'], 'error': subcorpus['error']})
+                                                      'metadata_file': subcorpus['metadata_file'], 'error': subcorpus['error'], 'len': sen_len}
+                    corpus_by_length['by length'][sen_len].append(item)
+                    corpus_by_length['by id'][unique_id] = item
                     subcorpus['reconstructed_learner'][unique_id] = reconstructed_learner
                     subcorpus['reconstructed_target'][unique_id] = reconstructed_target
 
@@ -212,6 +258,23 @@ def find_annotations(sentence):
     annotations = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
     return re.search(annotations, sentence)
 
+'''
+Given a dict where keys are annotators, pick only sentences which appear in all annotators' data.
+For now, assumes only two annotators, and that we always look in the first annotator's data for first.
+'''
+def pick_only_agreed_by_length(data):
+    agreed = {}
+    for len in data['annotator1']['by length']:
+        for item in data['annotator1']['by length'][len]:
+            if len not in agreed:
+                agreed[len] = []
+            if item['unique_id'] in data['annotator2']['by id']:
+                if item['original'] == data['annotator2']['by id'][item['unique_id']]['original']:
+                    agreed[len].append(item)
+                else:
+                    print("Annotations don't match for {}".format(item['original']))
+    return agreed
+
 def write_output_by_length(output_file, data, k):
     for len in data:
         with open(output_file + '/txt/' + k + '/' + str(len) + '.txt', 'w') as f:
@@ -288,11 +351,14 @@ if __name__ == "__main__":
     essays = find_relevant_folders(path_to_corpus, relevant_essays)
     metadata = find_relevant_folders(path_to_corpus, "metadata")
     print('Found {} essay folders in the corpus.'.format(len(essays)))
-    sentences_with_metadata, sentences_by_length = build_single_corpus(path_to_corpus, essays, metadata, annotated)
+    sentences_with_metadata, sentences_by_length = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
+    # Filter for sentences which all annotators annotated in the same way:
+    filtered = pick_only_agreed_by_length(sentences_by_length)
     #sum of all sentences in all essay files:
-    total_sentences = len([sent for essay in sentences_with_metadata for sent in essay['sentences']])
+    total_sentences = len([sent for essay in sentences_with_metadata['annotator1'] for sent in essay['sentences']])
     print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
     write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
+    write_output_by_length(output_file, sentences_by_length, 'reconstructed_learner')
     write_tsdb_item_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     # Write the corpus into a single file:
     #write_output(output_file, sentences_with_metadata, 'sentences')
