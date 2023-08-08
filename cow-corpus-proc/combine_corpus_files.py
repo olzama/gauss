@@ -17,6 +17,7 @@ import nltk # NLP package; used here to split text into sentences
 import re
 from datetime import datetime
 from collections import OrderedDict
+from unidecode import unidecode # used to remove diacritics from text
 
 '''
 Traverse d recursively, looking for folders named k.
@@ -135,6 +136,8 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
             sent_id += 1
             include = False
             unique_id = str(folder_id) + '_' + str(sent_id)
+            #if '154043.S17_FamousGNPA.txt' in textfile:
+            #    print('stop')
             clean_sent = sent.strip('-"“”*&–')
             # Replace unsupported punctuation:
             clean_sent = re.sub('[“”]', '"', clean_sent)
@@ -142,14 +145,14 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']
             if annotated:
-                annotations = find_annotations(sent)
-                if annotations:
+                reconstructed_learner, reconstructed_target = find_annotations_and_reconstruct(sent)
+                if reconstructed_learner is not None:
                     include = True
             if not annotated or include:
                 subcorpus['sentences'][unique_id] = clean_sent
                 if annotated and include:
-                    reconstructed_learner = reconstruct_sentence(clean_sent, '\g<original_word>')
-                    reconstructed_target = reconstruct_sentence(clean_sent, '\g<target_word>')
+                    #reconstructed_learner = reconstruct_sentence(clean_sent, pattern, matches, '\g<original_word>')
+                    #reconstructed_target = reconstruct_sentence(clean_sent, pattern, matches,'\g<target_word>')
                     sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
                     if sen_len not in corpus_by_length['by length']:
                         corpus_by_length['by length'][sen_len] = []
@@ -184,9 +187,17 @@ def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, a
         else:
             print("No metadata file found for {}".format(textfile))
 
-def reconstruct_sentence(sentence, replacement):
-    annotation = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
-    reconstructed = annotation.sub(replacement, sentence)
+'''
+Given a matches iterator from the re module, replace the part passed in the pattern as \g<original_word> with the portion
+passed in as 'replacement' (which will be either \g<original_word> or \g<target_word>).
+The pattern is already compiled. There may be more than one match in the sentence.
+'''
+def reconstruct_sentence(sentence, pattern, matches, replacement):
+    #correction_map = {original: correction for original, correction, _ in matches}
+    #annotation = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
+    reconstructed = pattern.sub(replacement, sentence)
+    # Replace multiple spaces with a single space:
+    reconstructed = re.sub('\s+', ' ', reconstructed)
     return reconstructed
 
 def extract_metadata(meta, semester):
@@ -254,9 +265,28 @@ def metadata_str(metadata):
         md += ''.join([k, ': ', metadata[k] + '; '])
     return md
 
-def find_annotations(sentence):
-    annotations = re.compile('(\[(?P<original_word>[\w\s]+)]{(?P<target_word>[\w\s]+)})*<(?P<issues>[\w+:]+)>')
-    return re.search(annotations, sentence)
+def find_annotations_and_reconstruct(sentence):
+    pat = re.compile('(\[(?P<original_word>[\w\s]+)]\s?{(?P<target_word>[\w\s]+)})*\s?<(?P<issues>[\w+:]+)>')
+    # Special case, due to a large number of this exact annotation error in the corpus:
+    if 'vacación{vacaciones}' in sentence:
+        sentence = sentence.replace('vacación{vacaciones}', r'[vacación]{vacaciones}')
+    if 'vacacion{vacaciones}' in sentence:
+        sentence = sentence.replace('vacacion{vacaciones}', r'[vacacion]{vacaciones}')
+    if 'perfecto{perfecta}' in sentence:
+        sentence = sentence.replace('perfecto{perfecta}', r'[perfecto]{perfecta}')
+    matches = re.findall(pat, sentence)
+    if len(matches) > 0:
+        reconstructed_learner = re.sub(pat,'\g<original_word>', sentence)
+        reconstructed_target = re.sub(pat,'\g<target_word>', sentence)
+        # Replace multiple spaces with a single space:
+        reconstructed_learner = re.sub('\s+', ' ', reconstructed_learner)
+        reconstructed_target = re.sub('\s+', ' ', reconstructed_target)
+        # If there is a space before the final dot or punctuation mark, remove it:
+        reconstructed_learner = re.sub('\s+([.,?!;:])', '\g<1>', reconstructed_learner)
+        reconstructed_target = re.sub('\s+([.,?!;:])', '\g<1>', reconstructed_target)
+        return reconstructed_learner, reconstructed_target
+    else:
+        return None, None
 
 '''
 Given a dict where keys are annotators, pick only sentences which appear in all annotators' data.
@@ -264,16 +294,48 @@ For now, assumes only two annotators, and that we always look in the first annot
 '''
 def pick_only_agreed_by_length(data):
     agreed = {}
+    a1_only = {}
+    a2_only = {}
     for len in data['annotator1']['by length']:
         for item in data['annotator1']['by length'][len]:
-            if len not in agreed:
-                agreed[len] = []
             if item['unique_id'] in data['annotator2']['by id']:
-                if item['original'] == data['annotator2']['by id'][item['unique_id']]['original']:
+                if reconstructions_are_similar(item['reconstructed_learner'], data['annotator2']['by id'][item['unique_id']]['reconstructed_learner']):
+                    if len not in agreed:
+                        agreed[len] = []
                     agreed[len].append(item)
                 else:
                     print("Annotations don't match for {}".format(item['original']))
-    return agreed
+            else:
+                if len not in a1_only:
+                    a1_only[len] = []
+                a1_only[len].append(item)
+    for len in data['annotator2']['by length']:
+        for item in data['annotator2']['by length'][len]:
+            if item['unique_id'] not in data['annotator1']['by id']:
+                if len not in a2_only:
+                    a2_only[len] = []
+                a2_only[len].append(item)
+    return agreed, a1_only, a2_only
+
+'''
+Return true if the only difference between two sentences is in spaces, punctuation, accent/stress, or case.
+'''
+def reconstructions_are_similar(r1, r2):
+    recon1 = unidecode(r1.lower())
+    recon2 = unidecode(r2.lower())
+    if recon1 == recon2:
+        return True
+    else:
+        if recon1 is None or recon2 is None:
+            return False
+        else:
+            # Remove spaces and punctuation:
+            recon1 = re.sub('[\s.,?!;:\"\'`\-_–]', '', recon1)
+            recon2 = re.sub('[\s.,?!;:\"\'`\-_–]', '', recon2)
+            if recon1 == recon2:
+                return True
+            else:
+                return False
 
 def write_output_by_length(output_file, data, k):
     for len in data:
@@ -353,10 +415,8 @@ if __name__ == "__main__":
     print('Found {} essay folders in the corpus.'.format(len(essays)))
     sentences_with_metadata, sentences_by_length = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
     # Filter for sentences which all annotators annotated in the same way:
-    filtered = pick_only_agreed_by_length(sentences_by_length)
-    #sum of all sentences in all essay files:
-    total_sentences = len([sent for essay in sentences_with_metadata['annotator1'] for sent in essay['sentences']])
-    print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
+    filtered, only_a1, only_a2 = pick_only_agreed_by_length(sentences_by_length)
+    #print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
     write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     write_output_by_length(output_file, sentences_by_length, 'reconstructed_learner')
     write_tsdb_item_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
