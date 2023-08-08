@@ -338,10 +338,13 @@ def reconstructions_are_similar(r1, r2):
                 return False
 
 def write_output_by_length(output_file, data, k):
+    count = 0
     for len in data:
         with open(output_file + '/txt/' + k + '/' + str(len) + '.txt', 'w') as f:
             for item in data[len]:
+                count += 1
                 f.write(item[k]+ '\n')
+    print("Wrote {} sentences to {}".format(count, output_file + '/txt/' + k + '/'))
 
 '''
 The [incr tsdb()] item format (from the relations file in any tsdb database):
@@ -368,7 +371,7 @@ def tsdb_item_string(simple_id, sentence, essay, sentence_type, today):
     wf = 0 if sentence_type == 'reconstructed_learner' else 1
     author = essay['filename'] # The author info is encoded in the essay file name
     comment = re.sub('\n', ' ', metadata_str(essay['metadata_file']))
-    output = str(simple_id) + '@fullcorpus@essay@none@1@S@' + sentence + '@@@@' + str(wf) + '@' \
+    output = str(simple_id) + '@gender-number agreement; two annotators agree@essay@none@1@S@' + sentence + '@@@@' + str(wf) + '@' \
              + str(len(sentence.split())) + '@' + comment + '@' + author + '@' + today
     return output
 
@@ -383,7 +386,6 @@ def write_tsdb_item_output_by_length(output_file, sentences_by_length, k):
                 sentence = item[k]
                 sent = tsdb_item_string(simple_id, sentence, item, k, today)
                 f.write(sent + '\n')
-
 
 def write_tsdb_item_output(output_file, sentences_with_metadata, k):
     today = datetime.today().strftime('%Y-%m-%d')
@@ -416,10 +418,12 @@ if __name__ == "__main__":
     sentences_with_metadata, sentences_by_length = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
     # Filter for sentences which all annotators annotated in the same way:
     filtered, only_a1, only_a2 = pick_only_agreed_by_length(sentences_by_length)
+    write_output_by_length(output_file, filtered, 'reconstructed_target')
+    write_tsdb_item_output_by_length(output_file, filtered, 'reconstructed_target')
     #print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
-    write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
-    write_output_by_length(output_file, sentences_by_length, 'reconstructed_learner')
-    write_tsdb_item_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
+    #write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
+    #write_output_by_length(output_file, sentences_by_length, 'reconstructed_learner')
+    #write_tsdb_item_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     # Write the corpus into a single file:
     #write_output(output_file, sentences_with_metadata, 'sentences')
     #write_output(output_file + '.learner', sentences_with_metadata, 'reconstructed_learner')
