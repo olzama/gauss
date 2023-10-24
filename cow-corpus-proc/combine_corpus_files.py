@@ -95,7 +95,7 @@ def build_single_corpus_from_annotated(corpus_path, essays, metadata):
         for id in sorted(sentences_by_length[annotator]['by id'].keys()):
             sorted_by_id[id] = sentences_by_length[annotator]['by id'][id]
         sentences_by_length[annotator]['by id'] = sorted_by_id
-    return essays_with_metadata, sentences_by_length
+    return essays_with_metadata, sentences_by_length, filename_codes
 
 def build_single_corpus_from_unannotated(corpus_path, essays, metadata):
     essays_with_metadata = []
@@ -135,7 +135,7 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
         for sent in sent_tokenized_text:
             sent_id += 1
             include = False
-            unique_id = str(folder_id) + '_' + str(sent_id)
+            unique_id = folder_id*1000 + sent_id
             #if '154043.S17_FamousGNPA.txt' in textfile:
             #    print('stop')
             clean_sent = sent.strip('-"“”*&–')
@@ -346,6 +346,17 @@ def write_output_by_length(output_file, data, k):
                 f.write(item[k]+ '\n')
     print("Wrote {} sentences to {}".format(count, output_file + '/txt/' + k + '/'))
 
+def write_uniqueid_by_length(output_file, data):
+    count = 0
+    for len in data:
+        with open(output_file + '/uniqueid/'+ '/' + str(len) + '.txt', 'w') as f:
+            for item in data[len]:
+                count += 1
+                f.write(str(item['unique_id'])+ '\n')
+    print("Wrote {} sentences to {}".format(count, output_file + '/uniqueid/' + '/'))
+
+
+
 '''
 The [incr tsdb()] item format (from the relations file in any tsdb database):
 item:
@@ -370,8 +381,8 @@ Example of the desired output, from the TIBIDABO treebank, tbdb01/item:
 def tsdb_item_string(simple_id, sentence, essay, sentence_type, today):
     wf = 0 if sentence_type == 'reconstructed_learner' else 1
     author = essay['filename'] # The author info is encoded in the essay file name
-    comment = re.sub('\n', ' ', metadata_str(essay['metadata_file']))
-    output = str(simple_id) + '@gender-number agreement; two annotators agree@essay@none@1@S@' + sentence + '@@@@' + str(wf) + '@' \
+    comment = str(essay['unique_id']) + '|||' + re.sub('\n', ' ', metadata_str(essay['metadata_file']))
+    output = str(simple_id) + '@gender-number agreement; two annotators agree@essay@none@1@S@' + sentence + '@' + str(wf) + '@' \
              + str(len(sentence.split())) + '@' + comment + '@' + author + '@' + today
     return output
 
@@ -406,20 +417,27 @@ def write_output(output_file, sentences_with_metadata, k):
                 f.write(re.sub('\n', ' ', sent) + '\n')
 
 
+def write_filename_codes(output_dir, filename_codes):
+    with open(output_dir + 'filename_codes.txt', 'w') as f:
+        for code in filename_codes:
+            f.write(str(filename_codes[code]) + '\t' + code  + '\n')
+
 if __name__ == "__main__":
     path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     relevant_essays = sys.argv[2]
-    output_file = sys.argv[3]
+    output_dir = sys.argv[3]
     annotated = relevant_essays == 'annotated'
     print('Working with corpus {}'.format(path_to_corpus))
     essays = find_relevant_folders(path_to_corpus, relevant_essays)
     metadata = find_relevant_folders(path_to_corpus, "metadata")
     print('Found {} essay folders in the corpus.'.format(len(essays)))
-    sentences_with_metadata, sentences_by_length = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
+    sentences_with_metadata, sentences_by_length, filename_codes = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
     # Filter for sentences which all annotators annotated in the same way:
     filtered, only_a1, only_a2 = pick_only_agreed_by_length(sentences_by_length)
-    write_output_by_length(output_file, filtered, 'reconstructed_target')
-    write_tsdb_item_output_by_length(output_file, filtered, 'reconstructed_target')
+    write_output_by_length(output_dir, filtered, 'reconstructed_target')
+    write_uniqueid_by_length(output_dir, filtered)
+    write_tsdb_item_output_by_length(output_dir, filtered, 'reconstructed_target')
+    write_filename_codes(output_dir, filename_codes)
     #print('Total {} sentences in {} essays.'.format(total_sentences, len(sentences_with_metadata)))
     #write_output_by_length(output_file, sentences_by_length, 'reconstructed_target')
     #write_output_by_length(output_file, sentences_by_length, 'reconstructed_learner')
