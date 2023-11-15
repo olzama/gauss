@@ -11,13 +11,15 @@ python3 script_name
 parameter1_path_to_cowsl2h-master
 '''
 
-import sys
+import sys, os
 import glob
-import nltk # NLP package; used here to split text into sentences
+import nltk # NLP package; used here to compute sentence length
 import re
 from datetime import datetime
 from collections import OrderedDict
 from unidecode import unidecode # used to remove diacritics from text
+import spacy # used to split text into sentences
+SENT_TOK = spacy.load('es_core_news_sm') #sentence tokenizer
 
 '''
 Traverse d recursively, looking for folders named k.
@@ -44,7 +46,7 @@ creates the following metadata for each file:
 3. IF a file with the exact  same name is found under the "metadata" folder path, include the entire text of the metadata file in a field called "metadata file".
 Return a dictionary which contains the list of sentences from all files under all "essays" folders as well as all the additional data described above.
 '''
-def build_single_corpus_from_annotated(corpus_path, essays, metadata):
+def build_single_corpus_from_annotated(corpus_path, essays, metadata, include_all=False):
     filename_codes = {}
     max_filecode = 0
     essays_with_metadata = {}
@@ -61,6 +63,7 @@ def build_single_corpus_from_annotated(corpus_path, essays, metadata):
         path = fol + '/gender_number/**/*.txt'
         essay_count = {}
         for textfile in sorted(list(glob.glob(path))):
+            print("Processing {}".format(textfile))
             annotator = textfile.split('/')[-2]
             if not annotator in essays_with_metadata:
                 essays_with_metadata[annotator] = []
@@ -83,7 +86,7 @@ def build_single_corpus_from_annotated(corpus_path, essays, metadata):
             fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
                           topic, True, annotator)
             process_essay_text(True, filename_codes[subcorpus['filename'][:-6]], subcorpus,
-                               sentences_by_length[annotator], textfile)
+                               sentences_by_length[annotator], textfile, include_all)
             essays_with_metadata[annotator].append(subcorpus)
     # Created a dict where keys are sorted in increasing order:
     for annotator in sentences_by_length:
@@ -117,7 +120,7 @@ def build_single_corpus_from_unannotated(corpus_path, essays, metadata):
             # Find a folder in the metadata list of folders that has the same semester and topic:
             fill_metadata(corpus_path, metadata, semester, subcorpus, textfile,
                           topic,False, None)
-            process_essay_text(False, essay_id, folder_id, subcorpus, sentences_by_length, textfile)
+            process_essay_text(False, folder_id, subcorpus, sentences_by_length, textfile, True)
             essays_with_metadata.append(subcorpus)
     # Created a dict where keys are sorted in increasing order:
     sorted_by_length = OrderedDict()
@@ -127,14 +130,16 @@ def build_single_corpus_from_unannotated(corpus_path, essays, metadata):
 
 
 
-def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfile):
+def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfile, include_all=False):
     with open(textfile, 'r') as f:
         text = f.read()
-        sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
+        #sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
+        sent_tokenized_text = [i for i in SENT_TOK(text).sents]
         sent_id = 0
-        for sent in sent_tokenized_text:
+        for sent_obj in sent_tokenized_text:
+            sent = sent_obj.orth_
             sent_id += 1
-            include = False
+            include = include_all
             unique_id = folder_id*1000 + sent_id
             #if '154043.S17_FamousGNPA.txt' in textfile:
             #    print('stop')
@@ -153,7 +158,10 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
                 if annotated and include:
                     #reconstructed_learner = reconstruct_sentence(clean_sent, pattern, matches, '\g<original_word>')
                     #reconstructed_target = reconstruct_sentence(clean_sent, pattern, matches,'\g<target_word>')
-                    sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
+                    if reconstructed_target:
+                        sen_len = len(nltk.tokenize.word_tokenize(reconstructed_target, language='spanish'))
+                    else:
+                        sen_len = len(nltk.tokenize.word_tokenize(clean_sent, language='spanish'))
                     if sen_len not in corpus_by_length['by length']:
                         corpus_by_length['by length'][sen_len] = []
                     item = {'reconstructed_target':reconstructed_target, 'reconstructed_learner':reconstructed_learner,
@@ -339,6 +347,9 @@ def reconstructions_are_similar(r1, r2):
 
 def write_output_by_length(output_file, data, k):
     count = 0
+    # Create the directory if it doesn't exist:
+    if not os.path.exists(output_file + '/txt/' + k):
+        os.makedirs(output_file + '/txt/' + k)
     for len in data:
         with open(output_file + '/txt/' + k + '/' + str(len) + '.txt', 'w') as f:
             for item in data[len]:
@@ -348,6 +359,9 @@ def write_output_by_length(output_file, data, k):
 
 def write_uniqueid_by_length(output_file, data):
     count = 0
+    # Create the directory if it doesn't exist:
+    if not os.path.exists(output_file + '/uniqueid/'):
+        os.makedirs(output_file + '/uniqueid/')
     for len in data:
         with open(output_file + '/uniqueid/'+ '/' + str(len) + '.txt', 'w') as f:
             for item in data[len]:
@@ -389,6 +403,9 @@ def tsdb_item_string(simple_id, sentence, essay, sentence_type, today):
 
 def write_tsdb_item_output_by_length(output_file, sentences_by_length, k):
     today = datetime.today().strftime('%Y-%m-%d')
+    # Create the directory if it doesn't exist:
+    if not os.path.exists(output_file + '/meta/' + k):
+        os.makedirs(output_file + '/meta/' + k)
     for len in sentences_by_length:
         with open(output_file + '/meta/' + k + '/' + str(len) + '.txt', 'w') as f:
             simple_id = 0
@@ -426,12 +443,13 @@ if __name__ == "__main__":
     path_to_corpus = sys.argv[1]  # sys.argv[1] is the first argument passed to the program through e.g. pycharm (or command line). In Pycharm, look at Running Configuration
     relevant_essays = sys.argv[2]
     output_dir = sys.argv[3]
+    include_all = sys.argv[4] == 'all'
     annotated = relevant_essays == 'annotated'
     print('Working with corpus {}'.format(path_to_corpus))
     essays = find_relevant_folders(path_to_corpus, relevant_essays)
     metadata = find_relevant_folders(path_to_corpus, "metadata")
     print('Found {} essay folders in the corpus.'.format(len(essays)))
-    sentences_with_metadata, sentences_by_length, filename_codes = build_single_corpus_from_annotated(path_to_corpus, essays, metadata)
+    sentences_with_metadata, sentences_by_length, filename_codes = build_single_corpus_from_annotated(path_to_corpus, essays, metadata, include_all)
     # Filter for sentences which all annotators annotated in the same way:
     filtered, only_a1, only_a2 = pick_only_agreed_by_length(sentences_by_length)
     write_output_by_length(output_dir, filtered, 'reconstructed_target')
