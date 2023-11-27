@@ -27,7 +27,7 @@ Return the list of folders named k.
 '''
 def find_relevant_folders(d, k):
     folders = glob.glob(d + "**/**/" + k, recursive=True)
-    #return folders
+    #return folders # This mysteriously included duplicate paths, not always though (?)
     return list(set(folders))
 
 '''
@@ -134,8 +134,6 @@ def build_single_corpus_from_unannotated(corpus_path, essays, metadata):
 def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfile, include_all=False):
     with open(textfile, 'r') as f:
         text = f.read()
-        if "Shakira es [divertido]{divertida}<ga:fm:adj:an>." in text:
-            print("stop")
         #sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
         sent_tokenized_text = [i for i in SENT_TOK(text).sents]
         sent_id = 0
@@ -149,8 +147,6 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
             clean_sent = sent.strip('-"“”*&–')
             # Replace unsupported punctuation:
             clean_sent = re.sub('[“”]', '"', clean_sent)
-            if "Shakira es [divertido]{divertida}<ga:fm:adj:an>." in clean_sent:
-                print("stop")
             clean_sent = re.sub('–', "-", clean_sent)
             assert unique_id not in subcorpus['sentences'] and unique_id not in subcorpus['reconstructed_learner'] \
                    and unique_id not in subcorpus['reconstructed_target']

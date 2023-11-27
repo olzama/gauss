@@ -15,10 +15,7 @@ A sentence of length 4, counting punctuation, will be inder the directory 4/.
 def update_testsuite(ts, grammaticality_judgments):
     for i, row in enumerate(ts['item']):
         sentence_text = row['i-input']
-        try:
-            s, grammaticaly_judgment = grammaticality_judgments[i].split('\t')[:2] #May also contain a comment in the last col
-        except:
-            print(5)
+        s, grammaticaly_judgment = grammaticality_judgments[i].split('\t')[:2] #May also contain a comment in the last col
         if sentence_text != s:
             print(sentence_text)
             print(s)
