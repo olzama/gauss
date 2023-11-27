@@ -54,7 +54,7 @@ def update_profile(ts, ids, md):
 
 if __name__ == '__main__':
     common_dir = sys.argv[1]
-    sentence_type = 'reconstructed_target/' if  sys.argv[2] == 'target' else 'reconstructed_learner'
+    sentence_type = 'reconstructed_target/' if  sys.argv[2] == 'target' else 'reconstructed_learner/'
     sentences_dir = common_dir + 'txt/' + sentence_type
     metadata_dir = common_dir + 'meta/' + sentence_type
     ids_dir = common_dir + 'uniqueid/'
