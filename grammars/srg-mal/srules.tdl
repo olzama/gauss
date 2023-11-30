@@ -26,7 +26,7 @@ hd_xad-n_c := extad_n_constr & [ RNAME "xad" ].
 
 hd_ajpart_c := adjpart_constr & [ RNAME "ajpart" ].
 hd_prdp_c := prdp_constr & [ RNAME "prdp" ].
-hd_advnp_c := npadv_constr & [ RNAME "npadv" ].
+;hd_advnp_c := npadv_constr & [ RNAME "npadv" ].
 hd_advnp-pp_c := npadv_pp_constr & [ RNAME "npadv" ].
 hd_vocnp-prh_c := vocnp_prh_constr & [ RNAME "npadv" ].
 hd_vocnp-psth_c := vocnp_psth_constr & [ RNAME "npadv" ].
@@ -57,7 +57,6 @@ hd-sb_sldc_c := hd-sbj_rc_constr & [ RNAME "hdsb" ].
 hd-sb_crds_c := hd-sbj_crd_constr & [ RNAME "hdsb" ].
 hd-sb_cpa_c := hd-sbj_cpa_constr & [ RNAME "hdsb" ].
 
-hd-cmp_scd_c := hd-cmp_second_constr & [ RNAME "hdcmp" ].
 hd-cmp_c := hd-cmp_x-xp_constr & [ RNAME "hdcmp" ].
 hd-cmp_mrk_c := hd-mrk_constr & [ RNAME "hdmrk" ].
 hd-cmp_x-cp_c := hd-cmp_x-cl_constr & [ RNAME "hdcmp" ].
@@ -68,6 +67,7 @@ hd-cmp_v-cp-sld_c := hd-cmp_v-cl-slash_constr & [ RNAME "hdcmp" ].
 
 hd-sp_c := hd-sp_constr & [ RNAME "hdsp" ].
 sp-hd_c := sp-hd_constr & [ RNAME "sphd" ].
+sp-hd-mal_c := sp-hd-mal-m-f_constr & [RNAME "sphdmal" ].
 sp-hd_hdt_c := sp-hd_hddet_constr & [ RNAME "sphd" ].
 sp-hd_hrl_c := sp-hd_hdrel_constr & [ RNAME "sphd" ].
 sp-hd_srl_c := sp-hd_sprel_constr & [ RNAME "sphd" ].
@@ -91,8 +91,8 @@ hd-ad_i-pp-xp_c := hd-ad_i-pp-xp_constr & [ RNAME "hdad" ].
 hd-ad_i-s-xp_c := hd-ad_i-s-xp_constr & [ RNAME "hdad" ].
 hd-ad_i-v-rp_c := hd-ad_i-v-adv_constr & [ RNAME "hdad" ].
 hd-ad_i-v-vp_c := hd-ad_i-v-vger_constr & [ RNAME "hdad" ].
-hd-ad_i-v-pp_c := hd-ad_i-v-pp_constr & [ RNAME "hdad" ].
-hd-ad_i-v-modnp_c := hd-ad_i-v-modnp_constr & [ RNAME "hdad" ].
+;hd-ad_i-v-pp_c := hd-ad_i-v-pp_constr & [ RNAME "hdad" ].
+;hd-ad_i-v-modnp_c := hd-ad_i-v-modnp_constr & [ RNAME "hdad" ].
 hd-ad_i-v-frel_c := hd-ad_i-v-frel_constr & [ RNAME "hdad" ].
 hd-ad_i-n-rc-nr_c := hd-ad_i-n-rcnr_constr & [ RNAME "hdad" ].
 hd-ad_i-np-pp_c := hd-ad_i-np-pp_constr & [ RNAME "hdad" ].
@@ -122,7 +122,7 @@ hd-ad_i-modnp-r_c := hd-ad_i-modnp-adv-appos_constr & [ RNAME "hdad" ].
 
 flr-hd_wh-fin_c := flr-hd_wh-fin_constr & [ RNAME "flrhd" ].
 flr-hd_wh-inf_c := flr-hd_wh-inf_constr & [ RNAME "flrhd" ].
-flr-hd_nwh_c := flr-hd_nonwh_constr & [ RNAME "flrhd" ].
+;flr-hd_nwh_c := flr-hd_nonwh_constr & [ RNAME "flrhd" ].
 flr-hd_nwh-nf_c := flr-hd_nonwh-nfin_constr & [ RNAME "flrhd" ].
 ;flr-hd_nwh-sbj_c := flr-hd_nonwh-fin-sbj_constr & [ RNAME "flrhd" ].
 ;flr-hd_nwh-sbj-tpc_c := flr-hd_nonwh-fin-sbj-tpc_constr & [ RNAME "flrhd" ].

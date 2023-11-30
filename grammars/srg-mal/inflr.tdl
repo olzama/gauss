@@ -951,6 +951,11 @@ ncfs000 :=
 %suffix (ncfs000 ncfs000)
 n_fem-sg_ilr.
 
+ncfs000 := 
+%suffix (ncfs000 ncfs000)
+n_fem-sg-mal_ilr.
+
+
 ncfp000 := 
 %suffix (ncfp000 ncfp000)
 n_fem-pl_ilr.

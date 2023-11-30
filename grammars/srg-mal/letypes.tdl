@@ -4948,6 +4948,22 @@ basic-noun-lex := nonpronominal-lex &
                                          PRONTYPE not_pron ] ] ],
              LKEYS.KEYREL.LBL #ltop ] ]. 
 
+basic-noun-mal-lex := nonpronominal-lex & 
+  [ SYNSEM [ LOCAL [ AGR [PNG [PN #pn ] ],
+                     CAT [ HEAD noun,
+                           VAL.SPR < synsem &
+                                     [ LOCAL local-min &
+                                             [ AGR [PNG [PN #pn ] ],
+                                                CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                                     VAL.SUBJ < > ] ],
+                                       NON-LOCAL [ REL 0-dlist,
+                                                   SLASH 0-dlist ] ] > ],
+                     CONT.HOOK [ LTOP #ltop,
+                                 INDEX [ PNG.PN 3per,
+                                         PRONTYPE not_pron ] ] ],
+             LKEYS.KEYREL.LBL #ltop ] ]. 
+
+
 basic-common-noun-synsem := lex-synsem & 
   [ LOCAL.CAT.HEAD noun ].
 
@@ -5013,6 +5029,14 @@ n_intrans := basic-noun-lex & basic-one-arg & norm-hook-lex &
 """
 ; -- subcategorization types
 """. 
+
+n-mal_intrans := basic-noun-mal-lex & basic-one-arg & norm-hook-lex &
+  [ SYNSEM.LOCAL [ CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
+                         VAL [ SPR < [ OPT -] >,
+                               COMPS < > ] ],
+                   CONT [ RELS <! noun-arg0-relation !>,
+                          HCONS <! !> ] ] ].
+
 
 n_trans := basic-noun-lex & 
   [ SYNSEM [ LOCAL.CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
@@ -5162,6 +5186,13 @@ n_-_c-pl_lex := n_intrans &
 
 
 n_-_m_lex := n_intrans &
+  [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
+                       DIVISIBLE + ] ]
+  """
+  e.g. (bastante/un poco de/*cualquier) acidez
+  """.
+
+n_-_m-mal_lex := n-mal_intrans &
   [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
                        DIVISIBLE + ] ]
   """
@@ -8580,6 +8611,35 @@ basic_det_synsem := lex-synsem &
 ; with 'ad-sensum' agr. 
 """.
 
+
+basic_det_mal_synsem := lex-synsem & 
+  [ LOCAL [ COORD-STRAT zero,
+            AGR.PNG.PN #pn & 3per,
+            CAT [ MC na,
+                  HEAD.MOD < >,
+                  VAL [ SUBJ < >,
+                        CLTS < >,
+                        SPEC < [ LOCAL [ COORD -,
+                                         AGR.PNG.PN #pn,
+                                         CAT.HEAD.KEYS.ALTKEY #pred,
+                                         CONT.HOOK [ INDEX #index,
+                                                     LTOP #larg ] ] ] > ] ],
+            CONT nom-obj & [ HOOK [ LTOP #ltop,
+                                    INDEX #index,
+                                    XARG #larg ], 
+                             HCONS.LIST < qeq & [ HARG #harg,
+                                                  LARG #larg ], ... >,
+                             RELS.LIST < #keyrel & quant-relation, ... > ] ],
+    NON-LOCAL.SLASH 0-dlist,
+    LKEYS.KEYREL #keyrel & [ LBL #ltop,
+                             ARG0 #index,
+                             PRED #pred,
+                             RSTR #harg ] ]
+"""
+; --- 6. Determiners
+; Mal-determiner for mal-rules (el cara). 
+""".
+
 specfd_det_synsem := basic_det_synsem &
   [ LOCAL [ AGR #agr,
             CAT.VAL.SPR < [ LIGHT +,
@@ -8589,6 +8649,17 @@ specfd_det_synsem := basic_det_synsem &
 """
 ; dets taking spr and building a DP
 """.
+
+specfd-mal_det_synsem := basic_det_synsem &
+  [ LOCAL [ AGR.PNG.PN #pn,
+            CAT.VAL.SPR < [ LIGHT +,
+                            LOCAL.AGR.PNG.PN #pn,
+                            NON-LOCAL [ QUE 0-dlist,
+                                        REL 0-dlist ] ] > ] ]
+"""
+; dets taking spr and building a DP
+""".
+
 
 det_que := basic-det-lex & 
   [ SYNSEM [ LOCAL.CAT [ POSTHEAD -,
@@ -8637,6 +8708,9 @@ d_-_art-d := det_nonque_nonrel_nonposs &
 
 d_-_art-d_lex := d_-_art-d &
   [ SYNSEM specfd_det_synsem ].
+
+d_-_art-mal-d_lex := d_-_art-d &
+  [ SYNSEM specfd-mal_det_synsem ].
 
  
 ; --- 6.2. Indefinite article
@@ -15293,6 +15367,16 @@ n_-_m_native_le := n_-_m_lex & native_le
   <todo>
   """.
 
+n_-_m-mal_le := n_-_m-mal_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  For learner constructions with agreement errors.
+  <type val="n_-_m-mal_le">
+  <description> Noun, no compl, mass
+  <ex>tiene (bastante/un poco de/*cualquier) acidez.
+  <todo>
+  """.
+
 
 n_-_m_le := n_-_m_lex
   """
@@ -18519,6 +18603,16 @@ d_-_art-d_native_le := d_-_art-d_lex & native_le
   <type val="d_-_art-d_le">
   <description>Determiner, def article
   <ex>los muchachos
+  <todo>
+  """.
+
+d_-_art-d-mal_native_le := d_-_art-mal-d_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="d_-_art-d_le">
+  <description>Determiner, def article for learner constructions
+  <ex>los caras
   <todo>
   """.
 

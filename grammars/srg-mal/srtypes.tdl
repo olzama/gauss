@@ -726,12 +726,12 @@ basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phra
 ; where NUMBER is not checked in 'ad sensum agreement'
 """.
 
-basic-head-spec-mal-masc-fem-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & 
+basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & 
   [ INFLECTED +,
     SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD -,
                      COORD-STRAT #coord-strat,
-                     AGR [PNG [PN #pernum, GEN fem] ],
+                     AGR #agr,
                      CAT [ MC #mc,
                            POSTHEAD #hdph,
                            VAL [ SUBJ #subj,
@@ -749,19 +749,18 @@ basic-head-spec-mal-masc-fem-phrase := head-valence-phrase & phrasal & very-basi
                                             COMPS #comps & < >,
                                             SPEC #spec,
                                             CLTS #clit & < > ] ],
-                                CONT.HOOK [ INDEX [ PNG [PN #pernum, GEN fem], PRONTYPE #prontype, DEF #def ] ] ],
+                                CONT.HOOK [ LTOP #ltop, XARG #xarg, INDEX #agr & [ PNG.PN #pernum, DEF #def, PRONTYPE #prontype ] ] ],
                         MODIFIED #hmodif ] ],
     NON-HEAD-DTR.SYNSEM [ LOCAL [ COORD -,
                                   CAT [ VAL [ SPEC < [ LOCAL [ CAT.VAL.COMPS #comps,
-                                                               CONT.HOOK.INDEX [PRONTYPE #prontype, DEF #def, PNG [PN #pernum, GEN masc ]] ],
+                                                               CONT.HOOK [ INDEX [ PRONTYPE #prontype, DEF #def, PNG.PN #pernum ], LTOP #ltop, XARG #xarg ] ],
                                                        MODIFIED #hmodif ] >,
                                               COMPS #spcomps ] ] ],
                           MODIFIED #modif ],
     C-CONT [ RELS  <! !>,
              HCONS <! !> ] ]
 """
-; agreement features are percolated from HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX 
-; where NUMBER is not checked in 'ad sensum agreement'
+; The gender is underspecified here, to be later specified with a number of mal-rules.
 """.
 
 norm-basic-head-spec-phrase := basic-head-spec-phrase & 
@@ -776,7 +775,7 @@ norm-basic-head-spec-phrase := basic-head-spec-phrase &
                                 VAL.SPR < #synsem > ],
     NON-HEAD-DTR.SYNSEM #synsem ].
     
-norm-basic-head-spec-mal-masc-fem-phrase := basic-head-spec-mal-masc-fem-phrase & 
+norm-basic-head-spec-mal-phrase := basic-head-spec-mal-phrase & 
   [ SYNSEM.LOCAL.CAT.HEAD [ MOD #mod,
                             PRD #prd,
                             TAM #tam,
@@ -797,7 +796,7 @@ norm_spec-head-phrase := norm-basic-head-spec-phrase &
     HEAD-DTR #head-dtr & [ SYNSEM.LOCAL.STR.HEADING right ],
     ARGS < #non-head-dtr, #head-dtr > ].
 
-norm_spec-head-mal-masc-fem-phrase := norm-basic-head-spec-mal-masc-fem-phrase & 
+norm_spec-head-mal-phrase := norm-basic-head-spec-mal-phrase & 
   [ SYNSEM.LOCAL.STR.HEADED right,
     NON-HEAD-DTR #non-head-dtr &
                  [ SYNSEM [ PUNCT.RPUNCT no_punct,
@@ -852,23 +851,26 @@ spec-head_phrase := norm_spec-head-phrase & binary-headed-phrase &
 ; OZ: I think the hook is already identified in the basic phrase?
 """.
 
-spec-head-mal-masc-fem_phrase := norm_spec-head-phrase & binary-headed-phrase & 
-  [ SYNSEM.LOCAL [ CAT [ HEAD #head & 
+spec-head-mal-m-f-phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
+  [ SYNSEM.LOCAL [  AGR.PNG.GEN fem,
+                    CAT [ HEAD #head & 
                               [ CASE #case, 
                                 KEYS #keys ],
                          VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN fem,
+                              CAT [ HEAD #head &
                                          [ CASE #case, 
                                            KEYS #keys ],
                                     VAL [ SPR < #synsem . #spr >,
                                           COMPS < > ] ] ],
                       NON-LOCAL.REL 0-dlist ],
     NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
+                        [ LOCAL [ AGR.PNG.GEN masc,
+                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
                                         VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ]
 """
-; for specifiers of nouns
-; OZ: I think the hook is already identified in the basic phrase
+; for learner constructions where specifier is masculine and the noun feminine.
+; 
 """.
 
 
@@ -5321,7 +5323,7 @@ hd-mrk_constr := head-marker_phrase & binary-rule-left-to-right.
 
 hd-sp_constr := head-spec_phrase & binary-rule-right-to-left. ; ***
 sp-hd_constr := spec-head_phrase & binary-rule-left-to-right. ; ***
-sp-hd-mal-masc-fem_constr := spec-head-mal-masc-fem_phrase & binary-rule-left-to-right. ; ***
+sp-hd-mal-m-f_constr := spec-head-mal-m-f-phrase & binary-rule-left-to-right. ; ***
 sp-hd_hdrel_constr := spec-head_hdrel_phrase & binary-rule-left-to-right. ; ***
 sp-hd_hddet_constr := spec-head_hddet_phrase & binary-rule-left-to-right. ; ***
 sp-hd_sprel_constr := spec-head_specrel_phrase & binary-rule-left-to-right. ; ***
