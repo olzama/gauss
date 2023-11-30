@@ -657,6 +657,22 @@ n_sg_ilr :=  n_ilr & inflecting-lex-rule &
                  LKEYS.KEYREL [ LBL #ltop,
                                 ARG0 #index ] ] ].
 
+n_sg-mal_ilr :=  n_ilr & inflecting-lex-rule &
+  [ SYNSEM #synsem & 
+           [ LOCAL [ AGR [ PNG.PN 3sg ],
+                     CAT.VAL.SPR #spr,
+                     CONT.HOOK [ LTOP #ltop,
+                                 INDEX #index ] ],
+             LKEYS.KEYREL [ LBL #ltop,
+                            ARG0 #index ] ],
+    DTR.SYNSEM #synsem & 
+               [ LOCAL [ CAT.VAL.SPR #spr,
+                         CONT.HOOK [ LTOP #ltop,
+                                     INDEX #index ] ],
+                 LKEYS.KEYREL [ LBL #ltop,
+                                ARG0 #index ] ] ].
+
+
 n_pl_ilr :=  n_ilr & 
   [ SYNSEM [ LOCAL [ AGR #agr & [ PNG.PN 3pl,
                                   DIVISIBLE +,
@@ -720,6 +736,8 @@ n_masc-sg_ilr :=  n_sg_ilr &
 n_masc-pl_ilr :=  n_pl_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
 n_fem-sg_ilr :=  n_sg_ilr & 
+  [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
+n_fem-sg-mal_ilr :=  n_sg-mal_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 n_fem-pl_ilr :=  n_pl_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
