@@ -415,7 +415,8 @@ head := head-min &
   [ MOD list,
     PRD predicative,
     TAM tam, 
-    KEYS keys_min ].
+    KEYS keys_min,
+    LEARNER bool ].
 
 ; - for integrated tags which have no entry
 no-head := head.

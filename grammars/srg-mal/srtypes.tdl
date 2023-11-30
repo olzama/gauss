@@ -833,16 +833,19 @@ head-spec_phrase := norm-basic-head-spec-phrase & binary-headed-phrase &
 spec-head_phrase := norm_spec-head-phrase & binary-headed-phrase & 
   [ SYNSEM.LOCAL [ CAT [ HEAD #head & 
                               [ CASE #case, 
-                                KEYS #keys ],
+                                KEYS #keys,
+                                LEARNER - ],
                          VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN #gen,
+                              CAT [ HEAD #head &
                                          [ CASE #case, 
                                            KEYS #keys ],
                                     VAL [ SPR < #synsem . #spr >,
                                           COMPS < > ] ] ],
                       NON-LOCAL.REL 0-dlist ],
     NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
+                        [ LOCAL [ AGR.PNG.GEN #gen,
+                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
                                         VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ],
                                   CONT.HOOK #hook ] ],
     C-CONT.HOOK #hook ]
@@ -855,7 +858,8 @@ spec-head-mal-m-f-phrase := norm_spec-head-mal-phrase & binary-headed-phrase &
   [ SYNSEM.LOCAL [  AGR.PNG.GEN fem,
                     CAT [ HEAD #head & 
                               [ CASE #case, 
-                                KEYS #keys ],
+                                KEYS #keys,
+                                LEARNER + ],
                          VAL.SPR #spr ] ],
     HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN fem,
                               CAT [ HEAD #head &

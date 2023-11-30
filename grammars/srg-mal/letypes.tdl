@@ -4935,7 +4935,7 @@ nonpronominal-lex := basic-nominal-lex &
 
 basic-noun-lex := nonpronominal-lex & 
   [ SYNSEM [ LOCAL [ AGR #agr,
-                     CAT [ HEAD noun,
+                     CAT [ HEAD noun & [ LEARNER - ],
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
                                              [ AGR #agr,
@@ -4950,7 +4950,7 @@ basic-noun-lex := nonpronominal-lex &
 
 basic-noun-mal-lex := nonpronominal-lex & 
   [ SYNSEM [ LOCAL [ AGR [PNG [PN #pn ] ],
-                     CAT [ HEAD noun,
+                     CAT [ HEAD noun & [ LEARNER + ],
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
                                              [ AGR [PNG [PN #pn ] ],
