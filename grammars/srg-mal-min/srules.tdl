@@ -1,0 +1,10 @@
+hd-pt_c := hd-pt_constr & [ RNAME "hdpt" ].
+
+sb-hd_c := sbj-hd_constr & [ RNAME "sbhd" ].
+
+sp-hd_c := sp-hd_constr & [ RNAME "sphd" ].
+sp-hd-mal_c := sp-hd-mal-m-f_constr & [RNAME "sphdmal" ].
+
+hd-cmp_c := hd-cmp_x-xp_constr & [ RNAME "hdcmp" ].
+
+hd_optsp_c := optsp_constr & [ RNAME "optsp" ].

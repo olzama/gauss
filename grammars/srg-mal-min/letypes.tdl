@@ -1,0 +1,577 @@
+punct_synsem := lex-synsem &
+  [ LOCAL [ COORD-STRAT zero,
+            CAT [ MC na,
+            VAL [ SUBJ < >,
+                        COMPS < >,
+                        SPEC < >,
+                        SPR < >,
+                        CLTS < > ] ],
+            CONT [ RELS <! !>,
+                   HCONS <! !> ] ] ].
+
+
+basic_det_synsem := lex-synsem & 
+  [ LOCAL [ COORD-STRAT zero,
+            AGR #agr & [ PNG.PN 3per ],
+            CAT [ MC na,
+                  HEAD.MOD < >,
+                  VAL [ SUBJ < >,
+                        CLTS < >,
+                        SPEC < [ LOCAL [ COORD -,
+                                         AGR #agr,
+                                         CAT.HEAD.KEYS.ALTKEY #pred,
+                                         CONT.HOOK [ INDEX #index,
+                                                     LTOP #larg ] ] ] > ] ],
+            CONT nom-obj & [ HOOK [ LTOP #ltop,
+                                    INDEX #index,
+                                    XARG #larg ], 
+                             HCONS.LIST < qeq & [ HARG #harg,
+                                                  LARG #larg ], ... >,
+                             RELS.LIST < #keyrel & quant-relation, ... > ] ],
+    NON-LOCAL.SLASH 0-dlist,
+    LKEYS.KEYREL #keyrel & [ LBL #ltop,
+                             ARG0 #index,
+                             PRED #pred,
+                             RSTR #harg ] ]
+"""
+; --- 6. Determiners
+; !!! LOCAL.AGR checks full morpho-syntactic agreement within the NP, 
+; whereas CONT.HOOK.INDEX does not check 'NUMBER', with this we can deal 
+; with 'ad-sensum' agr. 
+""".
+
+
+
+specfd_det_synsem := basic_det_synsem &
+  [ LOCAL [ AGR #agr,
+            CAT.VAL.SPR < [ LIGHT +,
+                            LOCAL.AGR #agr,
+                            NON-LOCAL [ QUE 0-dlist,
+                                        REL 0-dlist ] ] > ] ]
+"""
+; dets taking spr and building a DP
+""".
+
+
+norm-pronominal-synsem := lex-synsem &
+  [ LOCAL [ CAT.MC na,
+            CONT [ HOOK [ LTOP #nhand,
+                          INDEX #index,
+                          XARG #nhand ],
+                   RELS <! #keyrel & noun-relation & 
+                           [ ARG0 #index,
+                             LBL #nhand ],
+                           #altkey & 
+                           [ ARG0 #index,
+                             RSTR #phand ] !>,
+                   HCONS <! qeq & [ HARG #phand,
+                                    LARG #nhand ] !> ] ], 
+    LKEYS [ KEYREL #keyrel, 
+            ALTKEYREL #altkey ] ]. 
+
+
+personal_pron_synsem := norm-pronominal-synsem & 
+  [ LOCAL [ CAT [ HEAD noun & 
+                       [ KEYS [ KEY non_named_non_modable_rel,
+                                ALT2KEY #alt2key ] ],
+                  VAL.COMPS < > ],
+            CONT [ HOOK.INDEX [ SORT entity,
+                                PRONTYPE real_pron ],
+                   RELS <! [ PRED pron_rel ], 
+                           #alt2keyrel & [ PRED #alt2key & pronoun_q_rel ] !> ] ],
+    LKEYS.ALT2KEYREL #alt2keyrel ].
+
+
+acc_local := local.
+
+np_acc_local := np_local & acc_local &
+  [ COORD -,
+    CAT.HEAD [ CASE acc_or_obl, 
+               KEYS.KEY a_sel_or_indp_rel ] ]
+"""
+; llevan el marcador "a": 
+; - sust. individualizados (busco a María/al ayudante/ayudante), 
+; - pron. tónicos referidos a personas (me miró a mí, no espero a nadie, a quién buscas),
+; - sust. personificados (temo a la muerte) 
+; - casos ambiguos (honra el trabajo la persona -> honra el trabajo a la persona/
+; al trabajo la persona). 
+; - los verbos con sujeto animado (este abogado escondió a muchos prisioneros
+; esta montaña escondió muchos prisioneros) 
+; los verbos ditrans no llevan el marcador (presenté mi novia a mis padres)
+; clitic doubling obligatory when the DO is realized by a strong personal pron
+; (a mí me golpearon/*a mí golpearon)
+""". 
+
+
+np_local := local &
+  [ CAT [ MC na,
+          HEAD +np,
+          VAL [ SPR < >,
+                SUBJ < >,
+                COMPS < > ] ] ].
+
+np_nom_local := np_local & 
+  [ COORD -,
+    CAT.HEAD noun & [ CASE nom,
+                      KEYS [ KEY nom_rel,
+                             ALTKEY quant_or_wh_rel ] ] ].
+
+nom-subj-synsem := lex-synsem &
+  [ LOCAL [ AGR #agr & [ PNG #png ], 
+            CAT [ VAL.SUBJ < [ LOCAL np_nom_local & 
+                                     [ AGR #agr,
+                                       CONT.HOOK.INDEX #xarg ] ] > ],
+            CONT.HOOK.XARG #xarg & [ PNG #png ] ] ]
+"""
+; --- 1.3. Verbs taking nominal subject
+
+; LOCAL.CAT.VAL.SUBJ < [ LOCAL.CAT.HEAD.KEYS.ALTKEY def_or_proper_q_rel / explicit_q_rel 
+; but: e.g. vecinos de la zona consultados por este diario aseguraron ayer que ...
+
+""".
+
+
+arg1_lt := nom-subj-synsem & 
+  [ LOCAL.CAT.VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX #ind ] >,
+    LKEYS.KEYREL arg1-ev-relation & 
+                 [ ARG1 #ind ] ]. 
+
+
+basic-nominal-lex := lex-item &
+  [ INFLECTED -,
+    ALTS [ RCP -, 
+           RFX -,
+           PASS - ],
+    SYNSEM [ MODIFIED notmod,
+             PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     CAT [ MC na,
+                           HEAD.MOD < >,
+                           VAL [ SUBJ < >,
+                                 CLTS < > ] ], 
+                     CONT nom-obj ] ] ].
+
+nonpronominal-lex := basic-nominal-lex & 
+  [ SYNSEM [ LOCAL [ CAT.VAL [ SPEC < >,
+                               SPR < #spr >,
+                               COMPS #comps ], 
+                     CONT [ HOOK.INDEX ref-ind,
+                            RELS.LIST < noun-relation & #key, ... > ] ],
+             LKEYS.KEYREL #key ],
+    ARG-ST < #spr . #comps >  ].
+
+
+basic-noun-lex := nonpronominal-lex & 
+  [ SYNSEM [ LOCAL [ AGR #agr,
+                     CAT [ HEAD noun & [ LEARNER - ],
+                           VAL.SPR < synsem &
+                                     [ LOCAL local-min &
+                                             [ AGR #agr,
+                                               CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                                     VAL.SUBJ < > ] ],
+                                       NON-LOCAL [ REL 0-dlist,
+                                                   SLASH 0-dlist ] ] > ],
+                     CONT.HOOK [ LTOP #ltop,
+                                 INDEX [ PNG.PN 3per,
+                                         PRONTYPE not_pron ] ] ],
+             LKEYS.KEYREL.LBL #ltop ] ]. 
+
+basic-noun-mal-lex := nonpronominal-lex & 
+  [ SYNSEM [ LOCAL [ AGR [PNG [PN #pn ] ],
+                     CAT [ HEAD noun & [ LEARNER + ],
+                           VAL.SPR < synsem &
+                                     [ LOCAL local-min &
+                                             [ AGR [PNG [PN #pn ] ],
+                                                CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                                     VAL.SUBJ < > ] ],
+                                       NON-LOCAL [ REL 0-dlist,
+                                                   SLASH 0-dlist ] ] > ],
+                     CONT.HOOK [ LTOP #ltop,
+                                 INDEX [ PNG.PN 3per,
+                                         PRONTYPE not_pron ] ] ],
+             LKEYS.KEYREL.LBL #ltop ] ]. 
+
+
+n_intrans := basic-noun-lex & basic-one-arg & norm-hook-lex &
+  [ SYNSEM.LOCAL [ CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
+                         VAL [ SPR < [ OPT -] >,
+                               COMPS < > ] ],
+                   CONT [ RELS <! noun-arg0-relation !>,
+                          HCONS <! !> ] ] ]
+"""
+; -- subcategorization types
+""". 
+
+n-mal_intrans := basic-noun-mal-lex & basic-one-arg & norm-hook-lex &
+  [ SYNSEM.LOCAL [ CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
+                         VAL [ SPR < [ OPT -] >,
+                               COMPS < > ] ],
+                   CONT [ RELS <! noun-arg0-relation !>,
+                          HCONS <! !> ] ] ].
+
+n_-_m_lex := n_intrans &
+  [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
+                       DIVISIBLE + ] ]
+  """
+  e.g. (bastante/un poco de/*cualquier) acidez
+  """.
+
+
+n_-_m-mal_lex := n-mal_intrans &
+  [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
+                       DIVISIBLE + ] ]
+  """
+  e.g. (bastante/un poco de/*cualquier) acidez
+  """.
+
+
+basic-verb-lex := lex-item &
+  [ INFLECTED -,
+    SYNSEM [ SLSHD -,
+             PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             MODIFIED notmod,
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     CAT [ HEAD verb & [ CLIT none,
+                                         MOD < >,
+                                         TAM #tam,
+                                         KEYS.KEY v_event_rel ],
+                           VAL.SPR < > ],
+                     CONT.HOOK.INDEX event & [ E #tam ] ],
+             NON-LOCAL.REL 0-dlist,
+             LKEYS.KEYREL event-relation ] ]
+""" Supertype for all verbs. """.
+
+
+main-verb := basic-main-verb & 
+  [ SYNSEM.LOCAL.CAT [ HEAD verb, 
+                       VAL [ SUBJ < #subj >, 
+                             COMPS #comps,
+                             CLTS < > ] ],
+    ARG-ST < #subj . #comps > ].
+
+
+basic-main-verb := basic-verb-lex & 
+  [ SYNSEM [ LOCAL [ CAT [ MC bool,
+                           HEAD [ AUX -,
+                                  KEYS.KEY nonaux_event_rel ] ],
+                     CONT [ HOOK [ LTOP #ltop,
+                                   INDEX #index & [ SF iforce ] ],
+                            RELS.LIST < #keyrel & relation, ... > ] ],
+             LKEYS.KEYREL #keyrel & [ LBL #ltop,
+                                      ARG0 #index ] ] ]. 
+
+
+v_trans_np := basic-main-verb & 
+  [ ALTS.VCALT - ].
+
+
+norm-hook-lex := lex-item &
+  [ SYNSEM [ LOCAL.CONT [ HOOK [ LTOP #ltop,
+                                 INDEX #index ],
+                          RELS.LIST.FIRST #keyrel ],
+             LKEYS.KEYREL #keyrel & [ LBL #ltop,
+                                      ARG0 #index ] ] ].
+
+
+basic-one-arg := lex-item &
+  [ ARG-ST < [ NON-LOCAL [ SLASH #slash,
+                           REL #rel,
+                           QUE #que ] ] >,
+    SYNSEM.NON-LOCAL [ SLASH #slash,
+                       REL #rel,
+                       QUE #que ] ]
+"""
+; These non-zero argument types only amalgamate the non-local
+; feature values of their complements. They do not introduce any
+; non-local values of their own, nor do they bind off any non-local
+; feature values. This assumes that the bottom of most long-distance
+; dependencies is handled by a rule that constrains an argument 
+; (either on the ARG-ST list or a valence list) to be a synsem of 
+; type gap. Elements like English tough adjectives which bind off a 
+; slash value will need a new type that doesn't amalgamate that slash 
+; value. Elements which both introduce REL or QUE values and take one 
+; or more arguments will require appropriate new types as well, which
+; amalgamate everything but add a value in addition.
+""".
+
+basic-two-arg := lex-item &
+  [ ARG-ST < [ NON-LOCAL [ SLASH [ LIST #smiddle,
+                                   LAST #slast ],
+                           REL [ LIST #rmiddle,
+                                 LAST #rlast ],
+                           QUE [ LIST #qmiddle,
+                                 LAST #qlast ] ] ],
+             [ NON-LOCAL [ SLASH [ LIST #sfirst,
+                                   LAST #smiddle ],
+                           REL [ LIST #rfirst,
+                                 LAST #rmiddle ],
+                           QUE [ LIST #qfirst,
+                                 LAST #qmiddle ] ] ] >,
+    SYNSEM.NON-LOCAL [ SLASH [ LIST #sfirst,
+                               LAST #slast ],
+                       REL [ LIST #rfirst,
+                             LAST #rlast ],
+                       QUE [ LIST #qfirst,
+                             LAST #qlast ] ] ]
+"""
+; These non-zero argument types only amalgamate the non-local
+; feature values of their complements. They do not introduce any
+; non-local values of their own, nor do they bind off any non-local
+; feature values. This assumes that the bottom of most long-distance
+; dependencies is handled by a rule that constrains an argument 
+; (either on the ARG-ST list or a valence list) to be a synsem of 
+; type gap. Elements like English tough adjectives which bind off a 
+; slash value will need a new type that doesn't amalgamate that slash 
+; value. Elements which both introduce REL or QUE values and take one 
+; or more arguments will require appropriate new types as well, which
+; amalgamate everything but add a value in addition.
+""".
+
+transitive_verb_synsem := lex-synsem.
+
+v_trans_synsem := arg1_lt & transitive_verb_synsem &
+  [ LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.HEAD.KEYS.KEY #ckey ],... >,
+    LKEYS [ KEYREL arg12-ev-relation,
+            --COMPKEY #ckey ] ]
+"""
+; --- 1.3.3. Transitive verbs
+""".
+
+
+v_trans_np_synsem := v_trans_synsem & 
+  [ LOCAL.CAT.VAL.COMPS < [ LOCAL np_acc_local & 
+                                  [ CONT.HOOK.INDEX #ind2 ],
+                            NON-LOCAL.REL 0-dlist & [ LIST < > ] ],... >,
+    LKEYS.KEYREL.ARG2 #ind2 ]
+"""
+; --- 1.3.3.1. Transitive verbs taking NP
+""".
+
+
+
+v_np_ntr_synsem := v_trans_np_synsem & 
+  [ LOCAL [ CAT [ HEAD.INV -,
+                  VAL.COMPS < [ LOCAL np_acc_local ] > ],
+            CONT [ RELS <! relation !>,
+                   HCONS <! !> ] ] ]
+"""
+; --- 1.3.3.1.1. Transitive verbs taking nominal complements that don't passivize 
+; (including verbs taking measure NPs)
+""".
+
+
+v_np_ntr := v_trans_np &
+  [ ALTS [ RCP -, 
+           RFX -,
+           PASS - ] ].
+
+
+v_np_npsv_lex := v_np_ntr & main-verb & basic-two-arg &
+  [ ALTS.IMPERS +,
+    SYNSEM v_np_ntr_synsem & 
+           [ LOCAL.CAT [ HEAD.LSYNSEM v_np_ntr_synsem, 
+                         VAL.COMPS < [ OPT - ] > ] ] ]
+"""
+; e.g. querer (to want) (¿quieres algo?), durar (to last) (la reunión duró tres horas)
+""".
+
+
+basic-nominal-lex := lex-item &
+  [ INFLECTED -,
+    ALTS [ RCP -, 
+           RFX -,
+           PASS - ],
+    SYNSEM [ MODIFIED notmod,
+             PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     CAT [ MC na,
+                           HEAD.MOD < >,
+                           VAL [ SUBJ < >,
+                                 CLTS < > ] ], 
+                     CONT nom-obj ] ] ].
+
+pronominal-lex := basic-nominal-lex &
+  [ SYNSEM.LOCAL [ AGR #agr,
+                   CONT.HOOK.INDEX #agr & 
+                                   [ PRONTYPE real_pron ] ] ].
+
+pron_nonque := pronominal-lex & 
+  [ SYNSEM.NON-LOCAL.QUE 0-dlist ].
+             
+pron_nonque_nonrel := pron_nonque & 
+  [ SYNSEM.NON-LOCAL.REL 0-dlist ]. 
+             
+pron_nonque_nonrel_nonslash := pron_nonque_nonrel & 
+  [ SYNSEM.NON-LOCAL.SLASH 0-dlist ]. 
+
+
+personal-pron-lex := pron_nonque_nonrel_nonslash & 
+  [ SYNSEM.LOCAL.CAT.VAL.SPR #spr,
+    ARG-ST #spr ].
+
+
+n_-_pr-pers-no-sg_lex := personal-pron-lex & basic-one-arg &
+  [ SYNSEM personal_pron_synsem & [ LOCAL [ AGR.PNG.PN sing,
+                                            CAT [ HEAD.CASE nom_or_obl,
+                                                  VAL.SPR < [ OPT +,
+                                                              LOCAL.CAT.HEAD.KEYS.KEY todo_def_q_rel,
+                                                              NON-LOCAL [ QUE 0-dlist,
+                                                                          REL 0-dlist ] ] > ] ] ] ]
+  """
+  -- (todo) él, ella, vos
+  """.
+
+
+basic-det-lex := lex-item & 
+  [ INFLECTED -,
+    ALTS [ RCP -, 
+           RFX -,
+           PASS -,
+           IMPERS -,
+           VCALT - ],
+    SYNSEM [ PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             MODIFIED notmod,
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     CAT [ HEAD det & [ KEYS.KEY quant_rel ],
+                           VAL.COMPS #comps ] ] ],
+    ARG-ST #comps ]
+"""
+; --- 6. Determiners
+; !!! LOCAL.AGR checks full morpho-syntactic agreement within the NP, 
+; whereas CONT.HOOK.INDEX does not check 'NUMBER', with this we can deal 
+; with 'ad-sensum' agr. 
+""".
+
+
+det_nonque := basic-det-lex & 
+  [ SYNSEM.NON-LOCAL.QUE 0-dlist ]. 
+
+
+det_nonque_nonrel := det_nonque & 
+  [ SYNSEM.NON-LOCAL.REL 0-dlist ]. 
+
+det_nonque_nonrel_nonposs := det_nonque_nonrel & 
+  [ SYNSEM.LOCAL.CONT [ RELS <! relation !>,
+                        HCONS <! qeq !> ] ].
+
+d_-_art-d := det_nonque_nonrel_nonposs & 
+  [ SYNSEM basic_det_synsem & 
+           [ LOCAL.CAT [ POSTHEAD -,
+                         VAL [ SPR < [ OPT +,
+                                       LOCAL.CAT.HEAD.KEYS.KEY todo_def_q_rel ] >,
+                               SPEC < [ LOCAL.CAT.HEAD noun ] >,
+                               COMPS < > ] ],
+             LKEYS [ KEYREL [ PRED _el_q_rel,
+                              LBL #lbl ],
+                     ALTKEYREL.LBL #lbl ] ] ]
+"""
+; --- 6.1. Definite articles
+; - (todo) + DEF. ART + (adj. indef.)* + (adj. qual.)* + N'
+; e.g. (todos) los (otros) (muchos/pocos/tres) libros
+""".
+
+
+d_-_art-d_lex := d_-_art-d &
+  [ SYNSEM specfd_det_synsem ].
+
+
+d_-_art-d_native_le := d_-_art-d_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="d_-_art-d_le">
+  <description>Determiner, def article
+  <ex>los muchachos
+  <todo>
+  """.
+
+
+basic-punct-lex := lex-item &
+  [ INFLECTED -,
+    ALTS [ RCP -, 
+           RFX -,
+           PASS -,
+           IMPERS -,
+           VCALT - ],
+    SYNSEM [ PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             MODIFIED notmod,
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     CAT.HEAD head-punct & 
+                              [ PUNCT-MK basic_punct_mark ] ],
+             NON-LOCAL [ SLASH 0-dlist & [ LIST < > ],
+                         REL 0-dlist & [ LIST < > ],
+                         QUE 0-dlist & [ LIST < > ] ] ] ].
+
+pt_-_fstop_lex := basic-punct-lex & 
+  [ SYNSEM punct_synsem & 
+           [ LOCAL.CAT.HEAD.PUNCT-MK clause_punct ] ].
+
+native_le := lex-item &
+[ TRAITS native_token_list ]
+""" We need to add this constraint to most entries in the lexicon, 
+ to be able to filter out generic lexical entries where an entry
+ already is present in the lexicon. """.
+
+
+
+n_-_pr-pers-no-sg_native_le := n_-_pr-pers-no-sg_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="n_-_pr-pers-no-sg_le">
+  <description>Pronoun, pers, sing, nominative and oblique ("él", "usted", "vos")
+  <ex>nosotros confiamos en él.
+  <todo>
+  """.
+
+v_np_npsv_native_le := v_np_npsv_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="v_np_npsv_le">
+  <description>Verb, NP (don't passivize)
+  <ex>la reunión duró tres horas
+  <todo>
+  </type>
+  """.
+
+pt_-_fstop_native_le := pt_-_fstop_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="pt_-_fstop_le">
+  <description>Punct, full stop
+  <ex>
+  <todo>
+  """.
+
+n_-_m_native_le := n_-_m_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="n_-_m_le">
+  <description> Noun, no compl, mass
+  <ex>tiene (bastante/un poco de/*cualquier) acidez.
+  <todo>
+  """.
+
+n_-_m-mal_le := n_-_m-mal_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  For learner constructions with agreement errors.
+  <type val="n_-_m-mal_le">
+  <description> Noun, no compl, mass
+  <ex>tiene (bastante/un poco de/*cualquier) acidez.
+  <todo>
+  """.
+

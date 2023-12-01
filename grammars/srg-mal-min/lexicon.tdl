@@ -1,0 +1,23 @@
+cara_n := n_-_m_native_le &
+  [ STEM < "cara" >,
+    SYNSEM.LKEYS.KEYREL [ ARG0.SORT abs,
+                          PRED "_cara_n_rel" ] ].
+                          
+cara_n_mal := n_-_m-mal_le &
+  [ STEM < "cara" >,
+    SYNSEM.LKEYS.KEYREL [ ARG0.SORT abs,
+                          PRED "_cara_n_rel" ] ].
+
+tener_v-np_npsv := v_np_npsv_native_le &
+  [ STEM < "tener" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_tener_v_rel" ].
+
+él_pr := n_-_pr-pers-no-sg_native_le &
+  [ STEM < "él" > ].
+  
+el_d := d_-_art-d_native_le &
+  [ STEM < "el" > ].
+  
+fstop_pt := pt_-_fstop_native_le &
+  [ STEM < "." > ].
+

@@ -1,0 +1,31 @@
+pp3fs00 :=
+%suffix (pp3fs00 pp3fs00) 
+pp3fs00_ilr
+""" ; ella
+""".
+
+vmip3s0 :=
+%suffix (vmip3s vmip3s)
+pres-ind_ilr &
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG.PN 3sg ] ].
+
+di0ms0 := 
+%suffix (di0ms0 di0ms0)
+di0ms0_ilr
+"""; algún""".
+
+di0fs0 := 
+%suffix (di0fs0 di0fs0)
+di0fs0_ilr
+"""; alguna""".
+
+ncfs000 := 
+%suffix (ncfs000 ncfs000)
+n_fem-sg_ilr.
+
+fp := 
+%suffix (fp fp)
+infl-ltow-rule
+""" -- full-stop .""".
+
