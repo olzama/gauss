@@ -188,6 +188,16 @@ n_ilr :=  tmt-lex-rule & phrase-or-lexrule &
     ARGS < #dtr >,
     ALTS #alts ].
 
+da0ms0_ilr := da_ilr & masc_3sg_ilr
+"""definite article""".
+
+da0fs0_ilr := da_ilr & fem_3sg_ilr
+"""definite article""".
+
+da_ilr :=  d_ilr &
+ [ SYNSEM.LKEYS.KEYREL.PRED art_def_q_rel ].
+
+
 di0fs0_ilr :=  d_ilr & fem_3sg_ilr
 """indefinite(?) det""".
 

@@ -15,10 +15,20 @@ di0ms0 :=
 di0ms0_ilr
 """; algún""".
 
+da0ms0 := 
+%suffix (da0ms0 da0ms0)
+da0ms0_ilr
+"""; el""".
+
 di0fs0 := 
 %suffix (di0fs0 di0fs0)
 di0fs0_ilr
 """; alguna""".
+
+da0fs0 := 
+%suffix (da0fs0 da0fs0)
+da0fs0_ilr
+"""; la""".
 
 ;ncfs000 := 
 ;%suffix (ncfs000 ncfs000)
