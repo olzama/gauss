@@ -20,9 +20,13 @@ di0fs0 :=
 di0fs0_ilr
 """; alguna""".
 
+;ncfs000 := 
+;%suffix (ncfs000 ncfs000)
+;n_fem-sg_ilr.
+
 ncfs000 := 
 %suffix (ncfs000 ncfs000)
-n_fem-sg_ilr.
+n_fem-sg-mal_ilr.
 
 fp := 
 %suffix (fp fp)

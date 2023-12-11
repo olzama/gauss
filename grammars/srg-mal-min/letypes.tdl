@@ -1,3 +1,116 @@
+n_trans := basic-noun-lex & 
+  [ SYNSEM [ LOCAL.CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
+                         VAL [ SPR < [ OPT - ] >,
+                               COMPS < [ LOCAL.CAT.HEAD.KEYS.KEY #ckey ],... > ] ],
+             LKEYS.--COMPKEY #ckey ] ]. 
+
+
+n_cp_prop_or_ques := n_trans & basic-two-arg &
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ LOCAL [ CAT.MC -, 
+                                               CONT.HOOK [ LTOP #larg,
+                                                           INDEX.SF prop-or-ques ] ] ] >,
+                     CONT [ HOOK.INDEX.SORT abs,
+                            RELS <! noun-arg1-relation !>,
+                            HCONS <! qeq & [ HARG #harg,
+                                             LARG #larg ] !> ] ],
+             LKEYS.KEYREL.ARG1 #harg ] ]. 
+
+
+n_cp_prop_fin := n_cp_prop_or_ques & 
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL mrkd_or_unmrkd_cp_prop_fin_local &
+                                         [ CAT.HEAD.KEYS.ALT2KEY prop, 
+                                           CONT.HOOK.INDEX.SF prop ] ] > ]. 
+
+
+n_cp*_p-c_lex := n_cp_prop_fin & 
+  [ SYNSEM n_prop-or-ques_fin_synsem & 
+           [ LOCAL [ CAT.VAL.COMPS < [ OPT + ] >,
+                     CONT.HOOK.INDEX.DIVISIBLE - ] ] ]
+"""
+; --- Nouns taking verbal complements
+; e.g. una ventaja ((de) que no llueva es que no hay ocasión de perder el paraguas)
+""". 
+
+
+n_cp*_p-c_le := n_cp*_p-c_lex
+  """
+  
+  """.
+  
+single-rel-lex := lex-item &
+  [ SYNSEM.LOCAL.CONT.RELS <! relation !> ].
+
+no-hcons-lex := lex-item & 
+  [ SYNSEM.LOCAL.CONT.HCONS <! !> ].
+
+
+norm-sem-lex-item := norm-hook-lex & single-rel-lex & no-hcons-lex
+  """
+  most lexical items contribute only one relation, and have empty HCONS values.
+  """.
+
+
+norm-sem-lex := norm-hook-lex & single-rel-lex
+  """
+  
+  """.
+
+n_-_mc_lex := n_intrans
+  """
+  e.g. bebió (cualquier/un/un poco de/una copa de) vino
+  """.
+
+
+
+n_-_mc_native_le := n_-_mc_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="n_-_mc_le">
+  <description> Noun, no compl, mass-count
+  <ex> bebió (cualquier/un/un poco de/una copa de) vino
+  <todo>
+  """.
+
+
+n_-_mc_le := n_-_mc_lex
+  """
+  
+  """.
+
+
+n_-_pn_lex := basic-noun-lex & basic-one-arg & norm-sem-lex-item &
+  [ SYNSEM [ LOCAL [ AGR #agr & [ PNG.GEN #gen ],
+                     CAT [ POSTHEAD +,
+                           HEAD.KEYS [ KEY named_rel,
+                                       ALTKEY non_free_relative_q_rel ],
+                           VAL [ SPR < [ LOCAL [ AGR.PNG.GEN #gen & masc_or_fem,
+                                                 CAT.HEAD.KEYS.KEY quant_rel ],
+                                         NON-LOCAL.QUE #que ] >,
+                                 COMPS < > ] ],
+                     CONT.HOOK [ INDEX #agr & [ DIVISIBLE -,
+                                                PNG.PN 3per,
+                                                SORT non-temp,
+                                                PRONTYPE not_pron ],
+                                 XARG #arg1 ] ],
+             NON-LOCAL [ SLASH 0-dlist,
+                         REL 0-dlist,
+                         QUE #que ],
+             LKEYS [ KEYREL named-relation & [ PRED named_rel,
+                                               ARG1 #arg1 ],
+                     ALTKEYREL.PRED implicit_q_rel ] ] ]
+  """
+  If the proper name is modified, then it requires a def. article (e.g. (*el) manolo del otro día,
+  la Rocío de la que te hablé). Some proper names may take the article (e.g. la Pantoja)
+  """.
+
+
+n_-_pn_le := n_-_pn_lex
+  """
+  
+  """.
+
+
 punct_synsem := lex-synsem &
   [ LOCAL [ COORD-STRAT zero,
             CAT [ MC na,
@@ -52,6 +165,18 @@ specfd_det_synsem := basic_det_synsem &
 ; dets taking spr and building a DP
 """.
 
+basic-common-noun-synsem := lex-synsem & 
+  [ LOCAL.CAT.HEAD noun ].
+
+
+n_prop-or-ques_fin_synsem := basic-common-noun-synsem &
+  [ LOCAL.CAT.VAL.COMPS < [ LOCAL mrkd_or_unmrkd_cp_prop_or_ques_local &
+                                  [ CONT.HOOK.INDEX.E [ TENSE tense,
+                                                        MOOD ind_or_sub_mood ] ] ] > ]
+"""
+; fot LRs
+""".
+
 
 norm-pronominal-synsem := lex-synsem &
   [ LOCAL [ CAT.MC na,
@@ -80,6 +205,21 @@ personal_pron_synsem := norm-pronominal-synsem &
                    RELS <! [ PRED pron_rel ], 
                            #alt2keyrel & [ PRED #alt2key & pronoun_q_rel ] !> ] ],
     LKEYS.ALT2KEYREL #alt2keyrel ].
+
+mrkd_or_unmrkd_cp_prop_or_ques_local := local & 
+  [ COORD -,
+    CAT [ HEAD +vpc & 
+               [ MOD < > ],
+          VAL [ COMPS < >,
+                SPR < > ] ],
+    CONT.HOOK.INDEX event & [ SF prop-or-ques ] ] . 
+
+mrkd_or_unmrkd_cp_prop_fin_local := mrkd_or_unmrkd_cp_prop_or_ques_local &
+  [ CAT [ HEAD.KEYS.KEY selected_or_independent_rel,
+          VAL.SUBJ < > ],
+    CONT.HOOK.INDEX [ SF prop,
+                      E [ TENSE tense,
+                          MOOD ind_or_sub_mood ] ] ]. 
 
 
 acc_local := local.
@@ -115,6 +255,19 @@ np_nom_local := np_local &
     CAT.HEAD noun & [ CASE nom,
                       KEYS [ KEY nom_rel,
                              ALTKEY quant_or_wh_rel ] ] ].
+
+mrkd_np_local := local & 
+  [ COORD -,
+    CAT [ MC na,
+          HEAD adp & [ TAM.TENSE nontense,
+                       PRD non-prd,
+                       MOD < >,
+                       CASE obl, 
+                       KEYS.KEY selected_rel ],
+          VAL [ SUBJ < >,
+                COMPS < > ] ],
+    CONT.HOOK.INDEX index ]. 
+
 
 nom-subj-synsem := lex-synsem &
   [ LOCAL [ AGR #agr & [ PNG #png ], 
@@ -330,6 +483,45 @@ basic-two-arg := lex-item &
 ; or more arguments will require appropriate new types as well, which
 ; amalgamate everything but add a value in addition.
 """.
+
+v_sym_synsem := arg1_lt &
+  [ LOCAL.CAT [ HEAD.INV -,
+                VAL.COMPS < [ LOCAL mrkd_np_local & [ CAT.HEAD.KEYS [ KEY #ckey,
+                                                                      ALTKEY non_modable_rel ] ] ], ... > ],
+    LKEYS.--COMPKEY #ckey ]
+  """
+  --- 1.3.3.4. Symmetric verbs
+  """.
+
+
+v_sym_intr_mrkd_np_synsem := v_sym_synsem &
+  [ LOCAL [ CAT.VAL.COMPS < [ LOCAL.CONT.HOOK.INDEX #ind2 & ref-ind ] >,
+            CONT [ RELS <! arg12-ev-relation !>,
+                   HCONS <! !> ] ],
+    LKEYS.KEYREL.ARG2 #ind2 ]
+  """
+  --- 1.3.3.4.1. Intransitive symmetric verbs taking marked NP / plural (or coord.) subject
+  """.
+
+v_intrans_synsem := arg1_lt & 
+  [ LOCAL.CONT.RELS <! relation !> ]
+"""
+; --- 1.3.2. Intransitive verbs
+; - They have typically agenitive subjects. They do not appear in absolute participle clauses. 
+""".
+
+
+v_strict_intrans_synsem := v_intrans_synsem & 
+  [ LOCAL [ CAT [ HEAD.INV -, 
+                  VAL.COMPS < > ],
+            CONT.HCONS <! !> ] ]
+"""
+; --- 1.3.2.1. Strict intransitive verbs
+; Subjects must take specifier. Some appear in "locative inversion constructions", but the locative 
+; complement must appear in pre-verbal position and the subject in postverbal position and without 
+; specifier (e.g. en este parque juegan niños)
+""".
+
 
 transitive_verb_synsem := lex-synsem.
 

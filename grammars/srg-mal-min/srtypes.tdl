@@ -1,3 +1,27 @@
+
+clause := phrasal &
+  [ SYNSEM.LOCAL.CAT [ HEAD +vc ] ].
+
+
+non-rel-phrase := head-nexus-rel-phrase & 
+  [ SYNSEM [ LOCAL.CONT.HOOK [ LTOP #ltop,
+                               INDEX #ind ],
+             NON-LOCAL.REL 0-dlist ],
+    HEAD-DTR.SYNSEM [ LOCAL.CONT.HOOK.INDEX #ind,
+                      NON-LOCAL.REL 0-dlist ],
+    C-CONT.HOOK [ LTOP #ltop,
+                  INDEX #ind ] ].
+
+basic-non-rel-clause := non-rel-phrase & clause.
+
+non-rel-clause := basic-non-rel-clause.
+
+declarative-clause := non-rel-clause &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF prop,
+    C-CONT [ RELS <! !>,
+             HCONS <! !> ] ].
+
+
 phrasal := phrase &
   [ SYNSEM phr-synsem ]
 """ Most but not all phrases have SYNSEM phr-synsem
@@ -139,6 +163,13 @@ basic-head-comp-phrase := basic-head-comp-or-marker-phrase &
 
 
 optsp_constr := optspec_phrase & rule.
+
+head-comp_x-xp_phrase := head-comp-phrase & 
+  [ SYNSEM.SLSHD #slshd,
+    HEAD-DTR.SYNSEM.SLSHD #slshd,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC na ].
+
+
 hd-cmp_x-xp_constr := head-comp_x-xp_phrase & binary-rule-right-to-left. ; ***
 
 basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional & binary-headed-phrase &
@@ -159,6 +190,13 @@ basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional & b
                       MODIFIED #modif ],
     NON-HEAD-DTR.SYNSEM canonical-synsem  ].
 
+binary-rule-left-to-right := rule &
+  [ ARGS < [ KEY-ARG + ] , [ KEY-ARG bool ] > ]
+"""
+; For more efficient parsing, designate one argument or the other
+; as the KEY-ARG: that which should be unified with first.
+""".
+
 
 binary-rule-right-to-left := rule &
   [ ARGS < [ KEY-ARG bool ], [ KEY-ARG + ] > ].
@@ -167,6 +205,14 @@ head-comp_x-xp_phrase := head-comp-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM.SLSHD #slshd,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC na ].
+
+head-initial := binary-headed-phrase &
+  [ SYNSEM.LOCAL.STR.HEADED left,
+    HEAD-DTR #head & 
+             [ SYNSEM.LOCAL.STR.HEADING left ],
+    NON-HEAD-DTR #non-head,
+    ARGS < #head, #non-head > ].
+
 
 head-comp-phrase := basic-head-comp-phrase & head-initial &
   [ SYNSEM.LOCAL.STR.HEADED left ].
@@ -371,3 +417,95 @@ basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-
 """
 ; The gender is underspecified here, to be later specified with a number of mal-rules.
 """.
+
+sp-hd_constr := spec-head_phrase & binary-rule-left-to-right. ; ***
+
+
+sbj-hd_constr := subj-head_nonque_phrase & declarative-clause & binary-rule-right-to-left. ; ***
+
+
+subj-head_nonque_phrase := subj-head-phrase &
+  [ HEAD-DTR.SYNSEM.NON-LOCAL.QUE 0-dlist,
+    NON-HEAD-DTR.SYNSEM.NON-LOCAL.QUE 0-dlist ].
+
+
+norm-basic-head-subj-phrase := basic-head-subj-phrase &
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < >,
+    HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < #synsem >,
+    NON-HEAD-DTR.SYNSEM #synsem ].
+
+
+subj-head-phrase := norm-basic-head-subj-phrase & head-final & 
+  [ SYNSEM.LOCAL.CAT [ POSTHEAD +,
+                       VAL.COMPS < > ],
+    HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD verb & 
+                                     [ INV -, 
+                                       VFORM fin ],
+                                VAL.COMPS olist ] ]
+"""
+; In languages which do realize all COMPS before the SUBJ, head-subj-phrase should allow [COMPS olist]
+""".
+
+basic-head-final := basic-binary-headed-phrase &
+  [ SYNSEM.LOCAL.STR.HEADED right,
+    HEAD-DTR #head & 
+             [ SYNSEM.LOCAL.STR.HEADING right ],
+    NON-HEAD-DTR #non-head,
+    ARGS < #non-head, #head > ].
+
+head-final := basic-head-final & binary-headed-phrase.
+
+
+basic-head-subj-phrase := head-valence-phrase & head-compositional & binary-headed-phrase &
+  [ SYNSEM [ SLSHD #slshd,
+             LOCAL.CAT [ MC #mc,
+                       VAL [ COMPS #comps,
+                             SPR #spr,
+                             SPEC #spec,
+                             CLTS #clit ] ] ],
+    HEAD-DTR.SYNSEM [ SLSHD #slshd,
+                      LOCAL [ COORD -,
+                            CAT [ MC #mc,
+                                  HEAD.KEYS.KEY v_event_rel, 
+                                  VAL [ COMPS #comps,       
+                                        SPR #spr,
+                                        SPEC #spec,
+                                        CLTS #clit & < > ] ] ] ],
+    NON-HEAD-DTR.SYNSEM canonical-synsem &
+                        [ NON-LOCAL.REL 0-dlist ],
+    C-CONT [ RELS <! !>,
+             HCONS <! !> ] ].
+
+
+hd-pt_constr := head-punct_phrase & binary-rule-right-to-left.
+
+head-punct_phrase := basic-head-punct-phrase & basic-binary-phrase &
+  [ SYNSEM [ LIGHT +,
+             LOCAL.STR.HEADED left,
+             PUNCT [ LPUNCT #lpunct,
+                     RPUNCT #rpunct ] ],
+    HEAD-DTR #head & 
+             [ SYNSEM [ LIGHT +,
+                        PUNCT.LPUNCT #lpunct & no_punct,
+                        LOCAL.STR.HEADING left ] ],
+    NON-HEAD-DTR #non-head & 
+                 [ SYNSEM punct_synsem & 
+                          [ LOCAL.CAT.HEAD.PUNCT-MK #rpunct & rpunct ] ],
+    ARGS < #head, #non-head > ].
+    
+basic-head-punct-phrase := head-valence-phrase & head-compositional &
+  [ SYNSEM [ SLSHD #slshd,
+             LOCAL [ COORD #coord,
+                     COORD-STRAT #coord-strat,
+                     COORD-REL #crel,
+                     CAT #cat,
+                     CONT #cont ] ],
+    HEAD-DTR.SYNSEM [ SLSHD #slshd,
+                      LOCAL [ COORD #coord,
+                              COORD-STRAT #coord-strat,
+                              COORD-REL #crel,
+                              STR.HEADED solely,
+                              CAT #cat,
+                              CONT #cont ] ] ].
+
+

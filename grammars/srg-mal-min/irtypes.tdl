@@ -47,6 +47,23 @@ lexeme-to-word-rule := lex-rule &
 ; Lexeme-to-word rules are hypothesized to monotonically add synsem information.
 """.
 
+lexeme-to-lexeme-rule := lex-rule & 
+  [ INFLECTED #infl,
+    SYNSEM.LOCAL.CAT.MC #mc,
+    DTR [ INFLECTED #infl,
+          SYNSEM.LOCAL.CAT.MC #mc ] ]
+          """; Lexeme-to-lexeme rules can make more radical changes to the SYNSEM value.
+""".
+
+
+const-ltol-rule := lexeme-to-lexeme-rule & constant-lex-rule.
+
+constant-lex-rule := lex-rule &
+  [ STEM #stem,
+    DTR.STEM #stem ]
+    """; Spelling-preserving rules copy up the STEM (orthography) of the daughter.
+""".
+
 
 infl-ltow-rule := lexeme-to-word-rule & inflecting-lex-rule.
 
@@ -63,6 +80,9 @@ inflecting-lex-rule := lex-rule &
 
 n_fem-sg_ilr :=  n_sg_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
+  
+n_fem-sg-mal_ilr :=  n_sg-mal_ilr & 
+  [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
 n_sg_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 
@@ -78,6 +98,23 @@ n_sg_ilr :=  n_ilr & inflecting-lex-rule &
                                      INDEX #index ] ],
                  LKEYS.KEYREL [ LBL #ltop,
                                 ARG0 #index ] ] ].
+
+
+n_sg-mal_ilr :=  n_ilr & inflecting-lex-rule &
+  [ SYNSEM #synsem & 
+           [ LOCAL [ AGR [ PNG.PN 3sg ],
+                     CAT.VAL.SPR #spr,
+                     CONT.HOOK [ LTOP #ltop,
+                                 INDEX #index ] ],
+             LKEYS.KEYREL [ LBL #ltop,
+                            ARG0 #index ] ],
+    DTR.SYNSEM #synsem & 
+               [ LOCAL [ CAT.VAL.SPR #spr,
+                         CONT.HOOK [ LTOP #ltop,
+                                     INDEX #index ] ],
+                 LKEYS.KEYREL [ LBL #ltop,
+                                ARG0 #index ] ] ].
+
 
 n_ilr :=  tmt-lex-rule & phrase-or-lexrule & 
   [ NEEDS-AFFIX +,
