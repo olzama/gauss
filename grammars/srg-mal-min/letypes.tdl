@@ -290,22 +290,6 @@ arg1_lt := nom-subj-synsem &
                  [ ARG1 #ind ] ]. 
 
 
-basic-nominal-lex := lex-item &
-  [ INFLECTED -,
-    ALTS [ RCP -, 
-           RFX -,
-           PASS - ],
-    SYNSEM [ MODIFIED notmod,
-             PUNCT [ LPUNCT no_punct,
-                     RPUNCT no_punct ],
-             LOCAL [ COORD -,
-                     COORD-STRAT zero,
-                     CAT [ MC na,
-                           HEAD.MOD < >,
-                           VAL [ SUBJ < >,
-                                 CLTS < > ] ], 
-                     CONT nom-obj ] ] ].
-
 nonpronominal-lex := basic-nominal-lex & 
   [ SYNSEM [ LOCAL [ CAT.VAL [ SPEC < >,
                                SPR < #spr >,
@@ -317,12 +301,10 @@ nonpronominal-lex := basic-nominal-lex &
 
 
 basic-noun-lex := nonpronominal-lex & 
-  [ SYNSEM [ LOCAL [ AGR #agr,
-                     CAT [ HEAD noun & [ LEARNER - ],
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
-                                             [ AGR #agr,
-                                               CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                             [ CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
                                                      VAL.SUBJ < > ] ],
                                        NON-LOCAL [ REL 0-dlist,
                                                    SLASH 0-dlist ] ] > ],
@@ -330,22 +312,6 @@ basic-noun-lex := nonpronominal-lex &
                                  INDEX [ PNG.PN 3per,
                                          PRONTYPE not_pron ] ] ],
              LKEYS.KEYREL.LBL #ltop ] ]. 
-
-basic-noun-mal-lex := nonpronominal-lex & 
-  [ SYNSEM [ LOCAL [ AGR [PNG [PN #pn ] ],
-                     CAT [ HEAD noun & [ LEARNER + ],
-                           VAL.SPR < synsem &
-                                     [ LOCAL local-min &
-                                             [ AGR [PNG [PN #pn ] ],
-                                                CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
-                                                     VAL.SUBJ < > ] ],
-                                       NON-LOCAL [ REL 0-dlist,
-                                                   SLASH 0-dlist ] ] > ],
-                     CONT.HOOK [ LTOP #ltop,
-                                 INDEX [ PNG.PN 3per,
-                                         PRONTYPE not_pron ] ] ],
-             LKEYS.KEYREL.LBL #ltop ] ]. 
-
 
 n_intrans := basic-noun-lex & basic-one-arg & norm-hook-lex &
   [ SYNSEM.LOCAL [ CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
@@ -357,22 +323,7 @@ n_intrans := basic-noun-lex & basic-one-arg & norm-hook-lex &
 ; -- subcategorization types
 """. 
 
-n-mal_intrans := basic-noun-mal-lex & basic-one-arg & norm-hook-lex &
-  [ SYNSEM.LOCAL [ CAT [ HEAD.KEYS.KEY non_temp_nonpro_rel & non_elliptical_n_rel,
-                         VAL [ SPR < [ OPT -] >,
-                               COMPS < > ] ],
-                   CONT [ RELS <! noun-arg0-relation !>,
-                          HCONS <! !> ] ] ].
-
 n_-_m_lex := n_intrans &
-  [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
-                       DIVISIBLE + ] ]
-  """
-  e.g. (bastante/un poco de/*cualquier) acidez
-  """.
-
-
-n_-_m-mal_lex := n-mal_intrans &
   [ SYNSEM.LOCAL.AGR [ PNG.PN sing,
                        DIVISIBLE + ] ]
   """
@@ -752,16 +703,6 @@ n_-_m_native_le := n_-_m_lex & native_le
   This is a native lexical entry type, for words that are in the lexicon.
   
   <type val="n_-_m_le">
-  <description> Noun, no compl, mass
-  <ex>tiene (bastante/un poco de/*cualquier) acidez.
-  <todo>
-  """.
-
-n_-_m-mal_le := n_-_m-mal_lex & native_le
-  """
-  This is a native lexical entry type, for words that are in the lexicon.
-  For learner constructions with agreement errors.
-  <type val="n_-_m-mal_le">
   <description> Noun, no compl, mass
   <ex>tiene (bastante/un poco de/*cualquier) acidez.
   <todo>

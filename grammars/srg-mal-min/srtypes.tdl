@@ -201,11 +201,6 @@ binary-rule-left-to-right := rule &
 binary-rule-right-to-left := rule &
   [ ARGS < [ KEY-ARG bool ], [ KEY-ARG + ] > ].
 
-head-comp_x-xp_phrase := head-comp-phrase & 
-  [ SYNSEM.SLSHD #slshd,
-    HEAD-DTR.SYNSEM.SLSHD #slshd,
-    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC na ].
-
 head-initial := binary-headed-phrase &
   [ SYNSEM.LOCAL.STR.HEADED left,
     HEAD-DTR #head & 

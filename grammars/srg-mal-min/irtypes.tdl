@@ -87,7 +87,7 @@ n_fem-sg-mal_ilr :=  n_sg-mal_ilr &
 n_sg_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 
            [ LOCAL [ AGR #ind & [ PNG.PN 3sg ],
-                     CAT.VAL.SPR #spr,
+                     CAT [ HEAD.LEARNER -, VAL.SPR #spr ],
                      CONT.HOOK [ LTOP #ltop,
                                  INDEX #index ] ],
              LKEYS.KEYREL [ LBL #ltop,
@@ -103,7 +103,7 @@ n_sg_ilr :=  n_ilr & inflecting-lex-rule &
 n_sg-mal_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 
            [ LOCAL [ AGR [ PNG.PN 3sg ],
-                     CAT.VAL.SPR #spr,
+                     CAT [ HEAD.LEARNER +, VAL.SPR #spr ],
                      CONT.HOOK [ LTOP #ltop,
                                  INDEX #index ] ],
              LKEYS.KEYREL [ LBL #ltop,

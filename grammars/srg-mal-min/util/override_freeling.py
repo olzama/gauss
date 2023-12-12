@@ -14,3 +14,5 @@ DO_NOT_OVERRIDE = {'uf', 'je', 'ja', 'oh', 'todo_lo_contrario', 'ojalá'}
 
 STEM_EQUALS_TAG = {'Z', 'W'}
 
+MAL_TAGS = {'NCFS000':'NCFS000MAL'}
+

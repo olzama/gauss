@@ -30,13 +30,13 @@ da0fs0 :=
 da0fs0_ilr
 """; la""".
 
-;ncfs000 := 
-;%suffix (ncfs000 ncfs000)
-;n_fem-sg_ilr.
+ncfs000mal := 
+%suffix (ncfs000mal ncfs000mal)
+n_fem-sg-mal_ilr.
 
 ncfs000 := 
 %suffix (ncfs000 ncfs000)
-n_fem-sg-mal_ilr.
+n_fem-sg_ilr.
 
 fp := 
 %suffix (fp fp)
