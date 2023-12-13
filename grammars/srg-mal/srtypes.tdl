@@ -411,7 +411,8 @@ punct-head_clt_phrase := phrase-or-lexrule &
 
 punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
-             LOCAL.STR.HEADED right,
+             LOCAL [ STR.HEADED right,
+             	      AGR.PNG #agr ]
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
     NON-HEAD-DTR #non-head & 
@@ -420,7 +421,8 @@ punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
     HEAD-DTR #head & 
              [ SYNSEM [ LIGHT +,
                         PUNCT.RPUNCT #rpunct,
-                        LOCAL.STR.HEADING right ] ],
+                        LOCAL [ STR.HEADING right,
+                                AGR.PNG #agr ] ] ],
     ARGS < #non-head, #head > ].
 
 
