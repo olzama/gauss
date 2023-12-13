@@ -412,7 +412,7 @@ punct-head_clt_phrase := phrase-or-lexrule &
 punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
              LOCAL [ STR.HEADED right,
-             	      AGR.PNG #agr ]
+             	      AGR.PNG #agr ],
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
     NON-HEAD-DTR #non-head & 
@@ -1750,11 +1750,13 @@ optcomp-v_phrase := optcomp-phrase &
 """. 
 
 optcomp-n_phrase := optcomp-phrase &
-  [ SYNSEM.LOCAL [ CAT [ POSTHEAD #ph,
+  [ SYNSEM.LOCAL [ AGR #agr,
+                   CAT [ POSTHEAD #ph,
                          VAL.COMPS #comps ],
 		   CONT.HOOK.INDEX.SORT non-mod ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod,
-                      LOCAL [ STR.HEADED solely,
+                      LOCAL [ AGR #agr,
+                              STR.HEADED solely,
                               CAT [ POSTHEAD #ph, 
                                     HEAD noun,
                                     VAL.COMPS < [ NON-LOCAL.SLASH 0-dlist ]. #comps > ] ] ] ]. 
