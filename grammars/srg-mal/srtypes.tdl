@@ -22,6 +22,15 @@ headed-phrase := basic-headed-phrase &
     HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
                             CONT.HOOK.INDEX #agr ] ].
 
+punc-headed-phrase := basic-headed-phrase & 
+  [ SYNSEM.LOCAL [ CAT.HEAD #head ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head ] ]
+"""
+   Punctuation phrase should not lose agreement in gender in the mal grammar, because 
+   agreement is removed from the basic-noun-lex. 
+""".
+
+
 non-headed-phrase := phrase.
 
 phrasal := phrase &
@@ -31,6 +40,17 @@ phrasal := phrase &
 
 
 head-compositional := headed-phrase &
+  [ C-CONT.HOOK #hook,
+    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ]
+"""
+; C-CONT is the semantic contribution of the phrase itself. The hook of the phrase is 
+; identified with the hook of C-CONT (which is possibly but not necessarily identified 
+; with the hook of one of the daughters. The rels and hcons of the phrase result from 
+; appending the rels and hcons of C-CONT and the rels and hcons of the daughters.
+; Head-compositional phrases identify the syntactic head daughter as the semantic head.
+""".
+
+punc-head-compositional := punc-headed-phrase &
   [ C-CONT.HOOK #hook,
     HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ]
 """
@@ -341,20 +361,22 @@ interrogative-clause := clause & basic-headed-phrase &
 
 ; --- head-punct-phrase types
 
-basic-head-punct-phrase := head-valence-phrase & head-compositional &
+basic-head-punct-phrase := punc-head-compositional &
   [ SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD #coord,
                      COORD-STRAT #coord-strat,
                      COORD-REL #crel,
                      CAT #cat,
-                     CONT #cont ] ],
+                     CONT #cont ],
+             NON-LOCAL #nl ],
     HEAD-DTR.SYNSEM [ SLSHD #slshd,
                       LOCAL [ COORD #coord,
                               COORD-STRAT #coord-strat,
                               COORD-REL #crel,
                               STR.HEADED solely,
                               CAT #cat,
-                              CONT #cont ] ] ].
+                              CONT #cont ],
+                      NON-LOCAL #nl ] ].
 
 punct-head_clt_phrase := phrase-or-lexrule &
   [ SYNSEM [ SLSHD #slshd,
@@ -404,7 +426,7 @@ punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
 
 head-punct_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
-             LOCAL [ AGR #agr, 
+             LOCAL [ AGR.PNG #agr, 
                      STR.HEADED left ],
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
@@ -412,7 +434,7 @@ head-punct_phrase := basic-head-punct-phrase & basic-binary-phrase &
              [ SYNSEM [ LIGHT +,
                         PUNCT.LPUNCT #lpunct & no_punct,
                         LOCAL [ STR.HEADING left,
-                                AGR #agr ] ] ],
+                                AGR.PNG #agr ] ] ],
     NON-HEAD-DTR #non-head & 
                  [ SYNSEM punct_synsem & 
                           [ LOCAL.CAT.HEAD.PUNCT-MK #rpunct & rpunct ] ],
