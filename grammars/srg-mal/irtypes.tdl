@@ -644,21 +644,6 @@ n_ilr :=  tmt-lex-rule & phrase-or-lexrule &
 
 n_sg_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 
-           [ LOCAL [ AGR #ind & [ PNG.PN 3sg ],
-                     CAT.VAL.SPR #spr,
-                     CONT.HOOK [ LTOP #ltop,
-                                 INDEX #index ] ],
-             LKEYS.KEYREL [ LBL #ltop,
-                            ARG0 #index ] ],
-    DTR.SYNSEM #synsem & 
-               [ LOCAL [ CAT.VAL.SPR #spr & < [ LOCAL.AGR #ind ] >,
-                         CONT.HOOK [ LTOP #ltop,
-                                     INDEX #index ] ],
-                 LKEYS.KEYREL [ LBL #ltop,
-                                ARG0 #index ] ] ].
-
-n_sg-mal_ilr :=  n_ilr & inflecting-lex-rule &
-  [ SYNSEM #synsem & 
            [ LOCAL [ AGR [ PNG.PN 3sg ],
                      CAT.VAL.SPR #spr,
                      CONT.HOOK [ LTOP #ltop,
@@ -672,25 +657,28 @@ n_sg-mal_ilr :=  n_ilr & inflecting-lex-rule &
                  LKEYS.KEYREL [ LBL #ltop,
                                 ARG0 #index ] ] ].
 
+n_sg_norm_ilr :=  n_sg_ilr &
+  [ SYNSEM #synsem & 
+           [ LOCAL [ AGR #ind,
+                     CAT.VAL.SPR #spr ] ],
+    DTR.SYNSEM #synsem & 
+               [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR #ind ] > ] ].
 
-n_pl_ilr :=  n_ilr & 
-  [ SYNSEM [ LOCAL [ AGR #agr & [ PNG.PN 3pl,
+
+n_pl_ilr :=  n_ilr & inflecting-lex-rule &
+  [ SYNSEM [ LOCAL [ AGR [ PNG.PN 3pl,
                                   DIVISIBLE +,
                                   PRONTYPE not_pron,
                                   SORT #sort ],
                      CAT [ VAL.SPR < [ OPT #opt,
-                                       LOCAL [ AGR #agr,
-                                               CAT #cat,
+                                       LOCAL [ CAT #cat,
                                                CONT [ HCONS #hcons,
                                                       HOOK [ LTOP #ltop,
-                                                             XARG #xarg,
-                                                             INDEX #agr ],
+                                                             XARG #xarg ],
                                                       RELS #rels ],
                                                CTXT #ctxt ],
                                        NON-LOCAL #nlocal ] > ],
-                     CONT [ HOOK.INDEX #agr,
-                            RELS.LIST.FIRST #keyrel & noun-relation & 
-                                            [ ARG0 #agr ] ] ],
+                     CONT [ RELS.LIST.FIRST #keyrel & noun-relation ] ],
               LKEYS.KEYREL #keyrel ],
     DTR.SYNSEM.LOCAL [ AGR.SORT #sort,
                        CAT.VAL.SPR < [ OPT #opt,
@@ -703,6 +691,16 @@ n_pl_ilr :=  n_ilr &
                                        NON-LOCAL #nlocal ] >,
                        CONT [ HOOK.INDEX.SORT #sort,
                               RELS.LIST.FIRST #keyrel ] ] ].
+
+
+n_pl_norm_ilr :=  n_pl_ilr & 
+  [ SYNSEM.LOCAL [ AGR #agr,
+                     CAT [ VAL.SPR < [ LOCAL [ AGR #agr,
+                                               CONT.HOOK.INDEX #agr ] ] > ],
+                     CONT [ HOOK.INDEX #agr,
+                            RELS.LIST.FIRST noun-relation & 
+                                            [ ARG0 #agr ] ] ] ].
+
 
 n_masc_ilr :=  n_ilr & 
   [ SYNSEM #synsem & 
@@ -731,20 +729,33 @@ n_com_ilr :=  n_ilr &
                             RELS.LIST.FIRST.ARG0 #agr ] ] ],
     DTR.SYNSEM #synsem ].
 
-n_masc-sg_ilr :=  n_sg_ilr & 
+n_masc-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
-n_masc-pl_ilr :=  n_pl_ilr & 
+
+n_masc-sg-mal_ilr :=  n_sg_ilr & 
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].  
+ 
+n_masc-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
   
-n_fem-sg_ilr :=  n_sg_ilr & 
+n_masc-pl-mal_ilr :=  n_pl_ilr & 
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
+  
+n_fem-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
   
-n_fem-sg-mal_ilr :=  n_sg-mal_ilr & 
+n_fem-sg-mal_ilr :=  n_sg_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
                    
-n_fem-pl_ilr :=  n_pl_ilr & 
+n_fem-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
+
+n_fem-pl-mal_ilr :=  n_pl_ilr & 
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
 
 
 ; --- Verbs 
