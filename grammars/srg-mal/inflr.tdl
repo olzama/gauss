@@ -947,14 +947,13 @@ ncmp000 :=
 %suffix (ncmp000 ncmp000)
 n_masc-pl_ilr.
 
-;ncfs000 := 
-;%suffix (ncfs000 ncfs000)
-;n_fem-sg_ilr.
-
 ncfs000 := 
 %suffix (ncfs000 ncfs000)
-n_fem-sg-mal_ilr.
+n_fem-sg_ilr.
 
+ncfs000-mal := 
+%suffix (ncfs000-mal ncfs000-mal)
+n_fem-sg-mal_ilr.
 
 ncfp000 := 
 %suffix (ncfp000 ncfp000)

@@ -2,8 +2,9 @@
 
 from freeling_api.python_API import pyfreeling_api
 import sys, os
+from override_freeling import MAL_TAGS
 
-PATH_TO_SPPP_DAT = '/home/olzama/delphin/GAUSS/gauss/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
+PATH_TO_SPPP_DAT = '/home/olga/delphin/GAUSS/gauss-repo/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
 
 class Freeling_tok_tagger:
     '''
@@ -81,9 +82,9 @@ class Freeling_tok_tagger:
             s = self.freeling_analyze(lin, sid)
             if len(s) == 0 or len(s) > 1:
                 if len(s) == 0:
-                    print("No Freeling analysis for {}".format(lin),file=stderr)
+                    print("No Freeling analysis for {}".format(lin),file=sys.stderr)
                 else:
-                    print("Line {} seems to contain more than one sentence and was not tokenized properly. Skipping it.".format(lin),file=stderr)
+                    print("Line {} seems to contain more than one sentence and was not tokenized properly. Skipping it.".format(lin),file=sys.stderr)
                 output[i]['sentence'] = lin
                 output[i]['tokens'] = None
             else:
@@ -124,6 +125,7 @@ class Freeling_tok_tagger:
         tags = []
         additional_arcs = []
         for a in w:
+            debug_tag = a.get_tag()
             if a.is_selected():
                 if a.is_retokenizable():
                     tks = a.get_retokenizable()
@@ -147,4 +149,7 @@ class Freeling_tok_tagger:
                 if w.get_form().lower() in override_dicts['no_disambiguate']:
                     additional_arcs.append(({'additional': True, 'tag': a.get_tag(), 'prob': a.get_prob(), 'lemma': a.get_lemma()}))
                     #print("Non-selected analysis: {}".format(a.get_tag()))
+            # For POS which are subject to MAL rules, add an arc with the MAL tag:
+            if a.get_tag() in MAL_TAGS:
+                additional_arcs.append(({'additional': True, 'tag': MAL_TAGS[a.get_tag()], 'prob': -1, 'lemma': a.get_lemma()}))
         return tags, additional_arcs

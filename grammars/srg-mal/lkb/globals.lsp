@@ -148,4 +148,4 @@
 ;;; Preprocessing is performed by FreeLing, and its output is converted to the
 ;;; DELPH-IN YY format for parsing.
 ;;;
-(defparameter *yy-application* "bash ~/delphin/GAUSS/gauss/grammars/srg-mal/util/srg-yy-python-api.sh")
+(defparameter *yy-application* "bash ~/delphin/GAUSS/gauss-repo/grammars/srg-mal/util/srg-yy-python-api.sh")

@@ -82,7 +82,8 @@ n_fem-sg_ilr :=  n_sg_ilr &
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
   
 n_fem-sg-mal_ilr :=  n_sg-mal_ilr & 
-  [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
 
 n_sg_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 

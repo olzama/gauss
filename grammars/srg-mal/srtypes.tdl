@@ -404,13 +404,15 @@ punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
 
 head-punct_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
-             LOCAL.STR.HEADED left,
+             LOCAL [ AGR #agr, 
+                     STR.HEADED left ],
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
     HEAD-DTR #head & 
              [ SYNSEM [ LIGHT +,
                         PUNCT.LPUNCT #lpunct & no_punct,
-                        LOCAL.STR.HEADING left ] ],
+                        LOCAL [ STR.HEADING left,
+                                AGR #agr ] ] ],
     NON-HEAD-DTR #non-head & 
                  [ SYNSEM punct_synsem & 
                           [ LOCAL.CAT.HEAD.PUNCT-MK #rpunct & rpunct ] ],
