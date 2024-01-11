@@ -775,11 +775,11 @@ basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-
                                             COMPS #comps & < >,
                                             SPEC #spec,
                                             CLTS #clit & < > ] ],
-                                CONT.HOOK [ LTOP #ltop, XARG #xarg, INDEX #agr & [ PNG.PN #pernum, DEF #def, PRONTYPE #prontype ] ] ],
+                                CONT.HOOK [ LTOP #ltop, XARG #xarg, INDEX #agr & [ DEF #def, PRONTYPE #prontype ] ] ],
                         MODIFIED #hmodif ] ],
     NON-HEAD-DTR.SYNSEM [ LOCAL [ COORD -,
                                   CAT [ VAL [ SPEC < [ LOCAL [ CAT.VAL.COMPS #comps,
-                                                               CONT.HOOK [ INDEX [ PRONTYPE #prontype, DEF #def, PNG.PN #pernum ], LTOP #ltop, XARG #xarg ] ],
+                                                               CONT.HOOK [ INDEX [ PRONTYPE #prontype, DEF #def ], LTOP #ltop, XARG #xarg ] ],
                                                        MODIFIED #hmodif ] >,
                                               COMPS #spcomps ] ] ],
                           MODIFIED #modif ],
@@ -885,25 +885,20 @@ spec-head_target_phrase := spec-head_phrase &
 ; Supertype for mal head-specifier rules ("el cara", "la gato")
 """.
 
-
-
-spec-head-mal-m-f_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
-  [ SYNSEM.LOCAL [  AGR.PNG.GEN fem,
-                    CAT [ HEAD #head & 
+spec-head-mal_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
+  [ SYNSEM.LOCAL [  CAT [ HEAD #head & 
                               [ CASE #case, 
                                 KEYS #keys,
                                 LEARNER + ],
                          VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN fem,
-                              CAT [ HEAD #head &
+    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
                                          [ CASE #case, 
                                            KEYS #keys ],
                                     VAL [ SPR < #synsem . #spr >,
                                           COMPS < > ] ] ],
                       NON-LOCAL.REL 0-dlist ],
     NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ AGR.PNG.GEN masc,
-                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
+                        [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
                                         VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ]
 """
 ; for learner constructions where specifier is masculine and the noun feminine.
@@ -911,29 +906,33 @@ spec-head-mal-m-f_phrase := norm_spec-head-mal-phrase & binary-headed-phrase &
 """.
 
 
-spec-head-mal-f-m_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
-  [ SYNSEM.LOCAL [  AGR.PNG.GEN masc,
-                    CAT [ HEAD #head & 
-                              [ CASE #case, 
-                                KEYS #keys,
-                                LEARNER + ],
-                         VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN masc,
-                              CAT [ HEAD #head &
-                                         [ CASE #case, 
-                                           KEYS #keys ],
-                                    VAL [ SPR < #synsem . #spr >,
-                                          COMPS < > ] ] ],
-                      NON-LOCAL.REL 0-dlist ],
-    NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ AGR.PNG.GEN fem,
-                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
-                                        VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ]
+spec-head-mal-m-f_phrase := spec-head-mal_phrase & 
+  [ SYNSEM.LOCAL [  AGR.PNG [ GEN fem, PN #pn ] ],
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN fem ] ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN masc, PN #pn ] ] ] ]
 """
 ; for learner constructions where specifier is masculine and the noun feminine.
 ; 
 """.
 
+
+spec-head-mal-f-m_phrase := spec-head-mal_phrase & 
+  [ SYNSEM.LOCAL [  AGR.PNG [ GEN masc, PN #pn ] ],
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN masc ] ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN fem, PN #pn ] ] ] ]
+"""
+; for learner constructions where specifier is masculine and the noun feminine.
+; 
+""".
+
+spec-head-mal-s-pl_phrase := spec-head-mal_phrase & 
+  [ SYNSEM.LOCAL [  AGR.PNG [ GEN #gen, PN 3sg ] ],
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN #gen ] ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN #gen, PN 3pl ] ] ] ]
+"""
+; for learner constructions where specifier is masculine and the noun feminine.
+; 
+""".
 
 
 spec-head_hdrel_phrase := norm_spec-head-phrase & explt-binary-phrase &
@@ -5421,6 +5420,7 @@ hd-sp_constr := head-spec_phrase & binary-rule-right-to-left. ; ***
 sp-hd_constr := spec-head_target_phrase & binary-rule-left-to-right. ; ***
 sp-hd-mal-m-f_constr := spec-head-mal-m-f_phrase & binary-rule-left-to-right. ; ***
 sp-hd-mal-f-m_constr := spec-head-mal-f-m_phrase & binary-rule-left-to-right. ; ***
+spec-head-mal-s-pl_constr := spec-head-mal-s-pl_phrase & binary-rule-left-to-right. ; ***
 sp-hd_hdrel_constr := spec-head_hdrel_phrase & binary-rule-left-to-right. ; ***
 sp-hd_hddet_constr := spec-head_hddet_phrase & binary-rule-left-to-right. ; ***
 sp-hd_sprel_constr := spec-head_specrel_phrase & binary-rule-left-to-right. ; ***

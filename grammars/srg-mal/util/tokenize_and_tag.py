@@ -151,5 +151,7 @@ class Freeling_tok_tagger:
                     #print("Non-selected analysis: {}".format(a.get_tag()))
             # For POS which are subject to MAL rules, add an arc with the MAL tag:
             if a.get_tag() in MAL_TAGS:
-                additional_arcs.append(({'additional': True, 'tag': MAL_TAGS[a.get_tag()], 'prob': -1, 'lemma': a.get_lemma()}))
+                mal_tags = MAL_TAGS[a.get_tag()].split(',')
+                for mt in mal_tags:
+                    additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
         return tags, additional_arcs

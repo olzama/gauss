@@ -4934,12 +4934,10 @@ nonpronominal-lex := basic-nominal-lex &
     ARG-ST < #spr . #comps >  ].
 
 basic-noun-lex := nonpronominal-lex & 
-  [ SYNSEM [ LOCAL [ AGR [PNG [PN #pn ] ],
-                     CAT [ HEAD noun,
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
-                                             [ AGR [PNG [PN #pn ] ],
-                                                CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                             [ CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
                                                      VAL.SUBJ < > ] ],
                                        NON-LOCAL [ REL 0-dlist,
                                                    SLASH 0-dlist ] ] > ],
