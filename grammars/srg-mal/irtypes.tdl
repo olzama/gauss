@@ -660,9 +660,19 @@ n_sg_ilr :=  n_ilr & inflecting-lex-rule &
 n_sg_norm_ilr :=  n_sg_ilr &
   [ SYNSEM #synsem & 
            [ LOCAL [ AGR #ind,
-                     CAT.VAL.SPR #spr ] ],
+                     CAT [ ;HEAD.LEARNER -, 
+                           VAL.SPR #spr ] ] ],
     DTR.SYNSEM #synsem & 
                [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR #ind ] > ] ].
+
+n_sg-mal_ilr :=  n_sg_ilr &
+  [ SYNSEM #synsem & 
+           [ LOCAL [ AGR.PNG.PN 3sg,
+                     CAT [ ;HEAD.LEARNER +, 
+                           VAL.SPR #spr ] ] ],
+    DTR.SYNSEM #synsem & 
+               [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
+
 
 
 n_pl_ilr :=  n_ilr & inflecting-lex-rule &
@@ -695,11 +705,22 @@ n_pl_ilr :=  n_ilr & inflecting-lex-rule &
 
 n_pl_norm_ilr :=  n_pl_ilr & 
   [ SYNSEM.LOCAL [ AGR #agr,
-                     CAT [ VAL.SPR < [ LOCAL [ AGR #agr,
+                     CAT [ ;HEAD.LEARNER -, 
+                           VAL.SPR < [ LOCAL [ AGR #agr,
                                                CONT.HOOK.INDEX #agr ] ] > ],
                      CONT [ HOOK.INDEX #agr,
                             RELS.LIST.FIRST noun-relation & 
                                             [ ARG0 #agr ] ] ] ].
+
+n_pl-mal_ilr :=  n_pl_ilr & 
+  [ SYNSEM.LOCAL [ AGR.PNG.PN 3pl,
+                     CAT [ ;HEAD.LEARNER +, 
+                           VAL.SPR < [ LOCAL [ AGR #agr,
+                                               CONT.HOOK.INDEX.PNG.PN 3sg ] ] > ],
+                     CONT [ HOOK.INDEX #agr,
+                            RELS.LIST.FIRST noun-relation & 
+                                            [ ARG0 #agr ] ] ] ].
+
 
 
 n_masc_ilr :=  n_ilr & 
@@ -732,28 +753,28 @@ n_com_ilr :=  n_ilr &
 n_masc-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
 
-n_masc-sg-mal_ilr :=  n_sg_ilr & 
+n_masc-sg-mal_ilr :=  n_sg-mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].  
  
 n_masc-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
   
-n_masc-pl-mal_ilr :=  n_pl_ilr & 
+n_masc-pl-mal_ilr :=  n_pl-mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
   
 n_fem-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
   
-n_fem-sg-mal_ilr :=  n_sg_ilr & 
+n_fem-sg-mal_ilr :=  n_sg-mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
                    
 n_fem-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
-n_fem-pl-mal_ilr :=  n_pl_ilr & 
+n_fem-pl-mal_ilr :=  n_pl-mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
 

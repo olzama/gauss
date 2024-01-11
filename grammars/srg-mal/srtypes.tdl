@@ -859,19 +859,16 @@ head-spec_phrase := norm-basic-head-spec-phrase & binary-headed-phrase &
 spec-head_phrase := norm_spec-head-phrase & binary-headed-phrase & 
   [ SYNSEM.LOCAL [ CAT [ HEAD #head & 
                               [ CASE #case, 
-                                KEYS #keys,
-                                LEARNER - ],
+                                KEYS #keys ],
                          VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN #gen,
-                              CAT [ HEAD #head &
+    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
                                          [ CASE #case, 
                                            KEYS #keys ],
                                     VAL [ SPR < #synsem . #spr >,
                                           COMPS < > ] ] ],
                       NON-LOCAL.REL 0-dlist ],
     NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ AGR.PNG.GEN #gen,
-                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
+                        [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
                                         VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ],
                                   CONT.HOOK #hook ] ],
     C-CONT.HOOK #hook ]
@@ -880,7 +877,17 @@ spec-head_phrase := norm_spec-head-phrase & binary-headed-phrase &
 ; OZ: I think the hook is already identified in the basic phrase?
 """.
 
-spec-head-mal-m-f-phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
+spec-head_target_phrase := spec-head_phrase & 
+  [ SYNSEM.LOCAL.CAT.HEAD.LEARNER -, 
+    HEAD-DTR.SYNSEM.LOCAL.AGR.PNG #agr,
+    NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG #agr ]
+"""
+; Supertype for mal head-specifier rules ("el cara", "la gato")
+""".
+
+
+
+spec-head-mal-m-f_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
   [ SYNSEM.LOCAL [  AGR.PNG.GEN fem,
                     CAT [ HEAD #head & 
                               [ CASE #case, 
@@ -902,6 +909,31 @@ spec-head-mal-m-f-phrase := norm_spec-head-mal-phrase & binary-headed-phrase &
 ; for learner constructions where specifier is masculine and the noun feminine.
 ; 
 """.
+
+
+spec-head-mal-f-m_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
+  [ SYNSEM.LOCAL [  AGR.PNG.GEN masc,
+                    CAT [ HEAD #head & 
+                              [ CASE #case, 
+                                KEYS #keys,
+                                LEARNER + ],
+                         VAL.SPR #spr ] ],
+    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN masc,
+                              CAT [ HEAD #head &
+                                         [ CASE #case, 
+                                           KEYS #keys ],
+                                    VAL [ SPR < #synsem . #spr >,
+                                          COMPS < > ] ] ],
+                      NON-LOCAL.REL 0-dlist ],
+    NON-HEAD-DTR.SYNSEM #synsem & 
+                        [ LOCAL [ AGR.PNG.GEN fem,
+                                  CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
+                                        VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ]
+"""
+; for learner constructions where specifier is masculine and the noun feminine.
+; 
+""".
+
 
 
 spec-head_hdrel_phrase := norm_spec-head-phrase & explt-binary-phrase &
@@ -2390,6 +2422,36 @@ prdp_phrase := unary-phrase &
 """
 ; --- unary phrase type for predicative phrases
 ; The adjective is not required to be POSTHEAD + to deal with "manipular mejor", comparative adjectives are POSTHEAD -
+""".
+
+prdp-target_phrase := prdp_phrase & 
+  [ SYNSEM.LOCAL [ AGR.PNG #ind,
+                   CAT.HEAD [ LEARNER -,
+                              MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG #ind ] > ] ] ]
+                           
+"""
+; Agreement enforced between the adverbial modifier and the subject of the verb, for the cases where the adverb was made from an adjective ("Ellas hacen música juntos.")
+""".
+
+prdp-mal_phrase := prdp_phrase & 
+[ SYNSEM.LOCAL.CAT.HEAD.LEARNER + ]
+"""
+""".
+
+prdp-f-m-mal_phrase := prdp-mal_phrase & 
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
+                   CAT.HEAD.MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.GEN fem ] > ] ]
+                           
+"""
+; Agreement enforced between the adverbial modifier and the subject of the verb, for the cases where the adverb was made from an adjective ("Ellas hacen música juntos.")
+""".
+
+prdp-m-f-mal_phrase := prdp_phrase & 
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
+                   CAT.HEAD.MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.GEN masc ] > ] ]
+                           
+"""
+; Agreement enforced between the adverbial modifier and the subject of the verb, for the cases where the adverb was made from an adjective ("Ellas hacen música juntos.")
 """.
 
 
@@ -5324,7 +5386,9 @@ nbar-crd_constr := nbar-coord_phrase & rule.
 nbar-rel_constr := nbar-rel_phrase & rule.
 
 adjpart_constr := adjpart_phrase & rule.
-prdp_constr := prdp_phrase & rule.
+prdp_constr := prdp-target_phrase & rule.
+prdp-fm-mal_constr := prdp-f-m-mal_phrase & rule.
+prdp-mf-mal_constr := prdp-m-f-mal_phrase & rule.
 npadv_constr := npadv_phrase & rule.
 npadv_modn_constr := npadv_modn_phrase & rule.
 npadv_pp_constr := pp_npadv_phrase & rule.
@@ -5354,8 +5418,9 @@ hd-mrk_constr := head-marker_phrase & binary-rule-left-to-right.
 ;cmp-hd_constr := comp-head_phrase & binary-rule-right-to-left. 
 
 hd-sp_constr := head-spec_phrase & binary-rule-right-to-left. ; ***
-sp-hd_constr := spec-head_phrase & binary-rule-left-to-right. ; ***
-sp-hd-mal-m-f_constr := spec-head-mal-m-f-phrase & binary-rule-left-to-right. ; ***
+sp-hd_constr := spec-head_target_phrase & binary-rule-left-to-right. ; ***
+sp-hd-mal-m-f_constr := spec-head-mal-m-f_phrase & binary-rule-left-to-right. ; ***
+sp-hd-mal-f-m_constr := spec-head-mal-f-m_phrase & binary-rule-left-to-right. ; ***
 sp-hd_hdrel_constr := spec-head_hdrel_phrase & binary-rule-left-to-right. ; ***
 sp-hd_hddet_constr := spec-head_hddet_phrase & binary-rule-left-to-right. ; ***
 sp-hd_sprel_constr := spec-head_specrel_phrase & binary-rule-left-to-right. ; ***

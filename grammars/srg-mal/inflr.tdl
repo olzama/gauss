@@ -943,9 +943,17 @@ ncms000 :=
 %suffix (ncms000 ncms000)
 n_masc-sg_ilr. 
 
+ncms000-mal := 
+%suffix (ncms000-mal ncms000-mal)
+n_masc-sg-mal_ilr. 
+
 ncmp000 := 
 %suffix (ncmp000 ncmp000)
 n_masc-pl_ilr.
+
+ncmp000-mal := 
+%suffix (ncmp000-mal ncmp000-mal)
+n_masc-pl-mal_ilr.
 
 ncfs000 := 
 %suffix (ncfs000 ncfs000)
@@ -958,6 +966,10 @@ n_fem-sg-mal_ilr.
 ncfp000 := 
 %suffix (ncfp000 ncfp000)
 n_fem-pl_ilr.
+
+ncfp000-mal := 
+%suffix (ncfp000-mal ncfp000-mal)
+n_fem-pl-mal_ilr.
 
 ncfp00v := 
 %suffix (ncfp00v ncfp00v)
@@ -1026,11 +1038,20 @@ n_fem-pl_ilr.
 
 nccs000 := 
 %suffix (nccs000 nccs000)
-n_sg_ilr.
+n_sg_norm_ilr.
+
+nccs000-mal := 
+%suffix (nccs000-mal nccs000-mal)
+n_sg-mal_ilr.
 
 nccp000 := 
 %suffix (nccp000 nccp000)
-n_pl_ilr.
+n_pl_norm_ilr.
+
+nccp000-mal := 
+%suffix (nccp000-mal nccp000-mal)
+n_pl-mal_ilr.
+
 
 ncmn000 := 
 %suffix (ncmn000 ncmn000)
@@ -1260,6 +1281,7 @@ aq0fp00 :=
 a_fem-pl_ilr
 """; bonitas
 """.
+
 
 aq0cs00 := 
 %suffix (aq0cs00 aq0cs00)
