@@ -8,6 +8,12 @@
 ; --- 1. Phrase structure types
 
 ; --- Basic phrase types
+
+learner-phrase := phrase & 
+[ SYNSEM.LOCAL.CAT.HEAD.LEARNER + ].
+
+target-phrase := phrase & 
+[ SYNSEM.LOCAL.CAT.HEAD.LEARNER - ].
  
 basic-headed-phrase := phrase & 
   [ SYNSEM.LOCAL [ COORD #coord,
@@ -471,7 +477,7 @@ norm-basic-head-subj-phrase := basic-head-subj-phrase &
     NON-HEAD-DTR.SYNSEM #synsem ].
 
 
-subj-head-phrase := norm-basic-head-subj-phrase & head-final & 
+subj-head-phrase := norm-basic-head-subj-phrase & head-final & target-phrase & 
   [ SYNSEM.LOCAL.CAT [ POSTHEAD +,
                        VAL.COMPS < > ],
     HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD verb & 
@@ -482,11 +488,11 @@ subj-head-phrase := norm-basic-head-subj-phrase & head-final &
 ; In languages which do realize all COMPS before the SUBJ, head-subj-phrase should allow [COMPS olist]
 """.
 
-subj-head_nonque_phrase := subj-head-phrase &
+subj-head_nonque_phrase := subj-head-phrase & 
   [ HEAD-DTR.SYNSEM.NON-LOCAL.QUE 0-dlist,
     NON-HEAD-DTR.SYNSEM.NON-LOCAL.QUE 0-dlist ].
 
-head-subj_phrase := norm-basic-head-subj-phrase & head-initial & 
+head-subj_phrase := norm-basic-head-subj-phrase & head-initial & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT.HEAD verb & 
                                      [ VFORM fin,
                                        TAM.MOOD ind_or_sub_mood ],
@@ -498,7 +504,7 @@ head-subj_phrase := norm-basic-head-subj-phrase & head-initial &
 ; VSOP (admite una interpretación de foco amplio
 """.
 
-head-subj_rel_phrase := norm-basic-head-subj-phrase & head-initial & 
+head-subj_rel_phrase := norm-basic-head-subj-phrase & head-initial & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT.HEAD [ VFORM fin,
                                        VOICE active,
                                        TAM.MOOD ind_or_sub_mood ],
@@ -509,7 +515,7 @@ head-subj_rel_phrase := norm-basic-head-subj-phrase & head-initial &
 ; for inverted subjects in relative and interrogative clauses
 """.  
 
-head-subj_imperative_phrase := norm-basic-head-subj-phrase & head-initial & 
+head-subj_imperative_phrase := norm-basic-head-subj-phrase & head-initial & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT.HEAD [ VFORM fin,
                                        TAM.MOOD imp ],
                       NON-LOCAL [ SLASH 0-dlist,
@@ -519,7 +525,7 @@ head-subj_imperative_phrase := norm-basic-head-subj-phrase & head-initial &
 ; for inverted subjects in imperative (e.g. vengan ustedes)
 """.  
 
-head-subj_cpa_phrase := norm-basic-head-subj-phrase & head-initial & 
+head-subj_cpa_phrase := norm-basic-head-subj-phrase & head-initial & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & 
                                        [ AUX -,
 ;                                        INV +, 
@@ -534,7 +540,7 @@ head-subj_cpa_phrase := norm-basic-head-subj-phrase & head-initial &
 ; for inverted subjects in CPA constructions (e.g. muerto el perro, se acabó la rabia)
 """.  
 
-head-subj_vpinf_phrase := norm-basic-head-subj-phrase & head-initial & 
+head-subj_vpinf_phrase := norm-basic-head-subj-phrase & head-initial & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT.HEAD.VFORM inf,
                       NON-LOCAL [ QUE 0-dlist,
                                   SLASH 0-dlist ] ],
@@ -543,7 +549,7 @@ head-subj_vpinf_phrase := norm-basic-head-subj-phrase & head-initial &
 ; for inverted subjects in VPinf (e.g. empezó tras irrumpir los manifestantes)
 """.  
 
-head-subj_coord_phrase := basic-head-subj-phrase & head-initial & 
+head-subj_coord_phrase := basic-head-subj-phrase & head-initial & target-phrase &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < >,
     HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & [ TAM.MOOD ind_or_sub_mood ],
                                   VAL.SUBJ < [ LOCAL [ CAT #cat,
@@ -631,19 +637,19 @@ head-comp_second_phrase := basic-head-comp-or-marker-phrase & head-initial &
     C-CONT [ RELS <! !>,
              HCONS <! !> ] ].
 
-comp-head_phrase := basic-head-comp-phrase & head-final & 
+comp-head_phrase := basic-head-comp-phrase & head-final &  
   [ SYNSEM.LOCAL.STR.HEADING right_or_no,
     HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD verb & [ INV + ] ].
 
 head-comp-phrase := basic-head-comp-phrase & head-initial &
   [ SYNSEM.LOCAL.STR.HEADED left ].
 
-head-comp_x-xp_phrase := head-comp-phrase & 
+head-comp_x-xp_phrase := head-comp-phrase & target-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM.SLSHD #slshd,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC na ].
 
-head-comp_x-cl_phrase := head-comp-phrase & 
+head-comp_x-cl_phrase := head-comp-phrase & target-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM [ SLSHD #slshd,
                       LOCAL.CAT.MC na ],
@@ -652,7 +658,7 @@ head-comp_x-cl_phrase := head-comp-phrase &
                                 CONT.HOOK.INDEX event &
                                                 [ SF prop-or-ques ] ] ].
 
-head-comp_v-cl_phrase := head-comp-phrase & 
+head-comp_v-cl_phrase := head-comp-phrase & target-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM [ SLSHD #slshd,
                       LOCAL.CAT [ MC bool,
@@ -663,7 +669,7 @@ head-comp_v-cl_phrase := head-comp-phrase &
                                                   [ SF prop-or-ques ] ],
                           NON-LOCAL.SLASH 0-dlist ] ].
 
-head-comp_v-cl-slash_phrase := head-comp-phrase & 
+head-comp_v-cl-slash_phrase := head-comp-phrase & target-phrase &
   [ SYNSEM.SLSHD +, 
     HEAD-DTR.SYNSEM.LOCAL.CAT [ MC bool,
                                 HEAD +vpc & 
@@ -706,15 +712,15 @@ clit-head_phrase_basic := head-valence-phrase & head-compositional & head-final 
     C-CONT [ RELS <! !>,
              HCONS <! !> ] ].
 
-clit-head_phrase := clit-head_phrase_basic & 
+clit-head_phrase := clit-head_phrase_basic & target-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 
-clit-head_phrase_cl := clit-head_phrase_basic & 
+clit-head_phrase_cl := clit-head_phrase_basic & target-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < > ].
 
 ; --- head-spec-phrase types
 
-basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & 
+basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & target-phrase & 
   [ INFLECTED +,
     SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD -,
@@ -752,7 +758,7 @@ basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phra
 ; where NUMBER is not checked in 'ad sensum agreement'
 """.
 
-basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & 
+basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & learner-phrase & 
   [ INFLECTED +,
     SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD -,
@@ -888,8 +894,7 @@ spec-head_target_phrase := spec-head_phrase &
 spec-head-mal_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
   [ SYNSEM.LOCAL [  CAT [ HEAD #head & 
                               [ CASE #case, 
-                                KEYS #keys,
-                                LEARNER + ],
+                                KEYS #keys ],
                          VAL.SPR #spr ] ],
     HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
                                          [ CASE #case, 
@@ -1099,7 +1104,7 @@ adj-head_scop_phrase := adj-head-phrase & scopal-mod-phrase &
 ; scopal adjunct + head
 """.
                                     
-adj-head_int-xp-xp_phrase :=  adj-head-phrase & isect-mod-phrase &
+adj-head_int-xp-xp_phrase :=  adj-head-phrase & isect-mod-phrase & target-phrase & 
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD +jrp,
                                   VAL.COMPS < > ],
                       NON-LOCAL.REL 0-dlist ],
@@ -1108,7 +1113,7 @@ adj-head_int-xp-xp_phrase :=  adj-head-phrase & isect-mod-phrase &
 ; intersective adjunct + head
 """.
 
-adj-head_int-xp-n_phrase :=  adj-head-phrase & isect-mod-phrase &
+adj-head_int-xp-n_phrase :=  adj-head-phrase & isect-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT.VAL.SPR #spr,
     HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD noun,
                                   VAL [ COMPS < >,
@@ -1118,38 +1123,38 @@ adj-head_int-xp-n_phrase :=  adj-head-phrase & isect-mod-phrase &
                                       REL 0-dlist & [ LIST < > ] ] ],
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.POSTHEAD - ].
 
-adj-head_int-adv-s_phrase := adj-head-phrase & isect-mod-phrase &
+adj-head_int-adv-s_phrase := adj-head-phrase & isect-mod-phrase & target-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD verb,
                                 VAL.COMPS < > ],
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD adv & [ KEYS.KEY adv_rel ],
                                     POSTHEAD - ] ].
 
-adj-head_int-vp-vp_phrase := adj-head-phrase & isect-mod-phrase &
+adj-head_int-vp-vp_phrase := adj-head-phrase & isect-mod-phrase & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & [ VFORM fin ],
                                   VAL.COMPS < > ] ],
 ;                      NON-LOCAL.SLASH <! [ ] !> ], 
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD verb & [ VFORM ger ] ].
 
-adj-head_int-adv-vp_phrase := adj-head-phrase & isect-mod-phrase &
+adj-head_int-adv-vp_phrase := adj-head-phrase & isect-mod-phrase & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb,
                                   VAL.COMPS < > ] ],
 ;                     NON-LOCAL.SLASH <! [ ] !> ], 
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD adv & [ KEYS.KEY adv_rel ],
                                     POSTHEAD + ] ].
 
-adj-head_int-modnp-vp_phrase := adj-head-phrase & isect-mod-phrase &
+adj-head_int-modnp-vp_phrase := adj-head-phrase & isect-mod-phrase & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb,
                                   VAL.COMPS < > ] ],
 ;                     NON-LOCAL.SLASH <! [ ] !> ],
     NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD modnp & [ KEYS.KEY prep_mod_rel ] ] ].
 
-adj-head_int-pp-vp_phrase := adj-head-phrase & isect-mod-phrase &
+adj-head_int-pp-vp_phrase := adj-head-phrase & isect-mod-phrase & target-phrase &
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT [ HEAD verb & [ VFORM fin ],
                                   VAL [ COMPS < > ] ] ],
 ;                     NON-LOCAL.SLASH <! [ ] !> ], 
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD adp & [ KEYS.ALT2KEY non_free_relative_q_rel ] ].
 
-head-adj_scop-xp-cl_phrase := head-adj-phrase & scopal-mod-phrase & 
+head-adj_scop-xp-cl_phrase := head-adj-phrase & scopal-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
                        VAL.SPR #spr ],
     HEAD-DTR.SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
@@ -1164,7 +1169,7 @@ head-adj_scop-xp-cl_phrase := head-adj-phrase & scopal-mod-phrase &
 ; head + scopal adjunct
 """.
 
-head-adj_scop-xp-xp_phrase := head-adj-phrase & scopal-mod-phrase & 
+head-adj_scop-xp-xp_phrase := head-adj-phrase & scopal-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
                        VAL.SPR #spr ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod-or-rmod,
@@ -1177,7 +1182,7 @@ head-adj_scop-xp-xp_phrase := head-adj-phrase & scopal-mod-phrase &
                           NON-LOCAL [ SLASH 0-dlist,
                                       REL 0-dlist ] ] ].
 
-head-adj_int-ap-xp_phrase := head-adj-phrase & isect-mod-phrase &
+head-adj_int-ap-xp_phrase := head-adj-phrase & isect-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
                        VAL.SPR #spr ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod-or-rmod,
@@ -1191,7 +1196,7 @@ head-adj_int-ap-xp_phrase := head-adj-phrase & isect-mod-phrase &
 ; head + intersective adjunct
 """.
 
-head-adj_int-pp-xp_phrase := head-adj-phrase & isect-mod-phrase &
+head-adj_int-pp-xp_phrase := head-adj-phrase & isect-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
                        VAL.SPR #spr ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod-or-rmod,
@@ -1213,7 +1218,7 @@ head-adj-int-v-xp-phrase := head-adj-phrase & isect-mod-phrase &
 ; verbal head + intersective adjuncts
 """.
 
-head-adj_int-s-xp_phrase := head-adj-int-v-xp-phrase &
+head-adj_int-s-xp_phrase := head-adj-int-v-xp-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT.POSTHEAD #ph,
     HEAD-DTR.SYNSEM [ PUNCT.RPUNCT comma_punct,
                       LOCAL.CAT [ POSTHEAD #ph, 
@@ -1224,7 +1229,7 @@ head-adj_int-s-xp_phrase := head-adj-int-v-xp-phrase &
 ; también le pidió un papel, como Harrison Ford
 """.
 
-head-adj_int-v-pp_phrase := head-adj-int-v-xp-phrase &
+head-adj_int-v-pp_phrase := head-adj-int-v-xp-phrase & 
   [ HEAD-DTR.SYNSEM [ LOCAL.CAT.POSTHEAD -,
                       MODIFIED notmod-or-rmod ],
     NON-HEAD-DTR.SYNSEM.LOCAl.CAT.HEAD adp ].
@@ -1255,7 +1260,7 @@ head-adj_int-v-frel_phrase := head-adj-int-v-xp-phrase &
 ; for free RC, which can't be separated from the head-dtr with a comma
 """.
 
-head-adj-int-n-xp-phrase := head-adj-phrase & isect-mod-phrase &
+head-adj-int-n-xp-phrase := head-adj-phrase & isect-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph, 
                        LASTNMOD - ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod-or-rmod,
@@ -1360,7 +1365,7 @@ head-adj_int-pr-xp_phrase := head-adj-int-n-xp-phrase &
 ; pronouns
 """.
 
-head-adj-int-n-rc-phrase := head-adj-phrase & isect-mod-phrase &
+head-adj-int-n-rc-phrase := head-adj-phrase & isect-mod-phrase & target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph,
                        LASTNMOD + ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod-or-rmod,
@@ -1398,7 +1403,7 @@ head-adj_int-pr-rc_phrase := head-adj-int-n-rc-phrase &
                             CONT.HOOK.INDEX.PRONTYPE real_pron ] ].
 
 
-head-adj-int-n-rcpp-phrase := head-mod-phrase & head-initial & head-compositional & phrasal &
+head-adj-int-n-rcpp-phrase := head-mod-phrase & head-initial & head-compositional & phrasal & target-phrase &
   [ SYNSEM [ MODIFIED rmod & [ PERIPH #periph ],
              LOCAL.CAT [ LASTNMOD +, 
                          MC #mc, 
@@ -1443,7 +1448,7 @@ head-adj_int-pr-rcpp_phrase := head-adj-int-n-rcpp-phrase &
     HEAD-DTR.SYNSEM.LOCAL [ CAT.VAL.SPR #spr,
                             CONT.HOOK.INDEX.PRONTYPE real_pron ] ].
 
-head-adj_int-n-rcnr_phrase := non_str-head-adj-phrase & isect-mod-phrase & 
+head-adj_int-n-rcnr_phrase := non_str-head-adj-phrase & isect-mod-phrase &  target-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph,
                        LASTNMOD +,
                        VAL.SPR #spr ],
@@ -1504,7 +1509,7 @@ basic-appos-phrase := head-nexus-phrase & head-compositional & basic-binary-phra
                        ARG1 #hind,
                        ARG2 #modind ] !> ] ].
 
-head-adj_int-bracket-appos_phrase := basic-appos-phrase &
+head-adj_int-bracket-appos_phrase := basic-appos-phrase & 
   [ HEAD-DTR.SYNSEM [ PUNCT.RPUNCT no_punct,
                       NON-LOCAL [ SLASH 0-dlist,
                                   QUE 0-dlist,
@@ -2423,17 +2428,15 @@ prdp_phrase := unary-phrase &
 ; The adjective is not required to be POSTHEAD + to deal with "manipular mejor", comparative adjectives are POSTHEAD -
 """.
 
-prdp-target_phrase := prdp_phrase & 
+prdp-target_phrase := prdp_phrase & target-phrase &  
   [ SYNSEM.LOCAL [ AGR.PNG #ind,
-                   CAT.HEAD [ LEARNER -,
-                              MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG #ind ] > ] ] ]
+                   CAT.HEAD [ MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG #ind ] > ] ] ]
                            
 """
 ; Agreement enforced between the adverbial modifier and the subject of the verb, for the cases where the adverb was made from an adjective ("Ellas hacen música juntos.")
 """.
 
-prdp-mal_phrase := prdp_phrase & 
-[ SYNSEM.LOCAL.CAT.HEAD.LEARNER + ]
+prdp-mal_phrase := prdp_phrase & learner-phrase 
 """
 """.
 
@@ -2736,12 +2739,12 @@ filler-head-phrase := basic-filler-phrase &
     ARGS < [ INFLECTED + ],
            [ SYNSEM.LOCAL.CAT.VAL.SUBJ #subj ] >  ].
 
-filler-head-phrase-fin := binary-phrase & phrasal &
+filler-head-phrase-fin := binary-phrase & phrasal & 
   [ ARGS < [ INFLECTED + ],
            [ SYNSEM.LOCAL.CAT [ HEAD.TAM.MOOD ind_or_sub_mood,
                                 VAL.SUBJ < > ] ] > ].
 
-filler-head-phrase-inf := binary-phrase & phrasal &
+filler-head-phrase-inf := binary-phrase & phrasal & 
   [ ARGS < [ INFLECTED + ],
            [ SYNSEM.LOCAL.CAT [ HEAD.VFORM inf,
                                 VAL.SUBJ < [ OPT +,
@@ -2761,7 +2764,7 @@ filler-head-phrase-nonfin := binary-phrase & phrasal &
                                                                   
 ; --- filler-head phrase types for wh
 
-filler-head-wh-phrase := filler-head-phrase & basic-headed-phrase &
+filler-head-wh-phrase := filler-head-phrase & basic-headed-phrase &  
   [ ARGS < [ ],
            [ SYNSEM.LOCAL.CAT.HEAD [ KEYS [ ALTKEY ques,
                                             ALT2KEY ques ],
@@ -2796,13 +2799,13 @@ wh-int-clause := interrogative-clause & basic-binary-phrase &
                  [ SYNSEM.NON-LOCAL.QUE 1-dlist ],
     ARGS < #non-head-dtr, #head-dtr > ].
 
-filler-head_wh-fin_phrase := filler-head-wh-phrase & wh-int-clause &
+filler-head_wh-fin_phrase := filler-head-wh-phrase & wh-int-clause & 
   [ ARGS < [ INFLECTED + ],
            [ SYNSEM.LOCAL.CAT [ HEAD [ VFORM fin,
                                        TAM.MOOD ind_or_sub_mood ],
                                 VAL.SUBJ < > ] ] > ].
 
-filler-head_wh-inf_phrase := filler-head-wh-phrase & wh-int-clause &
+filler-head_wh-inf_phrase := filler-head-wh-phrase & wh-int-clause & 
   [ ARGS < [ INFLECTED + ],
            [ SYNSEM.LOCAL.CAT [ HEAD.VFORM inf,
                                 VAL.SUBJ < [ OPT +,
@@ -2930,7 +2933,7 @@ filler-head-non_wh-phrase := filler-head-phrase & mc-fillhead-phrase & non-rel-c
 ; !!! not covered
 """. 
   
-filler-head-non_wh_focus-phrase := filler-head-non_wh-phrase & 
+filler-head-non_wh_focus-phrase := filler-head-non_wh-phrase &  
   [ C-CONT.RELS <! [ PRED focus_d_rel ] !> ]. 
 
 filler-head_nonwh_phrase := filler-head-non_wh_focus-phrase & filler-head-phrase-fin & 
@@ -2943,7 +2946,7 @@ filler-head_nonwh-nfin_phrase := filler-head-non_wh_focus-phrase & filler-head-p
            [ SYNSEM.SLSHD + ] > ].
 
 
-;filler-head_nonwh-fin-sbj-topic_phrase := filler-head-non_wh_focus-phrase & filler-head-phrase-fin & 
+;filler-head_nonwh-fin-sbj-topic_phrase := filler-head-non_wh_focus-phrase & filler-head-phrase-fin &
 ;  [ ARGS < [ SYNSEM.LOCAL.CAT.HEAD noun & [ CASE nom ] ],
 ;           [ SYNSEM.LOCAL [ STR.HEADED not_left,
 ;                            CAT [ HEAD [ VFORM fin, INV - ],

@@ -981,9 +981,9 @@ ncfp000 :=
 %suffix (ncfp000 ncfp000)
 n_fem-pl_ilr.
 
-ncfp000-mal := 
-%suffix (ncfp000-mal ncfp000-mal)
-n_fem-pl-mal_ilr.
+ncfp000-mg := 
+%suffix (ncfp000-mg ncfp000-mg)
+n_fem-pl-mal-gen_ilr.
 
 ncfp00v := 
 %suffix (ncfp00v ncfp00v)

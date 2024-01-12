@@ -783,8 +783,8 @@ n_masc-pl_ilr :=  n_pl_norm_ilr &
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
   
 n_masc-pl-mal-gen_ilr :=  n_pl-mal-gen_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
+  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].
   
 n_fem-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
@@ -799,7 +799,7 @@ n_fem-sg-mal-num_ilr :=  n_sg-mal-num_ilr &
 n_fem-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
-n_fem-pl-mal_ilr :=  n_pl-mal-gen_ilr & 
+n_fem-pl-mal-gen_ilr :=  n_pl-mal-gen_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
 
