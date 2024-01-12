@@ -22,11 +22,17 @@ basic-headed-phrase := phrase &
     HEAD-DTR.SYNSEM.LOCAL local & [ COORD #coord & -,
                                     COORD-STRAT #coord-strat ] ].
 
+;headed-phrase := basic-headed-phrase & 
+;  [ SYNSEM.LOCAL [ AGR #agr,
+;                   CAT.HEAD #head ],
+;    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
+;                            CONT.HOOK.INDEX #agr ] ].
+
+
 headed-phrase := basic-headed-phrase & 
-  [ SYNSEM.LOCAL [ AGR #agr,
-                   CAT.HEAD #head ],
-    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
-                            CONT.HOOK.INDEX #agr ] ].
+  [ SYNSEM.LOCAL [ CAT.HEAD #head ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head ] ].
+
 
 punc-headed-phrase := basic-headed-phrase & 
   [ SYNSEM.LOCAL [ CAT.HEAD #head ],
@@ -156,7 +162,18 @@ binary-phrase := basic-binary-phrase &
 
 basic-binary-headed-phrase := headed-phrase & basic-binary-phrase.
 
-binary-headed-phrase := basic-binary-headed-phrase & binary-phrase.
+
+;headed-phrase := basic-headed-phrase & 
+;  [ SYNSEM.LOCAL [ AGR #agr,
+;                   CAT.HEAD #head ],
+;    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
+;                            CONT.HOOK.INDEX #agr ] ].
+
+binary-headed-phrase := basic-binary-headed-phrase & binary-phrase & 
+[ SYNSEM.LOCAL.AGR #agr,
+  HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX #agr ].
+
+binary-headed-mal-phrase := basic-binary-headed-phrase & binary-phrase.
 
 basic-ternary-phrase := phrase &
   [ SYNSEM.LOCAL.CONT [ RELS [ LIST #first,
@@ -644,12 +661,12 @@ comp-head_phrase := basic-head-comp-phrase & head-final &
 head-comp-phrase := basic-head-comp-phrase & head-initial &
   [ SYNSEM.LOCAL.STR.HEADED left ].
 
-head-comp_x-xp_phrase := head-comp-phrase & target-phrase &
+head-comp_x-xp_phrase := head-comp-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM.SLSHD #slshd,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC na ].
 
-head-comp_x-cl_phrase := head-comp-phrase & target-phrase &
+head-comp_x-cl_phrase := head-comp-phrase &
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM [ SLSHD #slshd,
                       LOCAL.CAT.MC na ],
@@ -658,7 +675,7 @@ head-comp_x-cl_phrase := head-comp-phrase & target-phrase &
                                 CONT.HOOK.INDEX event &
                                                 [ SF prop-or-ques ] ] ].
 
-head-comp_v-cl_phrase := head-comp-phrase & target-phrase &
+head-comp_v-cl_phrase := head-comp-phrase & 
   [ SYNSEM.SLSHD #slshd,
     HEAD-DTR.SYNSEM [ SLSHD #slshd,
                       LOCAL.CAT [ MC bool,
@@ -669,7 +686,7 @@ head-comp_v-cl_phrase := head-comp-phrase & target-phrase &
                                                   [ SF prop-or-ques ] ],
                           NON-LOCAL.SLASH 0-dlist ] ].
 
-head-comp_v-cl-slash_phrase := head-comp-phrase & target-phrase &
+head-comp_v-cl-slash_phrase := head-comp-phrase & 
   [ SYNSEM.SLSHD +, 
     HEAD-DTR.SYNSEM.LOCAL.CAT [ MC bool,
                                 HEAD +vpc & 
@@ -720,45 +737,7 @@ clit-head_phrase_cl := clit-head_phrase_basic & target-phrase &
 
 ; --- head-spec-phrase types
 
-basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & target-phrase & 
-  [ INFLECTED +,
-    SYNSEM [ SLSHD #slshd,
-             LOCAL [ COORD -,
-                     COORD-STRAT #coord-strat,
-                     AGR #agr,
-                     CAT [ MC #mc,
-                           POSTHEAD #hdph,
-                           VAL [ SUBJ #subj,
-                                 COMPS #spcomps,
-                                 SPEC #spec,
-                                 CLTS #clit ] ] ],
-             MODIFIED #modif ],
-    HEAD-DTR [ INFLECTED +,
-               SYNSEM [ SLSHD #slshd,
-                        LOCAL [ COORD -,
-                                COORD-STRAT #coord-strat,
-                                CAT [ MC #mc,
-                                      POSTHEAD #hdph,
-                                      VAL [ SUBJ #subj,
-                                            COMPS #comps & < >,
-                                            SPEC #spec,
-                                            CLTS #clit & < > ] ],
-                                CONT.HOOK #hdhook & [ INDEX #agr ] ],
-                        MODIFIED #hmodif ] ],
-    NON-HEAD-DTR.SYNSEM [ LOCAL [ COORD -,
-                                  CAT [ VAL [ SPEC < [ LOCAL [ CAT.VAL.COMPS #comps,
-                                                               CONT.HOOK #hdhook ],
-                                                       MODIFIED #hmodif ] >,
-                                              COMPS #spcomps ] ] ],
-                          MODIFIED #modif ],
-    C-CONT [ RELS  <! !>,
-             HCONS <! !> ] ]
-"""
-; agreement features are percolated from HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX 
-; where NUMBER is not checked in 'ad sensum agreement'
-""".
-
-basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & learner-phrase & 
+basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phrase & 
   [ INFLECTED +,
     SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD -,
@@ -795,6 +774,9 @@ basic-head-spec-mal-phrase := head-valence-phrase & phrasal & very-basic-binary-
 ; The gender is underspecified here, to be later specified with a number of mal-rules.
 """.
 
+
+
+
 norm-basic-head-spec-phrase := basic-head-spec-phrase & 
   [ SYNSEM.LOCAL.CAT.HEAD [ MOD #mod,
                             PRD #prd,
@@ -807,28 +789,8 @@ norm-basic-head-spec-phrase := basic-head-spec-phrase &
                                 VAL.SPR < #synsem > ],
     NON-HEAD-DTR.SYNSEM #synsem ].
     
-norm-basic-head-spec-mal-phrase := basic-head-spec-mal-phrase & 
-  [ SYNSEM.LOCAL.CAT.HEAD [ MOD #mod,
-                            PRD #prd,
-                            TAM #tam,
-                            KEYS.KEY #key ],
-    HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ MOD #mod,
-                                       PRD #prd,
-                                       TAM #tam,
-                                       KEYS.KEY #key ],
-                                VAL.SPR < #synsem > ],
-    NON-HEAD-DTR.SYNSEM #synsem ].
-
 
 norm_spec-head-phrase := norm-basic-head-spec-phrase & 
-  [ SYNSEM.LOCAL.STR.HEADED right,
-    NON-HEAD-DTR #non-head-dtr &
-                 [ SYNSEM [ PUNCT.RPUNCT no_punct,
-                            LOCAL.CAT.POSTHEAD - ] ],
-    HEAD-DTR #head-dtr & [ SYNSEM.LOCAL.STR.HEADING right ],
-    ARGS < #non-head-dtr, #head-dtr > ].
-
-norm_spec-head-mal-phrase := norm-basic-head-spec-mal-phrase & 
   [ SYNSEM.LOCAL.STR.HEADED right,
     NON-HEAD-DTR #non-head-dtr &
                  [ SYNSEM [ PUNCT.RPUNCT no_punct,
@@ -847,52 +809,123 @@ head-spec_phrase := norm-basic-head-spec-phrase & binary-headed-phrase &
                  [ SYNSEM #synsem & 
                           [ LOCAL [ CAT [ POSTHEAD +,
                                           HEAD det,
-                                          VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ],
-                                    CONT.HOOK #hook ] ] ],
+                                          VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ],
     HEAD-DTR #head-dtr & 
              [ SYNSEM [ LOCAL [ STR.HEADING left, 
                                 CAT [ HEAD noun & [ KEYS #keys ],
                                       VAL [ SPR < #synsem . #spr >,
                                             COMPS < > ] ] ],
                         NON-LOCAL.REL 0-dlist ] ],
-    ARGS < #head-dtr, #non-head-dtr >,
-    C-CONT.HOOK #hook ]
+    ARGS < #head-dtr, #non-head-dtr > ]
 """
 ; for specifiers following nouns
 """.
 
 
-spec-head_phrase := norm_spec-head-phrase & binary-headed-phrase & 
-  [ SYNSEM.LOCAL [ CAT [ HEAD #head & 
-                              [ CASE #case, 
-                                KEYS #keys ],
-                         VAL.SPR #spr ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD #head &
-                                         [ CASE #case, 
-                                           KEYS #keys ],
-                                    VAL [ SPR < #synsem . #spr >,
-                                          COMPS < > ] ] ],
-                      NON-LOCAL.REL 0-dlist ],
-    NON-HEAD-DTR.SYNSEM #synsem & 
-                        [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
-                                        VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ],
-                                  CONT.HOOK #hook ] ],
+nonhd-hook-phrase := binary-headed-phrase &
+[ NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook,
     C-CONT.HOOK #hook ]
 """
-; for specifiers of nouns
-; OZ: I think the hook is already identified in the basic phrase?
+In the original grammar, the agreement is facilitated with the hook and the hook can be identified with the nonhead daughter's.
 """.
-
-spec-head_target_phrase := spec-head_phrase & 
-  [ SYNSEM.LOCAL.CAT.HEAD.LEARNER -, 
-    HEAD-DTR.SYNSEM.LOCAL.AGR.PNG #agr,
-    NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG #agr ]
+        
+target-sphd-phrase := nonhd-hook-phrase & 
+[ SYNSEM.LOCAL.AGR #agr,
+  HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
+                          CONT.HOOK #hdhook & [ INDEX #agr ] ],
+  NON-HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
+                                CAT.VAL.SPEC < [LOCAL.CONT.HOOK #hdhook ] > ] ]
 """
-; Supertype for mal head-specifier rules ("el cara", "la gato")
+Target (non-learner) agreement usage: the specifier's gender and number are the same as the head daughter's.
 """.
 
-spec-head-mal_phrase := norm_spec-head-mal-phrase & binary-headed-phrase & 
-  [ SYNSEM.LOCAL [  CAT [ HEAD #head & 
+
+learner-sphd-phrase := binary-headed-mal-phrase & 
+[ SYNSEM.LOCAL.AGR #agr,
+  HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
+                          CONT.HOOK #hdhook ],
+  NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.VAL.SPEC < [LOCAL.CONT.HOOK #hdhook ] > ],
+  C-CONT.HOOK #hdhook ]
+"""
+Target (non-learner) agreement usage: the specifier's gender and number are the same as the head daughter's.
+""".
+
+
+;learner-sphd-phrase := head-compositional & 
+;[ SYNSEM.LOCAL.AGR #agr,
+;  HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
+;                          CONT.HOOK.INDEX #agr ] ]
+;"""
+;Target (non-learner) agreement usage: the specifier's gender and number are the same as the head daughter's.
+;""".
+
+
+;;; Agreement mismatch types
+
+fm-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN #pn, GEN masc ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN #pn, GEN fem ] ]
+"""
+Agreement mismatch: feminine noun, masculine determiner, same number.
+""".
+
+mf-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN #pn, GEN fem ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN #pn, GEN masc ] ]
+"""
+Agreement mismatch: masculine noun, feminine determiner, same number.
+""".
+
+spl-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3pl, GEN #gen ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3sg, GEN #gen ] ]
+"""
+Agreement mismatch: same gender plural noun, singular determiner.
+""".
+
+pls-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3sg, GEN #gen ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3pl, GEN #gen ] ]
+"""
+Agreement mismatch: same gender, singular noun, plural determiner.
+""".
+
+fmspl-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3pl, GEN masc ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3sg, GEN fem ] ]
+"""
+Agreement mismatch: plural masculine noun, singular feminine determiner.
+""".
+
+fmpls-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3sg, GEN masc ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3pl, GEN fem ] ]
+"""
+Agreement mismatch: singular masculine noun, plural feminine determiner.
+""".
+
+mfspl-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3pl, GEN fem ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3sg, GEN masc ] ]
+"""
+Agreement mismatch: plural feminine noun, singular masculine determiner.
+""".
+
+mfpls-agr-phrase := learner-sphd-phrase & 
+[ HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [ PN 3sg, GEN fem ],
+  NON-HEAD-DTR.SYNSEM.LOCAL.AGR.PNG [PN 3pl, GEN masc ] ]
+"""
+Agreement mismatch: singular feminine noun, plural masculine determiner.
+""".
+
+head-spec-target_phrase := norm-basic-head-spec-phrase & target-phrase & target-sphd-phrase
+"""
+; for specifiers following nouns with agreement features percolated via the specifier hook, as in the original grammar.
+""".
+
+
+spec-head_phrase := norm_spec-head-phrase & binary-headed-mal-phrase & 
+  [ SYNSEM.LOCAL [ CAT [ HEAD #head & 
                               [ CASE #case, 
                                 KEYS #keys ],
                          VAL.SPR #spr ] ],
@@ -906,34 +939,28 @@ spec-head-mal_phrase := norm_spec-head-mal-phrase & binary-headed-phrase &
                         [ LOCAL [ CAT [ HEAD det & [ KEYS.KEY quant_or_wh_rel ],
                                         VAL.SPEC < [ LOCAL.CAT.HEAD #head ] > ] ] ] ]
 """
-; for learner constructions where specifier is masculine and the noun feminine.
-; 
+; for specifiers preceding nouns
 """.
 
+spec-head-target_phrase := spec-head_phrase & target-sphd-phrase & target-phrase
+"""
+; for specifiers preceding nouns
+""".
 
-spec-head-mal-m-f_phrase := spec-head-mal_phrase & 
-  [ SYNSEM.LOCAL [  AGR.PNG [ GEN fem, PN #pn ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN fem ] ],
-    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN masc, PN #pn ] ] ] ]
+spec-head-mal-m-f_phrase := spec-head_phrase & mf-agr-phrase & learner-phrase 
 """
 ; for learner constructions where specifier is masculine and the noun feminine.
 ; 
 """.
 
 
-spec-head-mal-f-m_phrase := spec-head-mal_phrase & 
-  [ SYNSEM.LOCAL [  AGR.PNG [ GEN masc, PN #pn ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN masc ] ],
-    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN fem, PN #pn ] ] ] ]
+spec-head-mal-f-m_phrase := spec-head_phrase & fm-agr-phrase & learner-phrase
 """
 ; for learner constructions where specifier is masculine and the noun feminine.
 ; 
 """.
 
-spec-head-mal-s-pl_phrase := spec-head-mal_phrase & 
-  [ SYNSEM.LOCAL [  AGR.PNG [ GEN #gen, PN 3sg ] ],
-    HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG.GEN #gen ] ],
-    NON-HEAD-DTR.SYNSEM [ LOCAL [ AGR.PNG [ GEN #gen, PN 3pl ] ] ] ]
+spec-head-mal-s-pl_phrase := spec-head_phrase & spl-agr-phrase & learner-phrase 
 """
 ; for learner constructions where specifier is masculine and the noun feminine.
 ; 
@@ -5420,7 +5447,7 @@ hd-mrk_constr := head-marker_phrase & binary-rule-left-to-right.
 ;cmp-hd_constr := comp-head_phrase & binary-rule-right-to-left. 
 
 hd-sp_constr := head-spec_phrase & binary-rule-right-to-left. ; ***
-sp-hd_constr := spec-head_target_phrase & binary-rule-left-to-right. ; ***
+sp-hd_constr := spec-head-target_phrase & binary-rule-left-to-right. ; ***
 sp-hd-mal-m-f_constr := spec-head-mal-m-f_phrase & binary-rule-left-to-right. ; ***
 sp-hd-mal-f-m_constr := spec-head-mal-f-m_phrase & binary-rule-left-to-right. ; ***
 spec-head-mal-s-pl_constr := spec-head-mal-s-pl_phrase & binary-rule-left-to-right. ; ***
