@@ -1,5 +1,5 @@
 import sys
-from delphin import itsdb
+from delphin import itsdb, derivation
 import glob
 
 
@@ -20,10 +20,11 @@ def report_stats(treebanks_path):
             # In a thinned parsed forest, results will be empty if the item was not accepted as correct in treebanking.
             if len(response['results']) > 0:
                 # try looking at response['results'][0] to see which phrase structure rules were used
-                # r0 = response['results'][0]
+                r0 = response['results'][0]
+                # A derivation is a tree that consists of nodes. Nodes can be phrase structure rules or lexical rules or "terminals" (words).
+                deriv = response.result(0).derivation() # Exercise: Try to find in the pydelphin docs how to get a flat list of the derivation nodes.
                 accepted.append(response['i-input'])
                 all_accepted.append(response['i-input'])
-                #deriv = response.result(0).derivation()
             else:
                 #print('Rejected: {}'.format(response['i-input']))
                 rejected.append(response['i-input'])
