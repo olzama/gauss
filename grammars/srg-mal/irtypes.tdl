@@ -657,32 +657,6 @@ n_sg_ilr :=  n_ilr & inflecting-lex-rule &
                  LKEYS.KEYREL [ LBL #ltop,
                                 ARG0 #index ] ] ].
 
-n_sg_norm_ilr :=  n_sg_ilr &
-  [ SYNSEM #synsem & 
-           [ LOCAL [ AGR #ind,
-                     CAT [ HEAD.LEARNER -, 
-                           VAL.SPR #spr ] ] ],
-    DTR.SYNSEM #synsem & 
-               [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR #ind ] > ] ].
-
-n_sg-mal-gen_ilr :=  n_sg_ilr &
-  [ SYNSEM #synsem & 
-           [ LOCAL [ AGR.PNG.PN #pn,
-                     CAT [ HEAD.LEARNER +, 
-                           VAL.SPR #spr ] ] ],
-    DTR.SYNSEM #synsem & 
-               [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR.PNG.PN #pn ] > ] ].
-
-n_sg-mal-num_ilr :=  n_sg_ilr &
-  [ SYNSEM #synsem & 
-           [ LOCAL [ AGR.PNG [ GEN #gen, PN 3sg ],
-                     CAT [ HEAD.LEARNER +, 
-                           VAL.SPR #spr ] ] ],
-    DTR.SYNSEM #synsem & 
-               [ LOCAL.CAT.VAL.SPR #spr & < [ LOCAL.AGR.PNG [ GEN #gen, PN 3pl  ] ] > ] ].
-
-
-
 n_pl_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM [ LOCAL [ AGR [ PNG.PN 3pl,
                                   DIVISIBLE +,
@@ -711,30 +685,45 @@ n_pl_ilr :=  n_ilr & inflecting-lex-rule &
                               RELS.LIST.FIRST #keyrel ] ] ].
 
 
-n_pl_norm_ilr :=  n_pl_ilr & 
-  [ SYNSEM.LOCAL [ AGR #agr,
+target_agr_ilr := n_ilr & inflecting-lex-rule &
+ [ SYNSEM.LOCAL [ AGR #agr,
                      CAT [ HEAD.LEARNER -, 
                            VAL.SPR < [ LOCAL [ AGR #agr,
                                                CONT.HOOK.INDEX #agr ] ] > ],
                      CONT [ HOOK.INDEX #agr,
                             RELS.LIST.FIRST noun-relation & 
-                                            [ ARG0 #agr ] ] ] ].
+                                            [ ARG0 #agr ] ] ] ]
+"""
+Target (L1, native) agreement: gender and number values match.
+""".
 
-n_pl-mal-gen_ilr :=  n_pl_ilr & 
-  [ SYNSEM.LOCAL [ CAT [ HEAD.LEARNER +, 
+mal_agr_ilr := n_ilr & inflecting-lex-rule &
+[ SYNSEM.LOCAL [ CAT [ HEAD.LEARNER +, 
                            VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #agr ] ] > ],
                      CONT [ HOOK.INDEX #agr,
                             RELS.LIST.FIRST noun-relation & 
-                                            [ ARG0 #agr ] ] ] ].
+                                            [ ARG0 #agr ] ] ] ]
+"""Learner (L2) agreement usages: we do not insist on gender and number matching but we still link some agreement values to the MRS via the hook""".
 
-n_pl-mal-num_ilr :=  n_pl_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.PN 3pl,
-                     CAT [ HEAD.LEARNER +, 
-                           VAL.SPR < [ LOCAL [ AGR #agr,
-                                               CONT.HOOK.INDEX.PNG.PN 3sg ] ] > ],
-                     CONT [ HOOK.INDEX #agr,
-                            RELS.LIST.FIRST noun-relation & 
-                                            [ ARG0 #agr ] ] ] ].
+n_sg_norm_ilr := n_sg_ilr & target_agr_ilr.
+
+n_sg_mal_ilr := n_sg_ilr & mal_agr_ilr.
+
+splgg_mal_ilr := n_sg_mal_ilr & 
+[ SYNSEM.LOCAL [ AGR.PNG.GEN #gen,
+                 CAT.VAL.SPR < [ LOCAL.AGR.PNG [ PN 3pl, GEN #gen ] ] > ] ].
+
+nn_mal_irl := mal_agr_ilr & 
+[ SYNSEM.LOCAL [ AGR.PNG.PN #pn,
+                CAT.VAL.SPR < [ LOCAL.AGR.PNG.PN #pn ] > ] ]
+"""
+Agreement mismatch (learner, L2 usage) but not in the number values.
+The mismatch itself is to be modeled in the subtypes.
+""".
+
+n_pl_norm_ilr :=  n_pl_ilr & target_agr_ilr.
+
+n_pl_mal_ilr :=  n_pl_ilr & mal_agr_ilr.
 
 
 
@@ -768,38 +757,42 @@ n_com_ilr :=  n_ilr &
 n_masc-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
 
-n_masc-sg-mal-gen_ilr :=  n_sg-mal-gen_ilr & 
+n_masc-sg-mal-gen_ilr :=  n_sg_mal_ilr & nn_mal_irl & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].  
 
 
-n_masc-sg-mal-num_ilr :=  n_sg-mal-num_ilr & 
+n_masc-sg-mal-num_ilr :=  n_sg_mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN masc ] ].  
 
  
 n_masc-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
   
-n_masc-pl-mal-gen_ilr :=  n_pl-mal-gen_ilr & 
+n_masc-pl-mal-gen_ilr :=  n_pl_mal_ilr & nn_mal_irl & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].
   
 n_fem-sg_ilr :=  n_sg_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
   
-n_fem-sg-mal-gen_ilr :=  n_sg-mal-gen_ilr & 
+n_fem-sg-mal-gen_ilr :=  n_sg_mal_ilr & nn_mal_irl & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
 
-n_fem-sg-mal-num_ilr :=  n_sg-mal-num_ilr & 
+n_fem-sg-mal-num_ilr :=  n_sg_mal_ilr & 
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem ] ].
                    
 n_fem-pl_ilr :=  n_pl_norm_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
-n_fem-pl-mal-gen_ilr :=  n_pl-mal-gen_ilr & 
+n_fem-pl-mal-gen_ilr :=  n_pl_mal_ilr & nn_mal_irl &
   [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
                    CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
+
+n_fem-pl-mal-num_ilr :=  n_pl_mal_ilr & 
+  [ SYNSEM.LOCAL [ AGR.PNG.PN 3pl,
+                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.PN 3sg ] ].
 
 
 ; --- Verbs 

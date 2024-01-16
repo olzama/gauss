@@ -14,5 +14,16 @@ DO_NOT_OVERRIDE = {'uf', 'je', 'ja', 'oh', 'todo_lo_contrario', 'ojalá'}
 
 STEM_EQUALS_TAG = {'Z', 'W'}
 
-MAL_TAGS = {'NCFS000':'NCFS000-MG, NCFS000-MN', 'NCMS000':'NCMS000-MG, NCMS000-MN', 'NCFP000':'NCFP000-MG'}
+'''
+The MAL_TAGS maps the tags that come from Freeling morphophonological tagger and maps them to all names of
+lexical rules in inflr.tdl that are necessary for covering learner constructions (where there is an agreement mismatch).
+'''
+# For now, we only implement gender mismatch. In the commented out mapping, the second tags are intended for number mismatch,
+# which is not yet fully implemented in inflr.tdl and irtypes.tdl and srtypes.tdl and srules.tdl.
+#MAL_TAGS = {'NCFS000':'NCFS000-MG, NCFS000-MN', 'NCMS000':'NCMS000-MG, NCMS000-MN', 'NCFP000':'NCFP000-MG, NCFP000-MN'}
+MAL_TAGS = {'NCFS000':'NCFS000-MG', 'NCMS000':'NCMS000-MG', 'NCFP000':'NCFP000-MG', 'NCMP000':'NCMP000-MG',
+            'NCFP00V':'NCFP00V-MG', 'NCMP00V':'NCMP00V-MG', 'NCFS00V':'NCFS00V-MG', 'NCMS00V':'NCMS00V-MG',
+            'NCFP00A':'NCFP00A-MG', 'NCMP00A':'NCMP00A-MG', 'NCFS00A':'NCFS00A-MG', 'NCMS00A':'NCMS00A-MG',
+            'NCFP00X':'NCFP00X-MG', 'NCMP00X':'NCMP00X-MG', 'NCFS00X':'NCFS00X-MG', 'NCMS00X':'NCMS00X-MG',
+            'NCFP00D':'NCFP00D-MG', 'NCMP00D':'NCMP00D-MG', 'NCFS00D':'NCFS00D-MG', 'NCMS00D':'NCMS00D-MG',}
 

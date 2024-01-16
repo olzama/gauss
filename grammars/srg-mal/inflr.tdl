@@ -947,10 +947,9 @@ ncms000-mg :=
 %suffix (ncms000-mg ncms000-mg)
 n_masc-sg-mal-gen_ilr. 
 
-ncms000-mn := 
-%suffix (ncms000-mn ncms000-mn)
-n_masc-sg-mal-num_ilr. 
-
+;ncms000-mn := 
+;%suffix (ncms000-mn ncms000-mn)
+;n_masc-sg-mal-num_ilr. 
 
 ncmp000 := 
 %suffix (ncmp000 ncmp000)
@@ -972,10 +971,9 @@ ncfs000-mg :=
 %suffix (ncfs000-mg ncfs000-mg)
 n_fem-sg-mal-gen_ilr.
 
-ncfs000-mn := 
-%suffix (ncfs000-mn ncfs000-mn)
-n_fem-sg-mal-num_ilr.
-
+;ncfs000-mn := 
+;%suffix (ncfs000-mn ncfs000-mn)
+;n_fem-sg-mal-num_ilr.
 
 ncfp000 := 
 %suffix (ncfp000 ncfp000)
@@ -985,87 +983,145 @@ ncfp000-mg :=
 %suffix (ncfp000-mg ncfp000-mg)
 n_fem-pl-mal-gen_ilr.
 
+;ncfp000-mn := 
+;%suffix (ncfp000-mn ncfp000-mn)
+;n_fem-pl-mal-num_ilr.
+
 ncfp00v := 
 %suffix (ncfp00v ncfp00v)
 n_fem-pl_ilr.
 
-ncms00a := 
-%suffix (ncms00a ncms00a)
-n_masc-sg_ilr. 
-
-ncms00v := 
-%suffix (ncms00v ncms00v)
-n_masc-sg_ilr. 
-
-
-ncmp00a := 
-%suffix (ncmp00a ncmp00a)
-n_masc-pl_ilr.
-
-ncmp00v := 
-%suffix (ncmp00v ncmp00v)
-n_masc-pl_ilr.
-
-ncfs00a := 
-%suffix (ncfs00a ncfs00a)
-n_fem-sg_ilr.
-
-ncfs00v := 
-%suffix (ncfs00v ncfs00v)
-n_fem-sg_ilr.
+ncfp00v-mg := 
+%suffix (ncfp00v-mg ncfp00v-mg)
+n_fem-pl-mal-gen_ilr.
 
 ncfp00a := 
 %suffix (ncfp00a ncfp00a)
 n_fem-pl_ilr.
 
+ncfp00a-mg := 
+%suffix (ncfp00a-mg ncfp00a-mg)
+n_fem-pl-mal-gen_ilr.
+
+ncms00a := 
+%suffix (ncms00a ncms00a)
+n_masc-sg_ilr. 
+
+ncms00a-mg := 
+%suffix (ncms00a-mg ncms00a-mg)
+n_masc-sg-mal-gen_ilr.
+
+ncms00v := 
+%suffix (ncms00v ncms00v)
+n_masc-sg_ilr. 
+
+ncms00v-mg := 
+%suffix (ncms00v-mg ncms00v-mg)
+n_masc-sg-mal-gen_ilr.
+
+ncmp00a := 
+%suffix (ncmp00a ncmp00a)
+n_masc-pl_ilr.
+
+ncmp00a-mg := 
+%suffix (ncmp00a-mg ncmp00a-mg)
+n_masc-pl-mal-gen_ilr.
+
+ncmp00v := 
+%suffix (ncmp00v ncmp00v)
+n_masc-pl_ilr.
+
+ncmp00v-mg := 
+%suffix (ncmp00v-mg ncmp00v-mg)
+n_masc-pl-mal-gen_ilr.
+
+ncfs00a := 
+%suffix (ncfs00a ncfs00a)
+n_fem-sg_ilr.
+
+ncfs00a-mg := 
+%suffix (ncfs00a-mg ncfs00a-mg)
+n_fem-sg-mal-gen_ilr.
+
+ncfs00v := 
+%suffix (ncfs00v ncfs00v)
+n_fem-sg_ilr.
+
+ncfs00v-mg := 
+%suffix (ncfs00v-mg ncfs00v-mg)
+n_fem-sg-mal-gen_ilr.
+
 ncms00d := 
 %suffix (ncms00d ncms00d)
 n_masc-sg_ilr. 
+
+ncms00d-mg := 
+%suffix (ncms00d-mg ncms00d-mg)
+n_masc-sg-mal-gen_ilr.
 
 ncmp00d := 
 %suffix (ncmp00d ncmp00d)
 n_masc-pl_ilr.
 
+ncmp00d-mg := 
+%suffix (ncmp00d-mg ncmp00d-mg)
+n_masc-pl-mal-gen_ilr.
+
 ncfs00d := 
 %suffix (ncfs00d ncfs00d)
 n_fem-sg_ilr.
+
+ncfs00d-mg := 
+%suffix (ncfs00d-mg ncfs00d-mg)
+n_fem-sg-mal-gen_ilr.
 
 ncfp00d := 
 %suffix (ncfp00d ncfp00d)
 n_fem-pl_ilr.
 
+ncfp00d-mg := 
+%suffix (ncfp00d-mg ncfp00d-mg)
+n_fem-pl-mal-gen_ilr.
+
 ncms00x := 
 %suffix (ncms00x ncms00x)
 n_masc-sg_ilr. 
+
+ncms00x-mg := 
+%suffix (ncms00x-mg ncms00x-mg)
+n_masc-sg-mal-gen_ilr.
 
 ncmp00x := 
 %suffix (ncmp00x ncmp00x)
 n_masc-pl_ilr.
 
+ncmp00x-mg := 
+%suffix (ncmp00x-mg ncmp00x-mg)
+n_masc-pl-mal-gen_ilr.
+
 ncfs00x := 
 %suffix (ncfs00x ncfs00x)
 n_fem-sg_ilr.
+
+ncfs00x-mg := 
+%suffix (ncfs00x-mg ncfs00x-mg)
+n_fem-sg-mal-gen_ilr.
 
 ncfp00x := 
 %suffix (ncfp00x ncfp00x)
 n_fem-pl_ilr.
 
+ncfp00x-mg := 
+%suffix (ncfp00x-mg ncfp00x-mg)
+n_fem-pl-mal-gen_ilr.
+
 nccs000 := 
 %suffix (nccs000 nccs000)
 n_sg_norm_ilr.
 
-nccs000-mal := 
-%suffix (nccs000-mal nccs000-mal)
-n_sg-mal-num_ilr.
-
 nccp000 := 
 %suffix (nccp000 nccp000)
 n_pl_norm_ilr.
-
-nccp000-mal := 
-%suffix (nccp000-mal nccp000-mal)
-n_pl-mal-num_ilr.
-
 
 ncmn000 := 
 %suffix (ncmn000 ncmn000)
