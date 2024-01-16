@@ -19,6 +19,8 @@ def report_stats(treebanks_path):
             sentences.append(response['i-input'])
             # In a thinned parsed forest, results will be empty if the item was not accepted as correct in treebanking.
             if len(response['results']) > 0:
+                # try looking at response['results'][0] to see which phrase structure rules were used
+                # r0 = response['results'][0]
                 accepted.append(response['i-input'])
                 all_accepted.append(response['i-input'])
                 #deriv = response.result(0).derivation()
