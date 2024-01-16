@@ -32,11 +32,15 @@ basic-headed-phrase := phrase &
                                     COORD-STRAT #coord-strat ] ].
 
 noagr-headed-phrase := basic-headed-phrase & 
-  [ SYNSEM.LOCAL [ CAT.HEAD #head ],
-    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head ] ]
+  [ SYNSEM.LOCAL.CAT.HEAD #head,
+    HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD #head ]
 """
 OZ 2024-01-16
-For headed phrases that do not need AGR identity, e.g. punctuation.
+For headed phrases that cannot identify their AGR to the HOOK,
+such as learner (L1) head-specifier phrases.
+Head-specifier phrases need to identify the non-head daughter's hook
+with the noun's hook, and that would not be possible if the type insists on
+the agreement identity.
 """.
 
 headed-phrase := basic-headed-phrase & 
@@ -63,18 +67,6 @@ head-compositional := headed-phrase &
 ; appending the rels and hcons of C-CONT and the rels and hcons of the daughters.
 ; Head-compositional phrases identify the syntactic head daughter as the semantic head.
 """.
-
-head-compositional-noagr := noagr-headed-phrase &
-  [ C-CONT.HOOK #hook,
-    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ]
-"""
-; C-CONT is the semantic contribution of the phrase itself. The hook of the phrase is 
-; identified with the hook of C-CONT (which is possibly but not necessarily identified 
-; with the hook of one of the daughters. The rels and hcons of the phrase result from 
-; appending the rels and hcons of C-CONT and the rels and hcons of the daughters.
-; Head-compositional phrases identify the syntactic head daughter as the semantic head.
-""".
-
 
 basic-unary-phrase := phrase &
   [ STEM #stem,
@@ -377,7 +369,8 @@ interrogative-clause := clause & basic-headed-phrase &
 
 ; --- head-punct-phrase types
 
-basic-head-punct-phrase := head-compositional-noagr &
+
+basic-head-punct-phrase := head-compositional &
   [ SYNSEM [ SLSHD #slshd,
              LOCAL [ COORD #coord,
                      COORD-STRAT #coord-strat,
@@ -427,8 +420,7 @@ punct-head_clt_phrase := phrase-or-lexrule &
 
 punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
-             LOCAL [ STR.HEADED right,
-             	      AGR.PNG #agr ],
+             LOCAL [ STR.HEADED right ],
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
     NON-HEAD-DTR #non-head & 
@@ -437,22 +429,19 @@ punct-head_phrase := basic-head-punct-phrase & basic-binary-phrase &
     HEAD-DTR #head & 
              [ SYNSEM [ LIGHT +,
                         PUNCT.RPUNCT #rpunct,
-                        LOCAL [ STR.HEADING right,
-                                AGR.PNG #agr ] ] ],
+                        LOCAL [ STR.HEADING right ] ] ],
     ARGS < #non-head, #head > ].
 
 
 head-punct_phrase := basic-head-punct-phrase & basic-binary-phrase &
   [ SYNSEM [ LIGHT +,
-             LOCAL [ AGR.PNG #agr, 
-                     STR.HEADED left ],
+             LOCAL [ STR.HEADED left ],
              PUNCT [ LPUNCT #lpunct,
                      RPUNCT #rpunct ] ],
     HEAD-DTR #head & 
              [ SYNSEM [ LIGHT +,
                         PUNCT.LPUNCT #lpunct & no_punct,
-                        LOCAL [ STR.HEADING left,
-                                AGR.PNG #agr ] ] ],
+                        LOCAL [ STR.HEADING left ] ] ],
     NON-HEAD-DTR #non-head & 
                  [ SYNSEM punct_synsem & 
                           [ LOCAL.CAT.HEAD.PUNCT-MK #rpunct & rpunct ] ],
@@ -761,11 +750,12 @@ basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phra
     C-CONT [ RELS  <! !>,
              HCONS <! !> ] ]
 """
+; OZ 2024-01-16
 ; The agreement is underspecified here, to be later specified with a number of mal-rules.
-The agreement features need to be constrained in the subtypes.
+The agreement features need to be constrained in the subtypes, in particular with the HOOK.
+The original type used to have identities between LOCAL.AGR and CONT.HOOK.INDEX 
+as well as CONT.HOOK and NON-HEAD-DTR's HOOK.
 """.
-
-
 
 
 norm-basic-head-spec-phrase := basic-head-spec-phrase & 
@@ -813,13 +803,6 @@ head-spec_phrase := norm-basic-head-spec-phrase & binary-headed-phrase &
 """.
 
 
-nonhd-hook-phrase := binary-headed-phrase &
-[ NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook,
-    C-CONT.HOOK #hook ]
-"""
-In the original grammar, the agreement is facilitated with the hook and the hook can be identified with the nonhead daughter's.
-""".
-
 sphd-agr-phrase := binary-headed-noagr-phrase & 
 [ SYNSEM.LOCAL.AGR #agr,
   HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
@@ -827,16 +810,22 @@ sphd-agr-phrase := binary-headed-noagr-phrase &
   NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.VAL.SPEC < [LOCAL.CONT.HOOK #hdhook ] > ],
   C-CONT.HOOK #hdhook ]
 """
+OZ 2024-01-16
 No identity between the local agreement value and the hook's index;
 to be set in subtypes for target (L1) usages.
+This type can be parent to the learner (L2) phrases.
 """.
 
         
-target-sphd-phrase := nonhd-hook-phrase & sphd-agr-phrase & 
-[ HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
-                          CONT.HOOK.INDEX #agr ] ]
+target-sphd-phrase := sphd-agr-phrase & 
+[ NON-HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook,
+  HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
+                          CONT.HOOK.INDEX #agr ],
+  C-CONT.HOOK #hook ]
 """
-Target (non-learner) agreement usage: the specifier's gender and number are the same as the head daughter's.
+OZ 2024-01-16
+Target (L1) agreement usage: the specifier's gender and number are the same as the head daughter's,
+and the agreement is also identified with the hooks of both daughters.
 """.
 
 
