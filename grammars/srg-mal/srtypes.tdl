@@ -2426,7 +2426,7 @@ prdp_phrase := unary-phrase &
 
 prdp-target_phrase := prdp_phrase & target-phrase &  
   [ SYNSEM.LOCAL [ AGR.PNG #ind,
-                   CAT.HEAD [ MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG #ind ] > ] ] ]
+                   CAT.HEAD [ MOD < [ LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK [ INDEX.PNG #ind ] ] > ] ] ]
                            
 """
 ; Agreement enforced between the adverbial modifier and the subject of the verb, for the cases where the adverb was made from an adjective ("Ellas hacen música juntos.")

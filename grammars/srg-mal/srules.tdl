@@ -26,8 +26,8 @@ hd_xad-n_c := extad_n_constr & [ RNAME "xad" ].
 
 hd_ajpart_c := adjpart_constr & [ RNAME "ajpart" ].
 hd_prdp_c := prdp_constr & [ RNAME "prdp" ].
-;hd_prdp-fm-mal_c := prdp-fm-mal_constr & [ RNAME "prdpmalfm" ].
-;hd_prdp-mf-mal_c := prdp-mf-mal_constr & [ RNAME "prdpmalmf" ].
+hd_prdp-fm-mal_c := prdp-fm-mal_constr & [ RNAME "prdpmalfm" ].
+hd_prdp-mf-mal_c := prdp-mf-mal_constr & [ RNAME "prdpmalmf" ].
 hd_advnp_c := npadv_constr & [ RNAME "npadv" ].
 hd_advnp-pp_c := npadv_pp_constr & [ RNAME "npadv" ].
 hd_vocnp-prh_c := vocnp_prh_constr & [ RNAME "npadv" ].
