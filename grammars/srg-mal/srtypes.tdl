@@ -9,11 +9,20 @@
 
 ; --- Basic phrase types
 
+;;; OZ 2024-01-16
+;;; Adding a LEARNER head feature to be able to tell learner (L2) constructions
+
 learner-phrase := phrase & 
-[ SYNSEM.LOCAL.CAT.HEAD.LEARNER + ].
+[ SYNSEM.LOCAL.CAT.HEAD.LEARNER + ]
+"""
+For learner (L2) constructions.
+""".
 
 target-phrase := phrase & 
-[ SYNSEM.LOCAL.CAT.HEAD.LEARNER - ].
+[ SYNSEM.LOCAL.CAT.HEAD.LEARNER - ]
+"""
+For target (L1) constructions.
+""".
  
 basic-headed-phrase := phrase & 
   [ SYNSEM.LOCAL [ COORD #coord,
@@ -22,14 +31,19 @@ basic-headed-phrase := phrase &
     HEAD-DTR.SYNSEM.LOCAL local & [ COORD #coord & -,
                                     COORD-STRAT #coord-strat ] ].
 
-headed-phrase := basic-headed-phrase & 
+noagr-headed-phrase := basic-headed-phrase & 
   [ SYNSEM.LOCAL [ CAT.HEAD #head ],
-    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head ] ].
+    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head ] ]
+"""
+OZ 2024-01-16
+For headed phrases that do not need AGR identity, e.g. punctuation.
+""".
 
-agr-headed-phrase := headed-phrase & 
-  [ SYNSEM.LOCAL.AGR #agr,
-    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX #agr ].
-
+headed-phrase := basic-headed-phrase & 
+  [ SYNSEM.LOCAL [ AGR #agr,
+                   CAT.HEAD #head ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
+                            CONT.HOOK.INDEX #agr ] ].
 
 non-headed-phrase := phrase.
 
@@ -39,7 +53,7 @@ phrasal := phrase &
 """.
 
 
-head-compositional := agr-headed-phrase &
+head-compositional := headed-phrase &
   [ C-CONT.HOOK #hook,
     HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ]
 """
@@ -50,7 +64,7 @@ head-compositional := agr-headed-phrase &
 ; Head-compositional phrases identify the syntactic head daughter as the semantic head.
 """.
 
-head-compositional-noagr := headed-phrase &
+head-compositional-noagr := noagr-headed-phrase &
   [ C-CONT.HOOK #hook,
     HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ]
 """
@@ -148,9 +162,9 @@ binary-phrase := basic-binary-phrase &
            [ INFLECTED +, 
              SYNSEM.PUNCT.RPUNCT #rpunct ] > ].
 
-basic-binary-headed-phrase := headed-phrase & basic-binary-phrase.
+basic-binary-headed-phrase := noagr-headed-phrase & basic-binary-phrase.
 
-binary-headed-phrase := basic-binary-headed-phrase & binary-phrase & agr-headed-phrase.
+binary-headed-phrase := basic-binary-headed-phrase & binary-phrase & headed-phrase.
 
 binary-headed-noagr-phrase := basic-binary-headed-phrase & binary-phrase.
 
@@ -573,7 +587,7 @@ head-subj_coord_phrase := basic-head-subj-phrase & head-initial & target-phrase 
 
 ; --- head-comp-phrase types
 
-basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional-noagr & binary-headed-phrase &
+basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional & binary-headed-phrase &
   [ SYNSEM canonical-synsem &
            [ LOCAL.CAT [ MC #mc,
                          VAL [ SUBJ #subj,
@@ -959,7 +973,7 @@ spec-head_hdrel_phrase := norm_spec-head-phrase & explt-binary-phrase &
 ; for specifiers of relative pronouns
 """.
 
-spec-head_hddet_phrase := norm_spec-head-phrase & head-final & head-compositional-noagr & 
+spec-head_hddet_phrase := norm_spec-head-phrase & head-final & head-compositional & 
   [ SYNSEM.LOCAL [ STR.HEADING right_or_no,
                    CAT [ HEAD #head & [ KEYS #keys ],
                          VAL.SPR #spr ] ],
@@ -995,7 +1009,7 @@ spec-head_specrel_phrase := norm_spec-head-phrase & binary-headed-phrase &
 ; for "cuyo"
 """.
 
-spec-head_specdeg_phrase := norm_spec-head-phrase & head-compositional-noagr & head-final &  
+spec-head_specdeg_phrase := norm_spec-head-phrase & head-compositional & head-final &  
   [ SYNSEM.LOCAL.CAT [ HEAD #head & [ KEYS #keys ],
                        VAL.SPR #spr ],
     HEAD-DTR.SYNSEM.LOCAL [ COORD -,
@@ -1084,7 +1098,7 @@ scopal-mod-phrase := head-mod-phrase-simple &
     C-CONT [ HOOK #hook,
              HCONS <! !> ] ].
 
-isect-mod-phrase := head-mod-phrase-simple & head-compositional-noagr &
+isect-mod-phrase := head-mod-phrase-simple & head-compositional &
   [ HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.LTOP #hand,
     NON-HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD.MOD < [ LOCAL intersective-mod ] >,
                                 CONT.HOOK.LTOP #hand ],
