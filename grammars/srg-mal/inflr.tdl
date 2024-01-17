@@ -1117,11 +1117,11 @@ n_fem-pl-mal-gen_ilr.
 
 nccs000 := 
 %suffix (nccs000 nccs000)
-n_sg_norm_ilr.
+n_sg_ilr.
 
 nccp000 := 
 %suffix (nccp000 nccp000)
-n_pl_norm_ilr.
+n_pl_ilr.
 
 ncmn000 := 
 %suffix (ncmn000 ncmn000)

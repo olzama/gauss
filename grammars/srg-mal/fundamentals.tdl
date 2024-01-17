@@ -120,7 +120,8 @@ basic-sign := sign-min &
 sign := basic-sign &
   [ SYNSEM synsem,
     ARGS list,
-    INFLECTED bool ].
+    INFLECTED bool,
+    LEARNER bool ].
 
 ; C-CONT encodes the semantic contribution of the rule (phrasal or lexical).
 ;  [ SYNSEM canonical-synsem &
@@ -415,8 +416,7 @@ head := head-min &
   [ MOD list,
     PRD predicative,
     TAM tam, 
-    KEYS keys_min,
-    LEARNER bool ].
+    KEYS keys_min ].
 
 ; - for integrated tags which have no entry
 no-head := head.
