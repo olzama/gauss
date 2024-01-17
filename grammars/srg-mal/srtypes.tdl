@@ -43,11 +43,15 @@ with the noun's hook, and that would not be possible if the type insists on
 the agreement identity.
 """.
 
-headed-phrase := basic-headed-phrase & 
-  [ SYNSEM.LOCAL [ AGR #agr,
-                   CAT.HEAD #head ],
-    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD #head,
-                            CONT.HOOK.INDEX #agr ] ].
+headed-phrase := noagr-headed-phrase & 
+  [ SYNSEM.LOCAL.AGR #agr,
+    HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX #agr ]
+"""
+OZ 2024-01-17
+This is the exact same set of constraints as the original headed phrase,
+but the HEAD identity is formulated as a separate type, 
+since it is useful for L1 grammars.
+""".
 
 non-headed-phrase := phrase.
 
@@ -154,11 +158,9 @@ binary-phrase := basic-binary-phrase &
            [ INFLECTED +, 
              SYNSEM.PUNCT.RPUNCT #rpunct ] > ].
 
-basic-binary-headed-phrase := noagr-headed-phrase & basic-binary-phrase.
+basic-binary-headed-phrase := headed-phrase & basic-binary-phrase.
 
-binary-headed-phrase := basic-binary-headed-phrase & binary-phrase & headed-phrase.
-
-binary-headed-noagr-phrase := basic-binary-headed-phrase & binary-phrase.
+binary-headed-phrase := basic-binary-headed-phrase & binary-phrase.
 
 basic-ternary-phrase := phrase &
   [ SYNSEM.LOCAL.CONT [ RELS [ LIST #first,
@@ -803,7 +805,7 @@ head-spec_phrase := norm-basic-head-spec-phrase & binary-headed-phrase &
 """.
 
 
-sphd-agr-phrase := binary-headed-noagr-phrase & 
+sphd-agr-phrase := binary-phrase & noagr-headed-phrase & 
 [ SYNSEM.LOCAL.AGR #agr,
   HEAD-DTR.SYNSEM.LOCAL [ AGR #agr,
                           CONT.HOOK #hdhook ],
