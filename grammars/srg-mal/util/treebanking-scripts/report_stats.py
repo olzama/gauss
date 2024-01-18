@@ -67,13 +67,16 @@ def report_stats2(treebanks_path):
     print('Total accuracy: {} out of {} ({:.2f})'.format(len(all_accepted), len(all_sentences), acc))
 
 def count_phsr(d):
-    counts = []
+    counts = {}
+    constraints = []
     # get a flat list of tree nodes
     # iterate over node list collecting values stored in the entity field of each node
     nodes = d.internals()
     for node in nodes:
         phsr = node.entity
-        counts.append(phsr)
+        constraints.append(phsr)
+    for constraint in constraints:
+        counts[constraint] = counts.get(constraint, 0) + 1
     return counts
 
 if __name__ == '__main__':
