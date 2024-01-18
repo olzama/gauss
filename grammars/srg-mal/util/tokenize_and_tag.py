@@ -4,7 +4,7 @@ from freeling_api.python_API import pyfreeling_api
 import sys, os
 from override_freeling import MAL_TAGS
 
-PATH_TO_SPPP_DAT = '/home/olga/delphin/GAUSS/gauss-repo/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
+PATH_TO_SPPP_DAT = '/home/lorena/gauss/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
 
 class Freeling_tok_tagger:
     '''
