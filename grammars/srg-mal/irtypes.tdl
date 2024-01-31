@@ -687,19 +687,23 @@ n_pl_ilr :=  n_ilr & inflecting-lex-rule &
 
 target_agr_ilr := n_ilr & inflecting-lex-rule &
  [ SYNSEM.LOCAL [ AGR #agr,
-                     CAT [ HEAD.LEARNER -, 
-                           VAL.SPR < [ LOCAL [ AGR #agr,
+                     CAT [ VAL.SPR < [ LOCAL [ AGR #agr,
                                                CONT.HOOK.INDEX #agr ] ] > ],
                      CONT [ HOOK.INDEX #agr,
                             RELS.LIST.FIRST noun-relation & 
                                             [ ARG0 #agr ] ] ] ]
 """
 Target (L1, native) agreement: gender and number values match.
+The LEARNER feature is underspecified on purpose: 
+the intention is for the phrase to have LEARNER + if there is any part
+of it that is LEARNER +. Other parts do not matter and must therefore be underspecified
+with respect to LEARNER feature.
+
 """.
 
 mal_agr_ilr := n_ilr & inflecting-lex-rule &
-[ SYNSEM.LOCAL [ CAT [ HEAD.LEARNER +, 
-                           VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #agr ] ] > ],
+[ LEARNER +,
+  SYNSEM.LOCAL [ CAT [ VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #agr ] ] > ],
                      CONT [ HOOK.INDEX #agr,
                             RELS.LIST.FIRST noun-relation & 
                                             [ ARG0 #agr ] ] ] ]

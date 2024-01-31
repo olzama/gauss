@@ -70,8 +70,9 @@ unary-phrase := norm-unary-phrase &
     ARGS < [ INFLECTED + ] > ].
 
 very-basic-binary-phrase := phrase &
-  [ ARGS < sign, sign >,
-    NON-HEAD-DTR sign ].
+  [ ARGS < sign & [ LEARNER #learner ], sign & [ LEARNER #learner ] >,
+    NON-HEAD-DTR sign,
+    LEARNER #learner ].
 
 basic-binary-phrase := very-basic-binary-phrase & 
   [ SYNSEM.LOCAL.CONT [ RELS [ LIST #first,
@@ -356,9 +357,7 @@ basic-head-punct-phrase := head-valence-phrase & head-compositional &
                               COORD-REL #crel,
                               STR.HEADED solely,
                               CAT #cat,
-                              CONT #cont ] ],
-               LEARNER #learner ],
-    LEARNER #learner ].
+                              CONT #cont ] ] ] ].
 
 punct-head_clt_phrase := phrase-or-lexrule &
   [ SYNSEM [ SLSHD #slshd,
@@ -439,11 +438,9 @@ basic-head-subj-phrase := head-valence-phrase & head-compositional & binary-head
                                         SPEC #spec,
                                         CLTS #clit & < > ] ] ] ],
     NON-HEAD-DTR [ SYNSEM canonical-synsem &
-                        [ NON-LOCAL.REL 0-dlist ],
-                   LEARNER #learner ],
+                        [ NON-LOCAL.REL 0-dlist ] ],
     C-CONT [ RELS <! !>,
-             HCONS <! !> ],
-    LEARNER #learner ].
+             HCONS <! !> ] ].
 
 norm-basic-head-subj-phrase := basic-head-subj-phrase &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < >,
@@ -567,8 +564,7 @@ basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional & b
                                           SPEC #spec,
                                           CLTS #clts ] ] ],
                       MODIFIED #modif ],
-    NON-HEAD-DTR [ SYNSEM canonical-synsem, LEARNER #learner ],
-    LEARNER #learner  ].
+    NON-HEAD-DTR [ SYNSEM canonical-synsem ] ].
 
 head-marker_phrase := basic-head-comp-or-marker-phrase & head-initial &
   [ SYNSEM [ SLSHD #slshd,
@@ -681,13 +677,11 @@ clit-head_phrase_basic := head-valence-phrase & head-compositional & head-final 
                                         SPR #spr,
                                         SPEC #spec,
                                         COMPS #comps,
-                                        CLTS < #synsem . #clts > ] ] ],
-              LEARNER #learner ],
+                                        CLTS < #synsem . #clts > ] ] ] ],
     NON-HEAD-DTR.SYNSEM #synsem & clitic-synsem & 
                         [ LOCAL.CONT.HOOK.INDEX ref-ind ],
     C-CONT [ RELS <! !>,
-             HCONS <! !> ],
-    LEARNER #learner ].
+             HCONS <! !> ] ].
 
 clit-head_phrase := clit-head_phrase_basic & 
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
@@ -721,8 +715,7 @@ basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phra
                                             SPEC #spec,
                                             CLTS #clit & < > ] ],
                                 CONT.HOOK #hdhook & [ INDEX #agr ] ],
-                        MODIFIED #hmodif ],
-                LEARNER #learner ],
+                        MODIFIED #hmodif ] ],
     NON-HEAD-DTR.SYNSEM [ LOCAL [ COORD -,
                                   CAT [ VAL [ SPEC < [ LOCAL [ CAT.VAL.COMPS #comps,
                                                                CONT.HOOK #hdhook ],
@@ -730,8 +723,7 @@ basic-head-spec-phrase := head-valence-phrase & phrasal & very-basic-binary-phra
                                               COMPS #spcomps ] ] ],
                           MODIFIED #modif ],
     C-CONT [ RELS  <! !>,
-             HCONS <! !> ],
-    LEARNER #learner ]
+             HCONS <! !> ] ]
 """
 ; agreement features are percolated from HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX 
 ; where NUMBER is not checked in 'ad sensum agreement'
@@ -901,8 +893,7 @@ basic-head-mod-phrase-simple := head-mod-phrase & binary-headed-phrase &
     HEAD-DTR [ SYNSEM #synsem & 
                     [ LOCAL.CAT.MC #mc,
                       NON-LOCAL.SLASH [ LIST #middle,
-                                        LAST #last ] ],
-               LEARNER #learner ],
+                                        LAST #last ] ] ],
     NON-HEAD-DTR [ SYNSEM 
            [ LOCAL [ COORD -,
                      CAT [ HEAD.MOD < #synsem >,
@@ -910,8 +901,7 @@ basic-head-mod-phrase-simple := head-mod-phrase & binary-headed-phrase &
              NON-LOCAL [ SLASH [ LIST #first,
                                  LAST #middle ],
                          QUE 0-dlist & [ LIST null ] ] ] ],
-    C-CONT.RELS <! !>,
-    LEARNER #learner ].
+    C-CONT.RELS <! !> ].
 
 head-mod-phrase-simple := basic-head-mod-phrase-simple &
   [ HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.LTOP #htop,
@@ -1354,8 +1344,7 @@ basic-appos-phrase := head-nexus-phrase & head-compositional & basic-binary-phra
                              VAL #valence & [ COMPS < > ] ],
                        CONT.HOOK.INDEX #hind & ref-ind ],
                NON-LOCAL.SLASH [ LIST #middle,
-                                 LAST #last ] ],
-            LEARNER #learner ],
+                                 LAST #last ] ] ],
     NON-HEAD-DTR #non-head & 
           [ INFLECTED +,
             SYNSEM canonical-synsem &
@@ -1372,8 +1361,7 @@ basic-appos-phrase := head-nexus-phrase & head-compositional & basic-binary-phra
              RELS <! prep-relation &
                      [ PRED appos_rel,
                        ARG1 #hind,
-                       ARG2 #modind ] !> ],
-    LEARNER #learner ].
+                       ARG2 #modind ] !> ] ].
 
 head-adj_int-bracket-appos_phrase := basic-appos-phrase &
   [ HEAD-DTR.SYNSEM [ PUNCT.RPUNCT no_punct,
@@ -1495,16 +1483,14 @@ basic_n_n_cmpnd_phrase := head-valence-phrase & head-compositional & basic-binar
     HEAD-DTR [ SYNSEM [ SLSHD #slshd,
                       LOCAL [ COORD-STRAT zero,
                               CAT [ MC #mc,
-                                    VAL #valence ] ] ],
-               LEARNER #learner ],
+                                    VAL #valence ] ] ] ],
     NON-HEAD-DTR.SYNSEM [ MODIFIED notmod, 
                           LOCAL [ CAT [ HEAD.KEYS.KEY common_nom_rel,
                                         VAL.COMPS < > ],
 		                  CONT.HOOK.INDEX ref-ind ],
                           NON-LOCAL [ SLASH 0-dlist & [ LIST < > ],
                                       QUE 0-dlist,
-                                      REL 0-dlist ] ],
-    LEARNER #learner ].
+                                      REL 0-dlist ] ] ].
 		    
 basic_np_name_cmpnd_phrase := basic_n_n_cmpnd_phrase &
   [ SYNSEM [ LIGHT +,
@@ -2499,15 +2485,13 @@ basic-ellipis-phrase := basic-headed-phrase & phrasal & basic-binary-phrase &
                                                          LOCAL.CONT.HOOK #hdhook & [ LTOP #larg ] ] >,
                                                 COMPS #spcomps ] ],
                                     CONT [ HOOK #hook,
-                                           HCONS.LIST < qeq & [ LARG #larg ], ... > ] ] ],
-                   LEARNER #learner ],
+                                           HCONS.LIST < qeq & [ LARG #larg ], ... > ] ] ] ],
     ARGS < #non-head-dtr, #head-dtr >,
     C-CONT [ HOOK #hook & [ INDEX #arg0 & [ PRONTYPE not_pron ] ],
              RELS  <! [ PRED elliptical_n_rel,
                         LBL #larg,
                         ARG0 #arg0 ]!>,
-             HCONS <! !> ],
-    LEARNER #learner ].
+             HCONS <! !> ] ].
 
 np_ell_phrase := basic-ellipis-phrase & binary-punct-phrase &
   [ SYNSEM.LOCAL.CAT.HEAD.KEYS.ALTKEY _el_q_rel, 
@@ -2576,9 +2560,8 @@ filler-head-phrase := basic-filler-phrase &
   [ SYNSEM [ LOCAL.CAT.VAL [ SUBJ #subj,
                              SPR < > ],
 	     NON-LOCAL.QUE 0-dlist ] ,
-    ARGS < [ INFLECTED +, LEARNER #learner ],
-           [ SYNSEM.LOCAL.CAT.VAL.SUBJ #subj ] >,
-    LEARNER #learner  ].
+    ARGS < [ INFLECTED + ],
+           [ SYNSEM.LOCAL.CAT.VAL.SUBJ #subj ] > ].
 
 filler-head-phrase-fin := binary-phrase & phrasal &
   [ ARGS < [ INFLECTED + ],
@@ -3174,8 +3157,7 @@ filler-head-nonrestr-rel-phrase := binary-phrase & relative-clause &
                       NON-LOCAL [ SLASH 0-dlist,
                                   QUE 0-dlist,
                                   REL 1-dlist & 
-                                      [ LIST < [ LTOP #rhand ] > ] ] ],
-             LEARNER #learner ],
+                                      [ LIST < [ LTOP #rhand ] > ] ] ] ],
            [ SYNSEM [ PUNCT.LPUNCT comma_or_clause_or_no_punct, 
                       SLSHD #slshd,
                       LOCAL [ CAT [ HEAD verb & 
@@ -3199,8 +3181,7 @@ filler-head-nonrestr-rel-phrase := binary-phrase & relative-clause &
                                   REL 0-dlist ] ] ] >,
     C-CONT [ HOOK.LTOP #ltop,
              RELS <! !>,
-             HCONS <! !> ],
-    LEARNER #learner ]
+             HCONS <! !> ] ]
 """
 ; --- Non-restrictive RCs (e.g. La casa tenía [[dos habitaciones],[que daban al parque]])
 ; - vform and mood
@@ -3374,8 +3355,7 @@ filler-head-free-rel-phrase := binary-phrase & phrasal &
                               CONT.RELS.LIST < relation, [ LBL #ltop ], ... > ],
                       NON-LOCAL [ QUE 1-dlist & <! ref-ind !>,
                                   SLASH 1-dlist  &
-                                        <! [ CAT.HEAD.KEYS.KEY #key ] !>] ],
-              LEARNER #learner ],
+                                        <! [ CAT.HEAD.KEYS.KEY #key ] !>] ] ],
            [ INFLECTED +,
              SYNSEM [ SLSHD #slshd,
                       LOCAL [ COORD #coord,
@@ -3397,8 +3377,7 @@ filler-head-free-rel-phrase := binary-phrase & phrasal &
                                   REL 0-dlist ] ] ] >,
     C-CONT [ HOOK #hook, 
              RELS <! !>,
-	     HCONS <! !> ],
-    LEARNER #learner ]
+	     HCONS <! !> ] ]
 """
 ; --- Free RCs (es el propio pronombre relativo el que delmita, en virtud de sus propios 
 ; rasgos léxicos, el valor del antecedente). El valor de tales construcciones es el de proyecciones 
