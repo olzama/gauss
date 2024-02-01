@@ -1329,9 +1329,22 @@ a_masc-sg_ilr
 """; bonito
 """.
 
+aq0ms00-mg := 
+%suffix (aq0ms00-mg aq0ms00-mg) 
+a_masc-mal-gen-sg_ilr
+"""; bonito
+""".
+
+
 aq0mp00 := 
 %suffix (aq0mp00 aq0mp00)
 a_masc-pl_ilr
+"""; bonitos
+""".
+
+aq0mp00-mg := 
+%suffix (aq0mp00-mg aq0mp00-mg)
+a_masc-mal-gen-pl_ilr
 """; bonitos
 """.
 
@@ -1346,9 +1359,21 @@ a_fem-sg_ilr
 """; bonita
 """.
 
+aq0fs00-mg := 
+%suffix (aq0fs00-mg aq0fs00-mg)
+a_fem-mal-gen-sg_ilr
+"""; bonita
+""".
+
 aq0fp00 := 
 %suffix (aq0fp00 aq0fp00)
 a_fem-pl_ilr
+"""; bonitas
+""".
+
+aq0fp00-mg := 
+%suffix (aq0fp00-mg aq0fp00-mg)
+a_fem--mal-gen-pl_ilr
 """; bonitas
 """.
 

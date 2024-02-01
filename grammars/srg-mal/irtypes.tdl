@@ -510,6 +510,32 @@ a_masc-pl_ilr :=  a_ilr & masc_3pl_ilr
 a_neut-sg_ilr :=  a_ilr & neut_3sg_ilr
 """adjective""".
 
+;;; OZ 2024-02-01
+;;; Learner lexical rules to allow the use of an adjective as if it were of the opposite ("wrong") gender.
+
+a_masc-mal-gen-sg_ilr := a_ilr & fem_3sg_ilr & 
+[ LEARNER + ]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+a_masc-mal-gen-pl_ilr := a_ilr & fem_3pl_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+a_fem-mal-gen-sg_ilr := a_ilr & masc_3sg_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+a_fem--mal-gen-pl_ilr := a_ilr & masc_3pl_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
 
 ; -- clitics
 
