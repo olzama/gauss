@@ -1373,7 +1373,7 @@ a_fem-pl_ilr
 
 aq0fp00-mg := 
 %suffix (aq0fp00-mg aq0fp00-mg)
-a_fem--mal-gen-pl_ilr
+a_fem-mal-gen-pl_ilr
 """; bonitas
 """.
 
@@ -1418,9 +1418,21 @@ a_masc-sg_ilr
 """; e.g. dificilísimo 
 """.
 
+aqsms00-mg := 
+%suffix (aqsms00-mg aqsms00-mg)
+a_masc-mal-gen-sg_ilr
+"""; e.g. dificilísimo 
+""".
+
 aqsmp00 := 
 %suffix (aqsmp00 aqsmp00)
 a_masc-pl_ilr
+"""; e.g. dificilísimos
+""".
+
+aqsmp00-mg := 
+%suffix (aqsmp00-mg aqsmp00-mg)
+a_masc-mal-gen-pl_ilr
 """; e.g. dificilísimos
 """.
 
@@ -1430,9 +1442,22 @@ a_fem-sg_ilr
 """; e.g. dificilísima 
 """.
 
+aqsfs00-mg := 
+%suffix (aqsfs00-mg aqsfs00-mg)
+a_fem-mal-gen-sg_ilr
+"""; e.g. dificilísima 
+""".
+
+
 aqsfp00 := 
 %suffix (aqsfp00 aqsfp00)
 a_fem-pl_ilr
+"""; e.g. dificilísimas
+""".
+
+aqsfp00-mg := 
+%suffix (aqsfp00-mg aqsfp00-mg)
+a_fem-mal-gen-pl_ilr
 """; e.g. dificilísimas
 """.
 
@@ -1444,9 +1469,22 @@ a_masc-sg_ilr
 """; e.g. pequeñísimo
 """.
 
+aqdms00-mg := 
+%suffix (aqdms00-mg aqdms00-mg)
+a_masc-mal-gen-sg_ilr
+"""; e.g. pequeñísimo
+""".
+
+
 aqdmp00 := 
 %suffix (aqdmp00 aqdmp00)
 a_masc-pl_ilr
+"""; e.g. pequeñísimos
+""".
+
+aqdmp00-mg := 
+%suffix (aqdmp00-mg aqdmp00-mg)
+a_masc-mal-gen-pl_ilr
 """; e.g. pequeñísimos
 """.
 
@@ -1456,9 +1494,21 @@ a_fem-sg_ilr
 """; e.g. pequeñísima
 """.
 
+aqdfs00-mg := 
+%suffix (aqdfs00-mg aqdfs00-mg)
+a_fem-mal-gen-sg_ilr
+"""; e.g. pequeñísima
+""".
+
 aqdfp00 := 
 %suffix (aqdfp00 aqdfp00)
 a_fem-pl_ilr
+"""; e.g. pequeñísimos
+""".
+
+aqdfp00-mg := 
+%suffix (aqdfp00-mg aqdfp00-mg)
+a_fem-mal-gen-pl_ilr
 """; e.g. pequeñísimos
 """.
 
@@ -1477,9 +1527,24 @@ a_masc-sg_ilr
 ; desnudo, sujeto, inadvertido
 """.
 
+aq0msp-mg := 
+%suffix (aq0msp-mg aq0msp-mg) 
+a_masc-mal-gen-sg_ilr
+"""
+; -- pastpart (only for 3 verbs)
+; desnudo, sujeto, inadvertido
+""".
+
 aq0mpp := 
 %suffix (aq0mpp aq0mpp)
 a_masc-pl_ilr
+"""; -- pastpart (only for 3 verbs)
+; desnudos, sujetos, inadvertido
+""".
+
+aq0mpp-mg := 
+%suffix (aq0mpp-mg aq0mpp-mg)
+a_masc-mal-gen-pl_ilr
 """; -- pastpart (only for 3 verbs)
 ; desnudos, sujetos, inadvertido
 """.
@@ -1491,9 +1556,23 @@ a_fem-sg_ilr
 ; desnuda, sujeta, inadvertida
 """.
 
+aq0fsp-mg := 
+%suffix (aq0fsp-mg aq0fsp-mg)
+a_fem-mal-gen-sg_ilr
+"""; -- pastpart (only for 3 verbs)
+; desnuda, sujeta, inadvertida
+""".
+
 aq0fpp := 
 %suffix (aq0fpp aq0fpp)
 a_fem-pl_ilr
+"""; -- pastpart (only for 3 verbs)
+; desnudas, sujetas, inadvertidas
+""".
+
+aq0fpp-mg := 
+%suffix (aq0fpp-mg aq0fpp-mg)
+a_fem-mal-gen-pl_ilr
 """; -- pastpart (only for 3 verbs)
 ; desnudas, sujetas, inadvertidas
 """.

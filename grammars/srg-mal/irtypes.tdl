@@ -531,7 +531,7 @@ a_fem-mal-gen-sg_ilr := a_ilr & masc_3sg_ilr &
 Learner adjective (used as wrong gender).
 """.
 
-a_fem--mal-gen-pl_ilr := a_ilr & masc_3pl_ilr & 
+a_fem-mal-gen-pl_ilr := a_ilr & masc_3pl_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
