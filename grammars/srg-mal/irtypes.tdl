@@ -838,6 +838,11 @@ vpart_ilr :=  verb_ilr &
                           VFORM part,
                           VOICE active,
                           PRD non-prd ] ].
+                          
+vpart-sg-masc_ilr := vpart_ilr & 
+[ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                 AGR.PNG [ PN sing, GEN masc ] ] ].                          
+
 
 vppart_ilr :=  inflecting-lex-rule & 
   [ INFLECTED +,
