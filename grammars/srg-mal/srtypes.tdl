@@ -1629,9 +1629,11 @@ optcomp-phrase := head-valence-phrase & head-only & head-compositional &
 """. 
 
 optcomp-v_phrase := optcomp-phrase &
-  [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph,
-                       VAL.COMPS #comps ],
-    HEAD-DTR.SYNSEM.LOCAL [ STR.HEADED solely,
+  [ SYNSEM.LOCAL.CAT [ ;HEAD.LSYNSEM.LOCAL.AGR #agr,
+                       POSTHEAD #ph,
+                       VAL [ COMPS #comps ] ],
+    HEAD-DTR.SYNSEM.LOCAL [ ;AGR #agr,
+                            STR.HEADED solely,
                             CAT [ POSTHEAD #ph, 
                                   HEAD verb & [ KEYS.KEY v_event_rel ],
                                   VAL [ SUBJ < [ ] >,
@@ -1641,11 +1643,13 @@ optcomp-v_phrase := optcomp-phrase &
 """. 
 
 optcomp-n_phrase := optcomp-phrase &
-  [ SYNSEM.LOCAL [ CAT [ POSTHEAD #ph,
-                         VAL.COMPS #comps ],
+  [ SYNSEM.LOCAL [ AGR #agr,
+                   CAT [ POSTHEAD #ph,
+                   VAL.COMPS #comps ],
 		   CONT.HOOK.INDEX.SORT non-mod ],
     HEAD-DTR.SYNSEM [ MODIFIED notmod,
-                      LOCAL [ STR.HEADED solely,
+                      LOCAL [ AGR #agr,
+                              STR.HEADED solely,
                               CAT [ POSTHEAD #ph, 
                                     HEAD noun,
                                     VAL.COMPS < [ NON-LOCAL.SLASH 0-dlist ]. #comps > ] ] ] ]. 

@@ -1954,7 +1954,7 @@ vpart_ilr &
 
 vmp00sm := 
 %suffix (vmpsm vmpsm)
-vpart_ilr.
+vpart-sg-masc_ilr.
 
 vmp00pm := 
 %suffix (vmppm vmppm)
