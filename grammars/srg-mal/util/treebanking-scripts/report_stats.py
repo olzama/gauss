@@ -32,6 +32,7 @@ def report_stats(treebanks_path):
 
 def report_rule_counts(treebanks_path):
     all_rules_count = {}
+    rule_count_list = []
     for i, tsuite in enumerate(sorted(glob.iglob(treebanks_path + '/**'))):
         ts = itsdb.TestSuite(tsuite)
         items = list(ts.processed_items())
@@ -41,15 +42,18 @@ def report_rule_counts(treebanks_path):
                 r0 = response['results'][0]
                 # A derivation is a tree that consists of nodes. Nodes can be phrase structure rules or lexical rules or "terminals" (words).
                 deriv = derivation.from_string(r0['derivation']) # Exercise: Try to find in the pydelphin docs how to get a flat list of the derivation nodes.
-                rule_count = count_phsr(deriv)
-                # Collect rule counts from each test suite and store them in one dictionary.
-                for phsr, count in rule_count.items():
-                    all_rules_count[phsr] = all_rules_count.get(phsr, 0) + count
-                    #print('{} constraints used.'.format(len(rule_count)))
-                    #print('{} rule used {} times.'.format(phsr, count))
-    print('Total {} constraints used.'.format(len(all_rules_count)))
+                rule_count = count_rules(deriv)
+                rule_count_list.append(rule_count)
+        # Collect rule counts from each test suite and store them in one dictionary.
+        for phsr, info in rule_count.items():
+            if info['is_root'] is False:
+                all_rules_count[phsr] = sum(info['counts'] for rule_count in rule_count_list if phsr in rule_count)
+    for k, v in all_rules_count.items():
+        print('Rule {}: {} uses.'.format(k, v))
+    print('Total number of constraints used: {}'.format(len(all_rules_count)))
 
-def count_phsr(d):
+
+def count_rules(d):
     counts = {}
     constraints = []
     # get a flat list of tree nodes
@@ -58,8 +62,7 @@ def count_phsr(d):
     for node in nodes:
         phsr = node.entity
         constraints.append(phsr)
-    for constraint in constraints:
-        counts[constraint] = counts.get(constraint, 0) + 1
+        counts[node.entity] = {'counts': constraints.count(node.entity), 'is_root': node.is_root()}
     return counts
 
 if __name__ == '__main__':
