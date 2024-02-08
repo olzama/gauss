@@ -1959,17 +1959,20 @@ vpart-sg-masc_ilr.
 vmp00pm := 
 %suffix (vmppm vmppm)
 vpart_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX - ] ].
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN plur, GEN masc ] ] ].
 
 vmp00sf := 
 %suffix (vmpsf vmpsf)
 vpart_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX - ] ].
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN sing, GEN fem ] ] ].
 
 vmp00pf := 
 %suffix (vmppf vmppf)
 vpart_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX - ] ].
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN plur, GEN fem ] ] ].
 
 
 ; --- auxiliary verbs

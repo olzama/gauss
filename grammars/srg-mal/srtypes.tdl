@@ -929,7 +929,7 @@ basic-head-adj-phrase := basic-head-mod-phrase-simple & phrasal &
 head-adj-phrase := basic-head-adj-phrase & head-initial.
 non_str-head-adj-phrase := basic-head-adj-phrase & non_str-head-initial.
 
-; We split head-adj-phrase and adj-head-phrase into two each, bone for intersective 
+; We split head-adj-phrase and adj-head-phrase into two each, one for intersective 
 ; modifiers and one for scopal modifiers, in order to get desired results for recursive 
 ; modification as in "apparently difficult problem" (cf. Kasper '98). This split is also 
 ; used in generation, where we delay construction of intersective modification, but not scopal.
@@ -1349,7 +1349,8 @@ basic-appos-phrase := head-nexus-phrase & head-compositional & basic-binary-phra
     NON-HEAD-DTR #non-head & 
           [ INFLECTED +,
             SYNSEM canonical-synsem &
-  	     [ LOCAL [ COORD -,
+  	     [ LOCAL [ AGR.PNG #png,
+  	               COORD -,
                        CAT [ MC na,
                              VAL [ SUBJ < >,
                                    COMPS < > ] ],
@@ -2192,7 +2193,8 @@ adjpart_phrase := unary-phrase &
                                                  CAT [ LASTNMOD -,
                                                        HEAD noun & [ KEYS.KEY nom_rel ],
                                                        VAL [ SUBJ < >,
-                                                             SPEC < > ] ] ] ] >,
+                                                             SPEC < > ] ],
+                                                  CONT.HOOK.INDEX #ind ] ] >,
                                  KEYS.KEY v_event_rel ],
                            VAL [ SPR < >,
                                  SUBJ < >,
@@ -2212,7 +2214,8 @@ adjpart_phrase := unary-phrase &
                                            VOICE passive,
                                            MOD < >,
                                            KEYS.KEY v_event_rel ],
-			   	    VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #ind ] >,
+                                           ;LSYNSEM.LOCAL.AGR #ind ],
+			   	    VAL [ SUBJ < [ LOCAL [ CONT.HOOK.INDEX #ind, AGR #ind ] ] >,
                                           COMPS #comps & < >,
                                           CLTS #clts & < > ] ],
                               CONT #cont & [ HOOK #hook ],
