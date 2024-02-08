@@ -122,6 +122,7 @@ class Freeling_tok_tagger:
         return s
 
     def get_selected_tags(self, w, override_dicts):
+        debug_w = w.get_form()
         tags = []
         additional_arcs = []
         for a in w:
@@ -150,7 +151,7 @@ class Freeling_tok_tagger:
                     additional_arcs.append(({'additional': True, 'tag': a.get_tag(), 'prob': a.get_prob(), 'lemma': a.get_lemma()}))
                     #print("Non-selected analysis: {}".format(a.get_tag()))
             # For POS which are subject to MAL rules, add an arc with the MAL tag:
-            if a.get_tag() in MAL_TAGS:
+            if a.get_tag() in MAL_TAGS and (a.is_selected() or w.get_form().lower() in override_dicts['no_disambiguate']):
                 mal_tags = MAL_TAGS[a.get_tag()].split(',')
                 for mt in mal_tags:
                     additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
