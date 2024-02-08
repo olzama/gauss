@@ -1956,11 +1956,26 @@ vmp00sm :=
 %suffix (vmpsm vmpsm)
 vpart-sg-masc_ilr.
 
+vmp00sm-mg := 
+%suffix (vmp00sm-mg vmp00sm-mg)
+vpart_ilr & 
+  [ LEARNER +,
+    SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN sing, GEN fem ] ] ].
+
 vmp00pm := 
 %suffix (vmppm vmppm)
 vpart_ilr & 
   [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
                    AGR.PNG [ PN plur, GEN masc ] ] ].
+
+vmp00pm-mg := 
+%suffix (vmp00pm-mg vmp00pm-mg)
+vpart_ilr & 
+  [ LEARNER +,
+    SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN plur, GEN fem ] ] ].
+
 
 vmp00sf := 
 %suffix (vmpsf vmpsf)
@@ -1968,12 +1983,24 @@ vpart_ilr &
   [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
                    AGR.PNG [ PN sing, GEN fem ] ] ].
 
+vmp00sf-mg := 
+%suffix (vmp00sf-mg vmp00sf-mg)
+vpart_ilr & 
+  [ LEARNER +,
+    SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN sing, GEN masc ] ] ].
+
 vmp00pf := 
 %suffix (vmppf vmppf)
 vpart_ilr & 
   [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
                    AGR.PNG [ PN plur, GEN fem ] ] ].
 
+vmp00pf-mg := 
+%suffix (vmp00pf-mg vmp00pf-mg)
+vpart_ilr & 
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN plur, GEN masc ] ] ].
 
 ; --- auxiliary verbs
 
