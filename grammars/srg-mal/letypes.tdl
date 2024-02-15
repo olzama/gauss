@@ -1029,6 +1029,7 @@ v_cop_ser_verb_sbj := v_cop &
 v_cop_ser_vp-inf_sbj := v_cop_ser_verb_sbj &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL vp_inf_local ] > ].
 
+
 v_cop_ser_cp_p_sbj := v_cop_ser_verb_sbj &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL s_local & 
                                         [ CAT.HEAD.VFORM fin ] ] > ].
@@ -4935,10 +4936,12 @@ nonpronominal-lex := basic-nominal-lex &
     ARG-ST < #spr . #comps >  ].
 
 basic-noun-lex := nonpronominal-lex & 
-  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
+  [ SYNSEM [ LOCAL [ AGR #agr,
+                     CAT [ HEAD noun,
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
-                                             [ CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
+                                             [ AGR #agr,
+                                               CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
                                                      VAL.SUBJ < > ] ],
                                        NON-LOCAL [ REL 0-dlist,
                                                    SLASH 0-dlist ] ] > ],
@@ -8580,34 +8583,6 @@ basic_det_synsem := lex-synsem &
 ; with 'ad-sensum' agr. 
 """.
 
-
-basic_det_mal_synsem := lex-synsem & 
-  [ LOCAL [ COORD-STRAT zero,
-            AGR.PNG.PN #pn & 3per,
-            CAT [ MC na,
-                  HEAD.MOD < >,
-                  VAL [ SUBJ < >,
-                        CLTS < >,
-                        SPEC < [ LOCAL [ COORD -,
-                                         AGR.PNG.PN #pn,
-                                         CAT.HEAD.KEYS.ALTKEY #pred,
-                                         CONT.HOOK [ INDEX #index,
-                                                     LTOP #larg ] ] ] > ] ],
-            CONT nom-obj & [ HOOK [ LTOP #ltop,
-                                    INDEX #index,
-                                    XARG #larg ], 
-                             HCONS.LIST < qeq & [ HARG #harg,
-                                                  LARG #larg ], ... >,
-                             RELS.LIST < #keyrel & quant-relation, ... > ] ],
-    NON-LOCAL.SLASH 0-dlist,
-    LKEYS.KEYREL #keyrel & [ LBL #ltop,
-                             ARG0 #index,
-                             PRED #pred,
-                             RSTR #harg ] ]
-"""
-; --- 6. Determiners
-; Mal-determiner for mal-rules (el cara). 
-""".
 
 specfd_det_synsem := basic_det_synsem &
   [ LOCAL [ AGR #agr,

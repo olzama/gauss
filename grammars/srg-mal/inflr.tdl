@@ -1954,7 +1954,9 @@ vpart_ilr &
 
 vmp00sm := 
 %suffix (vmpsm vmpsm)
-vpart-sg-masc_ilr.
+vpart_ilr & 
+  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
+                   AGR.PNG [ PN sing, GEN masc ] ] ].
 
 vmp00sm-mg := 
 %suffix (vmp00sm-mg vmp00sm-mg)

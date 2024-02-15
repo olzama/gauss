@@ -4557,16 +4557,16 @@ adj-coord-phrase := event-coord-phrase &
   [ SYNSEM.LOCAL [ CAT [ MC na,
                          LASTNMOD #lastnmod,
                          POSTHEAD #ph,
-                         HEAD adj & [ MOD < [ LOCAL.CONT #cont ] > ],
+                         HEAD adj & [ MOD < [ LOCAL [ CONT #cont ] ] > ],
                          VAL.COMPS < > ],
                    CONT.HOOK.XARG #xarg  ],
     LCOORD-DTR.SYNSEM.LOCAL [ CAT [ LASTNMOD #lastnmod,
                                     POSTHEAD #ph,
-                                    HEAD adj ],
+                                    HEAD adj & [ MOD < [ LOCAL [ CONT #cont, AGR #agr ] ] > ] ],
                               CONT.HOOK.XARG #xarg ],
     RCOORD-DTR.SYNSEM.LOCAL [ CAT [ LASTNMOD #lastnmod,
                                     POSTHEAD #ph,
-                                    HEAD adj & [ MOD < [ LOCAL.CONT #cont ] > ] ],
+                                    HEAD adj & [ MOD < [ LOCAL [ CONT #cont, AGR #agr ] ] > ] ],
                               CONT.HOOK.XARG #xarg ] ]
 """
 ; NOTE that in fact qualitative adjectives may be coordinated without restrictions (e.g. 
