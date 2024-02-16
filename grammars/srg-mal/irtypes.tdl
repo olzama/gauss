@@ -209,6 +209,7 @@ masc_3pl_ilr :=  masc_ilr & 3pl_ilr.
 fem_3sg_ilr :=  fem_ilr & 3sg_ilr.
 fem_3pl_ilr :=  fem_ilr & 3pl_ilr.
 neut_3sg_ilr :=  neut_ilr & 3sg_ilr.
+
 masc_sg_ilr := masc_ilr & sg_ilr.
 fem_sg_ilr := fem_ilr & sg_ilr.
 masc_pl_ilr := masc_ilr & pl_ilr.
@@ -281,9 +282,9 @@ ap0fs1p_ilr := dp_ilr & fem_sg_ilr
 """possessive det""".
 ap0fp1p_ilr := dp_ilr & fem_pl_ilr
 """possessive det""".
-dp2css_ilr := dp_ilr & 2sg_ilr
+dp2css_ilr := dp_ilr & sg_ilr
 """possessive det""".
-dp2cps_ilr := dp_ilr & 2pl_ilr
+dp2cps_ilr := dp_ilr & pl_ilr
 """possessive det""".
 ap0ms2p_ilr := dp_ilr & masc_sg_ilr
 """possessive det""".
@@ -293,9 +294,9 @@ ap0fs2p_ilr := dp_ilr & fem_sg_ilr
 """possessive det""".
 ap0fp2p_ilr := dp_ilr & fem_pl_ilr
 """possessive det""".
-dp3csn_ilr := dp_ilr & 3sg_ilr
+dp3csn_ilr := dp_ilr & sg_ilr
 """possessive det""".
-dp3cpn_ilr := dp_ilr & 3pl_ilr
+dp3cpn_ilr := dp_ilr & pl_ilr
 """possessive det""".
 
 ; -- indefinite det. 
