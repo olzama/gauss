@@ -1348,8 +1348,7 @@ basic-appos-phrase := head-nexus-phrase & head-compositional & basic-binary-phra
     NON-HEAD-DTR #non-head & 
           [ INFLECTED +,
             SYNSEM canonical-synsem &
-  	     [ LOCAL [ ;AGR.PNG #png,
-  	               COORD -,
+  	     [ LOCAL [ COORD -,
                        CAT [ MC na,
                              VAL [ SUBJ < >,
                                    COMPS < > ] ],
