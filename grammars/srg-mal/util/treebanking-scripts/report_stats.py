@@ -67,5 +67,5 @@ def count_rules(d):
     return counts
 
 if __name__ == '__main__':
-    #report_stats(sys.argv[1])
+    report_stats(sys.argv[1])
     report_rule_counts(sys.argv[1])
