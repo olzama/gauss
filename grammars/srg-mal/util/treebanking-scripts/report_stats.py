@@ -48,9 +48,10 @@ def report_rule_counts(treebanks_path):
         for phsr, info in rule_count.items():
             if info['is_root'] is False:
                 all_rules_count[phsr] = sum(info['counts'] for rule_count in rule_count_list if phsr in rule_count)
-    for k, v in all_rules_count.items():
+    for k, v in sorted(all_rules_count.items(), key=lambda item:item[1], reverse=True):
         print('Rule {}: {} uses.'.format(k, v))
-    print('Total number of constraints used: {}'.format(len(all_rules_count)))
+    print('Total number of constraints used: {}'.format(sum(all_rules_count.values())))
+    print('{} different constraints used.'.format(len(all_rules_count)))
 
 
 def count_rules(d):
@@ -66,5 +67,5 @@ def count_rules(d):
     return counts
 
 if __name__ == '__main__':
-    report_stats(sys.argv[1])
+    #report_stats(sys.argv[1])
     report_rule_counts(sys.argv[1])
