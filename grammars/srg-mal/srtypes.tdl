@@ -564,7 +564,7 @@ basic-head-comp-or-marker-phrase := head-valence-phrase & head-compositional & b
                                           SPEC #spec,
                                           CLTS #clts ] ] ],
                       MODIFIED #modif ],
-    NON-HEAD-DTR [ SYNSEM canonical-synsem ] ].
+    NON-HEAD-DTR.SYNSEM canonical-synsem ].
 
 head-marker_phrase := basic-head-comp-or-marker-phrase & head-initial &
   [ SYNSEM [ SLSHD #slshd,
@@ -1629,7 +1629,7 @@ optcomp-phrase := head-valence-phrase & head-only & head-compositional &
 
 optcomp-v_phrase := optcomp-phrase &
   [ SYNSEM.LOCAL.CAT [ POSTHEAD #ph,
-                       VAL [ COMPS #comps ] ],
+                       VAL.COMPS #comps ],
     HEAD-DTR.SYNSEM.LOCAL [ STR.HEADED solely,
                             CAT [ POSTHEAD #ph, 
                                   HEAD verb & [ KEYS.KEY v_event_rel ],
