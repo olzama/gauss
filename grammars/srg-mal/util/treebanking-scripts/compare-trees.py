@@ -1,39 +1,56 @@
 import sys
-from delphin import itsdb
+from delphin import itsdb, derivation
 import glob
 import os
 
-# Open a folder which contains two sets of treebanks. Store the processed items of each set in two dictionaries.
-def prepare_treebanks(treebanks_path):
+
+# Open two folders containing different versions of the same treebanks. Report the differences between them.
+def compare_treebanks(old_path, new_path):
     old_treebanks = {}
     new_treebanks = {}
-    ot_path = sorted(glob.iglob(treebanks_path + '/old/**'))
-    nt_path = sorted(glob.iglob(treebanks_path + '/new/**'))
+    ot_path = sorted(glob.iglob(old_path + '/**'))
+    nt_path = sorted(glob.iglob(new_path + '/**'))
     for old_tsuite, new_tsuite in zip(ot_path, nt_path):
-        old_folder = os.path.basename(old_tsuite)
-        new_folder = os.path.basename(new_tsuite)
-        old_ts = itsdb.TestSuite(old_tsuite)
-        new_ts = itsdb.TestSuite(new_tsuite)
-        old_treebanks[old_folder] = list(old_ts.processed_items())
-        new_treebanks[new_folder] = list(new_ts.processed_items())
+        add_to_dict(old_treebanks, old_tsuite)
+        add_to_dict(new_treebanks, new_tsuite)
     # Iterate over two dictionaries comparing key names and number of items in each key.
     if old_treebanks.keys() == new_treebanks.keys():
         for (old_folder, old_items), (new_folder, new_items) in zip(old_treebanks.items(), new_treebanks.items()):
             if len(old_items) == len(new_items):
-                print('Collecting parsed items from {}'.format(old_folder))
-                old_parses = collect_parsed(old_items)
-                new_parses = collect_parsed(new_items)
-                for old_response, new_response in zip(old_parses, new_parses):
+                print('\nCollecting parsed items from {}'.format(old_folder))
+                old_responses = collect_parsed(old_items)
+                new_responses = collect_parsed(new_items)
+                # Given two lists of parsed items, compare the results of items with the same id.
+                for old_response, new_response in zip(old_responses, new_responses):
+                    o_derivs = []
+                    n_derivs = []
                     if old_response['i-id'] == new_response['i-id']:
                         orr = old_response['results']
                         nrr = new_response['results']
-                        if len(orr) == len(nrr):
-                            #Compare results of two lits of items and report the differences.
-                            for o, n in zip(orr, nrr):
-                                if o != n:
-                                    print('Different results found for item {}'.format(o['parse-id']))
+                        for o, n in zip(orr, nrr):
+                            o_deriv = derivation.from_string(o['derivation'])
+                            n_deriv = derivation.from_string(n['derivation'])
+                            if o_deriv not in o_derivs:
+                                o_derivs.append(o_deriv)
+                            if n_deriv not in n_derivs:
+                                n_derivs.append(n_deriv)
+                        if o_derivs != n_derivs:
+                            print('Differences found in item {}'.format(o['parse-id']))
+                        if len(orr) != len(nrr):  # Report overgeneration or regression.
+                            print('item {}: {} results in old version, {} results in new version'.format(
+                                old_response['i-id'], len(orr), len(nrr)))
 
-#Iterate over a list of dictionaries, storing them in a list if their attribute ['results'] is not empty.
+
+def add_to_dict(treebanks, tsuite):  # Process items of a tsuite and stores them in a dictionary.
+    folder = os.path.basename(tsuite)
+    if folder not in treebanks.keys():
+        treebanks[folder] = []
+    ts = itsdb.TestSuite(tsuite)
+    treebanks[folder] = list(ts.processed_items())
+    return treebanks
+
+
+#Iterate over a list of responses, storing them in a list if their attribute ['results'] is not empty.
 def collect_parsed(items):
     parsed_items = []
     for response in items:
@@ -42,4 +59,4 @@ def collect_parsed(items):
     return parsed_items
 
 if __name__ == '__main__':
-    prepare_treebanks(sys.argv[1])
+    compare_treebanks(sys.argv[1], sys.argv[2])
