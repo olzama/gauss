@@ -846,7 +846,6 @@ vpart_ilr :=  verb_ilr &
                           VOICE active,
                           PRD non-prd ] ].
                          
-
 vppart_ilr :=  inflecting-lex-rule & 
   [ INFLECTED +,
     SYNSEM [ LOCAL [ AGR #agr,
