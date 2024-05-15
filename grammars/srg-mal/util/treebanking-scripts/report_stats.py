@@ -1,6 +1,6 @@
 import re
 import sys
-from delphin import itsdb
+from delphin import itsdb, derivation
 import glob
 
 
@@ -134,4 +134,4 @@ def count_rules(d):
 if __name__ == '__main__':
     report_stats(sys.argv[1])
     report_rule_counts(sys.argv[1])
-    report_sorted(sys.argv[1])
+    #report_sorted(sys.argv[1]) # This assumes the CEDEL corpus format, so shouldn't be called for COW
