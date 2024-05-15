@@ -134,6 +134,17 @@ rg_ilr := infl-ltow-rule &
   """; -- non-inflecting categories
 """.
 
+
+fd_ilr := infl-ltow-rule & 
+[ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.VAL [ SUBJ < >,
+                                                 COMPS < >,
+                                                 SPR < >,
+                                                 SPEC < > ] ] > ]
+"""
+Colon.
+"Precio: 1000 pesetas."
+""".
+
 nc00000_ilr :=  infl-ltow-rule & 
   [ SYNSEM.LOCAL.CAT.HEAD noun ].
 
@@ -202,7 +213,11 @@ fem_ilr :=  infl-ltow-rule &
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
 neut_ilr :=  infl-ltow-rule & 
-  [ SYNSEM.LOCAL.AGR.PNG.GEN neut ].
+  [ SYNSEM.LOCAL.AGR.PNG.GEN masc ] ; neut ]
+  """
+  OZ: I don't see the point of the neut GEN value for now; it blocks constructions like "Esto es cierto" etc.,
+  and I don't see what it is adding.
+  """.
 
 masc_3sg_ilr :=  masc_ilr & 3sg_ilr.
 masc_3pl_ilr :=  masc_ilr & 3pl_ilr.
@@ -520,25 +535,25 @@ a_neut-sg_ilr :=  a_ilr & neut_sg_ilr
 ;;; OZ 2024-02-01
 ;;; Learner lexical rules to allow the use of an adjective as if it were of the opposite ("wrong") gender.
 
-a_masc-mal-gen-sg_ilr := a_ilr & fem_sg_ilr & 
+mal_a_masc-sg_ilr := a_ilr & fem_sg_ilr & 
 [ LEARNER + ]
 """
 Learner adjective (used as wrong gender).
 """.
 
-a_masc-mal-gen-pl_ilr := a_ilr & fem_pl_ilr & 
+mal_a_masc-pl_ilr := a_ilr & fem_pl_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
 """.
 
-a_fem-mal-gen-sg_ilr := a_ilr & masc_sg_ilr & 
+mal_a_fem-sg_ilr := a_ilr & masc_sg_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
 """.
 
-a_fem-mal-gen-pl_ilr := a_ilr & masc_pl_ilr & 
+mal_a_fem-pl_ilr := a_ilr & masc_pl_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
@@ -759,19 +774,19 @@ n_fem-pl_ilr :=  n_pl_ilr &
   
 ;;; Learner rules: to use nouns as instances of the opposite ("wrong") gender, i.e. to use "gato" as a feminine noun, etc.
 
-n_masc-sg-mal-gen_ilr :=  n_sg_ilr & 
+mal_n_masc-sg_ilr :=  n_sg_ilr & 
   [ LEARNER +,
     SYNSEM.LOCAL.AGR.PNG.GEN fem ]. 
   
-n_masc-pl-mal-gen_ilr := n_pl_ilr & 
+mal_n_masc-pl_ilr := n_pl_ilr & 
   [ LEARNER +,
     SYNSEM.LOCAL.AGR.PNG.GEN fem ]. 
   
-n_fem-sg-mal-gen_ilr := n_sg_ilr & 
+mal_n_fem-sg_ilr := n_sg_ilr & 
   [ LEARNER +, 
     SYNSEM.LOCAL.AGR.PNG.GEN masc ]. 
   
-n_fem-pl-mal-gen_ilr := n_pl_ilr & 
+mal_n_fem-pl_ilr := n_pl_ilr & 
   [ LEARNER +, 
     SYNSEM.LOCAL.AGR.PNG.GEN masc ].
 
@@ -796,6 +811,12 @@ ind-vfin_ilr :=  vfin_ilr &
 
 pres-ind_ilr :=  ind-vfin_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD.TAM.TENSE pres ].
+
+pres-ind-aux_ilr :=  pres-ind_ilr & 
+ [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.HEAD verb ] > ]
+"""
+e.g. esta pasando, ha dormido
+""".
 
 ppast-ind_ilr :=  ind-vfin_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD.TAM.TENSE ppast ].
@@ -839,13 +860,64 @@ vger_ilr :=  verb_ilr &
                             PRD prd & [ COPV estar ] ] ] ].
 ;                     VAL.SUBJ < unexpressed & [ OPT - ] > ] ].
 
-;vpart_ilr :=  infl-ltow-rule & 
-vpart_ilr :=  verb_ilr & 
+
+vpart-haber_ilr :=  verb_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD [ TAM.MOOD ind_or_sub_mood,
                           VFORM part,
                           VOICE active,
-                          PRD non-prd ] ].
-                         
+                          PRD non-prd & [ HABER + ] ] ].
+                          
+vpart_ilr :=  inflecting-lex-rule & 
+  [ INFLECTED +,
+    ;KEY-ARG #keyarg,
+    SYNSEM [ LOCAL [ ;AGR #agr,
+                     CAT [ MC #mc,
+                           HEAD verb & [ AUX -,
+                                         PRD non-prd & [ HABER #haber ], 
+                                         VFORM part,
+                                         VOICE active,
+                                         TAM.MOOD ind_or_sub_mood & #mood,
+                                         KEYS.KEY #key ], 
+                           VAL [ SPR #spr,
+                                 SUBJ < synsem &
+                                        [ NON-LOCAL.SLASH 0-dlist ] >,
+                                 CLTS #clt,
+                                 COMPS #comps,
+                                 SPEC #spec ] ],
+                     CONT [ HOOK [ INDEX #arg0,
+                                   LTOP #hand ],
+                            RELS #rels,
+                            HCONS #hcons ],
+                     CTXT #ctxt,
+                     COORD #coord,
+                     COORD-STRAT #coord-strat ],
+            LKEYS #lkeys,
+            NON-LOCAL #nonloc ],
+    DTR [ INFLECTED -,
+          ;KEY-ARG #keyarg,
+          SYNSEM [ LOCAL [ CAT [ MC #mc,
+                                 HEAD verb &
+                                      [ VFORM part,
+                                        TAM.MOOD #mood,
+                                        KEYS.KEY #key,
+                                        PRD.HABER #haber ],
+                                 VAL [ SPR #spr,
+                                       SUBJ < [ LOCAL np_nom_local ] >,
+                                       COMPS #comps,
+                                       CLTS #clt,
+                                       SPEC #spec ] ],
+                           CONT [ HOOK [ INDEX #arg0,
+                                         LTOP #hand ],
+                                  RELS #rels,
+                                  HCONS #hcons ],
+                           CTXT #ctxt,
+                           COORD #coord,
+                           COORD-STRAT #coord-strat ],
+                   LKEYS #lkeys,
+                   NON-LOCAL #nonloc ] ],
+    C-CONT.RELS <! !>  ].
+
+
 vppart_ilr :=  inflecting-lex-rule & 
   [ INFLECTED +,
     SYNSEM [ LOCAL [ AGR #agr,
@@ -870,7 +942,7 @@ vppart_ilr :=  inflecting-lex-rule &
                                                                INDEX #subjind ] ],
                                            NON-LOCAL #snonloc ]. #comps >,
                                  CLTS < > ] ],
-                     CONT [ HOOK [ INDEX.E.MOOD #mood,
+                     CONT [ HOOK [ INDEX #arg0 & [ E.MOOD #mood ],
                                    LTOP #hand ],
                             RELS #rels,
                             HCONS #hcons ],
@@ -892,7 +964,8 @@ vppart_ilr :=  inflecting-lex-rule &
                                                        NON-LOCAL #ononloc ], 
                                                REST #comps ],
                                        CLTS < > ] ],
-                           CONT [ HOOK.LTOP #hand,
+                           CONT [ HOOK [ INDEX #arg0,
+                                         LTOP #hand ],
                                   RELS #rels,
                                   HCONS #hcons ],
                            CTXT #ctxt ],

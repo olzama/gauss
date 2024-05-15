@@ -2,7 +2,7 @@
 
 from freeling_api.python_API import pyfreeling_api
 import sys, os
-from override_freeling import MAL_TAGS
+from override_freeling import MAL_TAGS, ADD_TAGS
 
 PATH_TO_SPPP_DAT = '/home/olga/delphin/GAUSS/gauss-repo/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
 
@@ -155,4 +155,9 @@ class Freeling_tok_tagger:
                 mal_tags = MAL_TAGS[a.get_tag()].split(',')
                 for mt in mal_tags:
                     additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
+            if a.get_tag() in ADD_TAGS and (a.is_selected() or w.get_form().lower() in override_dicts['no_disambiguate']):
+                add_tags = ADD_TAGS[a.get_tag()].split(',')
+                for mt in add_tags:
+                    additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
+ 
         return tags, additional_arcs

@@ -6,7 +6,7 @@
 ################################################################################
 
 import sys
-from override_freeling import TAGS, DO_NOT_OVERRIDE, STEM_EQUALS_TAG, REPLACE_LEMMA_AND_TAG
+from override_freeling import TAGS, DO_NOT_OVERRIDE, STEM_EQUALS_TAG, REPLACE_LEMMA_AND_TAG, ORDINALS
 from tokenize_and_tag import Freeling_tok_tagger
 import parse_sppp_dat
 
@@ -15,8 +15,8 @@ In the old version of the grammar, some of the Freeling tags were overridden.
 For compatibility, we will do the same for now.
 i -> AQ0MS0 (interjection to a default adjective form; will then undergo an adjective-to-interjection rule...)
 '''
-def override_tag(selected, word, lemma, override_dicts):
-    if lemma.isnumeric():
+def override_tag(selected, word, lemma, tag, override_dicts):
+    if lemma.isnumeric() and not tag[0:3] in ORDINALS:
         return {'tags': ['Z'], 'prob': -1}
     if selected['tag'] in TAGS and word not in DO_NOT_OVERRIDE and word not in REPLACE_LEMMA_AND_TAG:
         return {'tags': [TAGS[selected['tag']]], 'prob': -1 }
@@ -58,7 +58,7 @@ def override_lemma(lemma, tag, override_dicts):
 def convert_sentences(sentences, override_dicts):
     yy_sentences = []
     for i, sent in enumerate(sentences):
-        print(sent,file=sys.stderr)
+        #print(sent,file=sys.stderr)
         output = ""
         _num = 0       # lattice ID
         _from = 0
@@ -67,8 +67,8 @@ def convert_sentences(sentences, override_dicts):
         _keep_to = 1
         if not sent['tokens']: # something Freeling could not handle; possibly a foreign phrase.
             sentence = sent['sentence'].rstrip('\n')
-            output = '(1,0,1, <0:{}>,1,"{}" "{}",0, "np00v00", "np00v00" 1.0)'.format(sentence,
-                                                                                    sentence.replace('"','\\"'),
+            output = '(1,0,1, <0:{}>,1,"{}" "{}",0, "np00v00", "np00v00" 1.0)'.format(len(sentence),
+                                                                                      sentence.replace('"', '\\"'),
                                                                                       sentence.replace('"','\\"'))
         else:
             for j,tok in enumerate(sent['tokens']):
@@ -77,7 +77,7 @@ def convert_sentences(sentences, override_dicts):
                 #if tok['lemma'] == 'más':
                 #    print('debug')
                 tag_prob = {'tag': tok['tag'], 'prob':tok['prob']}
-                pos_conf = override_tag(tag_prob, surface.lower(), tok['lemma'], override_dicts)
+                pos_conf = override_tag(tag_prob, surface.lower(), tok['lemma'], tok['tag'], override_dicts)
                 if len(pos_conf['tags']) > 1:
                     print("Warning: more than one tag for token: {}".format(tok['form']))
                 pos = pos_conf['tags'][0]

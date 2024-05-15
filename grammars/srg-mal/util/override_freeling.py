@@ -14,6 +14,9 @@ DO_NOT_OVERRIDE = {'uf', 'je', 'ja', 'oh', 'todo_lo_contrario', 'ojalá'}
 
 STEM_EQUALS_TAG = {'Z', 'W'}
 
+ORDINALS = {'AO0'} #first three letters of the tag
+
+
 '''
 The MAL_TAGS maps the tags that come from Freeling morphophonological tagger and maps them to all names of
 lexical rules in inflr.tdl that are necessary for covering learner constructions (where there is an agreement mismatch).
@@ -30,5 +33,12 @@ MAL_TAGS = {'NCFS000':'NCFS000-MG', 'NCMS000':'NCMS000-MG', 'NCFP000':'NCFP000-M
             'AQSMS00':'AQSMS00-MG', 'AQSMP00':'AQSMP00-MG', 'AQSFS00':'AQSFS00-MG', 'AQSFP00':'AQSFP00-MG',
             'AQDMS00':'AQDMS00-MG', 'AQDMP00':'AQDMP00-MG', 'AQDFS00':'AQDFS00-MG', 'AQDFP00':'AQDFP00-MG',
             'AQ0MSP':'AQ0MSP-MG', 'AQ0FSP':'AQ0FSP-MG', 'AQ0MPP':'AQ0MPP-MG', 'AQ0FPP':'AQ0FPP-MG',
-            'VMP00SM':'VMP00SM-MG', 'VMP00SF':'VMP00SF-MG', 'VMP00PM':'VMP00PM-MG', 'VMP00PF':'VMP00PF-MG',}
+            'VMP00SM':'VMP00SM-MG', 'VMP00SF':'VMP00SF-MG', 'VMP00PM':'VMP00PM-MG', 'VMP00PF':'VMP00PF-MG',
+            'A00FS00':'A00FS00-MG', 'A00MS00':'A00MS00-MG', 'A00MP00':'A00MP00-MG', 'A00FP00':'A00FP00-MG',
+            'AP0FS1S':'AP0FS1S-MG', 'AP0MS1S':'AP0MS1S-MG', 'AP0MP1S':'AP0MP1S-MG', 'AP0FP1S':'AP0FP1S-MG',
+            'PX1FS0P0':'PX1FS0P0-MG', 'PX1MS0P0':'PX1MS0P0-MG', 'PX1MP0P0':'PX1MP0P0-MG', 'PX1FP0P0':'PX1FP0P0-MG',
+            'AP0FS2S':'AP0FS2S-MG', 'AP0MS2S':'AP0MS2S-MG', 'AP0MP2S':'AP0MP2S-MG', 'AP0FP2S':'AP0FP2S-MG',
+            'PX2FS0P0':'PX2FS0P0-MG', 'PX2MS0P0':'PX2MS0P0-MG', 'PX2MP0P0':'PX2MP0P0-MG', 'PX2FP0P0':'PX2FP0P0-MG',
+            'AP0FS3N':'AP0FS3N-MG', 'AP0MS3N':'AP0MS3N-MG', 'AP0MP3N':'AP0MP3N-MG', 'AP0FP3N':'AP0FP3N-MG',}
 
+ADD_TAGS = {'VMP00SM':'VMP00SM-PP'}

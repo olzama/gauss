@@ -391,7 +391,7 @@ ctxt := ctxt-min &
 ; consisting of heads and complements is light or heavy is taken to 
 ; be a lexical property of the head.
 ; POSTHEAD attr, stipulates the relative position of the modifier with
-; respect to the head, it should stay with MOD, since only relevant 
+; respect to the head, it should stay with MOD, since it's only relevant 
 ; when MOD is non-empty.
 
 cat-min := avm.
@@ -421,7 +421,12 @@ head := head-min &
 ; - for integrated tags which have no entry
 no-head := head.
 
-predicative := sort.
+predicative := sort & 
+[ HABER bool ]
+"""
+HABER: for past participles that don't encode agreement information but can go with the auxiliary verb haber,
+e.g. Las gatas han comido.
+""".
 non-prd := predicative.
 prd := predicative &
   [ COPV copv ].
@@ -954,6 +959,10 @@ named-relation := noun-arg1-relation & carg-relation &
 
 date-relation := noun-arg1-relation & carg-relation &
   [ PRED time_n_rel ].
+
+; Ordinal numbers
+
+ord-relation := adj-arg1-relation & carg-relation.
 
 ; pronouns
 

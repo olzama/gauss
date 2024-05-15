@@ -909,15 +909,17 @@ v_cop_verbal_subject_synsem := v_copula_basic_synsem &
 
 v_ap_cop_verbal_subject_synsem := v_cop_verbal_subject_synsem & 
   [ LOCAL [ CAT [ HEAD.TAM #tam,
-		  VAL.COMPS < [ OPT -,
+		  VAL [ COMPS < [ OPT -,
                                 LOCAL prd_local &
                                       [ CAT.HEAD adj & 
                                                  [ TAM #tam,
                                                    MOD < [ LOCAL intersective-mod ] > ],
                                         CONT [ HOOK [ LTOP #larg,
-                                                      INDEX #index,   
-                                                      XARG #xarg ] ] ] ] > ],
-            CONT [ HOOK.INDEX #index,
+                                                      INDEX #index,
+                                                      XARG #arg1 ] ] ] ] >,
+                       SUBJ < [ LOCAL.CONT.HOOK.INDEX #arg1 ] > ] ],
+            CONT [ HOOK [ INDEX #index,
+                          XARG #xarg ],
                    HCONS <! [ LARG #larg, HARG #xarg ] !>,
                    RELS <! !> ] ] ].
 
@@ -1028,7 +1030,6 @@ v_cop_ser_verb_sbj := v_cop &
 
 v_cop_ser_vp-inf_sbj := v_cop_ser_verb_sbj &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL vp_inf_local ] > ].
-
 
 v_cop_ser_cp_p_sbj := v_cop_ser_verb_sbj &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL s_local & 
@@ -2194,6 +2195,17 @@ v_trans_np_synsem := v_trans_synsem &
 ; --- 1.3.3.1. Transitive verbs taking NP
 """.
 
+v_trans_np-noagr_synsem := v_trans_synsem & 
+  [ LOCAL.CAT.VAL.COMPS < [ LOCAL np_acc_local & 
+                                  [ CONT.HOOK.INDEX #ind2 ],
+                            NON-LOCAL.REL 0-dlist & [ LIST < > ] ],... >,
+    LKEYS.KEYREL.ARG2 #ind2 ]
+"""
+; "Precio: 1000 pesetas."
+(Precio is singular, 1000 pesetas is plural).
+""".
+
+
 v_trans_np := basic-main-verb & 
   [ ALTS.VCALT - ].
 
@@ -2284,6 +2296,15 @@ v_np_npsv-id_lex := v_np_ntr & main-verb & basic-two-arg &
                                          LOCAL.AGR.PNG #png ] > ] ] ] ]
 """; e.g. devenir
 """.
+
+v_np_colon-id_lex := v_np_ntr & main-verb & basic-two-arg &
+  [ ALTS.IMPERS -,
+    SYNSEM v_np_id_synsem & 
+           [ LOCAL [ CAT [ HEAD.LSYNSEM v_np_id_synsem, 
+                           VAL.COMPS < [ OPT - ] > ] ] ] ]
+"""; e.g. Precio: 1000 pesetas.
+""".
+
 
 v_np_npsv-id-prn_lex := v_np_ntr & main-vprn & basic-three-arg &
   [ ALTS.IMPERS -,
@@ -4087,9 +4108,28 @@ v_seq_synsem := v_prd-comp_synsem &
   --- 1.3.3.5.1. verbs taking a predicative complement
   """.
 
+basic_v_seq_synsem := v_prd-comp_synsem &
+  [ LOCAL [ CAT [ HEAD.INV -,
+                  VAL [ COMPS < [ LOCAL local & [ CONT.HOOK [ LTOP #larg ] ],
+                                NON-LOCAL [ REL 0-dlist,
+                                            QUE 0-dlist ] ] > ] ],
+            CONT.HCONS <! [ HARG #harg,
+                            LARG #larg ] !> ],
+    LKEYS.KEYREL arg12-ev-relation & [ ARG2 #harg ] ]
+  """
+  --- 1.3.3.5.1. verbs taking a predicative complement
+  """.
+
 
 v_ap_seq_synsem := v_seq_synsem &
   [ LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.HEAD adj,
+                            NON-LOCAL.SLASH 0-dlist ] > ]
+  """
+  
+  """.
+
+v_np_seq_synsem := basic_v_seq_synsem &
+  [ LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.HEAD noun,
                             NON-LOCAL.SLASH 0-dlist ] > ]
   """
   
@@ -4128,6 +4168,17 @@ v_xp_seq := basic-main-verb &
            IMPERS -,
            VCALT - ],
     SYNSEM v_seq_synsem ]
+  """
+  
+  """.
+
+basic_v_xp_seq := basic-main-verb &
+  [ ALTS [ RCP -,
+           RFX -,
+           PASS -,
+           IMPERS -,
+           VCALT - ],
+    SYNSEM basic_v_seq_synsem ]
   """
   
   """.
@@ -4178,6 +4229,13 @@ v_ap*_seq-prn_lex := v_xp_seq & main-vprn & basic-three-arg &
                                            VAL.COMPS < [ OPT + ] > ] ] ]
   """
   e.g. se mostró muy crítico
+  """.
+
+v_np_seq-prn_lex := basic_v_xp_seq & main-vprn & basic-three-arg &
+  [ SYNSEM v_np_seq_synsem & [ LOCAL.CAT [ HEAD.LSYNSEM v_np_seq_synsem,
+                                           VAL.COMPS < [ OPT - ] > ] ] ]
+  """
+  e.g. sentirse (me siento un desgraciado)
   """.
 
 
@@ -4545,8 +4603,9 @@ v_cop-nsbj := v_copula &
 
 v_ap_ser_synsem := v_copula_synsem &
   [ LOCAL [ CAT.VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #sind ] >,
-                      COMPS < [ LOCAL [ CAT.HEAD adj & [ MOD < [ LOCAL [ CAT.HEAD noun, AGR #sind ] ] >,
-                                                         PRD.COPV ser ],
+                      COMPS < [ LOCAL [ CAT.HEAD adj & [ MOD < [ LOCAL [ CAT.HEAD noun, 
+                                                                         AGR #sind ] ] >,
+                                                         PRD [ COPV ser, HABER - ] ],
                                         CONT.HOOK.XARG #sind ] ] > ],
             CONT.HOOK.XARG #sind ] ]
   """
@@ -4566,8 +4625,9 @@ v_ap_ser_lex := v_cop-np_sbj &
 v_pp_ser_synsem := v_copula_synsem &
   [ LOCAL [ CAT.VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #sind ] >,
                       COMPS < [ LOCAL [ CAT.HEAD adp & [ KEYS.ALT2KEY quant_or_deg_rel,
-                                                         MOD < [ LOCAL.CAT.HEAD noun ] >,
-                                                         PRD.COPV ser ],
+                                                         MOD < [ LOCAL [ CAT.HEAD noun,
+                                                                         AGR #sind ] ] >,
+                                                         PRD [ COPV ser, HABER - ] ],
                                         CONT.HOOK.XARG #sind ] ] > ],
             CONT.HOOK.XARG #sind ] ]
   """
@@ -4625,8 +4685,11 @@ v_pp_e-vp-inf-ser_lex := v_cop-np_sbj &
 
 
 v_vp_ppart_ser_synsem := v_copula_synsem &
-  [ LOCAL.CAT.VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #arg2 ] >,
-                    COMPS < [ LOCAL [ CAT.HEAD verb & [ PRD.COPV ser ],
+  [ LOCAL.CAT.VAL [ SUBJ < [ LOCAL [ ;AGR #agr,
+                                     CONT.HOOK.INDEX #arg2 ] ] >,
+                    COMPS < [ LOCAL [ ;AGR #agr,
+                                      CAT [ HEAD verb & [ PRD.COPV ser ],
+                                            VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX #arg2 ] > ],
                                       CONT.RELS.LIST < [ ARG2 #arg2 ], ... > ] ] > ] ]
   """
   e.g. Juan fue atacado
@@ -4661,7 +4724,8 @@ v_vp_ppart-estar_lex := v_cop-np_sbj &
 
 v_ap_estar_synsem := v_copula_synsem &
   [ LOCAL [ CAT.VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #sind ] >,
-                      COMPS < [ LOCAL [ CAT.HEAD adj & [ MOD < [ LOCAL.CAT.HEAD noun ] >,
+                      COMPS < [ LOCAL [ CAT.HEAD adj & [ MOD < [ LOCAL [ CAT.HEAD noun,
+                                                                         AGR #sind ] ] >,
                                                          PRD.COPV estar,
                                                          KEYS.KEY adj_rel ],
                                         CONT.HOOK.XARG #sind ] ] > ],
@@ -4821,7 +4885,7 @@ v_aux_haber_synsem := lex-synsem &
                          KEYS.ALTKEY #altkey ],
                   VAL.COMPS < [ OPT -,
                                 LOCAL [ CAT.HEAD [ INV #inv,
-                                                   PRD non-prd,
+                                                   PRD non-prd & [ HABER + ],
                                                    VFORM part,
                                                    KEYS [ KEY #ckey,
                                                           ALTKEY #altkey ] ],
@@ -4848,9 +4912,13 @@ v_aux_vp-part_synsem := v_aux_haber_synsem &
                                             VAL [ SUBJ < [ LOCAL #subject ] >,
                                                   CLTS #clts ] ] ] >,
                       CLTS #clts ],
-	    CONT.HOOK.XARG #sind ] ].
+	    CONT.HOOK.XARG #sind ] ]
+"""
+The feature HABER ensures that this participle only occurs in perfective constructions,
+e.g. "Las gatas han salido."
+""".
 
-v_aux_vp-ppart_synsem := v_aux_haber_synsem & 
+v_aux_vp-ppart_synsem := v_aux_haber_synsem &
   [ LOCAL [ AGR #sind, 
             CAT.VAL [ SUBJ < [ LOCAL #subject & [ AGR #sind ] ] >,
                       COMPS < [ LOCAL.CAT vp_cat &
@@ -4949,7 +5017,6 @@ basic-noun-lex := nonpronominal-lex &
                                  INDEX [ PNG.PN 3per,
                                          PRONTYPE not_pron ] ] ],
              LKEYS.KEYREL.LBL #ltop ] ]. 
-
 
 basic-common-noun-synsem := lex-synsem & 
   [ LOCAL.CAT.HEAD noun ].
@@ -6278,6 +6345,24 @@ basic-adjective-lex := lex-item &
                            VAL [ SUBJ < >,
                                  CLTS < > ] ] ] ] ].
 
+basic-ord-num-lex := lex-item &
+  [ INFLECTED -,
+    ALTS [ RCP -, 
+           RFX -,
+           PASS -,
+           IMPERS - ],
+    SYNSEM [ PUNCT [ LPUNCT no_punct,
+                     RPUNCT no_punct ],
+             MODIFIED notmod,
+             LOCAL [ COORD -,
+                     COORD-STRAT zero,
+                     COORD-REL.PRED null_coord_rel,
+                     CAT [ HEAD adj & 
+                                [ KEYS.KEY ord_rel ],
+                           VAL [ SUBJ < >,
+                                 CLTS < > ] ] ] ] ].
+
+
 non-agr_basic_adjective_synsem := lex-synsem &
   [ LOCAL [ AGR.PNG.GEN #gen,
             CAT [ MC na,
@@ -6339,10 +6424,28 @@ intersective_adjective_synsem := basic_adjective_synsem &
                    ARG0 #arg0,
                    ARG1 #ind ] ].
 
+ordinal_number_synsem := basic_adjective_synsem &
+  [ LOCAL [ CAT.HEAD.MOD < canonical-synsem & 
+                           [ LOCAL intersective-mod & [ CONT.HOOK.INDEX #ind ] ] >,
+            CONT.HOOK [ LTOP #ltop,
+                        INDEX #arg0,
+                        XARG #ind ] ],
+    LKEYS.KEYREL [ LBL #ltop,
+                   ARG0 #arg0,
+                   ARG1 #ind ] ]
+"""
+""".
+
 non-modfied-adj-lex := basic-adjective-lex & 
   [ SYNSEM.LOCAL.CAT.VAL [ SPR < >, 
                            COMPS #comps ], 
     ARG-ST #comps ].
+
+non-modfied-ord-num-lex := basic-ord-num-lex & 
+  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >, 
+                           COMPS #comps ], 
+    ARG-ST #comps ].
+
 
 modfied-adj-lex := basic-adjective-lex & 
   [ SYNSEM [ LOCAL.CAT.VAL [ SPR < #spr & 
@@ -6373,6 +6476,11 @@ a_trans := basic-adjective-lex &
                          HEAD.KEYS.KEY norm_adj_rel ], 
                    CONT.RELS.LIST < adj-relation, ... > ] ]. 
 
+ord_num := basic-ord-num-lex & 
+  [ SYNSEM.LOCAL [ CAT [ POSTHEAD +,
+                         HEAD.KEYS.KEY ord_rel ], 
+                   CONT.RELS.LIST < ord-relation, ... > ] ]. 
+
 a_mrkd_np := a_trans & 
   [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ LOCAL mrkd_np_local & 
                                              [ CAT.HEAD.KEYS.KEY #ckey & selected_rel,
@@ -6380,6 +6488,15 @@ a_mrkd_np := a_trans &
                      CONT [ RELS <! adj-arg12-relation !>,
                             HCONS <! !> ] ], 
              LKEYS [ KEYREL.ARG2 #arg2,
+                     --COMPKEY #ckey ] ] ]. 
+
+a_mrkd-ord-num_np := ord_num & 
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < [ LOCAL mrkd_np_local & 
+                                             [ CAT.HEAD.KEYS.KEY #ckey & selected_rel,
+                                               CONT.HOOK.INDEX #arg1 ] ] >,
+                     CONT [ RELS <! ord-relation !>,
+                            HCONS <! !> ] ], 
+             LKEYS [ KEYREL.ARG1 #arg1,
                      --COMPKEY #ckey ] ] ]. 
 
 a_cp_prop_or_ques := a_trans &
@@ -6931,8 +7048,7 @@ basic_int_adverb_synsem := basic_adverb_synsem &
   [ LOCAL [ CAT [ HEAD [ KEYS.KEY adv_rel,
                          MOD < [ LOCAL intersective-mod & 
                                        [ CONT.HOOK.INDEX #index ],
-                                 NON-LOCAL.REL 0-dlist ] > ],
-                  VAL.COMPS < > ],
+                                 NON-LOCAL.REL 0-dlist ] > ] ],
 	    CONT.HOOK [ LTOP #hand,
                         INDEX #arg0 ] ],
     LKEYS.KEYREL [ LBL #hand,
@@ -6974,8 +7090,7 @@ basic_scopal_adverb_synsem := basic_adverb_synsem &
                          MOD < [ LOCAL scopal-mod &
 			    	       [ COORD -,
                                          CONT.HOOK [ LTOP #mhand,
-                                                     INDEX #index ] ] ] > ],
-                  VAL.COMPS < > ],
+                                                     INDEX #index ] ] ] > ] ],
 	    CONT [ HOOK [ LTOP #ltop,
                           INDEX #index ],
                    RELS <! relation !>,
@@ -7116,7 +7231,8 @@ av_-_i-sm_lex := nonspec-adverb-lex & norm-zero-arg &
 
 av_-_i-vm_lex := nonspec-adverb-lex & norm-zero-arg &
   [ synsem nonspec_intersect_vp_adverb_synsem & 
-           [ local.cat.posthead + ] ]
+           [ local.cat [ posthead +,
+                         VAL.COMPS < > ] ] ]
 """
 ; --- 4.2.2. VP modifiers (any position after the verb)
 ; e.g. (*muy) mortalmente
@@ -7125,16 +7241,31 @@ av_-_i-vm_lex := nonspec-adverb-lex & norm-zero-arg &
 
 av_-_i-vm-spd_lex := spec-adverb-lex & basic-one-arg &
   [ synsem intersect_vp_adverb_synsem & 
-           [ local.cat.posthead + ] ]
+           [ local.cat [ posthead +,
+                         VAL.COMPS < > ] ] ]
 """
 ; --- 4.2.2. VP modifiers (any position after the verb)
 ; e.g. (muy) negativamente
 
 """.
 
+av_-_i-vm-cmp_lex := spec-adverb-lex & basic-two-arg &
+  [ synsem intersect_vp_adverb_synsem & 
+           [ local [ cat [ posthead +,
+                         VAL.COMPS < [ LOCAL [ CAT.HEAD.KEYS.KEY _que_p_comp_rel,
+                                               CONT.HOOK.INDEX #arg ] ] > ] ],
+             LKEYS.KEYREL.ARG2 #arg ] ]
+"""
+; --- 4.2.2. VP modifiers (any position after the verb)
+; e.g. "Lo oyen mejor que nosotros."
+
+""".
+
+
 av_-_i-vm-ppart_lex := nonspec-adverb-lex & norm-zero-arg &
   [ synsem nonspec_intersect_vp_adverb_synsem & 
-           [ local.cat [ posthead -,
+           [ local.cat [ VAL.COMPS < >,
+                         posthead -,
                          head [ keys.key adv_rel,
                                 mod < [ local.cat [ head.vform part,
                                                     val.subj < [ ] > ] ] > ] ] ] ]
@@ -7954,7 +8085,6 @@ p_cp_prop_or_ques_inf := p_cp_prop_or_ques &
                                                VAL.SUBJ < synsem & 
                                                           [ NON-LOCAL.SLASH 0-dlist & [ LIST < > ] ] > ] ] > ].
 
-
 p_cp_prop_inf_slash := o_rais-one-arg &
   [ SYNSEM [ LOCAL [ CAT [ HEAD [ AUX -,
                                   TAM #tam ],
@@ -8583,7 +8713,6 @@ basic_det_synsem := lex-synsem &
 ; with 'ad-sensum' agr. 
 """.
 
-
 specfd_det_synsem := basic_det_synsem &
   [ LOCAL [ AGR #agr,
             CAT.VAL.SPR < [ LIGHT +,
@@ -8593,7 +8722,6 @@ specfd_det_synsem := basic_det_synsem &
 """
 ; dets taking spr and building a DP
 """.
-
 
 det_que := basic-det-lex & 
   [ SYNSEM [ LOCAL.CAT [ POSTHEAD -,
@@ -9351,6 +9479,7 @@ d_-_q-nu-card_lex := det_quant_eval &
   !!! num + sust pueden formar una unidad inseparable, e.g. esas tristes dos pesetas,
   esas famosas tres tardes con Teresa
   e.g. (los) tres hermanos
+  OZ: I am really not sure why this should be 3pl. Something like "nosotros dos" would be 1pl, and I think? But PL is to exclude un/una from this. Maybe just PL but not 3PL? 
   """.
 
 
@@ -9395,11 +9524,10 @@ n_pp_psd-part-nu-card_lex := n_quant &
 
 ; --- 7.2. Ordinals (Adjectives)
 
-aj_-_i-nu-ord_lex := non-modfied-adj-lex & a_mrkd_np & basic-one-arg &
-  [ SYNSEM intersective_adjective_synsem &
+aj_-_i-nu-ord_lex := non-modfied-ord-num-lex & a_mrkd-ord-num_np & basic-one-arg &
+  [ SYNSEM ordinal_number_synsem &
             [ LOCAL.CAT [ HEAD.PRD prd,
-                          VAL.COMPS < [ OPT +,
-                                        LOCAL.CAT.HEAD.KEYS.KEY _de_p_sel_rel ] > ] ] ]
+                          VAL.COMPS < [ OPT + ] > ] ] ]
 """
 ; NOTA: los ordinales precedidos de 'lo' pueden desempeñar funciones típica de 
 ; sustantivos (e.g. me propuso ir al cine o tomar una copa, y elegí lo segundo) y de 
@@ -9408,8 +9536,8 @@ aj_-_i-nu-ord_lex := non-modfied-adj-lex & a_mrkd_np & basic-one-arg &
 ; NOTA: in the ERG there is the feature CARG to specify the numeral
 """.
 
-aj_-_i-nu-ord-ms_lex := non-modfied-adj-lex & a_mrkd_np & basic-one-arg &
-  [ SYNSEM intersective_adjective_synsem &
+aj_-_i-nu-ord-ms_lex := non-modfied-ord-num-lex & a_mrkd-ord-num_np & basic-one-arg &
+  [ SYNSEM ordinal_number_synsem &
             [ LOCAL [ AGR [ PNG [ GEN masc,
                                   PN 3sg ] ],
                       CAT [ HEAD.PRD prd,
@@ -12661,6 +12789,17 @@ v_np*_npsv-prn_le := v_np*_npsv-prn_lex
   
   """.
 
+v_np_colon-id_native_le := v_np_colon-id_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="v_np_colon-id_le">
+  <description>colon
+  <ex>Precio: 1000 pesetas
+  <todo>
+  </type>
+  """.
+
 
 v_np_npsv-id_native_le := v_np_npsv-id_lex & native_le
   """
@@ -14761,6 +14900,17 @@ v_ap_seq-prn_native_le := v_ap_seq-prn_lex & native_le
   </type>
   """.
 
+v_np_seq-prn_native_le := v_np_seq-prn_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="v_np_seq-prn_le">
+  <description>Verb (pron), NP 
+  <ex>me siento un desgraciado
+  <todo>
+  </type>
+  """.
+
 
 v_ap_seq-prn_le := v_ap_seq-prn_lex
   """
@@ -16723,6 +16873,16 @@ av_-_i-sm_native_le := av_-_i-sm_lex & native_le
 av_-_i-sm_le := av_-_i-sm_lex
   """
   
+  """.
+
+av_-_i-vm-cmp_native_le := av_-_i-vm-cmp_lex & native_le
+  """
+  This is a native lexical entry type, for words that are in the lexicon.
+  
+  <type val="av_-_i-vm-spd_le">
+  <description>Adverb, intersec, Vmod
+  <ex>Lo oyen mejor que nosotros.
+  <todo>
   """.
 
 
