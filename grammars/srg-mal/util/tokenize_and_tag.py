@@ -123,6 +123,8 @@ class Freeling_tok_tagger:
 
     def get_selected_tags(self, w, override_dicts):
         debug_w = w.get_form()
+        #if debug_w == 'mejores':
+        #    print("debug")
         tags = []
         additional_arcs = []
         for a in w:
@@ -133,9 +135,10 @@ class Freeling_tok_tagger:
                     for tk in tks:
                         tags.append(({'tag': tk.get_tag(), 'prob': a.get_prob()}))
                 else:
-                    if not w.get_form().lower() in override_dicts['replace']:
+                    needs_replacement = w.get_form().lower() in override_dicts['replace']
+                    if (not needs_replacement) or a.get_tag() in override_dicts['replace'][w.get_form().lower()]['tag']:
                         tags.append(({'additional':False, 'tag': a.get_tag(), 'prob': a.get_prob()}))
-                    else:
+                    elif needs_replacement:
                         for i, additional_tag in enumerate(override_dicts['replace'][w.get_form().lower()]['tag']):
                             additional_lemma = override_dicts['replace'][w.get_form().lower()]['lemma'][i]
                             if i == 0:

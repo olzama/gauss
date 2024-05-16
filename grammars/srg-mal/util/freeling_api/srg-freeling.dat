@@ -119,9 +119,15 @@ cientos ciento Zd
 millares millar Zd
 miles mil Zd
 mejor mejor AQ0CS00
+mejores mejor AQ0CP00
+peor peor AQ0CS00
+peores peor AQ0CP00
+mayor mayor AQ0CS00
+mayores mayor AQ0CP00
+menor menor AQ0CS00
+menores menor AQ0CP00
 off-line off-line AQ0CN00
 on-line on-line AQ0CN00
-peor peor AQ0CS00
 no_sólo no_sólo CC no_sólo RG
 hace hace SP hacer VMIP3S0
 hacía hacía SP hacer VMII3S0
