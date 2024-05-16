@@ -123,7 +123,7 @@ class Freeling_tok_tagger:
 
     def get_selected_tags(self, w, override_dicts):
         debug_w = w.get_form()
-        #if debug_w == 'mejores':
+        #if debug_w == 'más':
         #    print("debug")
         tags = []
         additional_arcs = []
@@ -136,15 +136,16 @@ class Freeling_tok_tagger:
                         tags.append(({'tag': tk.get_tag(), 'prob': a.get_prob()}))
                 else:
                     needs_replacement = w.get_form().lower() in override_dicts['replace']
-                    if (not needs_replacement) or a.get_tag() in override_dicts['replace'][w.get_form().lower()]['tag']:
+                    if not needs_replacement:
                         tags.append(({'additional':False, 'tag': a.get_tag(), 'prob': a.get_prob()}))
-                    elif needs_replacement:
+                    else:
                         for i, additional_tag in enumerate(override_dicts['replace'][w.get_form().lower()]['tag']):
-                            additional_lemma = override_dicts['replace'][w.get_form().lower()]['lemma'][i]
-                            if i == 0:
-                                tags.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
-                            else:
-                                additional_arcs.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                            if additional_tag not in [t['tag'] for t in tags]:
+                                additional_lemma = override_dicts['replace'][w.get_form().lower()]['lemma'][i]
+                                if i == 0:
+                                    tags.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                                else:
+                                    additional_arcs.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
             else:
                 # There are words for which Freeling selected analysis should be ignored (no analysis discarded).
                 # In principle, there is also one tag for which it should be done if the word is in the first position:
