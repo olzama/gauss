@@ -29,5 +29,5 @@ def count_items(folder):
 
 if __name__ == '__main__':
     directory_path = sys.argv[1] # Expected input: /path-to-folder/test/
-    #process_directory(directory_path)
+    process_directory(directory_path)
     count_items(directory_path)
