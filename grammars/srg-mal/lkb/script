@@ -10,6 +10,7 @@
 (lkb-load-lisp (this-directory) "checkpaths.lsp")
 (load-lkb-preferences (this-directory) "user-prefs.lsp")
 (lkb-load-lisp (this-directory) "patches.lsp")
+(lkb-load-lisp (this-directory) "tsdb-debugging-patch-2.lsp")
 
 ;;;
 ;;; Now the core grammar, spread out across multiple files;
@@ -151,4 +152,8 @@
 ;;; rules are bypassed).
 ;;;
 (initialize-yy)
+
+;;; LUI visualization
+(lui-initialize)
+
 

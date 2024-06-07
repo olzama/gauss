@@ -5266,12 +5266,13 @@ n_-_col_lex := n_intrans
 
 
 n_-_c-tmp_lex := basic-noun-lex & norm-sem-lex-item & basic-one-arg &
-  [ SYNSEM.LOCAL [ CAT [ POSTHEAD +,
+  [ TOKENS.+LIST < [ +FORM #carg ] >, 
+    SYNSEM.LOCAL [ CAT [ POSTHEAD +,
                          HEAD.KEYS.KEY time_n_rel,
                          VAL [ SPR < [ OPT + ] >,
                                COMPS < > ] ],
                    CONT [ HOOK.INDEX.SORT tmp,
-                          RELS <! date-relation & [ PRED time_n_rel ] !> ] ] ]
+                          RELS <! date-relation & [ PRED time_n_rel, CARG #carg ] !> ] ] ]
   """
   e.g. lo vieron ese lunes/día/mes/año/...; iremos de vacaciones en enero, comeremos a las dos
   """.
