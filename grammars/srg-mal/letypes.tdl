@@ -5267,6 +5267,7 @@ n_-_col_lex := n_intrans
 
 n_-_c-tmp_lex := basic-noun-lex & norm-sem-lex-item & basic-one-arg &
   [ TOKENS.+LIST < [ +FORM #carg ] >, 
+
     SYNSEM.LOCAL [ CAT [ POSTHEAD +,
                          HEAD.KEYS.KEY time_n_rel,
                          VAL [ SPR < [ OPT + ] >,
@@ -5456,13 +5457,15 @@ n_pp_psd-part_lex := n_quant &
 
 
 n_pp_c-tmp_lex := n_ppcomp &
-  [ SYNSEM basic-common-noun-synsem & [ LOCAL [ CAT [ HEAD.KEYS.KEY part_nom_rel,
+  [ TOKENS.+LIST < [ +FORM #carg ] >,
+    SYNSEM basic-common-noun-synsem & [ LOCAL [ CAT [ HEAD.KEYS.KEY part_nom_rel,
                                                       VAL.COMPS < [ OPT -,
                                                                     LOCAL [ CAT.HEAD.KEYS [ KEY _de_p_sel_rel,
                                                                                             ALT2KEY implicit_q_rel ],
                                                                             CONT.HOOK.INDEX.SORT non-temp ] ] > ],
-                                                CONT.HOOK.INDEX [ DIVISIBLE -,
-                                                                  SORT tmp ] ] ] ]
+                                                CONT [ HOOK.INDEX [ DIVISIBLE -,
+                                                                  SORT tmp ],
+                                                       RELS <! [ CARG #carg ] !> ] ] ] ]
   """
   --- temporal measure nouns (e.g. despues de años (de espera/disgustos) se divorciaron)
   """.
