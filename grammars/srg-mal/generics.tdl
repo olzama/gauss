@@ -232,8 +232,8 @@ nccn000_ge := n_cp*_p-c_le &
 
 np00v00_ge := foreign_le & 
 [ STEM < "foreign_le" >,
-    TOKENS.+LIST generic_token_list & < [ +POS.+TAGS < "np00v00" > ] >,
-    SYNSEM.LKEYS.KEYREL.PRED named_rel ]
+    TOKENS.+LIST generic_token_list & < [ +POS.+TAGS < "np00v00" >, +FORM #carg ] >,
+    SYNSEM.LKEYS.KEYREL [ PRED named_rel, CARG #carg ] ]
   """
   Generic lexical entry that will be triggered by tag np00v00.
   """.
