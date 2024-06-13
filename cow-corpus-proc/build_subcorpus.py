@@ -35,7 +35,7 @@ def create_dictionary(sentence_list, metadata=None):
         sentence_length = len(sentence.split(" "))
         if annotations != None:
             dictionary[i] = {"origin":"", "register":"", "format":"none", "difficulty":1, "category":"S",
-                             "annotated":sentence, "learner":"", "corrected":"", "wf":-1, "length":sentence_length,
+                             "annotated":sentence, "learner":"", "corrected":"", "wf":1, "length":sentence_length,
                              "author":"", "date":today}  # annotated is the original sentence from the corpus
             print("Sentence {}".format(i))
             print(sentence)
