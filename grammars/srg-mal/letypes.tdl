@@ -2327,7 +2327,7 @@ v_np_npsv_id_synsem := v_trans_synsem &
                                                        KEYS.KEY non_modable_rel ], 
                                                 VAL [ SUBJ < >,
                                                       COMPS < > ] ],
-                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod ] ],
+                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod, PNG #png ] ],
                                   NON-LOCAL.REL 0-dlist ] > ] ],
             CONT [ RELS <! relation !>,
                    HCONS <! !> ] ],
@@ -5014,7 +5014,7 @@ basic-noun-lex := nonpronominal-lex &
                                        NON-LOCAL [ REL 0-dlist,
                                                    SLASH 0-dlist ] ] > ],
                      CONT.HOOK [ LTOP #ltop,
-                                 INDEX [ PNG.PN 3per,
+                                 INDEX #agr & [ PNG.PN 3per,
                                          PRONTYPE not_pron ] ] ],
              LKEYS.KEYREL.LBL #ltop ] ]. 
 
