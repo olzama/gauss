@@ -232,6 +232,75 @@ fem_pl_ilr := fem_ilr & pl_ilr.
 neut_sg_ilr := neut_ilr & sg_ilr.
 neut_pl_ilr := neut_ilr & sg_ilr.
 
+
+; inflecting categories where the agreement is via the MOD list (e.g. adjectives)
+; Adjectives should probably not have LOCAL AGR values constrained to the same,
+; since they have event semantics, not referent.
+
+
+mod_sg_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.AGR.PNG.PN sing ] > ].
+  
+mod_pl_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.AGR.PNG.PN plur ] > ].
+  
+mod_masc_ilr :=  infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.AGR.PNG.GEN masc ] > ].
+
+mod_fem_ilr :=  infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.AGR.PNG.GEN fem ] > ].
+
+mod_neut_ilr :=  infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.AGR.PNG.GEN neut ] > ].
+
+mod_masc_sg_ilr :=  mod_masc_ilr & mod_sg_ilr.
+
+mod_fem_sg_ilr :=  mod_fem_ilr & mod_sg_ilr.
+
+mod_masc_pl_ilr :=  mod_masc_ilr & mod_pl_ilr.
+
+mod_fem_pl_ilr :=  mod_fem_ilr & mod_pl_ilr.
+
+mod_neut_sg_ilr :=  mod_neut_ilr & mod_sg_ilr.
+
+mod_neut_pl_ilr :=  mod_neut_ilr & mod_pl_ilr.
+
+
+; inflecting categories where the agreement is with the SUBJ (e.g. verbs)
+; Verbs should probably not have LOCAL AGR values constrained to the same,
+; since they have event semantics, not referent.
+
+
+subj_sg_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.AGR.PNG.PN sing ] > ].
+
+pres_subj_sg_ilr := pres-ind_ilr & subj_sg_ilr.
+  
+subj_pl_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.AGR.PNG.PN plur ] > ].
+  
+subj_masc_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.AGR.PNG.GEN masc ] > ].
+
+subj_fem_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.AGR.PNG.GEN fem ] > ].
+
+subj_neut_ilr := infl-ltow-rule & 
+  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.AGR.PNG.GEN neut ] > ].
+
+subj_masc_sg_ilr :=  subj_masc_ilr & subj_sg_ilr.
+
+subj_fem_sg_ilr :=  subj_fem_ilr & subj_sg_ilr.
+
+subj_masc_pl_ilr :=  subj_masc_ilr & subj_pl_ilr.
+
+subj_fem_pl_ilr :=  subj_fem_ilr & subj_pl_ilr.
+
+subj_neut_sg_ilr :=  subj_neut_ilr & subj_sg_ilr.
+
+subj_neut_pl_ilr :=  subj_neut_ilr & subj_pl_ilr.
+
+
 ; -- determiners
 
 d_ilr :=  infl-ltow-rule & 
@@ -517,43 +586,43 @@ pp3cno0_ilr :=  pp_ilr & 3per_ilr &
 a_ilr :=  infl-ltow-rule & 
   [ SYNSEM.LOCAL.CAT.HEAD adj ].
 
-a_sg_ilr :=  a_ilr & sg_ilr
+a_sg_ilr :=  a_ilr & mod_sg_ilr
 """adjective""".
-a_pl_ilr :=  a_ilr & pl_ilr
+a_pl_ilr :=  a_ilr & mod_pl_ilr
 """adjective""".
-a_fem-sg_ilr :=  a_ilr & fem_sg_ilr
+a_fem-sg_ilr :=  a_ilr & mod_fem_sg_ilr
 """adjective""".
-a_fem-pl_ilr :=  a_ilr & fem_pl_ilr
+a_fem-pl_ilr :=  a_ilr & mod_fem_pl_ilr
 """adjective""".
-a_masc-sg_ilr :=  a_ilr & masc_sg_ilr
+a_masc-sg_ilr :=  a_ilr & mod_masc_sg_ilr
 """adjective""".
-a_masc-pl_ilr :=  a_ilr & masc_pl_ilr
+a_masc-pl_ilr :=  a_ilr & mod_masc_pl_ilr
 """adjective""".
-a_neut-sg_ilr :=  a_ilr & neut_sg_ilr
+a_neut-sg_ilr :=  a_ilr & mod_neut_sg_ilr
 """adjective""".
 
 ;;; OZ 2024-02-01
 ;;; Learner lexical rules to allow the use of an adjective as if it were of the opposite ("wrong") gender.
 
-mal_a_masc-sg_ilr := a_ilr & fem_sg_ilr & 
+mal_a_masc-sg_ilr := a_fem-sg_ilr & 
 [ LEARNER + ]
 """
 Learner adjective (used as wrong gender).
 """.
 
-mal_a_masc-pl_ilr := a_ilr & fem_pl_ilr & 
+mal_a_masc-pl_ilr := a_fem-pl_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
 """.
 
-mal_a_fem-sg_ilr := a_ilr & masc_sg_ilr & 
+mal_a_fem-sg_ilr := a_masc-sg_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
 """.
 
-mal_a_fem-pl_ilr := a_ilr & masc_pl_ilr & 
+mal_a_fem-pl_ilr := a_masc-pl_ilr & 
 [ LEARNER +]
 """
 Learner adjective (used as wrong gender).
@@ -880,7 +949,8 @@ vpart_ilr :=  inflecting-lex-rule &
                                          KEYS.KEY #key ], 
                            VAL [ SPR #spr,
                                  SUBJ < synsem &
-                                        [ NON-LOCAL.SLASH 0-dlist ] >,
+                                        [ LOCAL.AGR #agr,
+                                          NON-LOCAL.SLASH 0-dlist ] >,
                                  CLTS #clt,
                                  COMPS #comps,
                                  SPEC #spec ] ],
@@ -902,7 +972,7 @@ vpart_ilr :=  inflecting-lex-rule &
                                         KEYS.KEY #key,
                                         PRD.HABER #haber ],
                                  VAL [ SPR #spr,
-                                       SUBJ < [ LOCAL np_nom_local ] >,
+                                       SUBJ < [ LOCAL np_nom_local & [ AGR #agr ] ] >,
                                        COMPS #comps,
                                        CLTS #clt,
                                        SPEC #spec ] ],

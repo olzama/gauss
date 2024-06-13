@@ -1229,13 +1229,13 @@ nom-subj-synsem := lex-synsem &
 
 """.
 
-arg1_lt := nom-subj-synsem & 
-  [ LOCAL.CAT.VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX #ind ] >,
+arg1_lt := lex-synsem & 
+  [ LOCAL.CAT.VAL.SUBJ < [ LOCAL np_nom_local & [ CONT.HOOK.INDEX #ind ] ] >,
     LKEYS.KEYREL arg1-ev-relation & 
                  [ ARG1 #ind ] ]. 
 
-unacc_lt := nom-subj-synsem &
-  [ LOCAL.CAT.VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX #ind ] >,
+unacc_lt := lex-synsem &
+  [ LOCAL.CAT.VAL.SUBJ < [ LOCAL np_nom_local & [ CONT.HOOK.INDEX #ind ] ] >,
     LKEYS.KEYREL arg2-ev-relation & 
                  [ ARG2 #ind ] ].
 
@@ -2315,19 +2315,19 @@ v_np_npsv-id-prn_lex := v_np_ntr & main-vprn & basic-three-arg &
 """.
 
 v_np_npsv_id_synsem := v_trans_synsem &
-  [ LOCAL [ AGR.PNG #png,
-            CAT [ HEAD.INV -, 
+  [ LOCAL [ CAT [ HEAD.INV -, 
                   VAL [ SUBJ < [ LOCAL [ AGR.PNG #png,
                                          CONT.HOOK.INDEX.PNG #png ],
                                  NON-LOCAL [ QUE 0-dlist & [ LIST < > ],
                                              REL 0-dlist ] ] >,
                         COMPS < [ OPT -,
                                   LOCAL n_local & 
-                                        [ CAT [ HEAD [ CASE acc,
+                                        [ AGR.PNG #png,
+                                          CAT [ HEAD [ CASE acc,
                                                        KEYS.KEY non_modable_rel ], 
                                                 VAL [ SUBJ < >,
                                                       COMPS < > ] ],
-                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod ] ],
+                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod, PNG #png ] ],
                                   NON-LOCAL.REL 0-dlist ] > ] ],
             CONT [ RELS <! relation !>,
                    HCONS <! !> ] ],
@@ -6388,7 +6388,7 @@ non-agr_basic_adjective_synsem := lex-synsem &
     LKEYS.KEYREL #key ].
 
 basic_adjective_synsem := lex-synsem &
-  [ LOCAL [ AGR #agr,
+  [ LOCAL [ ;AGR #agr,
             CAT [ MC na,
                   HEAD [ KEYS.KEY basic_adj_rel,
                          TAM #tam,
@@ -6398,11 +6398,11 @@ basic_adjective_synsem := lex-synsem &
                                                HEAD noun & [ KEYS.KEY nom_rel ],
                                                VAL [ SUBJ < >,
                                                      SPEC < > ] ],
-                                         CONT.HOOK.INDEX #xarg ],
+                                         CONT.HOOK.INDEX #agr ],
                                  NON-LOCAL.REL 0-dlist ] > ],
                            VAL [ SUBJ < >,
                                  CLTS < > ] ],
-            CONT [ HOOK.XARG #xarg,
+            CONT [ HOOK.XARG #agr,
                    RELS.LIST < #key & basic-adj-relation & 
                                [ ARG0.E #tam ], ... > ] ], 
     LKEYS.KEYREL #key ].

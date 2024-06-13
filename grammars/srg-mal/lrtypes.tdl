@@ -69,7 +69,7 @@ basic-sym_pred-lex-rule := basic-valence-alt-lex-rule &
 sym_pred_pl_subj-lex-rule := basic-sym_pred-lex-rule &
   [ ALTS [ PASS -,
            IMPERS - ],
-    SYNSEM [ LOCAL [ AGR #agr,
+    SYNSEM [ LOCAL [ ;AGR #agr,
                      CAT.VAL [ SUBJ < [ LOCAL np_nom_local & [ AGR #agr & [ PNG.PN plur ] ],
                                         NON-LOCAL #nlocal ] >,
                                COMPS #rest ],
@@ -895,7 +895,7 @@ ppart-basic-lex-rule := const-ltol-rule &
 
 
 ppart-lex-rule :=  ppart-basic-lex-rule & 
-  [ SYNSEM [ LOCAL [ AGR #agr,
+  [ SYNSEM [ LOCAL [ ;AGR #agr,
                      CAT [ VAL [ SUBJ < synsem &
                                         [ LOCAL np_nom_local & 
                                                 [ AGR #agr,
@@ -935,7 +935,7 @@ v_pastpart-trans_dlr := ppart-lex-rule &
                    CONT.RELS.LIST < [ ARG1 #subjind,
                                       ARG2 #arg2 ], ... > ],
     DTR [ INFLECTED +,
-          SYNSEM.LOCAL [ AGR #arg2,
+          SYNSEM.LOCAL [ ;AGR #arg2,
                          CAT.VAL [ SUBJ < [ LOCAL np_nom_local & [ CONT.HOOK.INDEX #subjind ] ] >,
                                  COMPS.FIRST [ LOCAL np_acc_local & [ CONT.HOOK.INDEX #arg2,
                                                                       AGR #arg2 ] ] ] ] ] ]
@@ -944,11 +944,11 @@ v_pastpart-trans_dlr := ppart-lex-rule &
   """.
 
 v_pastpart-unacc_dlr := ppart-intran-lex-rule &
-  [ SYNSEM.LOCAL [ AGR #agr,
+  [ SYNSEM.LOCAL [ ;AGR #agr,
                    CAT [ HEAD [ INV +,
                                 PRD non-prd ],
                          VAL [ SUBJ < [ OPT +,
-                                        LOCAL #slocal & np_nom_local & [ AGR #agr & [ PRONTYPE not_pron ] ],
+                                        LOCAL #slocal & np_nom_local & [ AGR.PRONTYPE not_pron ],
                                         NON-LOCAL #snonloc & [ SLASH 0-dlist ] ] >,
                                COMPS #comps,
                                CLTS #clts ] ] ],
@@ -964,11 +964,11 @@ v_pastpart-unacc_dlr := ppart-intran-lex-rule &
 
 
 v_pastpart-pron_dlr := ppart-intran-lex-rule &
-  [ SYNSEM.LOCAL [ AGR #agr,
+  [ SYNSEM.LOCAL [ ;AGR #agr,
                    CAT [ HEAD [ INV +,
                                 PRD non-prd ],
                          VAL [ SUBJ < [ OPT +,
-                                        LOCAL #slocal & np_nom_local & [ AGR #agr & [ PRONTYPE not_pron ] ],
+                                        LOCAL #slocal & np_nom_local & [ AGR.PRONTYPE not_pron ],
                                         NON-LOCAL #snonloc & [ SLASH 0-dlist ] ] >,
                                COMPS #comps,
                                CLTS < > ] ] ],

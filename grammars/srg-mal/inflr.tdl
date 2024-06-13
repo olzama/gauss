@@ -1732,356 +1732,355 @@ mal_a_fem-pl_ilr
 vmip1s0 :=
 %suffix (vmip1s vmip1s)
 pres-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                         VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 vmip2s0 :=
 %suffix (vmip2s vmip2s)
 pres-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+  [ SYNSEM.LOCAL [ CAT [ HEAD.AUX -,
+                         VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ] ].
 
 vmip3s0 :=
 %suffix (vmip3s vmip3s)
-pres-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+pres_subj_sg_ilr & 
+  [ SYNSEM.LOCAL.CAT.HEAD.AUX - ].
 
 vmib1p0 :=
 %suffix (vmips1p vmips1p)
 ind-vfin_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.PN 1or3pl,
-                   CAT.HEAD [ AUX -,
-                              TAM.TENSE pres_or_ppast ] ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD [ AUX -,
+                              TAM.TENSE pres_or_ppast ],
+                         VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3pl ] > ] ].
 
 vmip1p0 :=
 %suffix (vmip1p vmip1p)
 pres-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ AGR.PNG.PN 1or3pl ] > ] ].
 
 vmip2p0 :=
 %suffix (vmip2p vmip2p)
 pres-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2or3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2or3pl ] > ] ].
 
-vmip3p0 := 
+vmip3p0 :=
 %suffix (vmip3p vmip3p)
-pres-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+pres-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
-vmii4s0 := 
+vmii4s0 :=
 %suffix (vmii4s0 vmii4s0)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3sg ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3sg ] > ] ].
 
 vmii1s0 :=
 %suffix (vmii1s vmii1s)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmii2s0 :=
 %suffix (vmii2s vmii2s)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
 vmii3s0 :=
 %suffix (vmii3s vmii3s)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmii1p0 :=
 %suffix (vmii1p vmii1p)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3pl ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3pl ] > ] ].
 
-vmii2p0 := 
+vmii2p0 :=
 %suffix (vmii2p vmii2p)
-ipast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+ipast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmii3p0 :=
 %suffix (vmii3p vmii3p)
 ipast-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmis1s0 :=
 %suffix (vmis1s vmisis)
-ppast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+ppast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmis2s0 :=
 %suffix (vmis2s vmis2s)
-ppast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+ppast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
-vmis3s0 := 
+vmis3s0 :=
 %suffix (vmis3s vmis3s)
 ppast-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmis1p0 :=
 %suffix (vmis1p vmis1p)
-ppast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+ppast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmis2p0 :=
 %suffix (vmis2p vmis2p)
-ppast-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+ppast-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmis3p0 :=
 %suffix (vmis3p vmis3p)
 ppast-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
-vmif1s0 := 
+vmif1s0 :=
 %suffix (vmif1s vmif1s)
-fut-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+fut-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmif2s0 :=
 %suffix (vmif2s vmif2s)
-fut-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+fut-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
 vmif3s0 :=
 %suffix (vmif3s vmif3s)
 fut-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmif1p0 :=
 %suffix (vmif1p vmif1p)
-fut-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+fut-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmif2p0 :=
 %suffix (vmif2p vmif2p)
-fut-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+fut-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmif3p0 :=
 %suffix (vmif3p vmif3p)
 fut-ind_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmic4s0 :=
 %suffix (vmic13s vmic13s)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3sg ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3sg ] > ] ].
 
 vmic1s0 :=
 %suffix (vmic1s vmic1s)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmic2s0 :=
 %suffix (vmic2s vmic2s)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
 vmic3s0 :=
 %suffix (vmic3s vmic3s)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmic1p0 :=
 %suffix (vmic1p vmic1p)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmic2p0 :=
 %suffix (vmic2p vmic2p)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmic3p0 :=
 %suffix (vmic3p vmic3p)
-cond-ind_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+cond-ind_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmsp4s0 :=
 %suffix (vmsp13s vmip13s)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3sg ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3sg ] > ] ].
 
 vmsp1s0 :=
 %suffix (vmsp1s vmip1s)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmsp2s0 :=
 %suffix (vmsp2s vmsp2s)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
 vmsp3s0 :=
 %suffix (vmsp3s vmsp3s)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmsp1p0 :=
 %suffix (vmsp1p vmsp1p)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmsp2p0 :=
 %suffix (vmsp2p vmsp2p)
-pres-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+pres-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmsp3p0 :=
 %suffix (vmsp3p vmsp3p)
 pres-sub_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
-vmsi4s0 := 
+vmsi4s0 :=
 %suffix (vmsi13s vmsi13s)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3sg ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3sg ] > ] ].
 
-vmsi1s0 := 
+vmsi1s0 :=
 %suffix (vmsi1s vmsi1s)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmsi2s0 :=
 %suffix (vmsi2s vmsi2s)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
-vmsi3s0 := 
+vmsi3s0 :=
 %suffix (vmsi3s vmsi3s)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmsi1p0 :=
 %suffix (vmsi1p vmsi1p)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmsi2p0 :=
 %suffix (vmsi2p vmsi2p)
-ipast-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+ipast-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmsi3p0 :=
 %suffix (vmsi3p vmsi3p)
 ipast-sub_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmsf4s0 :=
 %suffix (vmsf13s vmsp13s)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1or3sg ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1or3sg ] > ] ].
 
 vmsf1s0 :=
 %suffix (vmsf1s vmsf1s)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1sg ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1sg ] > ] ].
 
 vmsf2s0 :=
 %suffix (vmsf2s vmsf2s)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
 vmsf3s0 :=
 %suffix (vmsf3s vmsf3s)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmsf1p0 :=
 %suffix (vmsf1p vmsf0p)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmsf2p0 :=
 %suffix (vmsf20 vmsf2p)
-fut-sub_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+fut-sub_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmsf3p0 :=
 %suffix (vmsf3p vmsf3p)
 fut-sub_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmm02s0 :=
 %suffix (vmm02s vmm02s)
-imperative_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2sg ] ].
+imperative_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2sg ] > ] ].
 
-vmm03s0 := 
+vmm03s0 :=
 %suffix (vmm03s vmm03s)
 imperative_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3sg ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3sg ] > ] ].
 
 vmm01p0 :=
 %suffix (vmm01p vmm01p)
-imperative_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 1pl ] ].
+imperative_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 1pl ] > ] ].
 
 vmm02p0 :=
 %suffix (vmm02p vmm02p)
-imperative_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 2pl ] ].
+imperative_ilr &
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 2pl ] > ] ].
 
 vmm03p0 :=
 %suffix (vmm03p vmm03p0)
 imperative_ilr &
-  [ SYNSEM.LOCAL [ CAT.HEAD.AUX -,
-                   AGR.PNG.PN 3pl ] ].
+  [ SYNSEM.LOCAL.CAT [ HEAD.AUX -,
+                       VAL.SUBJ < [ LOCAL.AGR.PNG.PN 3pl ] > ] ].
 
 vmn0000 := 
 %suffix (vmn vmn)
@@ -2097,9 +2096,7 @@ vmp0000 :=
 %suffix (vmp vmp)
 vpart_ilr & 
   [ SYNSEM.LOCAL [ CAT.HEAD [ AUX -, PRD.HABER - ] ] ]
-;                   AGR.PNG [ PN sing, GEN masc ] ] ]
 """
-Not sure why the agreement features are specified on this one.
 """.
 
 vmp00sm-pp := 
@@ -2111,15 +2108,16 @@ vpart-haber_ilr &
 vmp00sm := 
 %suffix (vmpsm vmpsm)
 vpart_ilr & 
-  [ SYNSEM.LOCAL [ CAT.HEAD [ AUX -, PRD.HABER - ],
-                   AGR.PNG [ PN sing, GEN masc ] ] ].
+  [ SYNSEM.LOCAL [ CAT [ HEAD [ AUX -, PRD.HABER - ],
+                         VAL.COMPS < [ LOCAL.AGR.PNG [ PN sing, GEN masc ] ] > ] ] ].
 
 vmp00sm-mg := 
 %suffix (vmp00sm-mg vmp00sm-mg)
 vpart_ilr & 
   [ LEARNER +,
-    SYNSEM.LOCAL [ CAT.HEAD [ AUX -, PRD.HABER - ],
-                   AGR.PNG [ PN sing, GEN fem ] ] ].
+    SYNSEM.LOCAL [ CAT [ HEAD [ AUX -, PRD.HABER - ],
+                         VAL [ COMPS < [ LOCAL.AGR.PNG [ PN sing, GEN fem ] ] >,
+                               SUBJ < [ LOCAL.AGR.PNG [ PN sing, GEN fem ] ] > ] ] ] ].
 
 vmp00pm := 
 %suffix (vmppm vmppm)
