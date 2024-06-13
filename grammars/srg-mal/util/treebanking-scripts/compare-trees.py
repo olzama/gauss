@@ -1,8 +1,22 @@
 import sys
 from delphin import itsdb, derivation
+from delphin.commands import compare
 import glob
 import os
 
+
+# Compare two tsdb profiles, one gold and one new, using delphin mrs compare.
+# Report the accuracy of the new profile with respect to gold.
+def compare_ff2top(gold_path, new_path):
+    gold_path = sorted(glob.iglob(gold_path + '/**'))
+    new_path = sorted(glob.iglob(new_path + '/**'))
+    for gold_tsuite, new_tsuite in zip(gold_path, new_path):
+        total = diffs = 0
+        for result in compare(gold_tsuite, new_tsuite):
+            total += 1
+            if result['test'] != 0 or result['gold'] != 0:
+                diffs += 1
+                print('Differences found in item {}: {}'.format(result['id'], result['input']))
 
 # Open two folders containing different versions of the same treebanks. Report the differences between them.
 def compare_treebanks(old_path, new_path):
@@ -65,4 +79,5 @@ def collect_parsed(items):
     return parsed_items
 
 if __name__ == '__main__':
-    compare_treebanks(sys.argv[1], sys.argv[2])
+    #compare_treebanks(sys.argv[1], sys.argv[2])
+    compare_ff2top(sys.argv[1], sys.argv[2])
