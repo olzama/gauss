@@ -228,7 +228,7 @@ def write_ids(dir, sentences_by_annotator):
 def write_filename_codes(dir, filename_codes):
     with open(dir + '/filename_codes.txt', 'w') as f:
         for k, v in filename_codes.items():
-            f.write(str(filename_codes[k]))
+            f.write(str(filename_codes[k])+ '\n')
 
 def write_sentences_by_annotator(dir, sentences_by_annotator):
     for annotator, corpus in sentences_by_annotator.items():
