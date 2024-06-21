@@ -62,18 +62,6 @@ def build_corpus(corpus_path, essays, metadata):
         sentences_by_length[annotator]['by id'] = sorted_by_id
     return essays_with_metadata, sentences_by_length, filename_codes
 
-'''
-    for i, sentence in enumerate(sentence_list):
-        annotations = find_annotations(sentence)
-        sentence_length = len(sentence.split(" "))
-        if annotations == None:
-            corpus[i] = {"origin":"", "register":"", "format":"none", "difficulty":1, "category":"S",
-                        "annotated":sentence, "learner":"", "corrected":"", "wf":1, "length":sentence_length,
-                        "author":"", "date":today}
-            print("Sentence {}".format(i))
-            print(sentence)
-'''
-
 def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
     # capitalize the first letter of the topic because this is how it appears in the metadata subdirectories:
     camel_topic = topic[0].upper() + topic[1:]
@@ -162,7 +150,13 @@ def find_annotations(dict):
 
 def process_essay_text(folder_id, essay_with_metadata, corpus, textfile):
     with open(textfile, 'r') as f:
-        text = f.read()
+        '''
+        Sometimes, tokenization keeps newline characters between sentences, which leads to items containing
+        two or more sentences separated by newline characters. This conflicts with read_metadata(), which assumes that
+        each item occupies one line of the file. Having items occupy more than one line raises an InexError.
+        To prevent this from happening, all newline characters are replaced by spaces in each essay.
+        '''
+        text = f.read().replace('\n', ' ')
         #sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
         sent_tokenized_text = [i for i in SENT_TOK(text).sents]
         sent_id = 0
@@ -179,7 +173,7 @@ def process_essay_text(folder_id, essay_with_metadata, corpus, textfile):
             assert unique_id not in essay_with_metadata['sentences'] and unique_id not in corpus['by length'] and unique_id not in corpus['by id']
             essay_with_metadata['sentences'][unique_id] = clean_sent
             sen_len = len(nltk.tokenize.word_tokenize(clean_sent, language='spanish'))
-            item = {'sentence': sent, 'filename': essay_with_metadata['filename'], 'unique_id': unique_id,
+            item = {'sentence': clean_sent, 'filename': essay_with_metadata['filename'], 'unique_id': unique_id,
                     'topic': essay_with_metadata['topic'], 'semester': essay_with_metadata['semester'],
                   'metadata_file': essay_with_metadata['metadata_file'], 'error': essay_with_metadata['error'], 'len': sen_len}
             annotations = find_annotations(item)
@@ -189,65 +183,6 @@ def process_essay_text(folder_id, essay_with_metadata, corpus, textfile):
                 corpus['by length'][sen_len].append(item)
                 corpus['by id'][unique_id] = item
 
-
-
-def output_string(id, sentence_item, date):
-    output = str(id) + '@' + sentence_item['filename'] + '@essay@none@1@S@' + sentence_item['sentence'].strip('\n') + '@1@' \
-             + str(sentence_item['len']) + '@@@' + date + '\n'
-    return output
-
-def write_ids(dir, sentences_by_annotator):
-    for annotator, corpus in sentences_by_annotator.items():
-        if not os.path.exists(dir + '/' + annotator + '/'):
-            os.makedirs(os.path.dirname(dir + '/' + annotator + '/'))
-        for len, sent in corpus['by length'].items():
-            if not os.path.exists(dir + '/' + annotator + '/uniqueid/'):
-                os.mkdir(dir + '/' + annotator + '/' + 'uniqueid/' )
-            with open(dir + '/' + annotator + '/uniqueid/' + str(len) + '.txt', 'w') as f:
-                for item in sent:
-                    f.write(str(item['unique_id']) + '\n')
-
-def write_filename_codes(dir, filename_codes):
-    with open(dir + '/filename_codes.txt', 'w') as f:
-        for k, v in filename_codes.items():
-            f.write(str(filename_codes[k]))
-
-def write_sentences_by_annotator(dir, sentences_by_annotator):
-    for annotator, corpus in sentences_by_annotator.items():
-        if not os.path.exists(dir + '/' + annotator + '/'):
-            os.makedirs(os.path.dirname(dir + '/' + annotator + '/'))
-        for len, sent in corpus['by length'].items():
-            if not os.path.exists(dir + '/' + annotator + '/txt/'):
-                os.mkdir(dir + '/' + annotator + '/txt/')
-            with open(dir + '/' + annotator + '/txt/' + str(len) + '.txt', 'w') as f:
-                for item in sent:
-                    f.write(item['sentence'] + '\n')
-
-def write_tsdb_item_output_by_annotator(dir, sentences_by_annotator):
-    today = datetime.today().strftime('%Y-%m-%d')
-    for annotator, corpus in sentences_by_annotator.items():
-        if not os.path.exists(dir + '/' + annotator + '/'):
-            os.makedirs(os.path.dirname(dir + '/' + annotator + '/'))
-        for len, sent in corpus['by length'].items():
-            if not os.path.exists(dir + '/' + annotator + '/meta/'):
-                os.mkdir(dir + '/' + annotator + '/meta/')
-            with open(dir + '/' + annotator + '/meta/' + str(len) + '.txt', 'w') as f:
-                simple_id = 0
-                for item in sent:
-                    simple_id += 1
-                    tsdb_string = output_string(simple_id, item, today)
-                    f.write(str(tsdb_string))
-
-def read_metadata(metadata_file):
-    md = []
-    with open(metadata_file, 'r') as f:
-        content = f.readlines()
-        for line in content:
-            meta = line.strip('\n').split('@')
-            md.append({'i-id': meta[0], 'i-origin': meta[1], 'i-register': meta[2], 'i-format': meta[3], 'i-difficulty': meta[4],
-                           'i-category': meta[5], 'i-input': meta[6], 'i-wf': meta[7], 'i-length': meta[8],
-                           'i-comment': meta[9], 'i-author': meta[10], 'i-date': meta[11]})
-    return md
 '''
 The [incr tsdb()] item format (from the relations file in any tsdb database):
 item:
@@ -265,6 +200,91 @@ item:
   i-date :date
 '''
 
+def metadata_str(metadata):
+    md = ''
+    for k in metadata:
+        md += ''.join([k, ': ', metadata[k] + '; '])
+    return md
+
+def output_string(sentence_item, date):
+    author = sentence_item['filename'].split('.')[0]
+    sentence = sentence_item['sentence'].strip()
+    comment = str(sentence_item['unique_id']) + '|||' + re.sub('\n', ' ', metadata_str(sentence_item['metadata_file']))
+    output = str(sentence_item['unique_id']) + '@' + sentence_item['filename'] + '@essay@none@1@S@' + sentence + '@1@' \
+             + str(sentence_item['len']) + '@' + comment + '@' + author + '@' + date + '\n'
+    return output
+
+def write_ids(dir, sentences_by_annotator):
+    for annotator, corpus in sentences_by_annotator.items():
+        if not os.path.exists(dir + '/uniqueid/'):
+            os.makedirs(os.path.dirname(dir + '/uniqueid/'))
+        for len, sent in corpus['by length'].items():
+            if not os.path.exists(dir + '/uniqueid/' + annotator):
+                os.mkdir(dir + '/uniqueid/' + annotator + '/')
+            with open(dir + '/uniqueid/' + annotator + '/' + str(len) + '.txt', 'w') as f:
+                for item in sent:
+                    f.write(str(item['unique_id']) + '\n')
+
+def write_filename_codes(dir, filename_codes):
+    with open(dir + '/filename_codes.txt', 'w') as f:
+        for k, v in filename_codes.items():
+            f.write(str(filename_codes[k]))
+
+def write_sentences_by_annotator(dir, sentences_by_annotator):
+    for annotator, corpus in sentences_by_annotator.items():
+        if not os.path.exists(dir + '/txt/'):
+            os.makedirs(os.path.dirname(dir + '/txt/'))
+        for len, sent in corpus['by length'].items():
+            if not os.path.exists(dir + '/txt/' + annotator):
+                os.mkdir(dir + '/txt/' + annotator)
+            with open(dir + '/txt/' + annotator + '/' + str(len) + '.txt', 'w') as f:
+                for item in sent:
+                    f.write(item['sentence'] + '\n')
+
+def write_tsdb_item_output_by_annotator(dir, sentences_by_annotator):
+    today = datetime.today().strftime('%Y-%m-%d')
+    for annotator, corpus in sentences_by_annotator.items():
+        if not os.path.exists(dir + '/meta/'):
+            os.makedirs(os.path.dirname(dir + '/meta/' + annotator))
+        for len, sent in corpus['by length'].items():
+            if not os.path.exists(dir + '/meta/' + annotator):
+                os.mkdir(dir + '/meta/' + annotator)
+            with open(dir + '/meta/' + annotator + '/' + str(len) + '.txt', 'w') as f:
+                for item in sent:
+                    tsdb_string = output_string(item, today)
+                    f.write(str(tsdb_string))
+
+def read_metadata(metadata_file):
+    md = []
+    with open(metadata_file, 'r') as f:
+        content = f.readlines()
+        for line in content:
+            metaparts = line.strip().split('@')
+            # cut off the data before the first ||| in the comment, because it is the unique id which we already have:
+            comment = metaparts[9].split('|||')
+            comment = ';'.join(comment[1:])
+            md.append({'i-origin': metaparts[1], 'i-register': metaparts[2],
+                       'i-format': metaparts[3], 'i-difficulty': metaparts[4], 'i-category': metaparts[5],
+                       'i-input': metaparts[6], 'i-wf': metaparts[7], 'i-length': metaparts[8],
+                       'i-comment': comment, 'i-author': metaparts[10], 'i-date': metaparts[11]})
+    return md
+
+'''
+The [incr tsdb()] item format (from the relations file in any tsdb database):
+item:
+  i-id :integer :key
+  i-origin :string
+  i-register :string
+  i-format :string
+  i-difficulty :integer
+  i-category :string
+  i-input :string
+  i-wf :integer
+  i-length :integer
+  i-comment :string
+  i-author :string
+  i-date :date
+'''
 
 def read_ids(id_file):
     ids = []
@@ -274,13 +294,13 @@ def read_ids(id_file):
     return ids
 
 def update_profile(ts, ids, md):
-    for i, row in enumerate(ts['item']):
-        ts['item'].update(i, {'i-id':ids[i], 'i-origin':md[i]['i-origin'], 'i-register':md[i]['i-register'],
-                              'i-format':md[i]['i-format'], 'i-difficulty':md[i]['i-difficulty'],
-                              'i-category':md[i]['i-category'], 'i-input':md[i]['i-input'],
-                              'i-wf':md[i]['i-wf'], 'i-length':md[i]['i-length'],
-                              'i-comment':md[i]['i-comment'], 'i-author':md[i]['i-author'],
-                              'i-date':md[i]['i-date']})
+    for (i, row), id, meta in zip(enumerate(ts['item']), ids, md):
+        ts['item'].update(i, {'i-id':id, 'i-origin':meta['i-origin'], 'i-register':meta['i-register'],
+                              'i-format':meta['i-format'], 'i-difficulty':meta['i-difficulty'],
+                              'i-category':meta['i-category'], 'i-input':meta['i-input'],
+                              'i-wf':meta['i-wf'], 'i-length':meta['i-length'],
+                              'i-comment':meta['i-comment'], 'i-author':meta['i-author'],
+                              'i-date':meta['i-date']})
     ts.commit()
 
 if __name__ == '__main__':
@@ -296,22 +316,23 @@ if __name__ == '__main__':
     write_filename_codes(output_dir, filename_codes)
     write_sentences_by_annotator(output_dir, sorted_sentences)
     write_tsdb_item_output_by_annotator(output_dir, sorted_sentences)
-
-    for k, v in sorted_sentences.items():
-        sentences_dir = output_dir + '/' + k + '/txt/'
-        metadata_dir = output_dir + '/' + k + '/meta/'
-        destination_dir = output_dir + '/' + k + '/tsdb/'
+    for annotator, corpus in sorted_sentences.items():
+        sentences_dir = output_dir  + '/txt/' + annotator + '/'
+        metadata_dir = output_dir + '/meta/' + annotator + '/'
+        tsdb_dir = output_dir + '/tsdb/'
+        if not os.path.exists(tsdb_dir):
+            os.mkdir(tsdb_dir)
+        destination_dir = tsdb_dir + annotator + '/'
         if not os.path.exists(destination_dir):
             os.mkdir(destination_dir)
-        ids_dir = output_dir + '/' + k + '/uniqueid/'
+        ids_dir = output_dir + '/uniqueid/' + annotator + '/'
         relations = output_dir + '/relations'
     for filename in sorted(os.listdir(sentences_dir)):
         if filename.endswith('.txt'):
             sentence_file = sentences_dir + filename
-            destination = destination_dir + 'cow' +  filename[:-4]
+            destination = destination_dir + '/cow' + filename[:-4] + 'unannotated'
             ids = read_ids(ids_dir + filename)
             metadata = read_metadata(metadata_dir + filename)
             commands.mkprof(destination, source=sentence_file, schema=relations)
             tsdb_profile = itsdb.TestSuite(destination)
             update_profile(tsdb_profile, ids, metadata)
-
