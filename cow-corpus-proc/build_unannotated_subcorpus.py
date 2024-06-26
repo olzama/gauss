@@ -327,12 +327,12 @@ if __name__ == '__main__':
             os.mkdir(destination_dir)
         ids_dir = output_dir + '/uniqueid/' + annotator + '/'
         relations = output_dir + '/relations'
-        for filename in sorted(os.listdir(sentences_dir)):
-            if filename.endswith('.txt'):
-                sentence_file = sentences_dir + filename
-                destination = destination_dir + '/cow' + filename[:-4] + 'unannotated'
-                ids = read_ids(ids_dir + filename)
-                metadata = read_metadata(metadata_dir + filename)
-                commands.mkprof(destination, source=sentence_file, schema=relations)
-                tsdb_profile = itsdb.TestSuite(destination)
-                update_profile(tsdb_profile, ids, metadata)
+    for filename in sorted(os.listdir(sentences_dir)):
+        if filename.endswith('.txt'):
+            sentence_file = sentences_dir + filename
+            destination = destination_dir + '/cow' + filename[:-4] + 'unannotated'
+            ids = read_ids(ids_dir + filename)
+            metadata = read_metadata(metadata_dir + filename)
+            commands.mkprof(destination, source=sentence_file, schema=relations)
+            tsdb_profile = itsdb.TestSuite(destination)
+            update_profile(tsdb_profile, ids, metadata)
