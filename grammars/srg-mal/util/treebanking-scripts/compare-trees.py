@@ -6,6 +6,7 @@ import os
 
 # Open two folders containing different versions of the same treebanks. Report the differences between them.
 def compare_treebanks(old_path, new_path):
+    identical = True
     old_treebanks = {}
     new_treebanks = {}
     ot_path = sorted(glob.iglob(old_path + '/**'))
@@ -34,11 +35,17 @@ def compare_treebanks(old_path, new_path):
                                 o_derivs.append(o_deriv)
                             if n_deriv not in n_derivs:
                                 n_derivs.append(n_deriv)
-                        if o_derivs != n_derivs:
-                            print('Differences found in item {}'.format(o['parse-id']))
-                        if len(orr) != len(nrr):  # Report overgeneration or regression.
+                            if o_deriv != n_deriv:
+                                print('Differences found in item {}: {}'.format(old_response['i-id'], old_response['i-input']))
+                                identical = False
+                        if len(orr) != len(nrr):
+                            identical = False
                             print('item {}: {} results in old version, {} results in new version'.format(
                                 old_response['i-id'], len(orr), len(nrr)))
+    else:
+        identical = False
+    if identical:
+        print('No differences found between treebanks')
 
 
 def add_to_dict(treebanks, tsuite):  # Process items of a tsuite and stores them in a dictionary.
@@ -47,7 +54,6 @@ def add_to_dict(treebanks, tsuite):  # Process items of a tsuite and stores them
         treebanks[folder] = []
     ts = itsdb.TestSuite(tsuite)
     treebanks[folder] = list(ts.processed_items())
-    return treebanks
 
 
 #Iterate over a list of responses, storing them in a list if their attribute ['results'] is not empty.

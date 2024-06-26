@@ -120,7 +120,8 @@ basic-sign := sign-min &
 sign := basic-sign &
   [ SYNSEM synsem,
     ARGS list,
-    INFLECTED bool ].
+    INFLECTED bool,
+    LEARNER bool ].
 
 ; C-CONT encodes the semantic contribution of the rule (phrasal or lexical).
 ;  [ SYNSEM canonical-synsem &
@@ -390,7 +391,7 @@ ctxt := ctxt-min &
 ; consisting of heads and complements is light or heavy is taken to 
 ; be a lexical property of the head.
 ; POSTHEAD attr, stipulates the relative position of the modifier with
-; respect to the head, it should stay with MOD, since only relevant 
+; respect to the head, it should stay with MOD, since it's only relevant 
 ; when MOD is non-empty.
 
 cat-min := avm.
@@ -415,13 +416,17 @@ head := head-min &
   [ MOD list,
     PRD predicative,
     TAM tam, 
-    KEYS keys_min,
-    LEARNER bool ].
+    KEYS keys_min ].
 
 ; - for integrated tags which have no entry
 no-head := head.
 
-predicative := sort.
+predicative := sort & 
+[ HABER bool ]
+"""
+HABER: for past participles that don't encode agreement information but can go with the auxiliary verb haber,
+e.g. Las gatas han comido.
+""".
 non-prd := predicative.
 prd := predicative &
   [ COPV copv ].
@@ -955,6 +960,10 @@ named-relation := noun-arg1-relation & carg-relation &
 date-relation := noun-arg1-relation & carg-relation &
   [ PRED time_n_rel ].
 
+; Ordinal numbers
+
+ord-relation := adj-arg1-relation & carg-relation.
+
 ; pronouns
 
 pron_relation := noun-relation &
@@ -1371,7 +1380,7 @@ _de_p_temp_rel := temp_loc_rel.
 _desde_p_rel := orig_rel.
 _desde_p_temp_rel := temp_loc_rel.
 _después_p_rel := temp_loc_rel.
-_después_de_p_temp_rel := temp_loc_rel.
+_después-de_p_temp_rel := temp_loc_rel.
 _durante_p_temp_rel := temp_loc_rel.
 _en_p_rel := state_loc_rel.
 _en_p_temp_rel := temp_loc_rel.
@@ -1621,7 +1630,7 @@ _arriba_de_p_rel :=  miscprep_rel.
 _cerca_de_p_rel :=  state_loc_rel. 
 _dentro_de_p_rel :=  miscprep_rel.
 _dentro_de_p_temp_rel := temp_loc_rel.
-_después_de_p_rel :=  miscprep_rel.
+_después-de_p_rel :=  miscprep_rel.
 _por_encima_de_p_rel :=  miscprep_rel.
 _por_debajo_de_p_rel :=  state_loc_rel.
 _por_delante_de_p_rel :=  state_loc_rel.

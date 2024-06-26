@@ -36,6 +36,14 @@ def read_judgments(path_to_grammaticality_judgments):
 
 
 '''
+OZ-2024-02-01: I am not sure why I am passing two paths. I forgot. Right now I am calling it with two identical
+paths which clearly is redundant. But apparently there was a scenario before when this was useful. It has to do
+with the target/learner distinction, so, maybe this will become clear at some point. 
+
+Current usage:
+python3 update_grammaticality.py path/to/tsdb/testsuite update_grammaticality.py path/to/tsdb/testsuite path/to/tab-separated/grammaticality/judgments/textfile
+
+Original usage:
 python3 update_grammaticality.py path/to/tsdb/testsuite path/to/tab-separated/grammaticality/judgments/textfile
 
 for example: 

@@ -134,6 +134,17 @@ rg_ilr := infl-ltow-rule &
   """; -- non-inflecting categories
 """.
 
+
+fd_ilr := infl-ltow-rule & 
+[ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.VAL [ SUBJ < >,
+                                                 COMPS < >,
+                                                 SPR < >,
+                                                 SPEC < > ] ] > ]
+"""
+Colon.
+"Precio: 1000 pesetas."
+""".
+
 nc00000_ilr :=  infl-ltow-rule & 
   [ SYNSEM.LOCAL.CAT.HEAD noun ].
 
@@ -202,13 +213,24 @@ fem_ilr :=  infl-ltow-rule &
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
 
 neut_ilr :=  infl-ltow-rule & 
-  [ SYNSEM.LOCAL.AGR.PNG.GEN neut ].
+  [ SYNSEM.LOCAL.AGR.PNG.GEN masc ] ; neut ]
+  """
+  OZ: I don't see the point of the neut GEN value for now; it blocks constructions like "Esto es cierto" etc.,
+  and I don't see what it is adding.
+  """.
 
 masc_3sg_ilr :=  masc_ilr & 3sg_ilr.
 masc_3pl_ilr :=  masc_ilr & 3pl_ilr.
 fem_3sg_ilr :=  fem_ilr & 3sg_ilr.
 fem_3pl_ilr :=  fem_ilr & 3pl_ilr.
 neut_3sg_ilr :=  neut_ilr & 3sg_ilr.
+
+masc_sg_ilr := masc_ilr & sg_ilr.
+fem_sg_ilr := fem_ilr & sg_ilr.
+masc_pl_ilr := masc_ilr & pl_ilr.
+fem_pl_ilr := fem_ilr & pl_ilr.
+neut_sg_ilr := neut_ilr & sg_ilr.
+neut_pl_ilr := neut_ilr & sg_ilr.
 
 ; -- determiners
 
@@ -235,120 +257,120 @@ dr_ilr :=  d_ilr &
 
 ; -- definite articles
 
-da0ms0_ilr := da_ilr & masc_3sg_ilr
+da0ms0_ilr := da_ilr & masc_sg_ilr
 """definite article""".
-da0mp0_ilr := da_ilr & masc_3pl_ilr
+da0mp0_ilr := da_ilr & masc_pl_ilr
 """definite article""".
-da0fs0_ilr := da_ilr & fem_3sg_ilr
+da0fs0_ilr := da_ilr & fem_sg_ilr
 """definite article""".
-da0fp0_ilr := da_ilr & fem_3pl_ilr
+da0fp0_ilr := da_ilr & fem_pl_ilr
 """definite article""".
-da00s0_ilr := da_ilr & 3sg_ilr
+da00s0_ilr := da_ilr & sg_ilr
 """definite article""".
 
 ; -- demonstrative det.
 
-dd0ms0_ilr := dd_ilr & masc_3sg_ilr
+dd0ms0_ilr := dd_ilr & masc_sg_ilr
 """demonstrative det""".
-dd0mp0_ilr := dd_ilr & masc_3pl_ilr
+dd0mp0_ilr := dd_ilr & masc_pl_ilr
 """demonstrative det""".
-dd0fs0_ilr := dd_ilr & fem_3sg_ilr
+dd0fs0_ilr := dd_ilr & fem_sg_ilr
 """demonstrative det""".
-dd0fp0_ilr := dd_ilr & fem_3pl_ilr
+dd0fp0_ilr := dd_ilr & fem_pl_ilr
 """demonstrative det""".
-dd0cs0_ilr := d_ilr & 3sg_ilr
+dd0cs0_ilr := d_ilr & sg_ilr
 """demonstrative det""".
-dd0cp0_ilr := d_ilr & 3pl_ilr
+dd0cp0_ilr := d_ilr & pl_ilr
 """demonstrative det""".
 
 ; -- possessive det.
 
-dp1css_ilr :=  dp_ilr & 3sg_ilr
+dp1css_ilr :=  dp_ilr & sg_ilr
 """possessive det""".
-dp1cps_ilr := dp_ilr & 3pl_ilr
+dp1cps_ilr := dp_ilr & pl_ilr
 """possessive det""".
-ap0ms1p_ilr := dp_ilr & masc_3sg_ilr
+ap0ms1p_ilr := dp_ilr & masc_sg_ilr
 """possessive det""".
-ap0mp1p_ilr := dp_ilr & masc_3pl_ilr
+ap0mp1p_ilr := dp_ilr & masc_pl_ilr
 """possessive det""".
-ap0fs1p_ilr := dp_ilr & fem_3sg_ilr
+ap0fs1p_ilr := dp_ilr & fem_sg_ilr
 """possessive det""".
-ap0fp1p_ilr := dp_ilr & fem_3pl_ilr
+ap0fp1p_ilr := dp_ilr & fem_pl_ilr
 """possessive det""".
-dp2css_ilr := dp_ilr & 3sg_ilr
+dp2css_ilr := dp_ilr & sg_ilr
 """possessive det""".
-dp2cps_ilr := dp_ilr & 3pl_ilr
+dp2cps_ilr := dp_ilr & pl_ilr
 """possessive det""".
-ap0ms2p_ilr := dp_ilr & masc_3sg_ilr
+ap0ms2p_ilr := dp_ilr & masc_sg_ilr
 """possessive det""".
-ap0mp2p_ilr := dp_ilr & masc_3pl_ilr
+ap0mp2p_ilr := dp_ilr & masc_pl_ilr
 """possessive det""".
-ap0fs2p_ilr := dp_ilr & fem_3sg_ilr
+ap0fs2p_ilr := dp_ilr & fem_sg_ilr
 """possessive det""".
-ap0fp2p_ilr := dp_ilr & fem_3pl_ilr
+ap0fp2p_ilr := dp_ilr & fem_pl_ilr
 """possessive det""".
-dp3csn_ilr := dp_ilr & 3sg_ilr
+dp3csn_ilr := dp_ilr & sg_ilr
 """possessive det""".
-dp3cpn_ilr := dp_ilr & 3pl_ilr
+dp3cpn_ilr := dp_ilr & pl_ilr
 """possessive det""".
 
 ; -- indefinite det. 
 
-di0ms0_ilr :=  d_ilr & masc_3sg_ilr
+di0ms0_ilr :=  d_ilr & masc_sg_ilr
 """indefinite det""".
-di0mp0_ilr :=  d_ilr & masc_3pl_ilr
+di0mp0_ilr :=  d_ilr & masc_pl_ilr
 """indefinite det""".
-di0fs0_ilr :=  d_ilr & fem_3sg_ilr
+di0fs0_ilr :=  d_ilr & fem_sg_ilr
 """indefinite det""".
-di0fp0_ilr :=  d_ilr & fem_3pl_ilr
+di0fp0_ilr :=  d_ilr & fem_pl_ilr
 """indefinite det""".
-di0cs0_ilr :=  d_ilr & 3sg_ilr
+di0cs0_ilr :=  d_ilr & sg_ilr
 """indefinite det""".
-di0cp0_ilr :=  d_ilr & 3pl_ilr
+di0cp0_ilr :=  d_ilr & pl_ilr
 """indefinite det""".
 
 ; -- interrogative det.
 
-dt0ms0_ilr :=  dt_ilr & masc_3sg_ilr
+dt0ms0_ilr :=  dt_ilr & masc_sg_ilr
 """interrogative det""".
-dt0mp0_ilr :=  dt_ilr & masc_3pl_ilr
+dt0mp0_ilr :=  dt_ilr & masc_pl_ilr
 """interrogative det""".
-dt0fs0_ilr :=  dt_ilr & fem_3sg_ilr
+dt0fs0_ilr :=  dt_ilr & fem_sg_ilr
 """interrogative det""".
-dt0fp0_ilr :=  dt_ilr & fem_3pl_ilr
+dt0fp0_ilr :=  dt_ilr & fem_pl_ilr
 """interrogative det""".
-dt0cs0_ilr :=  dt_ilr & 3sg_ilr
+dt0cs0_ilr :=  dt_ilr & sg_ilr
 """interrogative det""".
-dt0cp0_ilr :=  dt_ilr & 3pl_ilr
+dt0cp0_ilr :=  dt_ilr & pl_ilr
 """interrogative det""".
 dt0cn0_ilr :=  dt_ilr
 """interrogative det""".
 
 ; -- exclamative det.
 
-de0ms0_ilr :=  de_ilr & masc_3sg_ilr
+de0ms0_ilr :=  de_ilr & masc_sg_ilr
 """exclamative det""".
-de0mp0_ilr :=  de_ilr & masc_3pl_ilr
+de0mp0_ilr :=  de_ilr & masc_pl_ilr
 """exclamative det""".
-de0fs0_ilr :=  de_ilr & fem_3sg_ilr
+de0fs0_ilr :=  de_ilr & fem_sg_ilr
 """exclamative det""".
-de0fp0_ilr :=  de_ilr & fem_3pl_ilr
+de0fp0_ilr :=  de_ilr & fem_pl_ilr
 """exclamative det""".
-de0cs0_ilr :=  de_ilr & 3sg_ilr
+de0cs0_ilr :=  de_ilr & sg_ilr
 """exclamative det""".
-de0cp0_ilr :=  de_ilr & 3pl_ilr
+de0cp0_ilr :=  de_ilr & pl_ilr
 """exclamative det""".
 de0cn0_ilr :=  de_ilr
 """exclamative det""".
 
 ; -- relative det.
-dr0ms0_ilr :=  dr_ilr & masc_3sg_ilr
+dr0ms0_ilr :=  dr_ilr & masc_sg_ilr
 """relative det""".
-dr0mp0_ilr :=  dr_ilr & masc_3pl_ilr
+dr0mp0_ilr :=  dr_ilr & masc_pl_ilr
 """relative det""".
-dr0fs0_ilr :=  dr_ilr & fem_3sg_ilr
+dr0fs0_ilr :=  dr_ilr & fem_sg_ilr
 """relative det""".
-dr0fp0_ilr :=  dr_ilr & fem_3pl_ilr
+dr0fp0_ilr :=  dr_ilr & fem_pl_ilr
 """relative det""".
 
 ; --- pronouns
@@ -495,21 +517,47 @@ pp3cno0_ilr :=  pp_ilr & 3per_ilr &
 a_ilr :=  infl-ltow-rule & 
   [ SYNSEM.LOCAL.CAT.HEAD adj ].
 
-a_sg_ilr :=  a_ilr & 3sg_ilr
+a_sg_ilr :=  a_ilr & sg_ilr
 """adjective""".
-a_pl_ilr :=  a_ilr & 3pl_ilr
+a_pl_ilr :=  a_ilr & pl_ilr
 """adjective""".
-a_fem-sg_ilr :=  a_ilr & fem_3sg_ilr
+a_fem-sg_ilr :=  a_ilr & fem_sg_ilr
 """adjective""".
-a_fem-pl_ilr :=  a_ilr & fem_3pl_ilr
+a_fem-pl_ilr :=  a_ilr & fem_pl_ilr
 """adjective""".
-a_masc-sg_ilr :=  a_ilr & masc_3sg_ilr
+a_masc-sg_ilr :=  a_ilr & masc_sg_ilr
 """adjective""".
-a_masc-pl_ilr :=  a_ilr & masc_3pl_ilr
+a_masc-pl_ilr :=  a_ilr & masc_pl_ilr
 """adjective""".
-a_neut-sg_ilr :=  a_ilr & neut_3sg_ilr
+a_neut-sg_ilr :=  a_ilr & neut_sg_ilr
 """adjective""".
 
+;;; OZ 2024-02-01
+;;; Learner lexical rules to allow the use of an adjective as if it were of the opposite ("wrong") gender.
+
+mal_a_masc-sg_ilr := a_ilr & fem_sg_ilr & 
+[ LEARNER + ]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+mal_a_masc-pl_ilr := a_ilr & fem_pl_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+mal_a_fem-sg_ilr := a_ilr & masc_sg_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
+
+mal_a_fem-pl_ilr := a_ilr & masc_pl_ilr & 
+[ LEARNER +]
+"""
+Learner adjective (used as wrong gender).
+""".
 
 ; -- clitics
 
@@ -644,33 +692,37 @@ n_ilr :=  tmt-lex-rule & phrase-or-lexrule &
 
 n_sg_ilr :=  n_ilr & inflecting-lex-rule &
   [ SYNSEM #synsem & 
-           [ LOCAL [ AGR [ PNG.PN 3sg ],
+           [ LOCAL [ AGR #ind & [ PNG.PN 3sg ],
                      CAT.VAL.SPR #spr,
                      CONT.HOOK [ LTOP #ltop,
                                  INDEX #index ] ],
              LKEYS.KEYREL [ LBL #ltop,
                             ARG0 #index ] ],
     DTR.SYNSEM #synsem & 
-               [ LOCAL [ CAT.VAL.SPR #spr,
+               [ LOCAL [ CAT.VAL.SPR #spr & < [ LOCAL.AGR #ind ] >,
                          CONT.HOOK [ LTOP #ltop,
                                      INDEX #index ] ],
                  LKEYS.KEYREL [ LBL #ltop,
                                 ARG0 #index ] ] ].
 
-n_pl_ilr :=  n_ilr & inflecting-lex-rule &
-  [ SYNSEM [ LOCAL [ AGR [ PNG.PN 3pl,
+n_pl_ilr :=  n_ilr & 
+  [ SYNSEM [ LOCAL [ AGR #agr & [ PNG.PN 3pl,
                                   DIVISIBLE +,
                                   PRONTYPE not_pron,
                                   SORT #sort ],
                      CAT [ VAL.SPR < [ OPT #opt,
-                                       LOCAL [ CAT #cat,
+                                       LOCAL [ AGR #agr,
+                                               CAT #cat,
                                                CONT [ HCONS #hcons,
                                                       HOOK [ LTOP #ltop,
-                                                             XARG #xarg ],
+                                                             XARG #xarg,
+                                                             INDEX #agr ],
                                                       RELS #rels ],
                                                CTXT #ctxt ],
                                        NON-LOCAL #nlocal ] > ],
-                     CONT [ RELS.LIST.FIRST #keyrel & noun-relation ] ],
+                     CONT [ HOOK.INDEX #agr,
+                            RELS.LIST.FIRST #keyrel & noun-relation & 
+                                            [ ARG0 #agr ] ] ],
               LKEYS.KEYREL #keyrel ],
     DTR.SYNSEM.LOCAL [ AGR.SORT #sort,
                        CAT.VAL.SPR < [ OPT #opt,
@@ -683,49 +735,6 @@ n_pl_ilr :=  n_ilr & inflecting-lex-rule &
                                        NON-LOCAL #nlocal ] >,
                        CONT [ HOOK.INDEX.SORT #sort,
                               RELS.LIST.FIRST #keyrel ] ] ].
-
-
-target_agr_ilr := n_ilr & inflecting-lex-rule &
- [ SYNSEM.LOCAL [ AGR #agr,
-                     CAT [ HEAD.LEARNER -, 
-                           VAL.SPR < [ LOCAL [ AGR #agr,
-                                               CONT.HOOK.INDEX #agr ] ] > ],
-                     CONT [ HOOK.INDEX #agr,
-                            RELS.LIST.FIRST noun-relation & 
-                                            [ ARG0 #agr ] ] ] ]
-"""
-Target (L1, native) agreement: gender and number values match.
-""".
-
-mal_agr_ilr := n_ilr & inflecting-lex-rule &
-[ SYNSEM.LOCAL [ CAT [ HEAD.LEARNER +, 
-                           VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #agr ] ] > ],
-                     CONT [ HOOK.INDEX #agr,
-                            RELS.LIST.FIRST noun-relation & 
-                                            [ ARG0 #agr ] ] ] ]
-"""Learner (L2) agreement usages: we do not insist on gender and number matching but we still link some agreement values to the MRS via the hook""".
-
-n_sg_norm_ilr := n_sg_ilr & target_agr_ilr.
-
-n_sg_mal_ilr := n_sg_ilr & mal_agr_ilr.
-
-splgg_mal_ilr := n_sg_mal_ilr & 
-[ SYNSEM.LOCAL [ AGR.PNG.GEN #gen,
-                 CAT.VAL.SPR < [ LOCAL.AGR.PNG [ PN 3pl, GEN #gen ] ] > ] ].
-
-nn_mal_irl := mal_agr_ilr & 
-[ SYNSEM.LOCAL [ AGR.PNG.PN #pn,
-                CAT.VAL.SPR < [ LOCAL.AGR.PNG.PN #pn ] > ] ]
-"""
-Agreement mismatch (learner, L2 usage) but not in the number values.
-The mismatch itself is to be modeled in the subtypes.
-""".
-
-n_pl_norm_ilr :=  n_pl_ilr & target_agr_ilr.
-
-n_pl_mal_ilr :=  n_pl_ilr & mal_agr_ilr.
-
-
 
 n_masc_ilr :=  n_ilr & 
   [ SYNSEM #synsem & 
@@ -754,45 +763,32 @@ n_com_ilr :=  n_ilr &
                             RELS.LIST.FIRST.ARG0 #agr ] ] ],
     DTR.SYNSEM #synsem ].
 
-n_masc-sg_ilr :=  n_sg_norm_ilr & 
+n_masc-sg_ilr :=  n_sg_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
-
-n_masc-sg-mal-gen_ilr :=  n_sg_mal_ilr & nn_mal_irl & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].  
-
-
-n_masc-sg-mal-num_ilr :=  n_sg_mal_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc ] ].  
-
- 
-n_masc-pl_ilr :=  n_pl_norm_ilr & 
+n_masc-pl_ilr :=  n_pl_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN masc ].
-  
-n_masc-pl-mal-gen_ilr :=  n_pl_mal_ilr & nn_mal_irl & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN masc,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN fem ] ].
-  
-n_fem-sg_ilr :=  n_sg_norm_ilr & 
+n_fem-sg_ilr :=  n_sg_ilr & 
+  [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
+n_fem-pl_ilr :=  n_pl_ilr & 
   [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
   
-n_fem-sg-mal-gen_ilr :=  n_sg_mal_ilr & nn_mal_irl & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
+;;; Learner rules: to use nouns as instances of the opposite ("wrong") gender, i.e. to use "gato" as a feminine noun, etc.
 
-n_fem-sg-mal-num_ilr :=  n_sg_mal_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem ] ].
-                   
-n_fem-pl_ilr :=  n_pl_norm_ilr & 
-  [ SYNSEM.LOCAL.AGR.PNG.GEN fem ].
-
-n_fem-pl-mal-gen_ilr :=  n_pl_mal_ilr & nn_mal_irl &
-  [ SYNSEM.LOCAL [ AGR.PNG.GEN fem,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.GEN masc ] ].
-
-n_fem-pl-mal-num_ilr :=  n_pl_mal_ilr & 
-  [ SYNSEM.LOCAL [ AGR.PNG.PN 3pl,
-                   CAT.VAL.SPR.FIRST.LOCAL.AGR.PNG.PN 3sg ] ].
+mal_n_masc-sg_ilr :=  n_sg_ilr & 
+  [ LEARNER +,
+    SYNSEM.LOCAL.AGR.PNG.GEN fem ]. 
+  
+mal_n_masc-pl_ilr := n_pl_ilr & 
+  [ LEARNER +,
+    SYNSEM.LOCAL.AGR.PNG.GEN fem ]. 
+  
+mal_n_fem-sg_ilr := n_sg_ilr & 
+  [ LEARNER +, 
+    SYNSEM.LOCAL.AGR.PNG.GEN masc ]. 
+  
+mal_n_fem-pl_ilr := n_pl_ilr & 
+  [ LEARNER +, 
+    SYNSEM.LOCAL.AGR.PNG.GEN masc ].
 
 
 ; --- Verbs 
@@ -815,6 +811,12 @@ ind-vfin_ilr :=  vfin_ilr &
 
 pres-ind_ilr :=  ind-vfin_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD.TAM.TENSE pres ].
+
+pres-ind-aux_ilr :=  pres-ind_ilr & 
+ [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CAT.HEAD verb ] > ]
+"""
+e.g. esta pasando, ha dormido
+""".
 
 ppast-ind_ilr :=  ind-vfin_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD.TAM.TENSE ppast ].
@@ -858,12 +860,63 @@ vger_ilr :=  verb_ilr &
                             PRD prd & [ COPV estar ] ] ] ].
 ;                     VAL.SUBJ < unexpressed & [ OPT - ] > ] ].
 
-;vpart_ilr :=  infl-ltow-rule & 
-vpart_ilr :=  verb_ilr & 
+
+vpart-haber_ilr :=  verb_ilr & 
 [ SYNSEM.LOCAL.CAT.HEAD [ TAM.MOOD ind_or_sub_mood,
                           VFORM part,
                           VOICE active,
-                          PRD non-prd ] ].
+                          PRD non-prd & [ HABER + ] ] ].
+                          
+vpart_ilr :=  inflecting-lex-rule & 
+  [ INFLECTED +,
+    ;KEY-ARG #keyarg,
+    SYNSEM [ LOCAL [ ;AGR #agr,
+                     CAT [ MC #mc,
+                           HEAD verb & [ AUX -,
+                                         PRD non-prd & [ HABER #haber ], 
+                                         VFORM part,
+                                         VOICE active,
+                                         TAM.MOOD ind_or_sub_mood & #mood,
+                                         KEYS.KEY #key ], 
+                           VAL [ SPR #spr,
+                                 SUBJ < synsem &
+                                        [ NON-LOCAL.SLASH 0-dlist ] >,
+                                 CLTS #clt,
+                                 COMPS #comps,
+                                 SPEC #spec ] ],
+                     CONT [ HOOK [ INDEX #arg0,
+                                   LTOP #hand ],
+                            RELS #rels,
+                            HCONS #hcons ],
+                     CTXT #ctxt,
+                     COORD #coord,
+                     COORD-STRAT #coord-strat ],
+            LKEYS #lkeys,
+            NON-LOCAL #nonloc ],
+    DTR [ INFLECTED -,
+          ;KEY-ARG #keyarg,
+          SYNSEM [ LOCAL [ CAT [ MC #mc,
+                                 HEAD verb &
+                                      [ VFORM part,
+                                        TAM.MOOD #mood,
+                                        KEYS.KEY #key,
+                                        PRD.HABER #haber ],
+                                 VAL [ SPR #spr,
+                                       SUBJ < [ LOCAL np_nom_local ] >,
+                                       COMPS #comps,
+                                       CLTS #clt,
+                                       SPEC #spec ] ],
+                           CONT [ HOOK [ INDEX #arg0,
+                                         LTOP #hand ],
+                                  RELS #rels,
+                                  HCONS #hcons ],
+                           CTXT #ctxt,
+                           COORD #coord,
+                           COORD-STRAT #coord-strat ],
+                   LKEYS #lkeys,
+                   NON-LOCAL #nonloc ] ],
+    C-CONT.RELS <! !>  ].
+
 
 vppart_ilr :=  inflecting-lex-rule & 
   [ INFLECTED +,
@@ -889,7 +942,7 @@ vppart_ilr :=  inflecting-lex-rule &
                                                                INDEX #subjind ] ],
                                            NON-LOCAL #snonloc ]. #comps >,
                                  CLTS < > ] ],
-                     CONT [ HOOK [ INDEX.E.MOOD #mood,
+                     CONT [ HOOK [ INDEX #arg0 & [ E.MOOD #mood ],
                                    LTOP #hand ],
                             RELS #rels,
                             HCONS #hcons ],
@@ -911,7 +964,8 @@ vppart_ilr :=  inflecting-lex-rule &
                                                        NON-LOCAL #ononloc ], 
                                                REST #comps ],
                                        CLTS < > ] ],
-                           CONT [ HOOK.LTOP #hand,
+                           CONT [ HOOK [ INDEX #arg0,
+                                         LTOP #hand ],
                                   RELS #rels,
                                   HCONS #hcons ],
                            CTXT #ctxt ],

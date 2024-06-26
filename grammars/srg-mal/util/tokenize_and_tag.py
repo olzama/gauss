@@ -2,9 +2,9 @@
 
 from freeling_api.python_API import pyfreeling_api
 import sys, os
-from override_freeling import MAL_TAGS
+from override_freeling import MAL_TAGS, ADD_TAGS
 
-PATH_TO_SPPP_DAT = '/home/lorena/gauss/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
+PATH_TO_SPPP_DAT = '/home/olga/delphin/GAUSS/gauss-repo/grammars/srg-mal/util/freeling_api/srg-freeling.dat'
 
 class Freeling_tok_tagger:
     '''
@@ -96,7 +96,8 @@ class Freeling_tok_tagger:
                     tag = '" "+'.join([tp['tag'] for tp in tags_probs])
                     prob = tags_probs[-1]['prob']
                     #print("lemma: {}, form: {}, start: {}, end: {}, tag: {}".format(w.get_lemma(), w.get_form(), w.get_span_start(), w.get_span_finish(), w.get_tag()))
-                    output[i]['tokens'].append({'lemma':w.get_lemma(), 'form': w.get_form(),
+                    lemma = w.get_lemma() if not 'lemma' in tags_probs[-1] else tags_probs[-1]['lemma']
+                    output[i]['tokens'].append({'lemma': lemma, 'form': w.get_form(),
                                                 'start':w.get_span_start(), 'end': w.get_span_finish(),
                                                 'tag': tag, 'prob': prob, 'additional': additional})
                     for k,arc in enumerate(additional_arcs):
@@ -122,8 +123,14 @@ class Freeling_tok_tagger:
         return s
 
     def get_selected_tags(self, w, override_dicts):
+        debug_w = w.get_form()
+        #if debug_w == 'más':
+        #    print("debug")
         tags = []
         additional_arcs = []
+        seen = set()
+        if w.get_form().lower() == "mar.":
+            print("debug")
         for a in w:
             debug_tag = a.get_tag()
             if a.is_selected():
@@ -132,15 +139,20 @@ class Freeling_tok_tagger:
                     for tk in tks:
                         tags.append(({'tag': tk.get_tag(), 'prob': a.get_prob()}))
                 else:
-                    if not w.get_form().lower() in override_dicts['replace']:
+                    needs_replacement = w.get_form().lower() in override_dicts['replace']
+                    if not needs_replacement:
                         tags.append(({'additional':False, 'tag': a.get_tag(), 'prob': a.get_prob()}))
                     else:
                         for i, additional_tag in enumerate(override_dicts['replace'][w.get_form().lower()]['tag']):
                             additional_lemma = override_dicts['replace'][w.get_form().lower()]['lemma'][i]
                             if i == 0:
-                                tags.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                                if (additional_tag, additional_lemma) not in seen:
+                                    tags.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                                seen.add((additional_tag, additional_lemma))
                             else:
-                                additional_arcs.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                                if (additional_tag, additional_lemma) not in seen:
+                                    additional_arcs.append(({'additional':True, 'tag': additional_tag, 'prob': -1, 'lemma': additional_lemma}))
+                                    seen.add((additional_tag, additional_lemma))
             else:
                 # There are words for which Freeling selected analysis should be ignored (no analysis discarded).
                 # In principle, there is also one tag for which it should be done if the word is in the first position:
@@ -150,8 +162,13 @@ class Freeling_tok_tagger:
                     additional_arcs.append(({'additional': True, 'tag': a.get_tag(), 'prob': a.get_prob(), 'lemma': a.get_lemma()}))
                     #print("Non-selected analysis: {}".format(a.get_tag()))
             # For POS which are subject to MAL rules, add an arc with the MAL tag:
-            if a.get_tag() in MAL_TAGS:
+            if a.get_tag() in MAL_TAGS and (a.is_selected() or w.get_form().lower() in override_dicts['no_disambiguate']):
                 mal_tags = MAL_TAGS[a.get_tag()].split(',')
                 for mt in mal_tags:
                     additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
+            if a.get_tag() in ADD_TAGS and (a.is_selected() or w.get_form().lower() in override_dicts['no_disambiguate']):
+                add_tags = ADD_TAGS[a.get_tag()].split(',')
+                for mt in add_tags:
+                    additional_arcs.append(({'additional': True, 'tag': mt.strip(), 'prob': -1, 'lemma': a.get_lemma()}))
+ 
         return tags, additional_arcs
