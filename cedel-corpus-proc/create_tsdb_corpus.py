@@ -44,13 +44,13 @@ def read_ids(id_file):
     return ids
 
 def update_profile(ts, ids, md):
-    for i, row in enumerate(ts['item']):
-        ts['item'].update(i, {'i-id':ids[i], 'i-origin':md[i]['i-origin'], 'i-register':md[i]['i-register'],
-                              'i-format':md[i]['i-format'], 'i-difficulty':md[i]['i-difficulty'],
-                              'i-category':md[i]['i-category'], 'i-input':md[i]['i-input'],
-                              'i-wf':md[i]['i-wf'], 'i-length':md[i]['i-length'],
-                              'i-comment':md[i]['i-comment'], 'i-author':md[i]['i-author'],
-                              'i-date':md[i]['i-date']})
+    for (i, row), id, meta in zip(enumerate(ts['item']), ids, md):
+        ts['item'].update(i, {'i-id':id, 'i-origin':meta['i-origin'], 'i-register':meta['i-register'],
+                              'i-format':meta['i-format'], 'i-difficulty':meta['i-difficulty'],
+                              'i-category':meta['i-category'], 'i-input':meta['i-input'],
+                              'i-wf':meta['i-wf'], 'i-length':meta['i-length'],
+                              'i-comment':meta['i-comment'], 'i-author':meta['i-author'],
+                              'i-date':meta['i-date']})
     ts.commit()
 
 if __name__ == '__main__':
