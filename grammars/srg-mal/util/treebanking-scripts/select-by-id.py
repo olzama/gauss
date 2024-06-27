@@ -3,15 +3,15 @@ import sys, glob
 from delphin import itsdb, commands
 
 if __name__ == '__main__':
-    path_to_ids = '/home/lorena/delphin/COWSL2H/uniqueid/0parses_ids.txt'
-    path_to_testsuites = '/home/lorena/delphin/GAUSS/treebanks/experiment/unannotated/'
-    output_path = '/home/lorena/delphin/COWSL2H/tsdb/0parses/'
+    path_to_unparsed_ids = sys.argv[1] # textfile with all the unparsed items' ids
+    path_to_testsuites = sys.argv[2] # folder with the testsuites pared with normal srg
+    output_path = sys.argv[3]
     if not os.path.exists(output_path):
         os.mkdir(output_path)
-    relations = '/home/lorena/delphin/COWSL2H/relations'
+    relations = sys.argv[4]
     # read a list of ids from the file:
     ids = []
-    with open(path_to_ids, 'r') as f:
+    with open(path_to_unparsed_ids, 'r') as f:
         for line in f:
             ids.append(line.strip())
     relevant_sentences = []

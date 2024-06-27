@@ -144,7 +144,7 @@ def process_essay_text(annotated, folder_id, subcorpus, corpus_by_length, textfi
             unique_id = folder_id*1000 + sent_id
             #if '154043.S17_FamousGNPA.txt' in textfile:
             #    print('stop')
-            clean_sent = sent.strip('-"“”*&–')
+            # clean_sent = sent.strip('-"“”*&–')
             # Replace unsupported punctuation:
             clean_sent = re.sub('[“”]', '"', clean_sent)
             clean_sent = re.sub('–', "-", clean_sent)

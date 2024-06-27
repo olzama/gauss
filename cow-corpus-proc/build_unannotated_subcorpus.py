@@ -12,26 +12,26 @@ SENT_TOK = spacy.load('es_core_news_sm')  # sentence tokenizer
 
 def find_relevant_folders(d, k):
     folders = glob.glob(d + "**/**/" + k, recursive=True)
-    #return folders # This mysteriously included duplicate paths, not always though (?)
+    # return folders # This mysteriously included duplicate paths, not always though (?)
     return list(set(folders))
 
 def build_corpus(corpus_path, essays, metadata):
     filename_codes = {}
     max_filecode = 0
     essays_with_metadata = {}
-    sentences_by_length = {}
-    for fol in essays:
+    sorted_sentences = {}
+    for fol in sorted(essays):
+        essay_count = {} # this dict keeps track of the essays annotated by each annotator
         topic = fol.split('/')[-3]
         semester = fol.split('/')[-2]
         path = fol + '/gender_number/**/*.txt'
-        essay_count = {}
         for textfile in sorted(list(glob.glob(path))):
             print("Processing {}".format(textfile))
             annotator = textfile.split('/')[-2]
             if not annotator in essays_with_metadata:
                 essays_with_metadata[annotator] = []
-            if not annotator in sentences_by_length:
-                sentences_by_length[annotator] = {'by id': {}, 'by length': {}}
+            if not annotator in sorted_sentences:
+                sorted_sentences[annotator] = {'by id': {}, 'by length': {}}
             if not annotator in essay_count:
                 essay_count[annotator] = 0
             essay_count[annotator] += 1
@@ -48,19 +48,19 @@ def build_corpus(corpus_path, essays, metadata):
             subcorpus['error'] = 'gender_and_number'
             # Find a folder in the metadata list of folders that has the same semester and topic:
             fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, True, annotator)
-            process_essay_text(filename_codes[subcorpus['text id']], subcorpus, sentences_by_length[annotator], textfile)
+            process_essay_text(filename_codes[subcorpus['text id']], subcorpus, sorted_sentences[annotator], textfile)
             essays_with_metadata[annotator].append(subcorpus)
-    # Created a dict where keys are sorted in increasing order:
-    for annotator in sentences_by_length:
+    # Create a dict where keys are sorted in increasing order:
+    for annotator in sorted_sentences:
         sorted_by_length = OrderedDict()
         sorted_by_id = OrderedDict()
-        for len in sorted(sentences_by_length[annotator]['by length'].keys()):
-            sorted_by_length[len] = sentences_by_length[annotator]['by length'][len]
-        sentences_by_length[annotator]['by length'] = sorted_by_length
-        for id in sorted(sentences_by_length[annotator]['by id'].keys()):
-            sorted_by_id[id] = sentences_by_length[annotator]['by id'][id]
-        sentences_by_length[annotator]['by id'] = sorted_by_id
-    return essays_with_metadata, sentences_by_length, filename_codes
+        for len in sorted(sorted_sentences[annotator]['by length'].keys()):
+            sorted_by_length[len] = sorted_sentences[annotator]['by length'][len]
+        sorted_sentences[annotator]['by length'] = sorted_by_length
+        for id in sorted(sorted_sentences[annotator]['by id'].keys()):
+            sorted_by_id[id] = sorted_sentences[annotator]['by id'][id]
+        sorted_sentences[annotator]['by id'] = sorted_by_id
+    return essays_with_metadata, sorted_sentences, filename_codes
 
 def fill_metadata(corpus_path, metadata, semester, subcorpus, textfile, topic, annotated, annotator=None):
     # capitalize the first letter of the topic because this is how it appears in the metadata subdirectories:
@@ -151,13 +151,13 @@ def find_annotations(dict):
 def process_essay_text(folder_id, essay_with_metadata, corpus, textfile):
     with open(textfile, 'r') as f:
         '''
-        Sometimes, tokenization keeps newline characters between sentences, which leads to items containing
+        Sometimes, tokenization keeps newline characters between sentences, which leads to items with
         two or more sentences separated by newline characters. This conflicts with read_metadata(), which assumes that
-        each item occupies one line of the file. Having items occupy more than one line raises an InexError.
-        To prevent this from happening, all newline characters are replaced by spaces in each essay.
+        items are one-line long. Having items occupy more than one line raises an InexError.
+        To prevent this, all newline characters are replaced by spaces in each essay.
         '''
         text = f.read().replace('\n', ' ')
-        #sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
+        # sent_tokenized_text = nltk.sent_tokenize(text, language='spanish')
         sent_tokenized_text = [i for i in SENT_TOK(text).sents]
         sent_id = 0
         for sent_obj in sent_tokenized_text:
@@ -166,12 +166,12 @@ def process_essay_text(folder_id, essay_with_metadata, corpus, textfile):
             unique_id = folder_id*1000 + sent_id
             #if '154043.S17_FamousGNPA.txt' in textfile:
             #    print('stop')
-            clean_sent = sent.strip('-"“”*&–')
             # Replace unsupported punctuation:
-            clean_sent = re.sub('[“”]', '"', clean_sent)
-            clean_sent = re.sub('–', "-", clean_sent)
+            clean_sent = re.sub('[“”]', '"', sent)
+            clean_sent2 = re.sub('–', '-', clean_sent)
+            clean_sent3 = re.sub('[*&]', '', clean_sent2)
             assert unique_id not in essay_with_metadata['sentences'] and unique_id not in corpus['by length'] and unique_id not in corpus['by id']
-            essay_with_metadata['sentences'][unique_id] = clean_sent
+            essay_with_metadata['sentences'][unique_id] = clean_sent3
             sen_len = len(nltk.tokenize.word_tokenize(clean_sent, language='spanish'))
             item = {'sentence': clean_sent, 'filename': essay_with_metadata['filename'], 'unique_id': unique_id,
                     'topic': essay_with_metadata['topic'], 'semester': essay_with_metadata['semester'],
