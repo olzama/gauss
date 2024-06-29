@@ -32,7 +32,7 @@ def report_stats(treebanks_path):
                 else:
                     overgenerated.append(response['i-input'])
                     all_overgenerated.append(response['i-input'])
-                    print('Overgeneration for item {}: {}'.format(response['i-id'], response['i-input']))
+                    #print('Overgeneration for item {}: {}'.format(response['i-id'], response['i-input']))
                     illformed.append(response['i-input'])
                     all_illformed.append(response['i-input'])
                 #deriv = response.result(0).derivation()
@@ -43,7 +43,7 @@ def report_stats(treebanks_path):
                     all_illformed.append(response['i-input'])
                 else:
                     missing_coverage.append(response['i-input'])
-                    print('Missing correct parse for sentence {}: {}'.format(response['i-id'], response['i-input']))
+                    #print('Missing correct parse for sentence {}: {}'.format(response['i-id'], response['i-input']))
                     all_missing_coverage.append(response['i-input'])
                 rejected.append(response['i-input'])
                 all_rejected.append(response['i-input'])
@@ -133,5 +133,5 @@ def count_rules(d):
 
 if __name__ == '__main__':
     report_stats(sys.argv[1])
-    report_rule_counts(sys.argv[1])
+    #report_rule_counts(sys.argv[1])
     #report_sorted(sys.argv[1]) # This assumes the CEDEL corpus format, so shouldn't be called for COW

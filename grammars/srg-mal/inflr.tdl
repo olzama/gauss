@@ -741,7 +741,7 @@ pp3ms00_ilr
 pp3fs00 :=
 %suffix (pp3fs00 pp3fs00) 
 pp3fs00_ilr
-""" ; ella
+""" ; ella 
 """.
 
 pp3ns000 :=
@@ -815,6 +815,57 @@ pp3cno0 :=
 %suffix (pp3cno0 pp3cno0) 
 pp3cno0_ilr
 """; sí, consigo
+""".
+
+
+; Learner versions, with the wrong gender
+
+pp3ms00-mg :=
+%suffix (pp3ms00-mg pp3ms00-mg) 
+mal_pp3ms00_ilr
+""" ; él used with wrong gender (LEARNER)
+""".
+
+pp3fs00-mg :=
+%suffix (pp3fs00-mg pp3fs00-mg) 
+mal_pp3fs00_ilr
+""" ; ella used with wrong gender (LEARNER)
+""".
+
+pp1mp00-mg :=
+%suffix (pp1mp00-mg pp1mp00-mg) 
+mal_pp1mp00_ilr
+""" ; nosotros used with wrong gender (LEARNER)
+""".
+
+pp1fp00-mg :=
+%suffix (pp1fp00-mg pp1fp00-mg) 
+mal_pp1fp00_ilr
+""" ; nosotras used with wrong gender (LEARNER)
+""".
+
+pp2mp00-mg :=
+%suffix (pp2mp00-mg pp2mp00-mg) 
+mal_pp2mp00_ilr
+""" ; vosotros used with wrong gender (LEARNER)
+""".
+
+pp2fp00-mg :=
+%suffix (pp2fp00-mg pp2fp00-mg) 
+mal_pp2fp00_ilr
+""" ; vosotras used with wrong gender (LEARNER)
+""".
+
+pp3mp00-mg :=
+%suffix (pp3mp00-mg pp3mp00-mg) 
+mal_pp3mp00_ilr
+""" ; ellos used with wrong gender (LEARNER)
+""".
+
+pp3fp00-mg :=
+%suffix (pp3fp00-mg pp3fp00-mg) 
+mal_pp3fp00_ilr
+""" ; ellas used with wrong gender (LEARNER)
 """.
 
 

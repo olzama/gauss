@@ -2318,7 +2318,7 @@ v_np_npsv_id_synsem := v_trans_synsem &
   [ LOCAL [ AGR.PNG #png,
             CAT [ HEAD.INV -, 
                   VAL [ SUBJ < [ LOCAL [ AGR.PNG #png,
-                                         CONT.HOOK.INDEX.PNG #png ],
+                                         CONT.HOOK.INDEX.PNG #png & [ GEN #gen ] ],
                                  NON-LOCAL [ QUE 0-dlist & [ LIST < > ],
                                              REL 0-dlist ] ] >,
                         COMPS < [ OPT -,
@@ -2327,7 +2327,7 @@ v_np_npsv_id_synsem := v_trans_synsem &
                                                        KEYS.KEY non_modable_rel ], 
                                                 VAL [ SUBJ < >,
                                                       COMPS < > ] ],
-                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod, PNG #png ] ],
+                                          CONT.HOOK.INDEX #ind2 & [ SORT non-mod, PNG.GEN #gen ] ],
                                   NON-LOCAL.REL 0-dlist ] > ] ],
             CONT [ RELS <! relation !>,
                    HCONS <! !> ] ],
@@ -5008,13 +5008,14 @@ basic-noun-lex := nonpronominal-lex &
                      CAT [ HEAD noun,
                            VAL.SPR < synsem &
                                      [ LOCAL local-min &
-                                             [ AGR #agr,
+                                             [ AGR #agr & [ PNG.GEN #gen ],
                                                CAT [ HEAD.KEYS.KEY quant_or_deg_rel, 
                                                      VAL.SUBJ < > ] ],
                                        NON-LOCAL [ REL 0-dlist,
                                                    SLASH 0-dlist ] ] > ],
                      CONT.HOOK [ LTOP #ltop,
-                                 INDEX #agr & [ PNG.PN 3per,
+                                 ;INDEX #agr & [ PNG.PN 3per,
+                                 INDEX [ PNG [ PN 3per, GEN #gen ],
                                          PRONTYPE not_pron ] ] ],
              LKEYS.KEYREL.LBL #ltop ] ]. 
 

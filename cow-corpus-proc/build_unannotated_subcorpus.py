@@ -307,7 +307,7 @@ if __name__ == '__main__':
     corpus_dir = sys.argv[1]
     output_dir = sys.argv[2]
 
-    annotated = find_relevant_folders(corpus_dir, 'annotated')
+    annotated = find_relevant_folders(corpus_dir, 'annotated') # essays containing annotations, but not for all sentences
     meta = find_relevant_folders(corpus_dir, 'metadata')
 
     essays_with_metadata, sorted_sentences, filename_codes = build_corpus(corpus_dir, annotated, meta)

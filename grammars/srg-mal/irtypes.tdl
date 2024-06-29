@@ -512,6 +512,42 @@ pp3cno0_ilr :=  pp_ilr & 3per_ilr &
   """personal pron""". 
 
 
+; Learner version (with the wrong gender)
+
+mal_pp3fs00_ilr :=  pp_ilr & 3sg_ilr & masc_ilr & 
+[ LEARNER + ]
+"""personal pron""".
+ 
+mal_pp3ms00_ilr :=  pp_ilr & 3sg_ilr & fem_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp1fp00_ilr :=  pp_ilr & 1pl_ilr & masc_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp1mp00_ilr :=  pp_ilr & 1pl_ilr & fem_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp2fp00_ilr :=  pp_ilr & 2pl_ilr & masc_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp2mp00_ilr :=  pp_ilr & 2pl_ilr & fem_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp3fp00_ilr :=  pp_ilr & 3pl_ilr & masc_ilr & 
+[ LEARNER + ]
+"""personal pron""". 
+
+mal_pp3mp00_ilr :=  pp_ilr & 3pl_ilr & fem_ilr & 
+[ LEARNER + ]
+"""personal pron""".
+
+
+
 ; -- adjectives
 
 a_ilr :=  infl-ltow-rule & 
