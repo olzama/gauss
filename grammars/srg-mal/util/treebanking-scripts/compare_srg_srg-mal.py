@@ -18,12 +18,13 @@ def compare_treebanks(srg_path, srgmal_path):
                 if len(srg_items) == len(mal_items):
                     print('Collecting parsed items from {}.'.format(srg_folder))
                     srg_unparsed = collect_unparsed(srg_items)
-                    mal_responses = collect_parsed(mal_items)
-                    mal_unparsed = collect_unparsed(mal_items)
-                    for item in mal_unparsed:
-                        print('No parses for item {} in either SRG or SRG-mal.'.format(item['i-id']))
+                    mal_parsed = collect_parsed(mal_items)
+                    # mal_unparsed = collect_unparsed(mal_items)
+                    print('{} items do not get a parse from SRG.'.format(len(srg_unparsed)))
+                    # for item in mal_unparsed:
+                    #     print('No parses for item {} in either SRG or SRG-mal.'.format(item['i-id']))
                     # Given two lists of parsed items, compare the results of items with the same id.
-                    for srg_response, mal_response in zip(srg_unparsed, mal_responses):
+                    for srg_response, mal_response in zip(srg_unparsed, mal_parsed):
                         srg_derivs = []
                         mal_derivs = []
                         if srg_response['i-id'] == mal_response['i-id']:
@@ -32,7 +33,7 @@ def compare_treebanks(srg_path, srgmal_path):
                             # if len(mal_results) == 0:
                             #     print('No parses for item {} in either SRG or SRG-mal.'.format(srg_response['i-id']))
                             if len(mal_results) > 0:
-                                print('SRG-mal found parses for item {}.'.format(mal_response['i-id']))
+                                print('SRG-mal parsed item {}.'.format(mal_response['i-id']))
                             # for o, n in zip(srg_results, mal_results):
                             #     srg_deriv = derivation.from_string(o['derivation'])
                             #     mal_deriv = derivation.from_string(n['derivation'])
