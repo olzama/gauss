@@ -43,14 +43,15 @@ def report_stats(treebanks_path):
                     all_illformed.append(response['i-input'])
                 else:
                     missing_coverage.append(response['i-input'])
-                    print('Missing correct parse for sentence {}: {}'.format(response['i-id'], response['i-input']))
+                    # print('Missing correct parse for sentence {}: {}'.format(response['i-id'], response['i-input']))
                     all_missing_coverage.append(response['i-input'])
                 rejected.append(response['i-input'])
                 all_rejected.append(response['i-input'])
-        acc = len(accepted)/(len(sentences) - len(illformed))
+        wellformed_len = len(sentences) - len(illformed)
+        acc = len(accepted)/wellformed_len if wellformed_len > 0 else 0
         overgen = len(overgenerated)/len(illformed) if len(illformed) > 0 else 0
         print('Corpus {} accuracy {} out of {} ({:.4f})'.format(ts.path.stem, len(accepted), len(sentences)-len(illformed), acc))
-        print('Corpus {} overgeneration {} out of {} ({:.4f})'.format(ts.path.stem, len(overgenerated), len(illformed), overgen))
+        # print('Corpus {} overgeneration {} out of {} ({:.4f})'.format(ts.path.stem, len(overgenerated), len(illformed), overgen))
     acc = len(all_accepted) / (len(all_sentences) - len(all_illformed))
     overgen = len(all_overgenerated) / len(all_illformed) if len(all_illformed) > 0 else 0
     print('Total accuracy: {} out of {} ({:.4f})'.format(len(all_accepted), len(all_sentences)-len(all_illformed), acc))
@@ -133,5 +134,5 @@ def count_rules(d):
 
 if __name__ == '__main__':
     report_stats(sys.argv[1])
-    report_rule_counts(sys.argv[1])
+    # report_rule_counts(sys.argv[1])
     #report_sorted(sys.argv[1]) # This assumes the CEDEL corpus format, so shouldn't be called for COW
