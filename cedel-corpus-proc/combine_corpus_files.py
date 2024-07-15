@@ -1,5 +1,7 @@
 import sys, os
 import glob
+
+import delphin.tsdb
 import nltk  # NLP package; used here to compute sentence length
 import re
 from delphin import commands, itsdb
@@ -51,9 +53,10 @@ def process_text(texts_with_metadata):
             clean_sent = re.sub('–', "-", clean_sent)
             assert unique_id not in sentences_by_id and unique_id not in sentences_by_L1
             sent_len = str(len(nltk.tokenize.word_tokenize(clean_sent, language='spanish')))
-            item = {'unique_id': unique_id, 'input': clean_sent, 'len': sent_len, 'filename': text['metadata']['Filename'],
-                    'topic': text['metadata']['Task title'], 'year': text['metadata']['Year data collection'],
-                    'metadata_file': text['metadata'], 'medium': text['metadata']['Medium'], 'L1': text['metadata']['L1']}
+            item = {'unique_id': unique_id, 'input': delphin.tsdb.escape(clean_sent), 'len': sent_len,
+                'filename': text['metadata']['Filename'], 'topic': text['metadata']['Task title'],
+                'year': text['metadata']['Year data collection'], 'metadata_file': text['metadata'],
+                'medium': text['metadata']['Medium'], 'L1': text['metadata']['L1']}
             L1 = item['L1']
             if L1 not in sentences_by_L1:
                 sentences_by_L1[L1] = {}
@@ -119,9 +122,6 @@ def write_ids_by_L1(dir, sentences_by_L1):
             with open(dir + '/' + L1 + '/uniqueid/' + k + '.txt', 'w') as f:
                 for item in v:
                     f.write(str(item['unique_id']) + '\n')
-
-
-
 
 if __name__ == '__main__':
     path_to_corpus = sys.argv[1] + ('/corpus')
