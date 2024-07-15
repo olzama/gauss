@@ -55,10 +55,3 @@ if __name__ == '__main__':
                 commands.mkprof(destination, source=sentence_file, schema=relations)
                 tsdb_profile = itsdb.TestSuite(destination)
                 update_profile(tsdb_profile, ids, metadata)
-    # sentence_file = sys.argv[1]
-    # destination = sys.argv[2]
-    # ids = read_ids(sys.argv[4])
-    # metadata = read_metadata(sys.argv[5])
-    # commands.mkprof(destination, source=sentence_file, schema=relations)
-    # tsdb_profile = itsdb.TestSuite(destination)
-    # update_profile(tsdb_profile, ids, metadata)
