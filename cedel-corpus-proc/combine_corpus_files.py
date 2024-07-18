@@ -53,7 +53,7 @@ def process_text(texts_with_metadata):
             clean_sent = re.sub('–', "-", clean_sent)
             assert unique_id not in sentences_by_id and unique_id not in sentences_by_L1
             sent_len = str(len(nltk.tokenize.word_tokenize(clean_sent, language='spanish')))
-            item = {'unique_id': unique_id, 'input': delphin.tsdb.escape(clean_sent), 'len': sent_len,
+            item = {'unique_id': unique_id, 'input': delphin.tsdb.escape(clean_sent), 'length': sent_len,
                 'filename': text['metadata']['Filename'], 'topic': text['metadata']['Task title'],
                 'year': text['metadata']['Year data collection'], 'metadata_file': text['metadata'],
                 'medium': text['metadata']['Medium'], 'L1': text['metadata']['L1']}
@@ -87,7 +87,7 @@ def tsdb_item_string(simple_id, sentence, item, today):
     author = item['filename'].split('_')[6]
     comment = metadata_str(item['metadata_file'])
     output = (str(item['unique_id']) + '@' + item['filename'] + '@essay@' + item['medium'] + '@1@S@' + sentence + '@1@' +
-              str(item['len']) + '@' + comment + '@' + author + '@' + str(today))
+              str(item['length']) + '@' + comment + '@' + author + '@' + str(today))
     return output
 
 def metadata_str(metadata): # extract the values of the metadata dict and put them in a string
@@ -132,6 +132,12 @@ if __name__ == '__main__':
     essays_with_metadata = build_corpus(path_to_corpus)
     sentences_by_id, sentences_by_L1 = process_text(essays_with_metadata)
     print('Found {} essays. Sentence count: {}'.format(len(essays_with_metadata), len(sentences_by_id)))
+    for l1, length in sentences_by_L1.items():
+        sentences = []
+        for k, v in length.items():
+            for item in v:
+                sentences.append(item)
+        print('{}: {} sentences.'.format(l1, len(sentences)))
     write_tsdb_item_output_by_L1(output_dir, sentences_by_L1)
     write_filename_codes(output_dir, essays_with_metadata)
     write_sentences_by_L1(output_dir, sentences_by_L1)
